@@ -1,0 +1,99 @@
+{
+    "$schema": "../../manifest.v2.schema.json",
+    "schema_version": "2.0.0",
+    "display_name": "Git Clarity Consultant",
+    "dispatch": {
+        "mode": "hybrid",
+        "cooldown": 300
+    },
+    "inputs": [
+        {
+            "id": "on_system_startup",
+            "type": "pulse.event",
+            "pattern": "system:startup"
+        },
+        {
+            "id": "on_push_complete",
+            "type": "pulse.event",
+            "pattern": "git:push_complete",
+            "route_mode": "owned",
+            "route_priority": 80
+        }
+    ],
+    "outputs": [
+        {
+            "id": "repo_drift_detected",
+            "type": "pulse.event",
+            "event_type": "repo:drift_detected"
+        },
+        {
+            "id": "repo_partner_activity",
+            "type": "pulse.event",
+            "event_type": "repo:partner_activity"
+        },
+        {
+            "id": "repo_stale_branches",
+            "type": "pulse.event",
+            "event_type": "repo:stale_branches"
+        },
+        {
+            "id": "repo_conflict_zone",
+            "type": "pulse.event",
+            "event_type": "repo:conflict_zone"
+        }
+    ],
+    "name": "git-clarity-consultant",
+    "version": "1.1.0",
+    "description": "Consultative skill for repository topology, partner awareness, and health diagnostics.",
+    "subscriptions": [
+        {
+            "event_pattern": "system:startup",
+            "action": "Generate initial repo health report"
+        },
+        {
+            "event_pattern": "git:push_complete",
+            "action": "Check for drift between remotes"
+        }
+    ],
+    "emissions": [
+        {
+            "event": "repo:drift_detected",
+            "description": "Emitted when origin and shared remotes are out of sync",
+            "payload": {
+                "remote": "string",
+                "branch": "string",
+                "behind_by": "number"
+            }
+        },
+        {
+            "event": "repo:partner_activity",
+            "description": "Emitted when partner commits are detected",
+            "payload": {
+                "partner": "string",
+                "commits": "number",
+                "branches": "array"
+            }
+        },
+        {
+            "event": "repo:stale_branches",
+            "description": "Emitted when branches haven't been updated in >7 days",
+            "payload": {
+                "branches": "array",
+                "oldest_commit_date": "string"
+            }
+        },
+        {
+            "event": "repo:conflict_zone",
+            "description": "Emitted when both partners modified the same file recently",
+            "payload": {
+                "files": "array",
+                "ryan_commits": "array",
+                "dwayne_commits": "array"
+            }
+        }
+    ],
+    "dependencies": [
+        "omniscient-skill-cataloger",
+        "codex_consultant"
+    ]
+}

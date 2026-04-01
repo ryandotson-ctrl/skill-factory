@@ -1,0 +1,33 @@
+{
+  "skill_id": "eval-flywheel-orchestrator",
+  "version": "1.4.0",
+  "description": "Portable eval loop orchestrator with threshold gating, regression detection, and model-certification pathology gates.",
+  "inputs": [
+    {
+      "event_type": "eval:run_requested",
+      "schema_ref": "default_event_schema"
+    },
+    {
+      "event_type": "qa:test_failed",
+      "schema_ref": "default_event_schema"
+    },
+    {
+      "event_type": "postmortem_generated",
+      "schema_ref": "default_event_schema"
+    }
+  ],
+  "outputs": [
+    {
+      "event_type": "eval:summary_emitted",
+      "schema_ref": "default_event_schema"
+    },
+    {
+      "event_type": "eval:regression_detected",
+      "schema_ref": "default_event_schema"
+    },
+    {
+      "event_type": "eval:gate_result_emitted",
+      "schema_ref": "default_event_schema"
+    }
+  ]
+}

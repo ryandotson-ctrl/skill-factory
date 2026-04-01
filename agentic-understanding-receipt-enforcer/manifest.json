@@ -1,0 +1,21 @@
+{
+  "skill_id": "agentic-understanding-receipt-enforcer",
+  "version": "1.0.0",
+  "description": "Portable explain-as-you-go discipline for agentic engineering. Use when implementation, debugging, review, or incident work should produce short receipts proving why the change works, what could break, and how to debug it without turning the task into a lecture.",
+  "inputs": [
+    {
+      "event_type": "skill:agentic-understanding-receipt-enforcer:requested",
+      "schema_ref": "default_event_schema"
+    },
+    {
+      "event_type": "engineering:understanding_receipt_requested",
+      "schema_ref": "default_event_schema"
+    }
+  ],
+  "outputs": [
+    {
+      "event_type": "skill_activity:agentic-understanding-receipt-enforcer",
+      "schema_ref": "default_finding_schema"
+    }
+  ]
+}

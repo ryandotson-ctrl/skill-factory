@@ -1,0 +1,37 @@
+{
+  "skill_id": "tech_auditor",
+  "version": "1.4.0",
+  "description": "Portable technology freshness auditor with active-surface classification, MLX-aware reporting, and optional cross-workspace inventory.",
+  "inputs": [
+    {
+      "event_type": "tech:inventory_requested",
+      "schema_ref": "default_event_schema"
+    },
+    {
+      "event_type": "tech:freshness_audit_requested",
+      "schema_ref": "default_event_schema"
+    },
+    {
+      "event_type": "workspace:dependency_freshness_requested",
+      "schema_ref": "default_event_schema"
+    }
+  ],
+  "outputs": [
+    {
+      "event_type": "tech:inventory_emitted",
+      "schema_ref": "default_event_schema"
+    },
+    {
+      "event_type": "tech:freshness_report_ready",
+      "schema_ref": "default_event_schema"
+    },
+    {
+      "event_type": "tech:active_surface_map_emitted",
+      "schema_ref": "default_event_schema"
+    },
+    {
+      "event_type": "tech_auditor_activity",
+      "schema_ref": "default_event_schema"
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "skill_id": "conversation-skill-evolution-director",
+  "version": "1.1.0",
+  "description": "Core session-to-action engine for The Watcher and a standalone strategist for additive, portability-safe skill evolution decisions.",
+  "inputs": [
+    {
+      "event_type": "skill_evolution_requested",
+      "schema_ref": "default_request_schema"
+    },
+    {
+      "event_type": "skill_director_activity",
+      "schema_ref": "default_finding_schema"
+    }
+  ],
+  "outputs": [
+    {
+      "event_type": "skill_evolution_assessment_emitted",
+      "schema_ref": "default_finding_schema"
+    },
+    {
+      "event_type": "skill_evolution_actions_emitted",
+      "schema_ref": "default_finding_schema"
+    },
+    {
+      "event_type": "skill_evolution_plan_emitted",
+      "schema_ref": "default_finding_schema"
+    }
+  ]
+}

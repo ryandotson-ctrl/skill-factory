@@ -1,0 +1,7 @@
+interface:
+  display_name: "Agentic Engineering Orchestrator"
+  short_description: "Route agentic work with risk-aware and performance-aware rigor"
+  default_prompt: "Use $agentic-engineering-orchestrator to classify this software task, choose the right work mode, and route the next skills, especially when performance or render regressions are involved."
+
+policy:
+  allow_implicit_invocation: true

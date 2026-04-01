@@ -1,0 +1,5 @@
+{
+    "name": "cross-workspace-goal-intelligence",
+    "description": "Unified goal and momentum intelligence across active workspaces.",
+    "entry": "SKILL.md"
+}

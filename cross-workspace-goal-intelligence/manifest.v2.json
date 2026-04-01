@@ -1,0 +1,36 @@
+{
+    "schema_version": "2.0.0",
+    "display_name": "Cross Workspace Goal Intelligence",
+    "dispatch": {
+        "mode": "automatic",
+        "cooldown": 300
+    },
+    "inputs": [
+        {
+            "id": "context_ingest_requested",
+            "type": "pulse.event",
+            "pattern": "skill_director_context_ingest_requested",
+            "route_mode": "owned",
+            "route_priority": 70
+        },
+        {
+            "id": "stability_gate",
+            "type": "pulse.event",
+            "pattern": "stability_gate_check",
+            "route_mode": "broadcast",
+            "route_priority": 8
+        }
+    ],
+    "outputs": [
+        {
+            "id": "workspace_goal_intelligence",
+            "type": "pulse.event",
+            "event_type": "workspace_goal_intelligence_emitted"
+        },
+        {
+            "id": "skill_recommendation",
+            "type": "pulse.event",
+            "event_type": "skill_recommendation_emitted"
+        }
+    ]
+}

@@ -1,0 +1,70 @@
+{
+    "description": "Keywords that should force web search regardless of dispatcher decision",
+    "version": "1.0.0",
+    "categories": {
+        "temporal": [
+            "current",
+            "latest",
+            "now",
+            "today",
+            "yesterday",
+            "this week",
+            "this month",
+            "breaking",
+            "recent",
+            "just happened"
+        ],
+        "leadership": [
+            "president",
+            "prime minister",
+            "ceo",
+            "leader",
+            "chairman",
+            "governor",
+            "mayor",
+            "chancellor"
+        ],
+        "sports": [
+            "score",
+            "game",
+            "match",
+            "winner",
+            "playoff",
+            "championship",
+            "standings"
+        ],
+        "weather": [
+            "weather",
+            "forecast",
+            "temperature",
+            "rain",
+            "snow",
+            "storm"
+        ],
+        "finance": [
+            "stock",
+            "price",
+            "market",
+            "crypto",
+            "bitcoin",
+            "nasdaq",
+            "dow jones"
+        ],
+        "events": [
+            "next",
+            "upcoming",
+            "scheduled",
+            "when is",
+            "launch",
+            "release date"
+        ]
+    },
+    "must_search_patterns": [
+        "who is the current",
+        "what is the latest",
+        "when is the next",
+        "what happened today",
+        "breaking news about",
+        "latest news on"
+    ]
+}

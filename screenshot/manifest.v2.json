@@ -1,0 +1,32 @@
+{
+  "schema_version": "2.0.0",
+  "display_name": "screenshot",
+  "description": "Use when the user explicitly asks for a desktop or system screenshot (full screen, specific app or window, or a pixel region), or when tool-specific capture capabilities are unavailable and an OS-level capture is needed.",
+  "dispatch": {
+    "mode": "automatic",
+    "cooldown": 300
+  },
+  "inputs": [
+    {
+      "id": "skill_request",
+      "type": "pulse.event",
+      "pattern": "skill:screenshot:requested",
+      "route_mode": "owned",
+      "route_priority": 95
+    },
+    {
+      "id": "artifact_screenshot_requested",
+      "type": "pulse.event",
+      "pattern": "artifact:screenshot_requested",
+      "route_mode": "owned",
+      "route_priority": 90
+    }
+  ],
+  "outputs": [
+    {
+      "id": "status_update",
+      "type": "pulse.event",
+      "event_type": "skill_activity:screenshot"
+    }
+  ]
+}

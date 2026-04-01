@@ -1,0 +1,4 @@
+interface:
+  display_name: "Proactive Skill Evolution Planner"
+  short_description: "Deterministic signal-aware skill evolution planning"
+  default_prompt: "Analyze workspace goals, repeated signals, and skill coverage, then emit deterministic update-existing vs create-new recommendations with confidence, evidence refs, repeat-evidence gating, and suppression reasons."

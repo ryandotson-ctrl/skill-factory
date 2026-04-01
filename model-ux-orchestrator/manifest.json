@@ -1,0 +1,12 @@
+{
+  "skill_id": "model-ux-orchestrator",
+  "version": "3.15.0",
+  "description": "Maintains truthful, premium assistant UX with answer-lane separation, startup/reconnect truth protection, finalizer-rescue terminality, precise infrastructure states, and no raw exception leakage.",
+  "inputs": [],
+  "outputs": [
+    {
+      "event_type": "model-ux-orchestrator_finding",
+      "schema_ref": "default_finding_schema"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "skill_id": "async-hygiene-monitor",
+  "version": "1.0.0",
+  "description": "Auto-generated manifest for async-hygiene-monitor",
+  "inputs": [
+    {
+      "event_type": "system_log_error",
+      "dispatch_mode": "automatic"
+    }
+  ],
+  "outputs": [
+    {
+      "event_type": "async-hygiene-monitor_finding",
+      "schema_ref": "default_finding_schema"
+    }
+  ]
+}

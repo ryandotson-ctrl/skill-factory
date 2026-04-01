@@ -1,0 +1,43 @@
+{
+  "schema_version": "2.0.0",
+  "display_name": "AI Agent BI Researcher",
+  "description": "Cross-project BI and trend research with decision lanes and companion-skill fit.",
+  "dispatch": {
+    "mode": "hybrid",
+    "cooldown": 900
+  },
+  "inputs": [
+    {
+      "id": "research_scan_requested",
+      "type": "pulse.event",
+      "pattern": "research:scan_requested"
+    },
+    {
+      "id": "roadmap_review_requested",
+      "type": "pulse.event",
+      "pattern": "roadmap:review_requested"
+    },
+    {
+      "id": "competitive_intel_requested",
+      "type": "pulse.event",
+      "pattern": "research:competitive_intel_requested"
+    }
+  ],
+  "outputs": [
+    {
+      "id": "trend_report_ready",
+      "type": "pulse.event",
+      "event_type": "research:trend_report_ready"
+    },
+    {
+      "id": "action_candidates_emitted",
+      "type": "pulse.event",
+      "event_type": "research:action_candidates_emitted"
+    },
+    {
+      "id": "status_update_legacy",
+      "type": "pulse.event",
+      "event_type": "ai_agent_bi_researcher_activity"
+    }
+  ]
+}

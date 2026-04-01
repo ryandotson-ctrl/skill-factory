@@ -1,0 +1,3 @@
+display_name: Quantum Proof Assurance Gate
+short_description: Produce deterministic proof-backed go/no-go launch contracts
+default_prompt: Evaluate this launch package and emit proof and go/no-go artifacts.

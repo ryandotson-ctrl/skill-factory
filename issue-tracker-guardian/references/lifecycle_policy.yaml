@@ -1,0 +1,76 @@
+version: 1
+mode: guarded_auto
+monitoring:
+  mode: hybrid
+  periodic_window_hours: 24
+
+creation_policy:
+  min_confidence: 0.55
+  require_min_evidence_items: 1
+  blocked_create_sources:
+    - git
+  max_new_issues_per_run: 3
+  non_issue_update_patterns:
+    - work in progress
+    - wip
+    - fix applied
+    - patched
+    - implemented fix
+    - validation passed
+    - tests passed
+    - build succeeded
+    - build complete
+    - progress update
+    - status update
+    - git status:
+    - recent commits:
+    - changed files:
+
+update_policy:
+  append_evidence_comment: true
+  relabel_on_reclassification: true
+
+reopen_policy:
+  enabled: true
+  min_confidence: 0.6
+
+closure_policy:
+  strict: true
+  close_enabled_default: true
+  require_linked_fix: true
+  require_verification_checks: true
+  required_evidence_fields:
+    - linked_fix
+    - verification_checks
+    - no_conflicts
+  allow_close_without_tests: false
+  conflict_keywords:
+    - failed
+    - error
+    - exception
+    - crash
+
+verification_map:
+  bug:
+    commands:
+      - "python3 -m pytest -q"
+  enhancement:
+    commands: []
+  chore:
+    commands: []
+  question:
+    commands: []
+
+signal_files:
+  tests:
+    - "pytest.log"
+    - "test.log"
+    - ".issue-guardian/signals/tests.log"
+  logs:
+    - "app.log"
+    - "logs/app.log"
+    - ".issue-guardian/signals/logs.log"
+
+bus:
+  enabled: false
+  path: ".agent/ecosystem_state.json"

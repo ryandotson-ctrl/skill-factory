@@ -1,0 +1,12 @@
+{
+  "skill_id": "api-shadowing-guardian",
+  "version": "1.0.0",
+  "description": "Auto-generated manifest for api-shadowing-guardian",
+  "inputs": [],
+  "outputs": [
+    {
+      "event_type": "api-shadowing-guardian_finding",
+      "schema_ref": "default_finding_schema"
+    }
+  ]
+}

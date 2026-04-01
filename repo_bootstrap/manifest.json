@@ -1,0 +1,12 @@
+{
+  "skill_id": "repo_bootstrap",
+  "version": "1.0.0",
+  "description": "Auto-generated manifest for repo_bootstrap",
+  "inputs": [],
+  "outputs": [
+    {
+      "event_type": "repo_bootstrap_finding",
+      "schema_ref": "default_finding_schema"
+    }
+  ]
+}

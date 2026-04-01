@@ -1,0 +1,4 @@
+interface:
+  display_name: "Lifecycle Orphan Process Guardian"
+  short_description: "Detect and prevent orphan process regressions"
+  default_prompt: "Use $lifecycle-orphan-process-guardian to verify app shutdown cleans up background child processes."

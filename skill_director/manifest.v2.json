@@ -1,0 +1,62 @@
+{
+    "schema_version": "2.0.0",
+    "display_name": "The Watcher",
+    "description": "The Watcher: chat-first intelligence for the skill ecosystem with per-skill intelligence preservation, continuity proofs, monotonic wisdom growth, and control-plane priority guidance.",
+    "dispatch": {
+        "mode": "automatic",
+        "cooldown": 300
+    },
+    "inputs": [
+        {
+            "id": "system_stability_trigger",
+            "type": "pulse.event",
+            "pattern": "stability_gate_check",
+            "route_mode": "broadcast",
+            "route_priority": 10
+        },
+        {
+            "id": "context_ingest_requested",
+            "type": "pulse.event",
+            "pattern": "skill_director_context_ingest_requested",
+            "route_mode": "owned",
+            "route_priority": 90
+        }
+    ],
+    "outputs": [
+        {
+            "id": "status_update",
+            "type": "pulse.event",
+            "event_type": "skill_director_activity"
+        },
+        {
+            "id": "recommendation_emitted",
+            "type": "pulse.event",
+            "event_type": "skill_recommendation_emitted"
+        },
+        {
+            "id": "evolution_assessment_emitted",
+            "type": "pulse.event",
+            "event_type": "skill_evolution_assessment_emitted"
+        },
+        {
+            "id": "evolution_actions_emitted",
+            "type": "pulse.event",
+            "event_type": "skill_evolution_actions_emitted"
+        },
+        {
+            "id": "skill_intelligence_snapshot_emitted",
+            "type": "pulse.event",
+            "event_type": "skill_intelligence_snapshot_emitted"
+        },
+        {
+            "id": "skill_continuity_proof_emitted",
+            "type": "pulse.event",
+            "event_type": "skill_continuity_proof_emitted"
+        },
+        {
+            "id": "skill_strengthening_plan_emitted",
+            "type": "pulse.event",
+            "event_type": "skill_strengthening_plan_emitted"
+        }
+    ]
+}

@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://skill-director.local/schemas/session-context.schema.json",
+  "title": "The Watcher Session Context",
+  "type": "object",
+  "additionalProperties": true,
+  "properties": {
+    "session_id": { "type": "string" },
+    "workspace_root": { "type": "string" },
+    "summary": { "type": "string" },
+    "goals": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "issues": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": true,
+        "properties": {
+          "title": { "type": "string" },
+          "severity": { "type": "string" },
+          "status": { "type": "string" },
+          "evidence": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        }
+      }
+    },
+    "signals": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "artifacts": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          { "type": "string" },
+          {
+            "type": "object",
+            "additionalProperties": true,
+            "properties": {
+              "path": { "type": "string" },
+              "kind": { "type": "string" },
+              "chars": { "type": "integer" }
+            }
+          }
+        ]
+      }
+    },
+    "timestamp_utc": { "type": "string" }
+  }
+}

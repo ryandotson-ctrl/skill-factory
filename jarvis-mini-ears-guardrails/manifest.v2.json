@@ -1,0 +1,32 @@
+{
+  "schema_version": "2.0.0",
+  "display_name": "jarvis-mini-ears-guardrails",
+  "description": "Harden Jarvis Mini Ears sleep-apnea and ambient monitoring on Pi. Use",
+  "dispatch": {
+    "mode": "automatic",
+    "cooldown": 300
+  },
+  "inputs": [
+    {
+      "id": "skill_request",
+      "type": "pulse.event",
+      "pattern": "skill:jarvis-mini-ears-guardrails:requested",
+      "route_mode": "owned",
+      "route_priority": 95
+    },
+    {
+      "id": "jarvis_ears_guardrails_requested",
+      "type": "pulse.event",
+      "pattern": "jarvis:ears_guardrails_requested",
+      "route_mode": "owned",
+      "route_priority": 90
+    }
+  ],
+  "outputs": [
+    {
+      "id": "status_update",
+      "type": "pulse.event",
+      "event_type": "skill_activity:jarvis-mini-ears-guardrails"
+    }
+  ]
+}

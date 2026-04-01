@@ -1,0 +1,9 @@
+.DS_Store
+.agent/
+.skill-backups/
+_p0_backups/
+**/__pycache__/
+**/*.pyc
+**/reports/
+**/wisdom/
+**/_generated/

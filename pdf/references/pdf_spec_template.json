@@ -1,0 +1,34 @@
+{
+  "meta": {
+    "title": "Portable PDF Report",
+    "subtitle": "Generated from JSON spec",
+    "page_size": "letter",
+    "orientation": "landscape",
+    "author": "PDF Skill"
+  },
+  "theme": {
+    "primary_color": "#0B3A6E",
+    "text_color": "#0F172A",
+    "stripe_color": "#F8FAFC"
+  },
+  "sections": [
+    {
+      "heading": "Overview",
+      "paragraphs": [
+        "This is a portable, typography-safe PDF specification.",
+        "Use this structure for reports, inventories, audits, or summaries."
+      ]
+    },
+    {
+      "heading": "Sample Table",
+      "table": {
+        "headers": ["Name", "Summary", "Status", "Count"],
+        "column_widths_ratio": [0.20, 0.55, 0.15, 0.10],
+        "rows": [
+          ["alpha", "First row sample text", "ok", "12"],
+          ["beta", "Second row sample text", "ok", "34"]
+        ]
+      }
+    }
+  ]
+}

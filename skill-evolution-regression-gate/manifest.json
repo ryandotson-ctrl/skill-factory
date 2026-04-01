@@ -1,0 +1,21 @@
+{
+  "skill_id": "skill-evolution-regression-gate",
+  "version": "1.1.0",
+  "description": "Pre-commit regression gate for skill evolution policy checks (additive, portability, and manifest parity).",
+  "inputs": [
+    {
+      "event_type": "skill_evolution_plan_emitted",
+      "schema_ref": "default_event_schema"
+    }
+  ],
+  "outputs": [
+    {
+      "event_type": "skill_evolution_regression_gate_result_emitted",
+      "schema_ref": "default_event_schema"
+    },
+    {
+      "event_type": "skill_evolution_regression_blocked",
+      "schema_ref": "default_event_schema"
+    }
+  ]
+}

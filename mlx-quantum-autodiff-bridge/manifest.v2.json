@@ -1,0 +1,32 @@
+{
+  "schema_version": "2.0.0",
+  "display_name": "mlx-quantum-autodiff-bridge",
+  "description": "Build and validate MLX custom-function quantum bridges that keep MLX as the top-level autodiff engine while routing quantum execution to external runtimes.",
+  "dispatch": {
+    "mode": "automatic",
+    "cooldown": 300
+  },
+  "inputs": [
+    {
+      "id": "skill_request",
+      "type": "pulse.event",
+      "pattern": "skill:mlx-quantum-autodiff-bridge:requested",
+      "route_mode": "owned",
+      "route_priority": 95
+    },
+    {
+      "id": "mlx_quantum_bridge_requested",
+      "type": "pulse.event",
+      "pattern": "mlx:quantum_bridge_requested",
+      "route_mode": "owned",
+      "route_priority": 90
+    }
+  ],
+  "outputs": [
+    {
+      "id": "status_update",
+      "type": "pulse.event",
+      "event_type": "skill_activity:mlx-quantum-autodiff-bridge"
+    }
+  ]
+}

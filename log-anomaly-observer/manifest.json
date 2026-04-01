@@ -1,0 +1,12 @@
+{
+  "skill_id": "log-anomaly-observer",
+  "version": "1.0.0",
+  "description": "Auto-generated manifest for log-anomaly-observer",
+  "inputs": [],
+  "outputs": [
+    {
+      "event_type": "log-anomaly-observer_finding",
+      "schema_ref": "default_finding_schema"
+    }
+  ]
+}

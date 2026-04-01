@@ -1,0 +1,12 @@
+{
+  "skill_id": "multi-modal-pipeline-auditor",
+  "version": "1.0.0",
+  "description": "Auto-generated manifest for multi-modal-pipeline-auditor",
+  "inputs": [],
+  "outputs": [
+    {
+      "event_type": "multi-modal-pipeline-auditor_finding",
+      "schema_ref": "default_finding_schema"
+    }
+  ]
+}

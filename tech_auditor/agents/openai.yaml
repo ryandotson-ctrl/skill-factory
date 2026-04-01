@@ -1,0 +1,6 @@
+display_name: Tech Auditor
+short_description: Active-runtime-first freshness audit for runtimes, tools, frameworks, and dependencies.
+default_prompt: |
+  Audit this workspace technology stack for freshness using active-runtime-first mode.
+  Identify active and legacy surfaces, keep primary findings focused on active surfaces,
+  include MLX family freshness rows, and append legacy surfaces separately.

@@ -1,0 +1,39 @@
+{
+  "schema_version": "2.0.0",
+  "display_name": "Launch Window Budget Guard",
+  "dispatch": {
+    "mode": "hybrid",
+    "cooldown": 300
+  },
+  "inputs": [
+    {
+      "id": "launch_window_check_requested",
+      "type": "pulse.event",
+      "pattern": "launch:window_check_requested",
+      "route_mode": "owned",
+      "route_priority": 85
+    },
+    {
+      "id": "launch_preflight_requested",
+      "type": "pulse.event",
+      "pattern": "launch:preflight_requested"
+    },
+    {
+      "id": "high_cost_launch_requested",
+      "type": "pulse.event",
+      "pattern": "run:high_cost_launch_requested"
+    }
+  ],
+  "outputs": [
+    {
+      "id": "budget_guard_passed",
+      "type": "pulse.event",
+      "event_type": "launch:budget_guard_passed"
+    },
+    {
+      "id": "budget_guard_blocked",
+      "type": "pulse.event",
+      "event_type": "launch:budget_guard_blocked"
+    }
+  ]
+}

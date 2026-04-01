@@ -1,0 +1,21 @@
+{
+  "skill_id": "agentic-engineering-orchestrator",
+  "version": "1.0.0",
+  "description": "Portable router for disciplined AI-assisted coding. Use when Codex is asked to implement, refactor, debug, review, or design software changes and must classify risk, choose `fast_path`, `guarded_path`, or `critical_path`, require understanding and readiness receipts, and route to the right specialist skills without sacrificing speed.",
+  "inputs": [
+    {
+      "event_type": "skill:agentic-engineering-orchestrator:requested",
+      "schema_ref": "default_event_schema"
+    },
+    {
+      "event_type": "engineering:execution_requested",
+      "schema_ref": "default_event_schema"
+    }
+  ],
+  "outputs": [
+    {
+      "event_type": "skill_activity:agentic-engineering-orchestrator",
+      "schema_ref": "default_finding_schema"
+    }
+  ]
+}

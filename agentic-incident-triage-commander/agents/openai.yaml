@@ -1,0 +1,7 @@
+interface:
+  display_name: "Agentic Incident Triage Commander"
+  short_description: "Drive safe incident triage and recovery"
+  default_prompt: "Use $agentic-incident-triage-commander to triage this outage, reconstruct the runtime mental model, and drive the safest recovery."
+
+policy:
+  allow_implicit_invocation: false

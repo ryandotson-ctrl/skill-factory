@@ -1,0 +1,32 @@
+{
+  "schema_version": "2.0.0",
+  "display_name": "security-best-practices",
+  "description": "Perform language and framework specific security best-practice reviews and suggest improvements. Trigger only when the user explicitly requests security best practices guidance, a security review/report, or secure-by-default coding help. Trigger only for supported languages (python, javascript/typescript, go). Do not trigger for general code review, debugging, or non-security tasks.",
+  "dispatch": {
+    "mode": "automatic",
+    "cooldown": 300
+  },
+  "inputs": [
+    {
+      "id": "skill_request",
+      "type": "pulse.event",
+      "pattern": "skill:security-best-practices:requested",
+      "route_mode": "owned",
+      "route_priority": 95
+    },
+    {
+      "id": "security_best_practices_requested",
+      "type": "pulse.event",
+      "pattern": "security:best_practices_requested",
+      "route_mode": "owned",
+      "route_priority": 90
+    }
+  ],
+  "outputs": [
+    {
+      "id": "status_update",
+      "type": "pulse.event",
+      "event_type": "skill_activity:security-best-practices"
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "skill_id": "contract-parity-release-gate",
+  "version": "1.1.0",
+  "description": "Deterministic release gate for multi-contract parity cutover decisions, including launched artifact parity.",
+  "inputs": [
+    {
+      "event_type": "contract_parity_report_emitted",
+      "schema_ref": "default_event_schema"
+    },
+    {
+      "event_type": "release_gate_check_requested",
+      "schema_ref": "default_event_schema"
+    }
+  ],
+  "outputs": [
+    {
+      "event_type": "contract_parity_gate_result_emitted",
+      "schema_ref": "default_event_schema"
+    },
+    {
+      "event_type": "release_gate_blocked",
+      "schema_ref": "default_event_schema"
+    }
+  ]
+}

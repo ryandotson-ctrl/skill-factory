@@ -1,0 +1,4 @@
+interface:
+  display_name: "Logo Asset Packager"
+  short_description: "Faithful logo cleanup, vectorization, and export"
+  default_prompt: "Use $logo-asset-packager to turn this supplied logo or brand image into faithful production assets without redesigning it."

@@ -1,0 +1,21 @@
+{
+  "skill_id": "openai-docs",
+  "version": "1.0.0",
+  "description": "Use when the user asks how to build with OpenAI products or APIs and needs up-to-date official documentation with citations (for example: Codex, Responses API, Chat Completions, Apps SDK, Agents SDK, Realtime, model capabilities or limits); prioritize OpenAI docs MCP tools and restrict any fallback browsing to official OpenAI domains.",
+  "inputs": [
+    {
+      "event_type": "skill:openai-docs:requested",
+      "schema_ref": "default_event_schema"
+    },
+    {
+      "event_type": "docs:openai_requested",
+      "schema_ref": "default_event_schema"
+    }
+  ],
+  "outputs": [
+    {
+      "event_type": "skill_activity:openai-docs",
+      "schema_ref": "default_finding_schema"
+    }
+  ]
+}

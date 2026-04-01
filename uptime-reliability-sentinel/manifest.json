@@ -1,0 +1,17 @@
+{
+  "skill_id": "uptime-reliability-sentinel",
+  "version": "2.4.0",
+  "description": "Reliability specialist for PFEMacOSApp runtime, backend ownership truth, startup convergence, catalog readiness, chat acceptance, and functional stream liveness.",
+  "inputs": [
+    {
+      "event_type": "system_log_error",
+      "dispatch_mode": "automatic"
+    }
+  ],
+  "outputs": [
+    {
+      "event_type": "uptime-reliability-sentinel_finding",
+      "schema_ref": "default_finding_schema"
+    }
+  ]
+}

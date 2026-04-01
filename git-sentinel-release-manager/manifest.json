@@ -1,0 +1,17 @@
+{
+  "skill_id": "git-sentinel-release-manager",
+  "version": "1.1.0",
+  "description": "Auto-generated manifest for git-sentinel-release-manager",
+  "inputs": [
+    {
+      "event_type": "system_log_error",
+      "dispatch_mode": "automatic"
+    }
+  ],
+  "outputs": [
+    {
+      "event_type": "git-sentinel-release-manager_finding",
+      "schema_ref": "default_finding_schema"
+    }
+  ]
+}

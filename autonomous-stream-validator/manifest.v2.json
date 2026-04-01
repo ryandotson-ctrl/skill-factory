@@ -1,0 +1,32 @@
+{
+  "schema_version": "2.0.0",
+  "display_name": "autonomous-stream-validator",
+  "description": "Validates SSE stream integrity, reconnect terminality, and run-ledger consistency for PFEMacOSApp",
+  "dispatch": {
+    "mode": "automatic",
+    "cooldown": 300
+  },
+  "inputs": [
+    {
+      "id": "skill_request",
+      "type": "pulse.event",
+      "pattern": "skill:autonomous-stream-validator:requested",
+      "route_mode": "owned",
+      "route_priority": 95
+    },
+    {
+      "id": "stream_validation_requested",
+      "type": "pulse.event",
+      "pattern": "stream:validation_requested",
+      "route_mode": "owned",
+      "route_priority": 90
+    }
+  ],
+  "outputs": [
+    {
+      "id": "status_update",
+      "type": "pulse.event",
+      "event_type": "skill_activity:autonomous-stream-validator"
+    }
+  ]
+}

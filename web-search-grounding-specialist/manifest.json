@@ -1,0 +1,12 @@
+{
+  "skill_id": "web-search-grounding-specialist",
+  "version": "1.0.0",
+  "description": "Auto-generated manifest for web-search-grounding-specialist",
+  "inputs": [],
+  "outputs": [
+    {
+      "event_type": "web-search-grounding-specialist_finding",
+      "schema_ref": "default_finding_schema"
+    }
+  ]
+}
