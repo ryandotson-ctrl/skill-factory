@@ -21,7 +21,18 @@ from datetime import datetime
 from pathlib import Path
 
 
-SKIP_PARTS = {"_p0_backups", ".backups", ".skill-backups", "__pycache__", ".pytest_cache", ".agent", ".git"}
+SKIP_PARTS = {
+    "_p0_backups",
+    ".backups",
+    ".skill-backups",
+    "__pycache__",
+    ".pytest_cache",
+    ".agent",
+    ".git",
+    "wisdom",
+    "reports",
+    "_generated",
+}
 SKIP_FILES = {".DS_Store"}
 
 
