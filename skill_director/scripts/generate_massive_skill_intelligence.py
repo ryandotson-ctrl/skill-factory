@@ -13,6 +13,7 @@ import subprocess
 import sys
 from dataclasses import dataclass
 from datetime import datetime, timezone
+from functools import lru_cache
 from pathlib import Path
 from typing import Any, Dict, Iterable, List, Mapping, Optional, Sequence, Tuple
 
@@ -24,8 +25,8 @@ except Exception:  # pragma: no cover - dependency may be absent in minimal envs
 
 CACHE_SKIP = {"__pycache__", ".pytest_cache"}
 BACKUP_SKIP = {"_p0_backups", ".backups", ".skill-backups"}
-SOURCE_PRIORITY = {"codex": 0, "antigravity": 1, "local": 2, "agents": 3}
-DIRECTOR_PRIORITY = {"codex": 0, "antigravity": 1, "local": 2, "agents": 3}
+SOURCE_PRIORITY = {"codex": 0, "antigravity": 1, "workspace_mirror": 2, "local": 3, "agents": 4}
+DIRECTOR_PRIORITY = {"codex": 0, "antigravity": 1, "workspace_mirror": 2, "local": 3, "agents": 4}
 SEMVER_PATTERN = re.compile(r"^\s*(\d+)\.(\d+)\.(\d+)")
 EMAIL_PATTERN = re.compile(r"\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b")
 PHONE_PATTERN = re.compile(r"\b(?:\+?\d[\d\-\s().]{7,}\d)\b")
@@ -148,89 +149,249 @@ WORKSPACE_SCAN_SKIP_FILES = {
 }
 
 SESSION_CONTEXT_FALLBACK_CHAIN = ("file", "env", "auto", "empty")
-EXTERNAL_RUNTIME_TRIGGER_PATTERNS = {
-    "backend_ipc_error_detected",
-    "backend_transport_changed",
-    "filesystem_action_gap_detected",
-    "grounding_gap_detected",
-    "ipc_auth_failure_detected",
-    "run.completed",
-    "run.error",
-    "run.failed",
-    "run.search.query",
-    "run.tool.result",
-    "run:finished",
-    "truthfulness_guard_triggered",
-    "web_evidence_thin_detected",
+ECOSYSTEM_CONTRACT_PATH = Path(__file__).resolve().parent.parent / "references" / "ecosystem_contract_v1.yaml"
+FALLBACK_ECOSYSTEM_CONTRACT: Dict[str, Any] = {
+    "inventory_roles": {
+        "standard": {"path_prefixes": []},
+        "system_hidden": {"path_prefixes": [".system/"]},
+        "runtime_bundle": {"path_prefixes": ["codex-primary-runtime/"]},
+        "backup_snapshot": {"path_prefixes": [".skill-backups/", "_p0_backups/", ".backups/"]},
+    },
+    "root_roles": {
+        "codex": "canonical_authoring",
+        "antigravity": "distribution_mirror",
+        "workspace_mirror": "publication_mirror",
+        "local": "workspace_local",
+        "agents": "auxiliary_global",
+    },
+    "external_event_registry": {
+        "runtime_patterns": [
+            "backend_ipc_error_detected",
+            "backend_transport_changed",
+            "filesystem_action_gap_detected",
+            "grounding_gap_detected",
+            "ipc_auth_failure_detected",
+            "run.completed",
+            "run.error",
+            "run.failed",
+            "run.search.query",
+            "run.tool.result",
+            "run:finished",
+            "truthfulness_guard_triggered",
+            "web_evidence_thin_detected",
+        ],
+        "operator_patterns": [
+            "apple:build_harness_install_requested",
+            "apple:project_adoption_requested",
+            "apple:project_bootstrap_requested",
+            "apple:release_requested",
+            "artifact:ready_for_target_check",
+            "bundle.integrity.failed",
+            "capability:negotiation_requested",
+            "code_change",
+            "compatibility:check_requested",
+            "contract_parity_report_emitted",
+            "eval:run_requested",
+            "experiment:package_requested",
+            "git.push.requested",
+            "git:push_complete",
+            "git_hygiene_check_requested",
+            "issue:ingest_requested",
+            "issue:reconcile_requested",
+            "issue:scan_requested",
+            "launch:preflight_requested",
+            "launch:window_check_requested",
+            "log:anomaly_detected",
+            "mlx_objective_training_request",
+            "partner.sync.requested",
+            "portability.violation.detected",
+            "postmortem_generated",
+            "qa:test_failed",
+            "release.preflight.completed",
+            "release_bundle_preflight_requested",
+            "release_gate_check_requested",
+            "research:competitive_intel_requested",
+            "research:scan_requested",
+            "roadmap:review_requested",
+            "run:high_cost_launch_requested",
+            "skill.mirror.changed",
+            "skill_director_context_ingest_requested",
+            "skill_evolution_requested",
+            "skills_portability_audit_requested",
+            "smart_launch_success",
+            "stability_gate_check",
+            "system.log_error",
+            "system:startup",
+            "tech:freshness_audit_requested",
+            "tech:inventory_requested",
+            "ux:audit_requested",
+            "ux:brief_requested",
+            "ux:handoff_requested",
+            "ux:system_requested",
+            "workspace:dependency_freshness_requested",
+        ],
+        "operator_conventions": [
+            {"kind": "skill_request_namespace", "prefix": "skill:", "suffix": ":requested"},
+            {"kind": "owned_route_suffix", "suffix": ":requested", "route_modes": ["owned"]},
+            {"kind": "owned_route_suffix", "suffix": "_requested", "route_modes": ["owned"]},
+        ],
+    },
+    "shared_event_registry": {
+        "output_events": [
+            {
+                "event_type": "skill_evolution_assessment_emitted",
+                "ownership_mode": "intentional_shared",
+                "allowed_producers": ["conversation-skill-evolution-director", "skill_director"],
+                "allowed_roles": ["specialist_primary", "watcher_embedded_evolution_aggregate"],
+            },
+            {
+                "event_type": "skill_evolution_actions_emitted",
+                "ownership_mode": "intentional_shared",
+                "allowed_producers": ["conversation-skill-evolution-director", "skill_director"],
+                "allowed_roles": ["specialist_primary", "watcher_embedded_evolution_aggregate"],
+            },
+            {
+                "event_type": "skill_evolution_plan_emitted",
+                "ownership_mode": "intentional_shared",
+                "allowed_producers": ["conversation-skill-evolution-director", "proactive-skill-evolution-planner"],
+                "allowed_roles": ["specialist_primary", "planner_primary"],
+            },
+            {
+                "event_type": "skill_recommendation_emitted",
+                "ownership_mode": "intentional_shared",
+                "allowed_producers": [
+                    "cross-workspace-goal-intelligence",
+                    "proactive-skill-evolution-planner",
+                    "skill_director",
+                ],
+                "allowed_roles": ["watcher_aggregate", "workspace_signal_source", "planner_signal"],
+            },
+            {
+                "event_type": "skill_activity:imagegen",
+                "ownership_mode": "intentional_shared",
+                "allowed_producers": [".system/imagegen", "imagegen"],
+                "allowed_roles": ["primary_skill", "system_fallback"],
+            },
+            {
+                "event_type": "skill_activity:openai-docs",
+                "ownership_mode": "intentional_shared",
+                "allowed_producers": [".system/openai-docs", "openai-docs"],
+                "allowed_roles": ["primary_skill", "system_fallback"],
+            },
+        ]
+    },
 }
-EXTERNAL_OPERATOR_TRIGGER_PATTERNS = {
-    "artifact:ready_for_target_check",
-    "bundle.integrity.failed",
-    "capability:negotiation_requested",
-    "code_change",
-    "compatibility:check_requested",
-    "contract_parity_report_emitted",
-    "eval:run_requested",
-    "experiment:package_requested",
-    "git.push.requested",
-    "git:push_complete",
-    "git_hygiene_check_requested",
-    "issue:ingest_requested",
-    "issue:reconcile_requested",
-    "issue:scan_requested",
-    "launch:preflight_requested",
-    "launch:window_check_requested",
-    "log:anomaly_detected",
-    "mlx_objective_training_request",
-    "partner.sync.requested",
-    "portability.violation.detected",
-    "postmortem_generated",
-    "qa:test_failed",
-    "release.preflight.completed",
-    "release_bundle_preflight_requested",
-    "release_gate_check_requested",
-    "research:competitive_intel_requested",
-    "research:scan_requested",
-    "roadmap:review_requested",
-    "run:high_cost_launch_requested",
-    "skill.mirror.changed",
-    "skill_director_context_ingest_requested",
-    "skill_evolution_requested",
-    "skills_portability_audit_requested",
-    "smart_launch_success",
-    "stability_gate_check",
-    "system.log_error",
-    "system:startup",
-    "tech:freshness_audit_requested",
-    "tech:inventory_requested",
-    "ux:audit_requested",
-    "ux:brief_requested",
-    "ux:handoff_requested",
-    "ux:system_requested",
-    "workspace:dependency_freshness_requested",
-}
-EXTERNAL_TRIGGER_PATTERNS = (
-    EXTERNAL_RUNTIME_TRIGGER_PATTERNS | EXTERNAL_OPERATOR_TRIGGER_PATTERNS
-)
+
+
+@lru_cache(maxsize=1)
+def load_ecosystem_contract() -> Dict[str, Any]:
+    if yaml is None or not ECOSYSTEM_CONTRACT_PATH.exists():
+        return FALLBACK_ECOSYSTEM_CONTRACT
+    try:
+        loaded = yaml.safe_load(ECOSYSTEM_CONTRACT_PATH.read_text(encoding="utf-8"))
+    except Exception:
+        return FALLBACK_ECOSYSTEM_CONTRACT
+    if not isinstance(loaded, dict):
+        return FALLBACK_ECOSYSTEM_CONTRACT
+    return loaded
+
+
+def external_runtime_trigger_patterns() -> set[str]:
+    registry = load_ecosystem_contract().get("external_event_registry", {})
+    values = registry.get("runtime_patterns", []) if isinstance(registry, dict) else []
+    return {str(item).strip() for item in values if str(item).strip()}
+
+
+def external_operator_trigger_patterns() -> set[str]:
+    registry = load_ecosystem_contract().get("external_event_registry", {})
+    values = registry.get("operator_patterns", []) if isinstance(registry, dict) else []
+    return {str(item).strip() for item in values if str(item).strip()}
+
+
+def external_operator_conventions() -> List[Dict[str, Any]]:
+    registry = load_ecosystem_contract().get("external_event_registry", {})
+    values = registry.get("operator_conventions", []) if isinstance(registry, dict) else []
+    return [item for item in values if isinstance(item, dict)]
+
+
+def shared_output_event_contracts() -> Dict[str, Dict[str, Any]]:
+    registry = load_ecosystem_contract().get("shared_event_registry", {})
+    values = registry.get("output_events", []) if isinstance(registry, dict) else []
+    out: Dict[str, Dict[str, Any]] = {}
+    if not isinstance(values, list):
+        return out
+    for entry in values:
+        if not isinstance(entry, dict):
+            continue
+        event_type = str(entry.get("event_type") or "").strip()
+        if not event_type:
+            continue
+        out[event_type] = entry
+    return out
+
+
+def classify_inventory_role(relative_skill_path: str) -> str:
+    contract = load_ecosystem_contract()
+    inventory_roles = contract.get("inventory_roles", {})
+    if isinstance(inventory_roles, dict):
+        for role_name, role_config in inventory_roles.items():
+            if not isinstance(role_config, dict):
+                continue
+            prefixes = role_config.get("path_prefixes", [])
+            if not isinstance(prefixes, list):
+                continue
+            for prefix in prefixes:
+                if str(prefix).strip() and relative_skill_path.startswith(str(prefix).strip()):
+                    return str(role_name)
+    return "standard"
+
+
+def classify_root_role(source: str) -> str:
+    root_roles = load_ecosystem_contract().get("root_roles", {})
+    if isinstance(root_roles, dict):
+        mapped = root_roles.get(source)
+        if mapped:
+            return str(mapped)
+    return "unknown"
+
+
+def inventory_key_for_path(relative_skill_path: str) -> str:
+    normalized = relative_skill_path.strip().replace("\\", "/")
+    return normalized or relative_skill_path
+
+
+def leaf_skill_id(relative_skill_path: str) -> str:
+    return Path(relative_skill_path).name
 
 
 def is_external_runtime_trigger_pattern(pattern: str) -> bool:
-    return pattern in EXTERNAL_RUNTIME_TRIGGER_PATTERNS
+    return pattern in external_runtime_trigger_patterns()
 
 
 def is_external_operator_trigger_pattern(pattern: str, route_entries: Optional[Sequence[Mapping[str, Any]]] = None) -> bool:
-    if pattern in EXTERNAL_OPERATOR_TRIGGER_PATTERNS:
+    if pattern in external_operator_trigger_patterns():
         return True
     normalized = pattern.strip()
     if not normalized:
         return False
-    if normalized.startswith("skill:") and normalized.endswith(":requested"):
-        return True
-    if normalized.endswith(":requested") or normalized.endswith("_requested"):
-        if not route_entries:
-            return True
-        route_modes = {str(entry.get("route_mode") or "owned").strip().lower() for entry in route_entries}
-        return route_modes <= {"owned"}
+    for convention in external_operator_conventions():
+        kind = str(convention.get("kind", "")).strip()
+        prefix = str(convention.get("prefix", "")).strip()
+        suffix = str(convention.get("suffix", "")).strip()
+        route_modes = {
+            str(item).strip().lower()
+            for item in convention.get("route_modes", [])
+            if str(item).strip()
+        }
+        if kind == "skill_request_namespace":
+            if normalized.startswith(prefix) and normalized.endswith(suffix):
+                return True
+            continue
+        if kind == "owned_route_suffix" and suffix and normalized.endswith(suffix):
+            if not route_modes or not route_entries:
+                return True
+            seen_modes = {str(entry.get("route_mode") or "owned").strip().lower() for entry in route_entries}
+            return seen_modes <= route_modes
     return False
 
 GROUP_DEFS: List[Dict[str, str]] = [
@@ -626,16 +787,43 @@ def apply_artifact_output_mode(args: argparse.Namespace) -> None:
         args.output_json = LEGACY_OUTPUT_JSON
 
 
+def looks_like_workspace_mirror_root(workspace_root: Path) -> bool:
+    if not workspace_root.exists() or not workspace_root.is_dir():
+        return False
+    sentinel_paths = [
+        workspace_root / "skill_director" / "SKILL.md",
+        workspace_root / ".system" / "skill-creator" / "SKILL.md",
+    ]
+    if not any(path.exists() for path in sentinel_paths):
+        return False
+
+    exported_skill_count = 0
+    for child in workspace_root.iterdir():
+        if child.name in {".agent", ".git", "__pycache__"}:
+            continue
+        if not child.is_dir():
+            continue
+        if (child / "SKILL.md").exists():
+            exported_skill_count += 1
+            continue
+        if child.name in {".system", "codex-primary-runtime"}:
+            exported_skill_count += sum(1 for nested in child.iterdir() if (nested / "SKILL.md").exists())
+    return exported_skill_count >= 10
+
+
 def default_roots(workspace_root: Path) -> Dict[str, Path]:
     codex_home = Path(
         os.environ.get("CODEX_HOME", str(Path.home() / ".codex"))
     ).expanduser()
-    return {
+    roots = {
         "local": (workspace_root / ".agent" / "skills").resolve(),
         "codex": (codex_home / "skills").resolve(),
         "antigravity": (Path.home() / ".gemini" / "antigravity" / "skills").resolve(),
         "agents": (Path.home() / ".agents" / "skills").resolve(),
     }
+    if looks_like_workspace_mirror_root(workspace_root):
+        roots["workspace_mirror"] = workspace_root.resolve()
+    return roots
 
 
 def resolve_roots(roots_arg: str, workspace_root: Path) -> List[RootSpec]:
@@ -653,6 +841,8 @@ def resolve_roots(roots_arg: str, workspace_root: Path) -> List[RootSpec]:
     dedup: Dict[Path, RootSpec] = {}
     for spec in specs:
         dedup[spec.path] = spec
+    if "workspace_mirror" in defaults and defaults["workspace_mirror"] not in dedup:
+        dedup[defaults["workspace_mirror"]] = RootSpec("workspace_mirror", defaults["workspace_mirror"])
     return list(dedup.values())
 
 
@@ -820,10 +1010,13 @@ def summarize_skill_copy_drift(copies: Sequence[Dict[str, Any]]) -> Dict[str, An
     }
 
 
-def parse_skill_file(skill_md: Path, source: str) -> Dict[str, Any]:
+def parse_skill_file(skill_md: Path, root: RootSpec) -> Dict[str, Any]:
     content = skill_md.read_text(encoding="utf-8", errors="replace")
     frontmatter = parse_frontmatter(content)
     body = extract_body_after_frontmatter(content)
+    relative_skill_path = skill_md.parent.relative_to(root.path).as_posix()
+    skill_id = inventory_key_for_path(relative_skill_path)
+    inventory_role = classify_inventory_role(relative_skill_path)
 
     summary = compact_sentence(str(frontmatter.get("description", "")))
     if not summary:
@@ -859,11 +1052,15 @@ def parse_skill_file(skill_md: Path, source: str) -> Dict[str, Any]:
     manifest_present = bool(manifest)
 
     return {
-        "skill_id": skill_md.parent.name,
-        "name": str(frontmatter.get("name", skill_md.parent.name)),
+        "skill_id": skill_id,
+        "leaf_skill_id": leaf_skill_id(relative_skill_path),
+        "relative_skill_path": relative_skill_path,
+        "inventory_role": inventory_role,
+        "root_role": classify_root_role(root.key),
+        "name": str(frontmatter.get("name", leaf_skill_id(relative_skill_path))),
         "summary": summary,
         "trigger": extract_trigger(content),
-        "source": source,
+        "source": root.key,
         "path": skill_md.resolve(),
         "manifest": manifest,
         "version": version,
@@ -1652,7 +1849,7 @@ def collect_inventory(
 
         root_info["status"] = "present"
         for skill_md in iter_skill_files(root, include_backups):
-            discovered.append(parse_skill_file(skill_md, root.key))
+            discovered.append(parse_skill_file(skill_md, root))
             root_info["skill_copies"] += 1
         root_stats.append(root_info)
 
@@ -1700,7 +1897,9 @@ def collect_inventory(
         copy_details = [
             {
                 "source": copy["source"],
+                "root_role": str(copy.get("root_role", "") or ""),
                 "path": str(copy["path"]),
+                "relative_skill_path": str(copy.get("relative_skill_path", "") or ""),
                 "version": str(copy.get("version", "") or ""),
                 "scope": str(copy.get("scope", "") or ""),
                 "portability_tier": str(copy.get("portability_tier", "") or ""),
@@ -1717,12 +1916,23 @@ def collect_inventory(
         ]
         entry = {
             "skill_id": primary["skill_id"],
+            "leaf_skill_id": str(primary.get("leaf_skill_id", "") or ""),
+            "relative_skill_path": str(primary.get("relative_skill_path", "") or ""),
+            "inventory_role": str(primary.get("inventory_role", "") or "standard"),
             "name": primary["name"],
             "summary": primary["summary"],
             "trigger": primary["trigger"],
             "primary_source": primary["source"],
+            "primary_root_role": str(primary.get("root_role", "") or ""),
             "primary_path": str(primary["path"]),
             "sources": sources,
+            "source_roles": sorted(
+                {
+                    str(copy.get("root_role", "")).strip()
+                    for copy in copies
+                    if str(copy.get("root_role", "")).strip()
+                }
+            ),
             "copy_count": len(copies),
             "inputs_count": max(copy["inputs_count"] for copy in copies),
             "outputs_count": max(copy["outputs_count"] for copy in copies),
@@ -1783,6 +1993,7 @@ def inventory_counts(skills: List[Dict[str, Any]], root_stats: List[Dict[str, An
     total_copies = sum(int(root["skill_copies"]) for root in root_stats)
     shared = sum(1 for item in skills if len(item["sources"]) > 1)
     source_sets = [set(item["sources"]) for item in skills]
+    inventory_roles = [str(item.get("inventory_role", "") or "standard") for item in skills]
     return {
         "unique_skills": len(skills),
         "total_skill_copies": total_copies,
@@ -1791,11 +2002,41 @@ def inventory_counts(skills: List[Dict[str, Any]], root_stats: List[Dict[str, An
         "local_only": sum(1 for sources in source_sets if sources == {"local"}),
         "codex_only": sum(1 for sources in source_sets if sources == {"codex"}),
         "antigravity_only": sum(1 for sources in source_sets if sources == {"antigravity"}),
+        "workspace_mirror_only": sum(1 for sources in source_sets if sources == {"workspace_mirror"}),
         "agents_only": sum(1 for sources in source_sets if sources == {"agents"}),
         "pulse_bus_active_skills": sum(1 for item in skills if item["pulse_bus_active"]),
         "skills_without_manifest_count": sum(1 for item in skills if not item.get("manifest_present", False)),
         "skills_without_pulse_participation_count": sum(1 for item in skills if not item.get("pulse_bus_active", False)),
         "portable_claimed_skills": sum(1 for item in skills if item.get("portability_tiers")),
+        "standard_inventory_skills": sum(1 for role in inventory_roles if role == "standard"),
+        "system_hidden_skills": sum(1 for role in inventory_roles if role == "system_hidden"),
+        "runtime_bundle_skills": sum(1 for role in inventory_roles if role == "runtime_bundle"),
+        "backup_snapshot_skills": sum(1 for role in inventory_roles if role == "backup_snapshot"),
+        "mirrored_skill_count": sum(1 for item in skills if "distribution_mirror" in item.get("source_roles", [])),
+    }
+
+
+def build_root_parity_summary(skills: List[Dict[str, Any]]) -> Dict[str, Any]:
+    def summarize_pair(left: str, right: str) -> Dict[str, Any]:
+        shared = [
+            item
+            for item in skills
+            if left in set(item.get("sources", [])) and right in set(item.get("sources", []))
+        ]
+        drift = [
+            str(item.get("skill_id", ""))
+            for item in shared
+            if str(item.get("drift_status", "aligned") or "aligned") != "aligned"
+        ]
+        return {
+            "shared": len(shared),
+            "drift": len(drift),
+            "examples": drift[:12],
+        }
+
+    return {
+        "codex_vs_antigravity": summarize_pair("codex", "antigravity"),
+        "codex_vs_workspace_mirror": summarize_pair("codex", "workspace_mirror"),
     }
 
 
@@ -2397,13 +2638,17 @@ def build_individual_skill_intelligence(
         entry = {
             "schema": "IndividualSkillIntelligenceV1",
             "skill_id": skill_id,
+            "leaf_skill_id": str(skill.get("leaf_skill_id", "") or ""),
+            "relative_skill_path": str(skill.get("relative_skill_path", "") or ""),
             "name": str(skill.get("name", "")),
             "group_id": str(skill.get("group_id", "")),
+            "inventory_role": str(skill.get("inventory_role", "") or "standard"),
             "intelligence_summary": compact_sentence(
                 " ".join(
                     part
                     for part in [
                         f"{skill.get('name', skill_id)} is a {skill.get('group_id', 'general')} skill.",
+                        f"Inventory role is {skill.get('inventory_role', 'standard')}.",
                         f"Primary source is {skill.get('primary_source', 'unknown')}.",
                         f"Pulse posture is {pulse_status}.",
                         f"Portability posture is {portability_posture}.",
@@ -2414,7 +2659,9 @@ def build_individual_skill_intelligence(
             ),
             "roots": {
                 "primary_source": str(skill.get("primary_source", "")),
+                "primary_root_role": str(skill.get("primary_root_role", "") or ""),
                 "sources": [str(item) for item in skill.get("sources", [])],
+                "source_roles": [str(item) for item in skill.get("source_roles", [])],
                 "copy_count": int(skill.get("copy_count", 0) or 0),
                 "drift_status": str(skill.get("drift_status", "") or ""),
                 "drift_types": [str(item) for item in skill.get("drift_types", [])[:4]],
@@ -2446,6 +2693,7 @@ def build_individual_skill_intelligence(
             "trust_posture": trust_posture,
             "continuity_anchor": {
                 "skill_id": skill_id,
+                "relative_skill_path": str(skill.get("relative_skill_path", "") or ""),
                 "primary_path": str(skill.get("primary_path", "")),
                 "summary": str(skill.get("summary", "")),
                 "input_patterns": [str(item) for item in skill.get("input_patterns", [])[:8]],
@@ -2612,6 +2860,7 @@ def attach_continuity_proofs(
 
 def build_pulse_bus_topology_audit(skills: List[Dict[str, Any]]) -> Dict[str, Any]:
     event_producers: Dict[str, List[str]] = {}
+    event_producer_roles: Dict[str, Dict[str, str]] = {}
     input_patterns: Dict[str, List[str]] = {}
     input_route_meta: Dict[str, List[Dict[str, Any]]] = {}
     wildcard_listeners: List[Dict[str, Any]] = []
@@ -2700,6 +2949,9 @@ def build_pulse_bus_topology_audit(skills: List[Dict[str, Any]]) -> Dict[str, An
             if not event_type:
                 continue
             event_producers.setdefault(event_type, []).append(skill["skill_id"])
+            producer_role = str(out.get("event_producer_role") or out.get("event_producer_class") or "").strip()
+            if producer_role:
+                event_producer_roles.setdefault(event_type, {})[skill["skill_id"]] = producer_role
             if not EVENT_NAME_PATTERN.match(event_type):
                 malformed_names.append({"kind": "output_event", "skill_id": skill["skill_id"], "name": event_type})
 
@@ -2778,6 +3030,42 @@ def build_pulse_bus_topology_audit(skills: List[Dict[str, Any]]) -> Dict[str, An
             }
         )
 
+    intentional_shared_outputs: List[Dict[str, Any]] = []
+    ambiguous_shared_outputs: List[Dict[str, Any]] = []
+    shared_contracts = shared_output_event_contracts()
+    for event_type, producers in sorted(event_producers.items()):
+        unique = sorted(set(producers))
+        if len(unique) <= 1:
+            continue
+        contract = shared_contracts.get(event_type)
+        producer_roles = event_producer_roles.get(event_type, {})
+        roles = {producer: producer_roles.get(producer, "") for producer in unique}
+        if contract:
+            allowed_producers = {
+                str(item).strip() for item in contract.get("allowed_producers", []) if str(item).strip()
+            }
+            allowed_roles = {str(item).strip() for item in contract.get("allowed_roles", []) if str(item).strip()}
+            role_values = {value for value in roles.values() if value}
+            if set(unique).issubset(allowed_producers) and (not allowed_roles or role_values.issubset(allowed_roles)):
+                intentional_shared_outputs.append(
+                    {
+                        "event_type": event_type,
+                        "producers": unique,
+                        "producer_roles": roles,
+                        "ownership_mode": str(contract.get("ownership_mode") or "intentional_shared"),
+                        "severity": "info",
+                    }
+                )
+                continue
+        ambiguous_shared_outputs.append(
+            {
+                "event_type": event_type,
+                "producers": unique,
+                "producer_roles": roles,
+                "severity": "medium",
+            }
+        )
+
     suggestions: List[str] = []
     if orphan_emitters:
         suggestions.append("Add downstream listeners or deprecate unconsumed emitted events.")
@@ -2787,6 +3075,8 @@ def build_pulse_bus_topology_audit(skills: List[Dict[str, Any]]) -> Dict[str, An
         suggestions.append("Constrain wildcard listeners with more specific patterns and conditions.")
     if duplicate_routes:
         suggestions.append("Introduce route ownership or priority to avoid duplicate dispatch triggers.")
+    if ambiguous_shared_outputs:
+        suggestions.append("Clarify shared output event ownership with explicit producer roles or shared-event contracts.")
     if guarded_wildcards:
         suggestions.append("Guarded wildcard listeners are present; keep exclude patterns reviewed as event taxonomy evolves.")
     if malformed_names:
@@ -2805,6 +3095,8 @@ def build_pulse_bus_topology_audit(skills: List[Dict[str, Any]]) -> Dict[str, An
             "external_operator_patterns": len(external_operator_patterns),
             "wildcard_overreach_listeners": len(wildcard_listeners),
             "duplicate_routes": len(duplicate_routes),
+            "intentional_shared_output_events": len(intentional_shared_outputs),
+            "ambiguous_shared_output_events": len(ambiguous_shared_outputs),
             "naming_inconsistencies": len(malformed_names),
         },
         "orphan_emitters": orphan_emitters,
@@ -2815,6 +3107,8 @@ def build_pulse_bus_topology_audit(skills: List[Dict[str, Any]]) -> Dict[str, An
         "wildcard_overreach_listeners": wildcard_listeners,
         "guarded_wildcard_listeners": guarded_wildcards,
         "duplicate_or_overlapping_routes": duplicate_routes,
+        "intentional_shared_output_events": intentional_shared_outputs,
+        "ambiguous_shared_output_events": ambiguous_shared_outputs,
         "naming_inconsistencies": malformed_names,
         "suggested_manifest_contract_improvements": suggestions,
     }
@@ -4221,6 +4515,8 @@ def build_watcher_intelligence(
     blocked_moves = int(policy.get("blocked", 0) or 0)
     continuity_summary = capability_recommendations.get("continuity_summary", {})
     skill_cards = len(individual_skill_intelligence)
+    root_parity_summary = build_root_parity_summary(skills)
+    publication_parity = root_parity_summary.get("codex_vs_workspace_mirror", {})
 
     posture = "stable"
     if (
@@ -4331,6 +4627,21 @@ def build_watcher_intelligence(
                 "evidence_refs": [
                     f"recommendations:updates={len(recommended_updates)}",
                     f"recommendations:new_skills={len(recommended_new_skills)}",
+                ],
+            }
+        )
+    if int(publication_parity.get("drift", 0) or 0) > 0:
+        watchlist_candidates.append(
+            {
+                "title": "Publication mirror drift",
+                "severity": "medium",
+                "reason": compact_sentence(
+                    f"Codex and the active workspace mirror diverge on {publication_parity.get('drift', 0)} shared skill copies.",
+                    limit=180,
+                ),
+                "evidence_refs": [
+                    f"publication_mirror:shared={publication_parity.get('shared', 0)}",
+                    f"publication_mirror:drift={publication_parity.get('drift', 0)}",
                 ],
             }
         )
@@ -4515,6 +4826,16 @@ def build_watcher_intelligence(
                 ),
             }
         )
+    if int(publication_parity.get("drift", 0) or 0) > 0:
+        next_actions.append(
+            {
+                "action": "Close publication mirror drift after codex changes.",
+                "why": compact_sentence(
+                    f"The active workspace mirror is drifted on {publication_parity.get('drift', 0)} shared skills and should be resynchronized before release or export.",
+                    limit=140,
+                ),
+            }
+        )
     if not next_actions:
         next_actions.append(
             {
@@ -4530,6 +4851,7 @@ def build_watcher_intelligence(
             members = [
                 {
                     "skill_id": str(skill.get("skill_id", "")),
+                    "inventory_role": str(skill.get("inventory_role", "") or "standard"),
                     "name": str(skill.get("name", "")),
                     "summary": compact_sentence(str(skill.get("summary", "")), limit=140),
                     "sources": [str(source) for source in skill.get("sources", [])],
@@ -4554,6 +4876,11 @@ def build_watcher_intelligence(
             part
             for part in [
                 f"The Watcher sees {counts.get('unique_skills', 0)} unique skills across {len([g for g in groups if int(g.get('skill_count', 0) or 0) > 0])} active constellations.",
+                (
+                    f"Inventory roles: {counts.get('standard_inventory_skills', 0)} standard, "
+                    f"{counts.get('system_hidden_skills', 0)} hidden system, "
+                    f"{counts.get('runtime_bundle_skills', 0)} runtime bundle."
+                ),
                 f"Ecosystem posture is {posture}.",
                 f"Per-skill intelligence is preserved for {skill_cards} skills with {continuity_summary.get('continuity_proofs_emitted', 0)} continuity proof(s).",
                 (
@@ -4583,6 +4910,9 @@ def build_watcher_intelligence(
         "skills_without_pulse_participation_count": int(
             counts.get("skills_without_pulse_participation_count", 0) or 0
         ),
+        "standard_inventory_skills": int(counts.get("standard_inventory_skills", 0) or 0),
+        "system_hidden_skills": int(counts.get("system_hidden_skills", 0) or 0),
+        "runtime_bundle_skills": int(counts.get("runtime_bundle_skills", 0) or 0),
         "monotonic_wisdom_mode": "append_only_per_skill_and_global",
     }
 
@@ -4598,6 +4928,14 @@ def build_watcher_intelligence(
         "wisdom_highlights": wisdom_highlights[:5],
         "next_actions": next_actions,
         "inventory_appendix": inventory_appendix or None,
+        "root_parity_summary": root_parity_summary,
+        "publication_mirror_health": {
+            "present": int(publication_parity.get("shared", 0) or 0) > 0,
+            "shared": int(publication_parity.get("shared", 0) or 0),
+            "drift": int(publication_parity.get("drift", 0) or 0),
+            "status": "aligned" if int(publication_parity.get("drift", 0) or 0) == 0 else "drift",
+            "examples": publication_parity.get("examples", [])[:6],
+        },
     }
 
 
@@ -4625,6 +4963,17 @@ def render_chat_intelligence(
             f"`{preservation_summary.get('continuity_proofs_emitted', 0)}` continuity proofs, "
             f"`{preservation_summary.get('pulse_bus_active_skills', 0)}` pulse-active skills, "
             f"`{preservation_summary.get('monotonic_wisdom_mode', 'append_only')}`."
+        )
+        lines.append(
+            f"- Inventory roles: `{preservation_summary.get('standard_inventory_skills', 0)}` standard, "
+            f"`{preservation_summary.get('system_hidden_skills', 0)}` hidden system, "
+            f"`{preservation_summary.get('runtime_bundle_skills', 0)}` runtime bundle."
+        )
+    publication_mirror = watcher_intelligence.get("publication_mirror_health", {}) or {}
+    if publication_mirror.get("present", False):
+        lines.append(
+            f"- Publication mirror: `{publication_mirror.get('status', 'unknown')}` "
+            f"across `{publication_mirror.get('shared', 0)}` shared skills with `{publication_mirror.get('drift', 0)}` drifted."
         )
     lines.append(f"- Generated (UTC): `{metadata.get('generated_at_utc', '')}`")
     lines.append("")
@@ -4752,7 +5101,7 @@ def render_chat_intelligence(
                 pulse = "pulse" if skill.get("pulse_bus_active") else "quiet"
                 sources = ", ".join(str(source) for source in skill.get("sources", []))
                 lines.append(
-                    f"- `{skill.get('skill_id', '')}` [{pulse}] ({sources}): {skill.get('summary', '')}"
+                    f"- `{skill.get('skill_id', '')}` [{pulse}, {skill.get('inventory_role', 'standard')}] ({sources}): {skill.get('summary', '')}"
                 )
 
     return "\n".join(lines)
@@ -4882,7 +5231,7 @@ def main() -> int:
     )
 
     metadata = {
-        "report_version": "4.0.0",
+        "report_version": "4.1.0",
         "generated_at_utc": current_generated_at_utc,
         "workspace_root": str(workspace_root),
         "roots_arg": args.roots,
@@ -4899,6 +5248,7 @@ def main() -> int:
         "wisdom_enabled": bool(args.wisdom_enabled),
         "freshness_threshold_hours": int(max(1, args.freshness_threshold_hours)),
         "inventory_fingerprint": current_inventory_fingerprint,
+        "ecosystem_contract_path": str(ECOSYSTEM_CONTRACT_PATH),
         "freshness_status": freshness_audit.get("status", "unknown"),
         "changed_since_last_run": bool(freshness_audit.get("changed_since_last_run", False)),
         "stale_intelligence_detected": bool(freshness_audit.get("stale_intelligence_detected", False)),
@@ -4988,10 +5338,31 @@ def main() -> int:
         )[:3],
     }
 
+    inventory_summary = {
+        "unique_skills": int(counts.get("unique_skills", 0) or 0),
+        "copies": int(counts.get("total_skill_copies", 0) or 0),
+        "pulse_active_skills": int(counts.get("pulse_bus_active_skills", 0) or 0),
+        "skills_without_manifest_count": int(counts.get("skills_without_manifest_count", 0) or 0),
+        "skills_without_pulse_participation_count": int(
+            counts.get("skills_without_pulse_participation_count", 0) or 0
+        ),
+        "roles": {
+            "standard": int(counts.get("standard_inventory_skills", 0) or 0),
+            "system_hidden": int(counts.get("system_hidden_skills", 0) or 0),
+            "runtime_bundle": int(counts.get("runtime_bundle_skills", 0) or 0),
+            "backup_snapshot": int(counts.get("backup_snapshot_skills", 0) or 0),
+        },
+    }
+    freshness_summary = dict(freshness_audit)
+    freshness_summary["state"] = str(freshness_audit.get("status", "unknown") or "unknown")
+
     payload = {
         "metadata": metadata,
+        "freshness": freshness_summary,
         "freshness_audit": freshness_audit,
+        "inventory_summary": inventory_summary,
         "roots": root_stats,
+        "inventory_roots": root_stats,
         "inventory_counts": counts,
         "groups": groups,
         "skills": skills,

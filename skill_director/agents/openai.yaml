@@ -1,0 +1,4 @@
+interface:
+  display_name: "The Watcher"
+  short_description: "Chat-first skill ecosystem intelligence"
+  default_prompt: "Run The Watcher to inventory every in-scope skill, preserve per-skill intelligence, classify drift and portability posture, and emit additive non-destructive upgrade guidance in a compressed chat brief."

@@ -1,11 +1,14 @@
 ---
 name: launch-window-budget-guard
-description: Portable launch gate that enforces time and cost budgets, preflight checks, and irreversible checklist policies before expensive runs.
+description: Portable launch gate that enforces time and cost budgets, preflight checks,
+  and irreversible checklist policies before expensive runs.
 metadata:
   version: 1.4.0
   short-description: Deterministic launch and budget gate enforcement
   portability_tier: strict_zero_leak
   scope: global
+  requires_env: []
+  project_profiles: []
 ---
 
 # Launch Window Budget Guard

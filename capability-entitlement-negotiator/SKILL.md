@@ -1,11 +1,14 @@
 ---
 name: capability-entitlement-negotiator
-description: Portable pre-launch capability and entitlement negotiator that classifies execution mode and fallback options before runtime work starts.
+description: Portable pre-launch capability and entitlement negotiator that classifies
+  execution mode and fallback options before runtime work starts.
 metadata:
   version: 1.3.0
   short-description: Portable capability and entitlement negotiation
   portability_tier: strict_zero_leak
   scope: global
+  requires_env: []
+  project_profiles: []
 ---
 
 # Capability Entitlement Negotiator

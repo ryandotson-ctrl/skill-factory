@@ -1,118 +1,137 @@
 # Contracts
 
-## StorageCleanupPlanV1
+## StorageGuardianPlanV2
 
 ```json
 {
-  "schema": "StorageCleanupPlanV1",
-  "generated_at": "2026-03-05T01:00:00Z",
-  "workspace": "/abs/path",
-  "keep_models": ["mlx-community/Qwen2.5-7B-Instruct-4bit"],
-  "scan_roots": ["/abs/path/.venv", "..."],
-  "summary": {
-    "total_candidates": 12,
-    "reclaimable_bytes_by_tier": {
-      "safe_now": 123456,
-      "conditional": 987654321,
-      "keep": 54321
-    }
+  "schema": "StorageGuardianPlanV2",
+  "generated_at": "ISO-8601",
+  "execution_context": {
+    "cwd": "$HOME-relative path",
+    "detected_thread_id": "string|null",
+    "hot_thread_ids": ["string"],
+    "hot_session_days": ["$HOME/.codex/sessions/YYYY/MM/DD"],
+    "hot_workspace_roots": ["$HOME/Documents/Repo"],
+    "hot_worktree_paths": ["$HOME/.codex/worktrees/id/Repo"],
+    "keep_models": ["owner/repo"],
+    "external_volumes": [{"mount": "string", "total_bytes": 0, "used_bytes": 0, "available_bytes": 0}],
+    "time_windows": {"hot_days": 14, "warm_days": 45}
   },
+  "volume_summaries": [
+    {"mount": "string", "total_bytes": 0, "used_bytes": 0, "available_bytes": 0}
+  ],
+  "workspace_profiles": [
+    {
+      "name": "string",
+      "root": "$HOME/Documents/Repo",
+      "activity": "active|warm|cold",
+      "last_signal_at": "ISO-8601",
+      "protected_bytes": 0,
+      "delete_now_bytes": 0,
+      "offload_manifest_bytes": 0,
+      "review_first_bytes": 0
+    }
+  ],
+  "session_profiles": [
+    {
+      "day": "YYYY-MM-DD",
+      "size_bytes": 0,
+      "temperature": "hot|warm|cold",
+      "action": "delete_now|offload_manifest|review_first|protect",
+      "thread_ids": ["string"],
+      "offloaded": false,
+      "last_signal_at": "ISO-8601"
+    }
+  ],
   "candidates": [
     {
-      "path": "/abs/path/to/dir",
-      "kind": "hf_repo|workspace_venv|workspace_artifacts|mlxmodels_repo|models_repo",
-      "tier": "safe_now|conditional|keep",
-      "size_bytes": 123456,
-      "size_gb": 0.115,
-      "model_id": "mlx-community/Qwen2.5-7B-Instruct-4bit",
-      "link_target": "/optional/symlink/target",
-      "reason": "why this was classified"
-    }
-  ]
-}
-```
-
-Candidate `kind` may also be:
-- `mlx_hidden_repo`
-- `symlink_alias`
-
-For `symlink_alias` candidates:
-- `size_bytes` should remain `0`
-- `tier` should remain `keep`
-- `link_target` should identify the destination path when known
-
-## StorageCleanupApplyResultV1
-
-```json
-{
-  "schema": "StorageCleanupApplyResultV1",
-  "applied_at": "2026-03-05T01:05:00Z",
-  "plan_path": "/abs/path/plan.json",
-  "tiers_requested": ["safe_now"],
-  "deleted": [
-    {
-      "path": "/abs/path/removed",
-      "size_bytes": 123456,
-      "tier": "safe_now",
-      "status": "deleted"
+      "path": "$HOME-relative path",
+      "size_bytes": 0,
+      "category": "string",
+      "source_type": "string",
+      "temperature": "hot|warm|cold",
+      "importance_score": 0,
+      "action": "delete_now|offload_manifest|review_first|protect",
+      "workspace": "string|null",
+      "thread_ids": ["string"],
+      "last_signal_at": "ISO-8601",
+      "recovery_cost": "low|medium|high",
+      "reason": "string",
+      "metadata": {}
     }
   ],
-  "skipped": [
+  "summary_by_action": {
+    "delete_now_bytes": 0,
+    "offload_manifest_bytes": 0,
+    "review_first_bytes": 0,
+    "protect_bytes": 0
+  },
+  "registry_state": {
+    "schema": "StorageGuardianRegistryV2",
+    "entry_count": 0,
+    "legacy_entry_count": 0,
+    "legacy_import_count": 0,
+    "external_root": "string|null",
+    "updated_at": "ISO-8601"
+  },
+  "legacy_imports": [{"root": "string", "imported_at": "ISO-8601", "provenance": "string"}],
+  "settings": {
+    "hot_days": 14,
+    "warm_days": 45,
+    "cache_policy": "review_first|cache_first",
+    "cwd": "/abs/path",
+    "roots": ["/abs/path"],
+    "external_root": "/abs/path|null",
+    "include_external": true,
+    "thread_id": "string|null",
+    "registry_path": "/abs/path"
+  }
+}
+```
+
+## StorageGuardianApplyResultV2
+
+```json
+{
+  "schema": "StorageGuardianApplyResultV2",
+  "applied_at": "ISO-8601",
+  "actions_requested": ["delete_now", "offload_manifest"],
+  "deleted": [{"path": "$HOME-relative path", "status": "deleted", "size_bytes": 0}],
+  "offloaded": [{"path": "/abs/path", "status": "offloaded", "external_path": "/abs/path"}],
+  "skipped": [{"path": "/abs/path", "status": "string"}],
+  "errors": [{"path": "/abs/path", "status": "error", "error": "message"}]
+}
+```
+
+## StorageGuardianRegistryV2
+
+```json
+{
+  "schema": "StorageGuardianRegistryV2",
+  "updated_at": "ISO-8601",
+  "attached_volume": "e",
+  "external_root": "/abs/path",
+  "entries": [
     {
-      "path": "/abs/path/kept",
-      "tier": "keep",
-      "status": "skipped_not_in_tiers"
+      "id": "string",
+      "source_path": "/abs/path",
+      "external_path": "/abs/path",
+      "mode": "manifest_only|legacy_tar_archive|legacy_live_symlink|archive_only",
+      "source_type": "path|session_day|worktree|git_archive",
+      "workspace": "string|null",
+      "thread_ids": ["string"],
+      "session_days": ["YYYY-MM-DD"],
+      "provenance": "native_guardian|legacy-root-path|ssd_guardian_v1",
+      "status": "offloaded|archived|review",
+      "moved_at": "ISO-8601",
+      "restore_command": "string",
+      "temperature_at_move": "hot|warm|cold|null",
+      "legacy_mode": "string|null",
+      "category": "string",
+      "description": "string",
+      "size_bytes": 0
     }
   ],
-  "errors": [],
-  "reclaimed_bytes": 123456
-}
-```
-
-## ColdStorageManifestV1
-
-```json
-{
-  "manifest_version": "ColdStorageManifestV1",
-  "generated_at": "ISO-8601",
-  "entries": [
-    {
-      "name": "string",
-      "strategy": "copy_back|path_preserved_symlink",
-      "size_kb": 123456,
-      "live_path": "/path/original",
-      "cold_path": "/path/archive",
-      "alias_paths": ["/optional/alias/path"],
-      "notes": "string"
-    }
-  ]
-}
-```
-
-## ColdStorageVerificationResultV1
-
-```json
-{
-  "schema": "ColdStorageVerificationResultV1",
-  "manifest_version": "ColdStorageManifestV1",
-  "entries": [
-    {
-      "name": "string",
-      "strategy": "copy_back|path_preserved_symlink",
-      "live_exists": true,
-      "cold_exists": true,
-      "live_is_symlink": false,
-      "live_target": "/path/archive",
-      "points_to_cold": true,
-      "alias_checks": [
-        {
-          "path": "/optional/alias/path",
-          "exists": true,
-          "is_symlink": true,
-          "target": "/some/path"
-        }
-      ]
-    }
-  ]
+  "legacy_imports": [{"root": "string", "imported_at": "ISO-8601", "provenance": "string"}]
 }
 ```

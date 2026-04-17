@@ -30,6 +30,7 @@ Onboard a repo/workspace without legacy assumptions and with current runtime con
 1. Verify monorepo structure and key app paths.
 2. Ensure `.agent/skills` exists and required skills are present.
 3. Mirror/sync selected global skills from `~/.codex/skills` when requested.
+4. For Apple repositories, detect generator-backed project truth (`project.yml`, `.xcodeproj`, `.xcworkspace`) and whether the shared Apple build harness is already installed.
 4. Validate launch readiness:
    - Dev mode prerequisites (`venv_312`, repo root detection).
    - Bundled mode prerequisites (`backend_runtime` resources).
@@ -60,6 +61,7 @@ Recommended bootstrap evidence:
 - Swift package test command
 - Xcode app-target build command
 - launched-artifact smoke command
+- Apple harness proof command when present (`make agent-verify` or namespaced equivalent)
 
 ## Recommended Core Skill Set
 - `runtime-context-launcher`
@@ -68,6 +70,8 @@ Recommended bootstrap evidence:
 - `log-detective-sre`
 - `contract-parity-release-gate`
 - `schema-parity-enforcer`
+- `apple-project-bootstrap-orchestrator` for Apple repo creation or adoption
+- `xcode-build-harness-installer` for Apple CLI verification harness installation
 
 ## Non-Negotiable Constraints
 - Do not assume `~/.gemini` is the only source of global skills.

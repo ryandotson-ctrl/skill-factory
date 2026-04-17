@@ -1,11 +1,15 @@
 ---
 name: target-compatibility-gate
-description: Portable compatibility gate that compares artifact requirements to target capabilities and emits automatic transform plans.
+description: Portable compatibility gate that compares artifact requirements to target
+  capabilities and emits automatic transform plans.
 metadata:
   version: 1.3.0
   short-description: Artifact-to-target compatibility and auto-fix planning
   portability_tier: strict_zero_leak
   scope: global
+  requires_env: []
+  project_profiles:
+  - PFEMacOS
 ---
 
 # Target Compatibility Gate

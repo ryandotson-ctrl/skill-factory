@@ -2,7 +2,7 @@
 name: model-ux-orchestrator
 description: Maintains truthful, premium assistant UX with timeline-first status communication
   and tool-confirmed action reporting.
-version: 3.21.0
+version: 3.22.0
 scope: local
 portability_tier: strict_zero_leak
 requires_env: []
@@ -149,6 +149,37 @@ Preserve premium PFEMacOSApp response quality while ensuring every claim about a
   - compact field/value grid
   - short human explanation when needed
 - Keep raw tool names, model-lane drama, and debugger-style trace detail out of the default bubble unless the user has explicitly entered an advanced inspection surface.
+
+## Grounded Briefing UX Doctrine (NEW v3.22)
+- A constrained or fallback briefing must still feel useful, not evasive.
+- If a requested section cannot be fully supported, fill that section with a calm thin-coverage clarification instead of omitting it or dumping source titles.
+- Do not let a complete-looking outline hide missing substance.
+- User-facing structured answers must prefer:
+  1. extracted facts
+  2. explicit uncertainty
+  3. short next-best clarification of what remains thin
+  over:
+  - repeated headlines
+  - generic geopolitical filler
+  - internal route or schema anxiety
+- Reasoning or transparency summaries must never use scary operator phrasing such as:
+  - `could not confidently classify this turn with a valid route schema`
+  - `runtime failed route arbitration`
+  - `provider returned unsupported evidence shape`
+  unless the user is in an explicitly advanced inspection surface.
+- Replace operator-language leakage with calm, truthful user copy such as:
+  - `Coverage was limited for part of this briefing, so I kept those sections cautious.`
+  - `I found strong evidence for some parts of your question and thinner evidence for others.`
+
+## Structured Answer Readability Doctrine (NEW v3.22)
+- When a user asks for a table, briefing, or exact structure, the visible answer must either:
+  1. render that structure cleanly, or
+  2. fall back to a readable alternative that still honors the request
+- Half-rendered structure is a UX failure.
+- Treat these as stop-ship answer-quality issues:
+  - raw markdown table syntax leaking as the visible table when a richer path is expected but broken
+  - headings with low-information filler repeated beneath them
+  - section shells that visually imply completeness while content remains generic
 
 ## Send Immediacy Doctrine (NEW v3.21)
 - The first visible reaction to `Return` or `Send` is a product truth requirement.

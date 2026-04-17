@@ -1,0 +1,12 @@
+{
+  "skill_id": "apple-project-bootstrap-orchestrator",
+  "version": "0.1.0",
+  "description": "Portable Apple project bootstrap skill for generator-backed scaffolding, non-destructive adoption, optional Xcode harness install, onboarding fragments, and Apple release-profile skeletons.",
+  "inputs": [],
+  "outputs": [
+    {
+      "event_type": "apple_project_bootstrap_receipt",
+      "schema_ref": "default_finding_schema"
+    }
+  ]
+}

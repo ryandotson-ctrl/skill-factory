@@ -1,11 +1,16 @@
 ---
 name: wifi-rssi-presence-sensing-architect
-description: Portable architect for low-resource RSSI-based presence and coarse motion systems on Linux edge devices. Use when building, tuning, or validating local Wi-Fi sensing that must stay secondary to a primary workload, expose a clean headless API, and remain honest about hardware limits.
+description: Portable architect for low-resource RSSI-based presence and coarse motion
+  systems on Linux edge devices. Use when building, tuning, or validating local Wi-Fi
+  sensing that must stay secondary to a primary workload, expose a clean headless
+  API, and remain honest about hardware limits.
 metadata:
   version: 1.0.0
   short-description: RSSI presence sensing architecture and truth-first validation
   portability_tier: strict_zero_leak
   scope: global
+  requires_env: []
+  project_profiles: []
 ---
 
 # Wi-Fi RSSI Presence Sensing Architect

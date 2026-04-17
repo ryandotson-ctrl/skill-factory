@@ -1,0 +1,4 @@
+interface:
+  display_name: "Orchestration Sentinel v2"
+  short_description: "Pulse Bus router and topology guardian"
+  default_prompt: "Evaluate manifest.v2 pulse routes, preserve route ownership and external event namespaces, surface topology pressure clearly, and keep dispatch behavior disciplined and non-noisy."

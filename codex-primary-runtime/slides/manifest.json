@@ -1,0 +1,21 @@
+{
+  "skill_id": "codex-primary-runtime/slides",
+  "version": "1.0.0",
+  "description": "Internal runtime PowerPoint workflow for creating, editing, rendering, verifying, and exporting ambitious editable PPTX decks.",
+  "inputs": [
+    {
+      "event_type": "codex-primary-runtime:slides_requested",
+      "schema_ref": "default_event_schema"
+    }
+  ],
+  "outputs": [
+    {
+      "event_type": "codex-primary-runtime:slides_ready",
+      "schema_ref": "default_event_schema"
+    },
+    {
+      "event_type": "skill_activity:codex-primary-runtime:slides",
+      "schema_ref": "default_finding_schema"
+    }
+  ]
+}

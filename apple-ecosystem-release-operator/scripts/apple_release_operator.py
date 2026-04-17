@@ -198,6 +198,43 @@ def ensure_local_tools(profile: dict) -> None:
         need_cmd(profile["generator_command"].split()[0])
 
 
+def discover_local_build_harness(project_root: pathlib.Path) -> dict:
+    candidates = []
+    for path in sorted(project_root.glob("Makefile*"), key=lambda item: (item.name != "Makefile", item.name)):
+        if not path.is_file():
+            continue
+        try:
+            content = path.read_text(encoding="utf-8", errors="replace")
+        except OSError:
+            continue
+        if "agent-verify" not in content:
+            continue
+        namespace = path.name.split(".", 1)[1] if "." in path.name else ""
+        verify_target = f"{namespace}-agent-verify" if namespace else "agent-verify"
+        diagnose_target = f"{namespace}-diagnose" if namespace else "diagnose"
+        if path.name == "Makefile":
+            base_command = "make"
+        else:
+            base_command = f"make -f {path.name}"
+        candidates.append(
+            {
+                "makefile": path.name,
+                "namespace": namespace,
+                "verify_target": verify_target,
+                "diagnose_target": diagnose_target,
+                "preferred_verify_command": f"{base_command} {verify_target}",
+                "preferred_diagnose_command": f"{base_command} {diagnose_target}",
+            }
+        )
+    if not candidates:
+        return {"installed": False, "candidates": []}
+    return {
+        "installed": True,
+        "preferred": candidates[0],
+        "candidates": candidates,
+    }
+
+
 def build_context(profile_path: pathlib.Path, profile: dict, developer_dir: str) -> dict:
     project_root = profile_project_root(profile_path, profile)
     project_path = resolve_project_path(project_root, profile["xcode_project_or_workspace"])
@@ -227,6 +264,7 @@ def preflight(profile_path: pathlib.Path, developer_dir: str) -> dict:
     ensure_local_tools(profile)
     context = build_context(profile_path, profile, developer_dir)
     settings = collect_build_settings(context["project_path"], profile["scheme"], developer_dir)
+    local_build_harness = discover_local_build_harness(context["project_root"])
     mismatches = []
 
     expected_pairs = {
@@ -255,6 +293,7 @@ def preflight(profile_path: pathlib.Path, developer_dir: str) -> dict:
         "sku": profile["sku"],
         "build_settings": settings,
         "distribution_identity": release_identity_status(),
+        "local_build_harness": local_build_harness,
         "mismatches": mismatches,
         "status": "ok" if not mismatches else "mismatch",
     }
@@ -267,13 +306,30 @@ def maybe_run_generator(profile: dict, project_root: pathlib.Path) -> None:
         run(command, cwd=project_root)
 
 
-def maybe_run_tests(profile: dict, project_root: pathlib.Path, developer_dir: str, skip_tests: bool) -> None:
-    command = profile.get("test_command")
+def maybe_run_tests(profile: dict, project_root: pathlib.Path, developer_dir: str, skip_tests: bool) -> dict:
+    harness = discover_local_build_harness(project_root)
+    command = profile.get("local_proof_command")
+    source = "profile_local_proof_command" if command else ""
+    if harness.get("installed"):
+        command = harness["preferred"]["preferred_verify_command"]
+        source = "xcode_build_harness"
+    elif profile.get("test_command"):
+        command = profile["test_command"]
+        source = "profile_test_command"
     if skip_tests or not command:
-        return
+        return {
+            "proof_command": "",
+            "proof_source": "skipped" if skip_tests else "none",
+            "local_build_harness": harness,
+        }
     env = os.environ.copy()
     env["DEVELOPER_DIR"] = developer_dir
     run(command, cwd=project_root, env=env)
+    return {
+        "proof_command": command,
+        "proof_source": source,
+        "local_build_harness": harness,
+    }
 
 
 def archive(profile_path: pathlib.Path, developer_dir: str, skip_tests: bool) -> dict:
@@ -281,7 +337,7 @@ def archive(profile_path: pathlib.Path, developer_dir: str, skip_tests: bool) ->
     ensure_local_tools(profile)
     context = build_context(profile_path, profile, developer_dir)
     maybe_run_generator(profile, context["project_root"])
-    maybe_run_tests(profile, context["project_root"], developer_dir, skip_tests)
+    proof = maybe_run_tests(profile, context["project_root"], developer_dir, skip_tests)
     flag, location = xcode_container_flag(context["project_path"])
     env = os.environ.copy()
     env["DEVELOPER_DIR"] = developer_dir
@@ -310,6 +366,9 @@ def archive(profile_path: pathlib.Path, developer_dir: str, skip_tests: bool) ->
         "archive_path": str(context["archive_path"]),
         "scheme": profile["scheme"],
         "platform": profile["platform"],
+        "proof_command": proof["proof_command"],
+        "proof_source": proof["proof_source"],
+        "local_build_harness": proof["local_build_harness"],
     }
 
 
@@ -402,6 +461,7 @@ def capture_evidence(profile_path: pathlib.Path, developer_dir: str, output_path
     profile = load_profile(profile_path)
     context = build_context(profile_path, profile, developer_dir)
     settings = collect_build_settings(context["project_path"], profile["scheme"], developer_dir)
+    local_build_harness = discover_local_build_harness(context["project_root"])
     evidence = {
         "captured_at": dt.datetime.now(dt.timezone.utc).isoformat(),
         "platform": profile["platform"],
@@ -416,6 +476,7 @@ def capture_evidence(profile_path: pathlib.Path, developer_dir: str, output_path
         "default_testflight_group": profile["default_testflight_group"],
         "known_proven_archive_command": profile.get("known_proven_archive_command"),
         "known_proven_upload_command": profile.get("known_proven_upload_command"),
+        "local_build_harness": local_build_harness,
         "build_settings": settings,
         "blockers": blockers,
         "tester_statuses": tester_statuses,

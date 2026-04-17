@@ -1,0 +1,25 @@
+{
+  "skill_id": "gh-fix-ci",
+  "version": "1.0.0",
+  "description": "Inspect failing GitHub Actions PR checks with gh CLI and produce a fix plan before implementation.",
+  "inputs": [
+    {
+      "event_type": "skill:gh-fix-ci:requested",
+      "schema_ref": "default_event_schema"
+    },
+    {
+      "event_type": "github:ci_fix_requested",
+      "schema_ref": "default_event_schema"
+    }
+  ],
+  "outputs": [
+    {
+      "event_type": "github:ci_fix_plan_ready",
+      "schema_ref": "default_event_schema"
+    },
+    {
+      "event_type": "skill_activity:gh-fix-ci",
+      "schema_ref": "default_finding_schema"
+    }
+  ]
+}

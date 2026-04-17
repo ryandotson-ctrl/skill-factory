@@ -1,0 +1,37 @@
+{
+  "schema_version": "2.0.0",
+  "display_name": "Foundry Autonomy Recovery Operator",
+  "description": "Diagnose and recover autonomy loops that appear healthy but have stopped compounding real progress.",
+  "dispatch": {
+    "mode": "manual",
+    "cooldown": 300
+  },
+  "inputs": [
+    {
+      "id": "skill_request",
+      "type": "pulse.event",
+      "pattern": "skill:foundry-autonomy-recovery-operator:requested",
+      "route_mode": "owned",
+      "route_priority": 95
+    },
+    {
+      "id": "autonomy_recovery_requested",
+      "type": "pulse.event",
+      "pattern": "foundry:autonomy_recovery_requested",
+      "route_mode": "owned",
+      "route_priority": 90
+    }
+  ],
+  "outputs": [
+    {
+      "id": "assessment_ready",
+      "type": "pulse.event",
+      "event_type": "foundry:autonomy_recovery_assessment_ready"
+    },
+    {
+      "id": "status_update",
+      "type": "pulse.event",
+      "event_type": "skill_activity:foundry-autonomy-recovery-operator"
+    }
+  ]
+}

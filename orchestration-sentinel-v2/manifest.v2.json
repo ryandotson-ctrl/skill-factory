@@ -26,15 +26,20 @@
             "type": "pulse.event",
             "event_type": "dispatch_requested"
         },
-        {
-            "id": "dispatch_lock_signal",
-            "type": "pulse.event",
-            "event_type": "dispatch_locked"
-        },
-        {
-            "id": "dispatch_health_signal",
-            "type": "pulse.event",
-            "event_type": "dispatch_health_report_emitted"
-        }
+    {
+      "id": "dispatch_lock_signal",
+      "type": "pulse.event",
+      "event_type": "dispatch_locked"
+    },
+    {
+      "id": "dispatch_failed_signal",
+      "type": "pulse.event",
+      "event_type": "dispatch_failed"
+    },
+    {
+      "id": "dispatch_health_signal",
+      "type": "pulse.event",
+      "event_type": "dispatch_health_report_emitted"
+    }
     ]
 }

@@ -14,6 +14,14 @@
   ],
   "outputs": [
     {
+      "event_type": "skills:mirror_report_ready",
+      "schema_ref": "default_event_schema"
+    },
+    {
+      "event_type": "skills:mirror_sync_applied",
+      "schema_ref": "default_event_schema"
+    },
+    {
       "event_type": "skill_activity:antigravity-skill-mirror",
       "schema_ref": "default_finding_schema"
     }

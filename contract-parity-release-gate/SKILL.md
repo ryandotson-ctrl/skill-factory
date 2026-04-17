@@ -1,7 +1,7 @@
 ---
 name: contract-parity-release-gate
 description: Deterministic multi-contract release gate that aggregates parity checks across chat, search, rag, model lifecycle, and training domains before migration cutovers.
-version: 1.3.0
+version: 1.4.0
 scope: global
 portability_tier: strict_zero_leak
 requires_env: []
@@ -99,6 +99,20 @@ Blocking policy:
 - Blocking policy:
   - mark the gate `blocker` when the visible answer loses the primary verified field while the summary card or underlying verifier still has it
   - mark the gate `blocker` when invoice-vs-billing-statement identity flips incorrectly in packaged/runtime verification
+
+## Verification Lane Parity Rule (NEW v1.4)
+- When a migration, cutover, or retirement claim says a runtime family is gone, the verification lane must not still depend on that retired family for fixture generation, launch glue, log inspection, or pass/fail assertions.
+- Treat these as separate truths:
+  1. shipped runtime dependency
+  2. developer convenience dependency
+  3. release-gate dependency
+- Required evidence for a completed cutover claim:
+  1. the shipped artifact no longer depends on the retired runtime family
+  2. the launched-artifact or release smoke path no longer depends on the retired runtime family for critical verification steps
+  3. any remaining compatibility stubs are clearly tombstoned and are not part of the active gate
+- Blocking policy:
+  - mark the gate `blocker` when the product is claimed to be cut over but the release or launched-artifact verifier still requires the retired runtime family to generate fixtures, launch the app, or classify success
+  - mark the gate `warning` when the retired family remains only as inert documentation or tombstone scripts outside the active release path
 
 ## Required Domains (Default Policy)
 - `chat_runtime`

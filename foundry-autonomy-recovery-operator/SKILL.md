@@ -1,10 +1,15 @@
 ---
 name: foundry-autonomy-recovery-operator
-description: Portable control-plane recovery operator for autonomous research systems that appear scheduled and healthy but have stopped producing fresh progress. Detects stale inputs, dead single-flight locks, abandoned runs, empty frontier cycles, and next-safe retry actions.
+description: Portable control-plane recovery operator for autonomous research systems
+  that appear scheduled and healthy but have stopped producing fresh progress. Detects
+  stale inputs, dead single-flight locks, abandoned runs, empty frontier cycles, and
+  next-safe retry actions.
 metadata:
   version: 1.0.0
   portability_tier: strict_zero_leak
   scope: global
+  requires_env: []
+  project_profiles: []
 ---
 
 # Foundry Autonomy Recovery Operator

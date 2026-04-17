@@ -18,13 +18,10 @@ PORTABILITY_PATTERNS = [
     re.compile(r"[A-Za-z]:\\\\Users\\\\[A-Za-z0-9][A-Za-z0-9._-]{1,}"),
 ]
 
-SKILL_ROOT_PATTERNS = [
-    (".agent/skills", "workspace_local"),
-    ("global-skills/codex", "workspace_global"),
-    (".codex/skills", "codex_global"),
-]
-
 TEXT_EXTENSIONS = {".md", ".txt", ".json", ".yaml", ".yml", ".py", ".toml"}
+NESTED_SKILL_PREFIXES = {".system", "codex-primary-runtime"}
+SKIP_TOP_LEVEL_PREFIXES = {".agent", ".git"}
+BACKUP_PREFIXES = {".skill-backups", "_p0_backups", ".backups"}
 
 
 def now_iso() -> str:
@@ -38,8 +35,6 @@ def parse_status_line(line: str) -> Optional[Tuple[str, str]]:
     path_text = line[3:].strip()
     if not path_text:
         return None
-    if " -> " in path_text:
-        path_text = path_text.split(" -> ", 1)[1].strip()
     return status, path_text
 
 
@@ -52,21 +47,34 @@ def run_git_status(workspace_root: Path) -> List[Tuple[str, str]]:
     for line in proc.stdout.splitlines():
         parsed = parse_status_line(line.rstrip("\n"))
         if parsed is not None:
+            status, path_text = parsed
+            if " -> " in path_text and status.strip().startswith("R"):
+                old_path, new_path = [item.strip() for item in path_text.split(" -> ", 1)]
+                if old_path:
+                    out.append((status, old_path))
+                if new_path:
+                    out.append((status, new_path))
+                continue
             out.append(parsed)
     return out
 
 
-def run_git_numstat(workspace_root: Path, paths: Sequence[str]) -> Tuple[int, int]:
+def run_git_numstat(workspace_root: Path, status_rows: Sequence[Tuple[str, str]], paths: Sequence[str]) -> Tuple[int, int]:
     if not paths:
         return 0, 0
-    cmd = ["git", "-C", str(workspace_root), "diff", "--numstat", "--", *paths]
+    tracked_paths = [
+        normalize_rel_path(path_text)
+        for status, path_text in status_rows
+        if not status.startswith("??")
+    ]
+    tracked_paths = sorted(set(path for path in tracked_paths if path in set(paths)))
+
+    cmd = ["git", "-C", str(workspace_root), "diff", "--numstat", "HEAD", "--", *tracked_paths]
     proc = subprocess.run(cmd, capture_output=True, text=True, check=False)
-    if proc.returncode != 0:
-        return 0, 0
 
     added = 0
     deleted = 0
-    for line in proc.stdout.splitlines():
+    for line in proc.stdout.splitlines() if proc.returncode == 0 else []:
         parts = line.split("\t")
         if len(parts) < 3:
             continue
@@ -77,6 +85,15 @@ def run_git_numstat(workspace_root: Path, paths: Sequence[str]) -> Tuple[int, in
             a, d = 0, 0
         added += a
         deleted += d
+    untracked_paths = [
+        normalize_rel_path(path_text)
+        for status, path_text in status_rows
+        if status.startswith("??") and normalize_rel_path(path_text) in set(paths)
+    ]
+    for rel in sorted(set(untracked_paths)):
+        text = read_text_if_supported((workspace_root / rel).resolve())
+        if text:
+            added += len(text.splitlines())
     return added, deleted
 
 
@@ -84,19 +101,54 @@ def normalize_rel_path(path_text: str) -> str:
     return path_text.strip().replace("\\", "/")
 
 
-def detect_skill_ref(path_text: str) -> Optional[Tuple[str, str, str]]:
-    rel = normalize_rel_path(path_text)
-    for prefix, root_tag in SKILL_ROOT_PATTERNS:
-        marker = f"{prefix}/"
-        idx = rel.find(marker)
-        if idx == -1:
-            continue
-        tail = rel[idx + len(marker) :]
-        parts = [p for p in tail.split("/") if p]
-        if not parts:
+def candidate_skill_id_from_parts(parts: Sequence[str]) -> Optional[str]:
+    if not parts:
+        return None
+    if any(part in BACKUP_PREFIXES for part in parts):
+        return None
+    if parts[0] in SKIP_TOP_LEVEL_PREFIXES:
+        return None
+    if parts[0] in NESTED_SKILL_PREFIXES:
+        if len(parts) < 2:
             return None
-        skill_id = parts[0]
-        return root_tag, skill_id, rel
+        return Path(parts[0], parts[1]).as_posix()
+    return parts[0]
+
+
+def detect_skill_ref(
+    workspace_root: Path,
+    path_text: str,
+    *,
+    status: str = "M ",
+) -> Optional[Tuple[str, str]]:
+    rel = normalize_rel_path(path_text)
+    rel_path = Path(rel)
+    if rel_path.is_absolute():
+        try:
+            rel_path = rel_path.relative_to(workspace_root)
+            rel = rel_path.as_posix()
+        except Exception:
+            return None
+
+    parts = rel_path.parts
+    for depth in range(len(parts), 0, -1):
+        candidate = Path(*parts[:depth])
+        if (workspace_root / candidate / "SKILL.md").exists():
+            return candidate.as_posix(), rel
+
+    candidate_skill_id = candidate_skill_id_from_parts(parts)
+    if not candidate_skill_id:
+        return None
+
+    candidate_path = workspace_root / candidate_skill_id
+    candidate_exists = (candidate_path / "SKILL.md").exists()
+    deletion_like = status.startswith("D") or status.strip().startswith("R")
+    expected_depth = 2 if parts and parts[0] in NESTED_SKILL_PREFIXES else 1
+    touches_skillish_file = rel_path.name in {"SKILL.md", "manifest.json", "manifest.v2.json"}
+    touches_skill_subtree = len(parts) > expected_depth
+
+    if candidate_exists or deletion_like or touches_skillish_file or touches_skill_subtree:
+        return candidate_skill_id, rel
     return None
 
 
@@ -151,25 +203,23 @@ def check_portability_leaks(workspace_root: Path, changed_skill_paths: Sequence[
     }
 
 
-def check_manifest_parity(workspace_root: Path, skill_ids: Sequence[str], skill_roots: Dict[str, List[str]]) -> Dict[str, Any]:
+def check_manifest_parity(workspace_root: Path, skill_ids: Sequence[str]) -> Dict[str, Any]:
     missing: List[str] = []
     invalid: List[str] = []
 
     for skill_id in skill_ids:
-        roots = skill_roots.get(skill_id, [])
-        for root_prefix in roots:
-            skill_dir = (workspace_root / root_prefix / skill_id).resolve()
-            m1 = skill_dir / "manifest.json"
-            m2 = skill_dir / "manifest.v2.json"
-            if m1.exists() ^ m2.exists():
-                missing.append(f"{root_prefix}/{skill_id}")
-            for manifest in (m1, m2):
-                if not manifest.exists():
-                    continue
-                try:
-                    json.loads(manifest.read_text(encoding="utf-8"))
-                except Exception:
-                    invalid.append(str(manifest.relative_to(workspace_root)))
+        skill_dir = (workspace_root / skill_id).resolve()
+        m1 = skill_dir / "manifest.json"
+        m2 = skill_dir / "manifest.v2.json"
+        if m1.exists() ^ m2.exists():
+            missing.append(skill_id)
+        for manifest in (m1, m2):
+            if not manifest.exists():
+                continue
+            try:
+                json.loads(manifest.read_text(encoding="utf-8"))
+            except Exception:
+                invalid.append(str(manifest.relative_to(workspace_root)))
 
     details: List[str] = []
     for item in missing:
@@ -233,6 +283,12 @@ def build_result(
             "lines_added": int(lines_added),
             "lines_deleted": int(lines_deleted),
         },
+        "stats": {
+            "changed_files": int(changed_file_count),
+            "lines_added": int(lines_added),
+            "lines_deleted": int(lines_deleted),
+        },
+        "blocker_checks": [dict(check) for check in checks if str(check.get("severity", "")) == "blocker"],
         "recommendation": recommendation,
     }
 
@@ -247,47 +303,37 @@ def main() -> None:
     workspace_root = Path(args.workspace_root).expanduser().resolve()
     changed_rows = load_input_changed_files(Path(args.input)) if args.input else run_git_status(workspace_root)
 
-    skill_paths: List[str] = []
-    skill_ids: set[str] = set()
-    skill_roots: Dict[str, set[str]] = {}
-    for _status, path_text in changed_rows:
-        ref = detect_skill_ref(path_text)
+    changed_skill_files: List[str] = []
+    changed_skill_dirs: set[str] = set()
+    for status, path_text in changed_rows:
+        ref = detect_skill_ref(workspace_root, path_text, status=status)
         if ref is None:
             continue
-        root_tag, skill_id, rel = ref
-        _ = root_tag  # root tag currently used only for diagnostics via root prefix.
-        skill_paths.append(rel)
-        skill_ids.add(skill_id)
+        skill_id, rel = ref
+        changed_skill_files.append(rel)
+        changed_skill_dirs.add(skill_id)
 
-        rel_parts = rel.split("/")
-        if len(rel_parts) >= 3:
-            root_prefix = "/".join(rel_parts[:2]) if rel_parts[0] != ".codex" else "/".join(rel_parts[:2])
-        else:
-            root_prefix = "/".join(rel_parts[:2])
-        skill_roots.setdefault(skill_id, set()).add(root_prefix)
+    changed_skill_paths = sorted(set(changed_skill_files))
+    changed_skill_ids = sorted(changed_skill_dirs)
 
-    changed_skill_paths = sorted(set(skill_paths))
-    flattened_skill_roots = {k: sorted(v) for k, v in skill_roots.items()}
-
-    lines_added, lines_deleted = run_git_numstat(workspace_root, changed_skill_paths)
+    lines_added, lines_deleted = run_git_numstat(workspace_root, changed_rows, changed_skill_paths)
     scope_check = {
         "id": "skill_change_scope",
         "severity": "warning",
-        "passed": len(changed_skill_paths) > 0,
+        "passed": len(changed_skill_ids) > 0,
         "summary": "At least one changed file belongs to a skill directory.",
-        "details": changed_skill_paths[:50],
+        "details": changed_skill_ids[:50],
     }
     portability_check = check_portability_leaks(workspace_root, changed_skill_paths)
     manifest_check = check_manifest_parity(
         workspace_root=workspace_root,
-        skill_ids=sorted(skill_ids),
-        skill_roots=flattened_skill_roots,
+        skill_ids=changed_skill_ids,
     )
     additive_check = check_additive_bias(lines_added, lines_deleted)
 
     result = build_result(
         workspace_root=workspace_root,
-        skill_ids=sorted(skill_ids),
+        skill_ids=changed_skill_ids,
         checks=[scope_check, portability_check, manifest_check, additive_check],
         changed_file_count=len(changed_skill_paths),
         lines_added=lines_added,

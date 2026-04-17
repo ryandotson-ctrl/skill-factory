@@ -2,7 +2,7 @@
 name: rag-architect-specialist
 description: Diagnoses and improves PFEMacOSApp RAG quality, especially attachment-first
   ingestion and workspace-scoped retrieval.
-version: 2.4.0
+version: 2.5.0
 scope: local
 portability_tier: strict_zero_leak
 requires_env: []
@@ -120,6 +120,28 @@ Stop-ship regressions:
   - `Total due on Feb 3 $386.48`
   - `This month's charges $209.54`
   and assert the first becomes the primary due field.
+
+## Scanned PDF Lane-Collision Doctrine (NEW v2.5)
+- Scanned or weak-text PDFs can create a routing collision between:
+  1. document/text lanes
+  2. vision-only lanes
+  3. OCR recovery lanes
+- Treat OCR recovery as a first-class tie-breaker before declaring the attachment vision-only.
+- If local OCR recovers enough trustworthy text, the attachment should return to the text/document path instead of remaining trapped in a vision-shaped preflight.
+- Stop-ship regressions:
+  - OCR recovers usable text but the request still gets rejected as vision-only
+  - a scanned PDF produces no user-visible answer because model-lane preflight blocks the turn before the recovered text is used
+  - recovered text exists for ingest or preview but routing still behaves as if the document were image-only
+
+## OCR Render-Fidelity Rule (NEW v2.5)
+- OCR quality depends on render fidelity, not only OCR engine choice.
+- When testing or shipping scanned-PDF recovery:
+  1. render pages at a size that preserves legibility for the target fixture class
+  2. use realistic fonts and spacing in synthetic OCR fixtures
+  3. verify the recovered text contains the exact asserted fields before blaming routing or summarization
+- Stop-ship regressions:
+  - the OCR fixture itself clips or rasterizes away the field being asserted
+  - a generated test PDF is too small or blurry to represent the real scanned-document lane honestly
 
 ## Packaged Runtime Validation Requirement
 When the user is reporting TestFlight, archive, or bundled-app regressions:

@@ -1,10 +1,17 @@
 ---
 name: apple-ecosystem-release-operator
-description: Portable Apple platform release operator for iOS, iPadOS, macOS, visionOS, and watchOS projects. Use when preparing Xcode targets for internal TestFlight or Apple distribution, defining a release profile, validating signing and archive readiness, capturing release evidence, or automating safe App Store Connect follow-through with explicit human checkpoints.
+description: Portable Apple platform release operator for iOS, iPadOS, macOS, visionOS,
+  and watchOS projects. Use when preparing Xcode targets for internal TestFlight or
+  Apple distribution, defining a release profile, validating signing and archive readiness,
+  capturing release evidence, or automating safe App Store Connect follow-through
+  with explicit human checkpoints.
 metadata:
-  version: 1.3.0
+  version: 1.4.0
   scope: global
   portability_tier: strict_zero_leak
+  requires_env: []
+  project_profiles:
+  - PFEMacOS
 ---
 
 # Apple Ecosystem Release Operator
@@ -51,6 +58,7 @@ Required fields:
 Optional fields:
 
 - `generator_command`
+- `local_proof_command`
 - `test_command`
 - `archive_destination`
 - `simulator_destination`
@@ -87,6 +95,7 @@ Confirm:
 - the configured deployment target did not silently rise during generator or project regeneration
 - version and build sources still resolve truthfully
 - generator-backed projects have already regenerated the concrete Xcode project before any build-number or signing assertions that read generated artifacts
+- when a local Apple build harness is installed, prefer its `make agent-verify` or namespaced equivalent as the first local proof command unless the profile overrides it explicitly
 - release evidence captures the exact source state being shipped, including commit SHA and any guarded dirty-file summary
 
 ### 2. Build And Archive
@@ -105,6 +114,7 @@ This step is responsible for:
 
 - generator regeneration when configured
 - optional shared test execution when configured
+- preferring installed local harness verification commands as the first proof lane when they are available
 - release archive creation with the platform-appropriate destination
 - bundled/runtime preflight checks when the shipped app contains an embedded backend or helper runtime
 - latest-platform capability checks when the app conditionally adopts new OS surfaces such as App Intents metadata, optional on-device model lanes, or new scene behavior
@@ -251,6 +261,25 @@ Do not describe this as an icon problem once the build is proven to be internal-
   - platform-availability API regressions
   - target-specific build behavior that differs from package-only compilation
 - When a fix introduces dependency injection or UI lifecycle changes, require app-target compilation evidence, not only package-level evidence.
+
+## Frontmost Target Proof Rule (NEW v1.4)
+- Live verification screenshots, videos, or manual receipts are only valid when they prove the intended app was frontmost and actually exercised.
+- Acceptable proof includes at least one of:
+  1. a screenshot or recording clearly showing the target app and the claimed flow
+  2. a launched-artifact fixture run tied to the built app bundle
+  3. a deterministic automation receipt that names the target bundle and action
+- Do not count a generic desktop screenshot, unrelated browser window, or stale foreground app as live product verification.
+- If target ownership cannot be proven, classify the evidence as `unverified_live_surface`, not as a product pass or fail.
+
+## Unsigned Debug vs Signed Distribution Truth (NEW v1.4)
+- Keep these release truths separate:
+  1. unsigned Debug build truth
+  2. signed Debug build truth
+  3. signed Release or archive truth
+  4. distribution or TestFlight truth
+- Warnings about hardened runtime, deep signature checks, or signing posture on an unsigned verification build should not be mislabeled as product regressions.
+- Conversely, unsigned Debug success does not prove signed archive readiness.
+- Require the operator to state exactly which artifact class was verified before declaring release readiness.
 
 ## Cross-Platform Notes
 

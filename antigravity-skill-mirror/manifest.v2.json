@@ -24,9 +24,22 @@
   ],
   "outputs": [
     {
+      "id": "mirror_report_ready",
+      "type": "pulse.event",
+      "event_type": "skills:mirror_report_ready",
+      "event_producer_role": "mirror_audit"
+    },
+    {
+      "id": "mirror_sync_applied",
+      "type": "pulse.event",
+      "event_type": "skills:mirror_sync_applied",
+      "event_producer_role": "mirror_apply"
+    },
+    {
       "id": "status_update",
       "type": "pulse.event",
-      "event_type": "skill_activity:antigravity-skill-mirror"
+      "event_type": "skill_activity:antigravity-skill-mirror",
+      "event_producer_role": "mirror_status"
     }
   ]
 }

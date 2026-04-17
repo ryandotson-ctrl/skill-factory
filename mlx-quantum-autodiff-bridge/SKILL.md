@@ -1,11 +1,14 @@
 ---
 name: mlx-quantum-autodiff-bridge
-description: Build and validate MLX custom-function quantum bridges that keep MLX as the top-level autodiff engine while routing quantum execution to external runtimes.
+description: Build and validate MLX custom-function quantum bridges that keep MLX
+  as the top-level autodiff engine while routing quantum execution to external runtimes.
 metadata:
   version: 1.1.0
   short-description: MLX custom VJP bridge for quantum backends
   portability_tier: strict_zero_leak
   scope: global
+  requires_env: []
+  project_profiles: []
 ---
 
 # MLX Quantum Autodiff Bridge

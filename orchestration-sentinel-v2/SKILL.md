@@ -55,6 +55,7 @@ python3 .agent/skills/orchestration-sentinel-v2/scripts/watcher_v2.py
   - queued dispatches
   - locked dispatches
 - Use this event as evidence for topology and dispatch health audits.
+- Keep external runtime/operator event namespaces aligned with The Watcher's `references/ecosystem_contract_v1.yaml` so topology audits do not confuse legitimate upstream events with broken listener contracts.
 
 ### Topology Remediation Ladder
 When topology pressure is non-zero, resolve issues in this order:

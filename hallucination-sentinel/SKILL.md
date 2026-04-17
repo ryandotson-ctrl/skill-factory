@@ -1,7 +1,7 @@
 ---
 name: hallucination-sentinel
 description: Top-level anti-hallucination auditor and remediation planner. Classifies action, evidence, context, and confidence failures; distinguishes truth-guard success from executor gaps; and routes fixes to the right skills.
-version: 2.1.0
+version: 2.2.0
 scope: local
 portability_tier: strict_zero_leak
 requires_env: []
@@ -134,6 +134,9 @@ Examples:
 - hidden reasoning, planning text, or scaffold spill in the visible answer lane
 - degenerate low-novelty continuation that never meaningfully advances
 - bizarre garbage output that should trigger quarantine instead of normal completion
+- source-title echo presented as if it were a real briefing
+- repeated generic section shells that look structured but do not carry grounded facts
+- omission of a user-requested facet after the system claimed to provide a complete briefing
 
 Non-examples:
 - a concise refusal or typed error state emitted by the system after a pathology guard fired
@@ -193,6 +196,23 @@ Preferred replacements:
 - `I need one more explicit target`
 - `I can't confirm that action succeeded in this turn`
 
+## Grounded Briefing Failure Signals (NEW v2.2)
+For web-grounded structured answers, treat the following as first-class failure signals:
+1. `title_echo_failure`
+   - the answer copies or lightly rewrites source titles instead of extracting claims
+2. `facet_omission_failure`
+   - the prompt asked for a named actor, region, chronology slice, or risk section and the final answer silently dropped it
+3. `semantic_shell_failure`
+   - the answer preserves headings or format but fills them with generic, repetitive, low-information prose
+4. `cautionary_fallback_underfill`
+   - the system entered a limited-evidence posture correctly but still failed to give useful thin-coverage disclosures for requested sections
+
+Classification guidance:
+- `title_echo_failure` usually maps to `evidence_hallucination` plus `generation_pathology`
+- `facet_omission_failure` usually maps to `context_drop_hallucination` or `evidence_hallucination`
+- `semantic_shell_failure` maps to `generation_pathology`
+- `cautionary_fallback_underfill` maps to `confidence_miscalibration` or `context_drop_hallucination`
+
 ## Diagnostic Workflow
 1. **Classify failure**
    - Is this action, evidence, context, or confidence?
@@ -209,6 +229,8 @@ Preferred replacements:
    - executor gap
    - evidence insufficiency
    - weak-source ranking
+   - claim-extraction failure
+   - facet-coverage failure
    - confidence wording bug
    - final-answer sanitization bug
    - generation pathology / model-behavior defect

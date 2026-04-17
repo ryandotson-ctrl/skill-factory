@@ -30,7 +30,8 @@
         {
             "id": "skill_recommendation",
             "type": "pulse.event",
-            "event_type": "skill_recommendation_emitted"
+            "event_type": "skill_recommendation_emitted",
+            "event_producer_role": "workspace_signal_source"
         }
     ]
 }

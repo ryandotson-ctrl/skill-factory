@@ -102,6 +102,8 @@ MLX_PACKAGES = {
 VERSION_COMMANDS: List[Tuple[str, List[str]]] = [
     ("swift", ["swift", "--version"]),
     ("xcodebuild", ["xcodebuild", "-version"]),
+    ("xcodegen", ["xcodegen", "--version"]),
+    ("xcbeautify", ["xcbeautify", "--version"]),
     ("xcrun", ["xcrun", "--version"]),
     ("clang", ["clang", "--version"]),
     ("node", ["node", "-v"]),

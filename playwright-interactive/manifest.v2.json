@@ -1,0 +1,37 @@
+{
+  "schema_version": "2.0.0",
+  "display_name": "Playwright Interactive",
+  "description": "Persistent browser and Electron interaction through Playwright js_repl for iterative UI debugging.",
+  "dispatch": {
+    "mode": "manual",
+    "cooldown": 300
+  },
+  "inputs": [
+    {
+      "id": "skill_request",
+      "type": "pulse.event",
+      "pattern": "skill:playwright-interactive:requested",
+      "route_mode": "owned",
+      "route_priority": 95
+    },
+    {
+      "id": "interactive_automation_requested",
+      "type": "pulse.event",
+      "pattern": "browser:interactive_automation_requested",
+      "route_mode": "owned",
+      "route_priority": 90
+    }
+  ],
+  "outputs": [
+    {
+      "id": "interactive_automation_ready",
+      "type": "pulse.event",
+      "event_type": "browser:interactive_automation_ready"
+    },
+    {
+      "id": "status_update",
+      "type": "pulse.event",
+      "event_type": "skill_activity:playwright-interactive"
+    }
+  ]
+}

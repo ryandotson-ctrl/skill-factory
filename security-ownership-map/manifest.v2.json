@@ -1,0 +1,37 @@
+{
+  "schema_version": "2.0.0",
+  "display_name": "Security Ownership Map",
+  "description": "Analyze repository ownership for sensitive code, security maintainers, and bus-factor risks.",
+  "dispatch": {
+    "mode": "manual",
+    "cooldown": 300
+  },
+  "inputs": [
+    {
+      "id": "skill_request",
+      "type": "pulse.event",
+      "pattern": "skill:security-ownership-map:requested",
+      "route_mode": "owned",
+      "route_priority": 95
+    },
+    {
+      "id": "ownership_map_requested",
+      "type": "pulse.event",
+      "pattern": "security:ownership_map_requested",
+      "route_mode": "owned",
+      "route_priority": 90
+    }
+  ],
+  "outputs": [
+    {
+      "id": "ownership_map_ready",
+      "type": "pulse.event",
+      "event_type": "security:ownership_map_ready"
+    },
+    {
+      "id": "status_update",
+      "type": "pulse.event",
+      "event_type": "skill_activity:security-ownership-map"
+    }
+  ]
+}

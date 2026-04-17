@@ -27,12 +27,14 @@
         {
             "id": "skill_evolution_plan",
             "type": "pulse.event",
-            "event_type": "skill_evolution_plan_emitted"
+            "event_type": "skill_evolution_plan_emitted",
+            "event_producer_role": "planner_primary"
         },
         {
             "id": "skill_recommendation",
             "type": "pulse.event",
-            "event_type": "skill_recommendation_emitted"
+            "event_type": "skill_recommendation_emitted",
+            "event_producer_role": "planner_signal"
         },
         {
             "id": "skill_evolution_scorecard",

@@ -1,7 +1,7 @@
 {
   "skill_id": "web-search-grounding-specialist",
-  "version": "1.0.0",
-  "description": "Auto-generated manifest for web-search-grounding-specialist",
+  "version": "2.4.0",
+  "description": "Grounding specialist for current-fact routing, claim extraction, anti-title-echo checks, and requested-facet coverage.",
   "inputs": [],
   "outputs": [
     {

@@ -16,6 +16,7 @@ import shutil
 import sys
 from dataclasses import dataclass
 from datetime import datetime
+from functools import lru_cache
 from pathlib import Path
 from typing import Any, Dict, Iterable, List, Optional, Tuple
 
@@ -27,6 +28,24 @@ except Exception:  # pragma: no cover - fallback handled at runtime
 
 REQUIRED_CONTRACT_FIELDS = ("scope", "portability_tier", "requires_env", "project_profiles")
 TRIGGER_FRONTMATTER_FIELDS = ("name", "description")
+ECOSYSTEM_CONTRACT_PATH = (
+    Path(__file__).resolve().parents[2] / "skill_director" / "references" / "ecosystem_contract_v1.yaml"
+)
+FALLBACK_ECOSYSTEM_CONTRACT: Dict[str, Any] = {
+    "inventory_roles": {
+        "standard": {"path_prefixes": []},
+        "system_hidden": {"path_prefixes": [".system/"]},
+        "runtime_bundle": {"path_prefixes": ["codex-primary-runtime/"]},
+        "backup_snapshot": {"path_prefixes": [".skill-backups/", "_p0_backups/", ".backups/"]},
+    },
+    "root_roles": {
+        "codex": "canonical_authoring",
+        "antigravity": "distribution_mirror",
+        "workspace_mirror": "publication_mirror",
+        "local": "workspace_local",
+        "agents": "auxiliary_global",
+    },
+}
 
 
 @dataclass(frozen=True)
@@ -50,6 +69,61 @@ class RootSpec:
     key: str
     path: Path
     exists: bool
+
+
+@lru_cache(maxsize=1)
+def load_ecosystem_contract() -> Dict[str, Any]:
+    if yaml is None or not ECOSYSTEM_CONTRACT_PATH.exists():
+        return FALLBACK_ECOSYSTEM_CONTRACT
+    try:
+        loaded = yaml.safe_load(ECOSYSTEM_CONTRACT_PATH.read_text(encoding="utf-8"))
+    except Exception:
+        return FALLBACK_ECOSYSTEM_CONTRACT
+    if not isinstance(loaded, dict):
+        return FALLBACK_ECOSYSTEM_CONTRACT
+    return loaded
+
+
+def classify_inventory_role(relative_skill_path: str) -> str:
+    contract = load_ecosystem_contract()
+    inventory_roles = contract.get("inventory_roles", {})
+    if isinstance(inventory_roles, dict):
+        for role_name, role_config in inventory_roles.items():
+            if not isinstance(role_config, dict):
+                continue
+            prefixes = role_config.get("path_prefixes", [])
+            if not isinstance(prefixes, list):
+                continue
+            for prefix in prefixes:
+                if str(prefix).strip() and relative_skill_path.startswith(str(prefix).strip()):
+                    return str(role_name)
+    return "standard"
+
+
+def classify_root_role(root_key: str) -> str:
+    root_roles = load_ecosystem_contract().get("root_roles", {})
+    if isinstance(root_roles, dict):
+        mapped = root_roles.get(root_key)
+        if mapped:
+            return str(mapped)
+    return "unknown"
+
+
+def backup_skip_parts_from_contract() -> set[str]:
+    inventory_roles = load_ecosystem_contract().get("inventory_roles", {})
+    if not isinstance(inventory_roles, dict):
+        return {".skill-backups", "_p0_backups", ".backups"}
+    backup_role = inventory_roles.get("backup_snapshot", {})
+    if not isinstance(backup_role, dict):
+        return {".skill-backups", "_p0_backups", ".backups"}
+    prefixes = backup_role.get("path_prefixes", [])
+    parts = {".skill-backups", "_p0_backups", ".backups"}
+    if isinstance(prefixes, list):
+        for prefix in prefixes:
+            text = str(prefix).strip().strip("/")
+            if text and "/" not in text:
+                parts.add(text)
+    return parts
 
 
 def parse_frontmatter(text: str) -> Tuple[Optional[Dict[str, Any]], Optional[str], str]:
@@ -104,6 +178,21 @@ def build_compatibility_advisory(
     }
 
 
+def metadata_block(meta: Optional[Dict[str, Any]]) -> Dict[str, Any]:
+    if not isinstance(meta, dict):
+        return {}
+    metadata = meta.get("metadata")
+    return metadata if isinstance(metadata, dict) else {}
+
+
+def portability_contract_field_present(meta: Optional[Dict[str, Any]], field: str) -> bool:
+    if not isinstance(meta, dict):
+        return False
+    if field in meta:
+        return True
+    return field in metadata_block(meta)
+
+
 def assess_contract_missing(
     meta: Optional[Dict[str, Any]],
     skill_md_path: Optional[Path] = None,
@@ -114,7 +203,7 @@ def assess_contract_missing(
         return list(REQUIRED_CONTRACT_FIELDS)
     missing: List[str] = []
     for field in REQUIRED_CONTRACT_FIELDS:
-        if field not in meta:
+        if not portability_contract_field_present(meta, field):
             missing.append(field)
     return missing
 
@@ -133,29 +222,38 @@ def ensure_portability_contract(
     changed: List[str] = []
     default_scope = "local" if root_key == "local" else "global"
     project_coupled = bool(re.search(r"PFEMacOS|ProjectFreeEnergy|project-free-energy", body, re.IGNORECASE))
+    metadata_target = meta.get("metadata")
+    use_metadata_target = isinstance(metadata_target, dict)
+    contract_target: Dict[str, Any]
+    if use_metadata_target:
+        contract_target = metadata_target
+    else:
+        contract_target = meta
 
-    if "scope" not in meta:
-        meta["scope"] = default_scope
+    if "scope" not in contract_target:
+        contract_target["scope"] = default_scope
         changed.append("scope")
-    if "portability_tier" not in meta:
-        meta["portability_tier"] = "strict_zero_leak"
+    if "portability_tier" not in contract_target:
+        contract_target["portability_tier"] = "strict_zero_leak"
         changed.append("portability_tier")
-    if "requires_env" not in meta:
-        meta["requires_env"] = []
+    if "requires_env" not in contract_target:
+        contract_target["requires_env"] = []
         changed.append("requires_env")
-    elif not isinstance(meta["requires_env"], list):
-        meta["requires_env"] = [str(meta["requires_env"])] if meta["requires_env"] else []
+    elif not isinstance(contract_target["requires_env"], list):
+        contract_target["requires_env"] = [str(contract_target["requires_env"])] if contract_target["requires_env"] else []
         changed.append("requires_env")
-    if "project_profiles" not in meta:
-        meta["project_profiles"] = ["PFEMacOS"] if project_coupled else []
+    if "project_profiles" not in contract_target:
+        contract_target["project_profiles"] = ["PFEMacOS"] if project_coupled else []
         changed.append("project_profiles")
-    elif not isinstance(meta["project_profiles"], list):
-        meta["project_profiles"] = [str(meta["project_profiles"])] if meta["project_profiles"] else []
+    elif not isinstance(contract_target["project_profiles"], list):
+        contract_target["project_profiles"] = [str(contract_target["project_profiles"])] if contract_target["project_profiles"] else []
         changed.append("project_profiles")
 
     if not changed:
         return text, None
 
+    if use_metadata_target:
+        meta["metadata"] = contract_target
     dumped = yaml.safe_dump(meta, sort_keys=False, default_flow_style=False, allow_unicode=False).strip()
     new_text = f"---\n{dumped}\n---\n\n{body.lstrip(chr(10))}"
     evidence = {
@@ -185,12 +283,21 @@ def build_scope_map(
             if is_excluded_file(root, skill_md, exclude_globs):
                 continue
             text = read_text(skill_md) or ""
-            sid = skill_md.parent.name
+            relative_skill_path = skill_md.parent.relative_to(root.path).as_posix()
+            sid = relative_skill_path
             rec = by_skill.setdefault(
                 sid,
-                {"skill_id": sid, "roots": set(), "project_coupled": False},
+                {
+                    "skill_id": sid,
+                    "leaf_skill_id": skill_md.parent.name,
+                    "roots": set(),
+                    "root_roles": set(),
+                    "project_coupled": False,
+                    "inventory_role": classify_inventory_role(relative_skill_path),
+                },
             )
             rec["roots"].add(root.key)
+            rec["root_roles"].add(classify_root_role(root.key))
             if re.search(r"PFEMacOS|ProjectFreeEnergy|project-free-energy", text, re.IGNORECASE):
                 rec["project_coupled"] = True
 
@@ -214,10 +321,13 @@ def build_scope_map(
         entries.append(
             {
                 "skill_id": sid,
+                "leaf_skill_id": rec["leaf_skill_id"],
                 "roots": roots,
+                "root_roles": sorted(rec["root_roles"]),
                 "scope": scope,
                 "canonical": canonical,
                 "project_coupled": bool(rec["project_coupled"]),
+                "inventory_role": rec["inventory_role"],
             }
         )
 
@@ -459,14 +569,22 @@ def render_markdown_report(report: Dict[str, Any]) -> str:
     lines.append(f"- Backups written: {summary['backups_written']}")
     lines.append(f"- Rule hits (pre): {summary['rule_hits_pre']}")
     lines.append(f"- Rule hits (post): {summary['rule_hits_post']}")
+    if "rule_hits_proposed_post" in summary:
+        lines.append(f"- Rule hits (proposed post): {summary['rule_hits_proposed_post']}")
     lines.append(f"- Strict violations (post): {summary['strict_violations_post']}")
     lines.append(f"- Contract missing fields (pre): {summary['contract_missing_fields_pre']}")
     lines.append(f"- Contract missing fields (post): {summary['contract_missing_fields_post']}")
     lines.append(f"- Contract files updated: {summary['contract_files_updated']}")
+    if "contract_files_proposed" in summary:
+        lines.append(f"- Contract files proposed: {summary['contract_files_proposed']}")
     lines.append(f"- Compatibility advisories: {summary['compatibility_advisories']}")
     lines.append("")
     lines.append("## Artifacts")
-    lines.append(f"- Scope map: `{report['scope_map_path']}`")
+    scope_map_path = str(report.get("scope_map_path", "") or "")
+    if scope_map_path:
+        lines.append(f"- Scope map: `{scope_map_path}`")
+    else:
+        lines.append("- Scope map: embedded in snapshot output")
     lines.append("")
 
     lines.append("## Changed Files")
@@ -508,12 +626,18 @@ def render_markdown_report(report: Dict[str, Any]) -> str:
 
 def main(argv: List[str]) -> int:
     parser = argparse.ArgumentParser(description="Audit and harden skills for portability/privacy safety.")
-    parser.add_argument("--mode", choices=["audit", "apply"], default="apply")
+    parser.add_argument("--mode", choices=["audit", "apply", "snapshot"], default="apply")
     parser.add_argument("--roots", default="codex,antigravity,agents,local")
     parser.add_argument("--workspace-root", default=os.getcwd())
     parser.add_argument("--strict-zero-leak", type=parse_bool, default=True)
     parser.add_argument("--report-json", default="")
     parser.add_argument("--report-md", default="")
+    parser.add_argument(
+        "--write-report-artifacts",
+        action=argparse.BooleanOptionalAction,
+        default=False,
+        help="Write JSON/Markdown audit artifacts for read-only runs. Apply mode always writes artifacts.",
+    )
     parser.add_argument(
         "--rules",
         default=str(Path(__file__).resolve().parent.parent / "references" / "portability_rules.yaml"),
@@ -528,6 +652,7 @@ def main(argv: List[str]) -> int:
     allow_exts = {str(x).strip().lower() for x in rules_data.get("allowlist_extensions", [])}
     allow_names = {str(x).strip() for x in rules_data.get("allowlist_filenames", [])}
     skip_parts = {str(x).strip() for x in rules_data.get("skip_path_parts", [])}
+    skip_parts.update(backup_skip_parts_from_contract())
     exclude_globs = tuple(str(x).strip() for x in rules_data.get("exclude_file_globs", []))
     rules, strict_patterns = compile_rules(rules_data)
 
@@ -536,16 +661,20 @@ def main(argv: List[str]) -> int:
     default_md = Path(__file__).resolve().parent.parent / "reports" / f"portability-report-{now}.md"
     report_json_path = resolve_report_path(args.report_json, default_json)
     report_md_path = resolve_report_path(args.report_md, default_md)
+    snapshot_mode = args.mode == "snapshot"
+    write_report_artifacts = bool(args.mode == "apply" or args.write_report_artifacts or args.report_json or args.report_md)
 
     files_scanned = 0
     files_changed = 0
     backups_written = 0
     rule_hits_pre = 0
     rule_hits_post = 0
+    rule_hits_proposed_post = 0
     strict_violations_post = 0
     contract_missing_fields_pre = 0
     contract_missing_fields_post = 0
     contract_files_updated = 0
+    contract_files_proposed = 0
     compatibility_advisories: List[Dict[str, Any]] = []
 
     changed_files: List[Dict[str, Any]] = []
@@ -579,11 +708,14 @@ def main(argv: List[str]) -> int:
                 updated_text = contract_text
                 if contract_ev:
                     evidence.append(contract_ev)
-                    contract_files_updated += 1
+                    contract_files_proposed += 1
 
-            if evidence:
-                rule_hits_pre += sum(int(ev["before_matches"]) for ev in evidence)
-                rule_hits_post += sum(int(ev["after_matches"]) for ev in evidence)
+            rule_evidence = [
+                ev for ev in evidence if str(ev.get("rule_id", "")) != "ensure_portability_contract_v1"
+            ]
+            if rule_evidence:
+                rule_hits_pre += sum(int(ev["before_matches"]) for ev in rule_evidence)
+                rule_hits_proposed_post += sum(int(ev["after_matches"]) for ev in rule_evidence)
 
             if args.mode == "apply" and updated_text != text:
                 backup_path = write_backup_if_needed(root, file_path, backup_base)
@@ -593,6 +725,8 @@ def main(argv: List[str]) -> int:
 
                 file_path.write_text(updated_text, encoding="utf-8")
                 files_changed += 1
+                if any(str(ev.get("rule_id", "")) == "ensure_portability_contract_v1" for ev in evidence):
+                    contract_files_updated += 1
 
                 changed_files.append(
                     {
@@ -618,12 +752,17 @@ def main(argv: List[str]) -> int:
             if hits:
                 strict_violations_post += sum(int(h["matches"]) for h in hits)
                 strict_residuals.append({"file": to_portable_rel(file_path, root_specs), "hits": hits})
+            post_text, post_evidence = apply_rules_to_text(text, file_path, rules)
+            if post_evidence:
+                rule_hits_post += sum(int(ev["before_matches"]) for ev in post_evidence)
 
     scope_map = build_scope_map(root_specs, skip_parts, exclude_globs)
-    scope_map_path = Path(__file__).resolve().parent.parent / "reports" / f"scope-map-{now}.json"
-    scope_map_path.parent.mkdir(parents=True, exist_ok=True)
-    scope_map_path.write_text(json.dumps(scope_map, indent=2), encoding="utf-8")
-    scope_map_rel = f"skill-portability-guardian/{scope_map_path.relative_to(Path(__file__).resolve().parent.parent).as_posix()}"
+    scope_map_rel = ""
+    if write_report_artifacts and not snapshot_mode:
+        scope_map_path = Path(__file__).resolve().parent.parent / "reports" / f"scope-map-{now}.json"
+        scope_map_path.parent.mkdir(parents=True, exist_ok=True)
+        scope_map_path.write_text(json.dumps(scope_map, indent=2), encoding="utf-8")
+        scope_map_rel = f"skill-portability-guardian/{scope_map_path.relative_to(Path(__file__).resolve().parent.parent).as_posix()}"
 
     report = {
         "generated_at": datetime.now().isoformat(timespec="seconds"),
@@ -636,26 +775,31 @@ def main(argv: List[str]) -> int:
             "backups_written": backups_written,
             "rule_hits_pre": rule_hits_pre,
             "rule_hits_post": rule_hits_post,
+            "rule_hits_proposed_post": rule_hits_proposed_post,
             "strict_violations_post": strict_violations_post,
             "contract_missing_fields_pre": contract_missing_fields_pre,
             "contract_missing_fields_post": contract_missing_fields_post,
             "contract_files_updated": contract_files_updated,
+            "contract_files_proposed": contract_files_proposed,
             "compatibility_advisories": len(compatibility_advisories),
         },
         "changed_files": changed_files,
         "compatibility_advisories": compatibility_advisories,
         "strict_residuals": strict_residuals,
         "scope_map_path": scope_map_rel,
+        "scope_map": scope_map if snapshot_mode else None,
     }
 
-    report_json_path.parent.mkdir(parents=True, exist_ok=True)
-    report_md_path.parent.mkdir(parents=True, exist_ok=True)
-    report_json_path.write_text(json.dumps(report, indent=2), encoding="utf-8")
-    report_md_path.write_text(render_markdown_report(report), encoding="utf-8")
-
-    print(f"Report JSON: {report_json_path}")
-    print(f"Report MD: {report_md_path}")
+    if write_report_artifacts and not snapshot_mode:
+        report_json_path.parent.mkdir(parents=True, exist_ok=True)
+        report_md_path.parent.mkdir(parents=True, exist_ok=True)
+        report_json_path.write_text(json.dumps(report, indent=2), encoding="utf-8")
+        report_md_path.write_text(render_markdown_report(report), encoding="utf-8")
+        print(f"Report JSON: {report_json_path}")
+        print(f"Report MD: {report_md_path}")
     print(json.dumps(report["summary"], indent=2))
+    if snapshot_mode:
+        print(json.dumps(report, indent=2))
 
     if args.strict_zero_leak and strict_violations_post > 0:
         return 3

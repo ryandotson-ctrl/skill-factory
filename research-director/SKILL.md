@@ -2,7 +2,7 @@
 name: research-director
 description: End-to-end primary-source research director for any project. Use when you need the latest verified platform, dependency, standards, architecture, or product intelligence plus a decision-ready plan tied to the active project's north star.
 metadata:
-  version: 2.2.1
+  version: 2.3.0
   scope: global
   portability_tier: strict_zero_leak
   requires_env: []
@@ -74,6 +74,7 @@ Trigger this skill when the user asks for any of the following:
 12. Runtime-drift discipline: if repo pins and the live launched environment disagree, do not trust either one alone; measure both and resolve the mismatch explicitly.
 13. Product-eligibility discipline: if the app is presenting a model, route, or tool as usable, verify that the launched runtime agrees before recommending it to users.
 14. Latest-platform modernization discipline: if the product adopts a newest-SDK feature, verify both conditional availability and real archive/build evidence before calling it integrated.
+15. Platform-floor honesty: if an upstream package raises the minimum supported OS or toolchain, surface that as a product decision, not as a hidden implementation detail.
 
 ## Source Strategy
 Use `references/official-source-registry.md` as the starting registry.
@@ -210,6 +211,20 @@ For PFEMacOS runtime or model-store disputes, use this decision order:
 4. upstream documentation and package registry claims
 
 Never let step 4 override steps 1 or 2 for user-visible compatibility labels.
+
+### Phase 3.3: Deployment Target vs Upstream Floor Reconciliation
+When the latest supported dependency or platform package raises the minimum OS or toolchain floor:
+1. identify the exact upstream floor from primary sources and record the absolute version/date
+2. compare that floor against:
+   - declared deployment target
+   - generated project settings
+   - shipped artifact expectations
+3. explicitly classify the decision fork:
+   - keep the older deployment target and accept a non-latest dependency posture
+   - raise the deployment target and align with the latest supported stack
+   - split lanes, if the project can truthfully support that complexity
+4. do not imply that a project can have both `latest supported upstream` and an older deployment target when the upstream floor makes that impossible
+5. require an explicit human decision when the tradeoff affects product eligibility, user base, or release claims
 
 ### Phase 4: Experiment Director
 Produce a prioritized experiment or decision backlog where each item has:

@@ -1,0 +1,37 @@
+{
+  "schema_version": "2.0.0",
+  "display_name": "Logo Asset Packager",
+  "description": "Convert a supplied logo or brand image into faithful production assets without redesign by default.",
+  "dispatch": {
+    "mode": "manual",
+    "cooldown": 300
+  },
+  "inputs": [
+    {
+      "id": "skill_request",
+      "type": "pulse.event",
+      "pattern": "skill:logo-asset-packager:requested",
+      "route_mode": "owned",
+      "route_priority": 95
+    },
+    {
+      "id": "logo_asset_packaging_requested",
+      "type": "pulse.event",
+      "pattern": "brand:logo_asset_packaging_requested",
+      "route_mode": "owned",
+      "route_priority": 90
+    }
+  ],
+  "outputs": [
+    {
+      "id": "logo_asset_pack_ready",
+      "type": "pulse.event",
+      "event_type": "brand:logo_asset_pack_ready"
+    },
+    {
+      "id": "status_update",
+      "type": "pulse.event",
+      "event_type": "skill_activity:logo-asset-packager"
+    }
+  ]
+}

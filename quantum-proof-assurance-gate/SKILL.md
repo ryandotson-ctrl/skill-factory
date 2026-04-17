@@ -1,11 +1,15 @@
 ---
 name: quantum-proof-assurance-gate
-description: Deterministic launch assurance gate that combines invariants, gradient checks, and budget proofs into a single go or no-go contract for one-shot quantum runs.
+description: Deterministic launch assurance gate that combines invariants, gradient
+  checks, and budget proofs into a single go or no-go contract for one-shot quantum
+  runs.
 metadata:
   version: 1.1.0
   short-description: One-shot quantum proof and launch assurance gate
   portability_tier: strict_zero_leak
   scope: global
+  requires_env: []
+  project_profiles: []
 ---
 
 # Quantum Proof Assurance Gate

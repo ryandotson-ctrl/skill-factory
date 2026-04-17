@@ -1,7 +1,7 @@
 {
   "schema_version": "2.0.0",
   "display_name": "storage-hygiene-cleanup-orchestrator",
-  "description": "Audit and reclaim disk space safely across project artifacts, virtual environments, and model caches (Hugging Face, MLXModels, local model folders). Supports dry-run cleanup plans, cold-storage manifests, reversible restore workflows, and symlink-aware model audits while preserving active model allowlists.",
+  "description": "Dynamic, session-aware storage guardian that classifies hot vs warm vs cold paths, plans safe delete/offload actions, governs external SSD archival on e, and absorbs compatible legacy cold-storage state into one registry.",
   "dispatch": {
     "mode": "automatic",
     "cooldown": 300

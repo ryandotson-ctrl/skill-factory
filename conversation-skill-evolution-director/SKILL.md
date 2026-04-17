@@ -2,7 +2,7 @@
 name: conversation-skill-evolution-director
 description: Session-aware meta-skill that serves as The Watcher's core session-to-action engine and as a standalone strategist, deciding whether to update existing skills or create new ones with additive, portability-safe evolution actions.
 metadata:
-  version: 1.2.0
+  version: 1.3.0
   scope: global
   portability_tier: strict_zero_leak
   requires_env: []
@@ -31,6 +31,7 @@ must remain stable for both embedded and standalone use.
 5. Confidence honesty: low-confidence recommendations must be suppressed, not promoted.
 6. Preserve per-skill intelligence: every recommendation must keep the target skill's identity, portability posture, and pulse participation legible.
 7. Wisdom is monotonic: recommendations may append, strengthen, and clarify, but never silently discard prior skill intelligence.
+8. Launched-artifact truth outranks source-only success when the repeated pain is user-visible quality, runtime behavior, or packaged-app correctness.
 
 ## Workflow
 
@@ -44,6 +45,17 @@ must remain stable for both embedded and standalone use.
    - recovered blockers
 3. Build an evidence list from available artifacts (run decisions, ledgers, reports, task boards).
 4. Snapshot relevant current skills (name, purpose, overlap signals).
+5. Weight evidence by operational truth source:
+   - launched-artifact verification
+   - live user-visible evidence
+   - package/build/test evidence
+   - source-only reasoning
+
+Required evidence classes when available:
+- user-visible failures or wins
+- packaged or launched runtime verification
+- regression tests or smoke lanes
+- exact changed files that resolved or exposed the issue
 
 ### Phase 2: Capability Gap Map
 
@@ -54,6 +66,7 @@ Classify gaps into reusable capability buckets:
 - eval/quality assurance
 - telemetry/semantics
 - domain-specialized execution
+- answer shaping and user-visible truth
 
 For each gap, record:
 - observed pain point
@@ -61,12 +74,23 @@ For each gap, record:
 - operational impact
 - existing skill overlap candidates
 
+High-signal repeated gap patterns:
+- repeated user-visible grounding failures -> prefer `web-search-grounding-specialist`
+- launched-artifact quality gaps that backend tests missed -> prefer `eval-flywheel-orchestrator`
+- repeated title echo, semantic shells, repetition loops, or structurally empty answers -> prefer `hallucination-sentinel`
+- truthful but alarming, confusing, or low-utility user messaging -> prefer `model-ux-orchestrator`
+
 ### Phase 3: Update-vs-New Decision Gate
 
 Use the matrix in `references/contracts-v1.md`:
 - Choose `update_existing` when overlap is high and intent is adjacent.
 - Choose `create_new` only when overlap is low and demand repeats.
 - Choose `defer` when confidence is low or evidence is weak.
+
+Additional tie-break rules:
+- If the same failure class appears across multiple prompts or sessions and maps cleanly to an existing skill boundary, prefer `update_existing`.
+- If the strongest evidence is a launched-artifact or live UX failure, treat that as higher weight than source-only or unit-test success.
+- Do not create a prompt- or topic-specific skill when the underlying failure is generalizable answer quality, grounding, eval, or UX truth.
 
 ### Phase 4: Recommendation Package
 
@@ -82,6 +106,7 @@ Each action must include:
 - compatibility risk
 - rollback hint
 - preservation proof for pulse participation, portability, and append-only wisdom growth
+- explicit evidence precedence when launched-artifact truth changed the recommendation
 
 ### Phase 5: Optional Execution Path
 
@@ -89,7 +114,8 @@ If the user asks to implement:
 1. Create or patch skill files in canonical root.
 2. Keep edits additive and non-destructive.
 3. Validate structure and frontmatter.
-4. Report exact changed files and why.
+4. Run `skill-evolution-regression-gate` or an equivalent portability/manifest check.
+5. Report exact changed files and why.
 
 ## Output Expectations
 
@@ -98,6 +124,13 @@ Default response format:
 2. Why each action is justified
 3. What to implement now vs later
 4. Explicit "no new skill needed" outcome when applicable
+
+When repeated answer-quality failures are the main theme, also state explicitly whether the correct target is:
+- grounding
+- eval/canary infrastructure
+- hallucination/pathology classification
+- UX truth and messaging
+instead of treating the problem as a topic-specific capability gap.
 
 When embedded inside The Watcher:
 - keep the same underlying contracts
@@ -112,3 +145,4 @@ Use with:
 - `proactive-skill-evolution-planner` for recurring capability-gap planning
 - `skill-portability-guardian` for portability-safe hardening
 - `research-director` when updates depend on fast-changing external platforms
+- `skill-evolution-regression-gate` before sign-off on implemented skill edits

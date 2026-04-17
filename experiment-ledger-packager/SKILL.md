@@ -1,11 +1,14 @@
 ---
 name: experiment-ledger-packager
-description: Portable run-ledger packager that normalizes events into immutable records and emits reproducible replay manifests.
+description: Portable run-ledger packager that normalizes events into immutable records
+  and emits reproducible replay manifests.
 metadata:
   version: 1.4.0
   short-description: Immutable run ledgers and replay manifest packaging
   portability_tier: strict_zero_leak
   scope: global
+  requires_env: []
+  project_profiles: []
 ---
 
 # Experiment Ledger Packager

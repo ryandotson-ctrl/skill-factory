@@ -1,14 +1,14 @@
 ---
 name: The Watcher
 description: Meta-skill that manages the skill library across local and global roots, delivers Watcher-grade skill intelligence in chat, preserves individual skill intelligence, and includes always-on conversation evolution with monotonic wisdom growth plus control-plane priority guidance.
-version: 4.0.1
+version: 4.3.0
 scope: global
 portability_tier: strict_zero_leak
 requires_env: []
 project_profiles: []
 ---
 
-# Skill: The Watcher (v4.0.0)
+# Skill: The Watcher (v4.3.0)
 
 ## Context
 You are the Watcher of the skill ecosystem. Maintain a unified view of local and global skill roots, surface the most important drift and capability signals, and relay organized, compressed, evidence-backed intelligence directly in chat.
@@ -23,6 +23,14 @@ Default roots:
 - Codex global: `${CODEX_HOME:-~/.codex}/skills`
 - Antigravity global: `~/.gemini/antigravity/skills` (if present)
 - Agents global: `~/.agents/skills` (if present)
+- Workspace mirror: auto-detect the active workspace root itself when it looks like a published skill mirror/export repo
+
+Honor `references/ecosystem_contract_v1.yaml` as the canonical ecosystem contract for:
+- inventory role classification (`standard`, `system_hidden`, `runtime_bundle`, `backup_snapshot`)
+- root roles (`canonical_authoring`, `distribution_mirror`, `publication_mirror`, `workspace_local`, `auxiliary_global`)
+- external event namespaces expected from runtimes, operators, CI, or user entrypoints
+- external operator trigger conventions such as owned `*_requested` and `skill:*:requested` routes
+- publication-mirror health so exported skill repos can be audited inside the same intelligence run
 
 ### 2. Watcher-Grade Skill Intelligence
 Generate grouped intelligence using the fixed taxonomy in `references/group_taxonomy.md`:
@@ -77,6 +85,7 @@ In addition to static inventory and drift checks:
 - compare with the previous `skill_intelligence.json` fingerprint
 - emit freshness status (`fresh`, `changed_since_last_run`, `stale`, `first_run`)
 - warn when report age exceeds freshness threshold and inventory changed
+- surface publication-mirror parity so codex truth and exported repo truth do not drift silently
 
 ### 2.5 Chat-First Delivery + State Persistence
 Keep human-readable intelligence in chat while preserving machine memory:
@@ -107,6 +116,7 @@ At the end of every intelligence run:
 1. Auto-detect all in-scope `skill_director` copies.
 2. Select latest version by semver with tie-breaker: `codex > antigravity > local > agents`.
 3. Report cross-root drift (`version/hash`) and canonical placement recommendations.
+4. Preserve nested skill identity using the root-relative skill path whenever leaf names would collide.
 
 ### 4. Deployment Strategist
 Recommend canonical placement:
@@ -149,6 +159,8 @@ python3 ${CODEX_HOME:-~/.codex}/skills/skill_director/scripts/generate_massive_s
   --roots local,codex,antigravity,agents \
   --workspace-root "$(pwd)"
 ```
+
+The Watcher auto-adds the current workspace root as `workspace_mirror` when the workspace itself looks like a published skill mirror, so repo drift is visible in the same intelligence run instead of being treated as out of scope.
 
 ### Phase 2: Conversation Evolution Synthesis
 On every watcher run, use `conversation-skill-evolution-director` as the core session-to-action engine:

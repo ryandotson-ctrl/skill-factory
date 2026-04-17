@@ -1,0 +1,12 @@
+{
+  "skill_id": "xcode-build-harness-installer",
+  "version": "0.1.0",
+  "description": "Portable installer for an isolated Apple CLI build harness with make targets, log capture, result bundles, and per-agent build roots.",
+  "inputs": [],
+  "outputs": [
+    {
+      "event_type": "xcode_build_harness_receipt",
+      "schema_ref": "default_finding_schema"
+    }
+  ]
+}

@@ -1,11 +1,14 @@
 ---
 name: telemetry-semconv-enforcer
-description: Portable telemetry semantic convention enforcer that validates required attributes and reports precise conformance violations.
+description: Portable telemetry semantic convention enforcer that validates required
+  attributes and reports precise conformance violations.
 metadata:
   version: 1.2.0
   short-description: Telemetry semantic convention conformance enforcement
   portability_tier: strict_zero_leak
   scope: global
+  requires_env: []
+  project_profiles: []
 ---
 
 # Telemetry Semconv Enforcer

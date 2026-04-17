@@ -8,10 +8,12 @@ Use the following deterministic rubric:
   - overlap_with_existing_skill >= 2 (0-3 scale)
   - demand_frequency >= 2 occurrences
   - no semantic-intent conflict
+  - launched-artifact or user-visible evidence may raise confidence when source-only evidence was ambiguous
 - `create_new`:
   - overlap_with_existing_skill <= 1
   - demand_frequency >= 2 occurrences
   - impact >= medium
+  - do not use when the failure is a prompt/topic variant of an existing answer-quality, UX, eval, or grounding problem
 - `defer`:
   - confidence < 0.6
   - evidence insufficient or conflicting
@@ -26,6 +28,7 @@ Use the following deterministic rubric:
   "objective_summary": "string",
   "evidence_refs": ["string"],
   "recommendation_confidence": 0.0,
+  "evidence_precedence": ["string"],
   "suppressed_ideas": [
     {
       "idea": "string",
@@ -47,7 +50,8 @@ Use the following deterministic rubric:
   "additive_scope": "string",
   "portability_note": "string",
   "risk": "low|medium|high",
-  "confidence": 0.0
+  "confidence": 0.0,
+  "evidence_precedence_note": "string"
 }
 ```
 

@@ -26,7 +26,7 @@ When the active workspace is a shared local-AI platform repository such as `Proj
 4. Legacy surfaces are reported separately (appendix), not mixed into primary findings
 
 ## Audit Coverage
-1. Runtime/toolchain inventory (Swift/Xcode + Python/Node + CLI package managers).
+1. Runtime/toolchain inventory (Swift/Xcode + Apple generator and verification CLIs + Python/Node + CLI package managers).
 2. Dependency manifests and lockfiles from auditable (non-generated) paths.
 3. Active surface map (`active_surfaces[]`, `legacy_surfaces[]`) with rationale.
 4. MLX family freshness rows (`mlx`, `mlx-lm`, `mlx-vlm`, `mlx-embeddings`).
@@ -47,7 +47,7 @@ When the active workspace is a shared local-AI platform repository such as `Proj
 4. Emit deterministic classifications with `surface_reason`.
 
 ### Phase 2: Inventory Discovery
-1. Collect runtime/tool versions (including Apple-native tooling).
+1. Collect runtime/tool versions (including Apple-native tooling such as `xcodebuild`, `xcodegen`, and optional helpers like `xcbeautify`).
 2. Parse dependency manifests from auditable paths.
 3. Exclude generated/vendor trees by default (`.next`, `.build`, `.swiftpm`, `DerivedData`, `site-packages`, `venv*`, `.venv*`, `node_modules`, caches).
 

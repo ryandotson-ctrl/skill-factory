@@ -1,0 +1,25 @@
+{
+  "skill_id": "skill-creator",
+  "version": "1.0.0",
+  "description": "Guide for creating or updating Codex skills with strong packaging, metadata, and workflow design.",
+  "inputs": [
+    {
+      "event_type": "skill:skill-creator:requested",
+      "schema_ref": "default_event_schema"
+    },
+    {
+      "event_type": "skills:creation_requested",
+      "schema_ref": "default_event_schema"
+    }
+  ],
+  "outputs": [
+    {
+      "event_type": "skills:creation_guidance_ready",
+      "schema_ref": "default_event_schema"
+    },
+    {
+      "event_type": "skill_activity:skill-creator",
+      "schema_ref": "default_finding_schema"
+    }
+  ]
+}

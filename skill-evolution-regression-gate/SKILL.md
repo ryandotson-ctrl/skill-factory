@@ -1,7 +1,7 @@
 ---
 name: skill-evolution-regression-gate
 description: Deterministic pre-commit policy gate for skill evolution changes. Enforces additive bias, portability safety, and manifest parity before skill updates are accepted.
-version: 1.1.0
+version: 1.2.0
 scope: global
 portability_tier: strict_zero_leak
 requires_env: []
@@ -21,6 +21,7 @@ Provide one deterministic go/no-go gate for skill-library changes before merge o
 
 ## Checks (v1)
 1. Skill change scope detection.
+   Includes modified, untracked, deleted, and renamed skill paths in nested roots such as `.system/*` and `codex-primary-runtime/*`.
 2. Portability leak scan (`/Users/<you>/...`, `/home/<you>/...`, `C:\Users\<you>\...` patterns).
 3. Manifest parity (`manifest.json` and `manifest.v2.json` coherence).
 4. Manifest JSON validity.

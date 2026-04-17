@@ -3,7 +3,7 @@ name: skill-portability-guardian
 description: Audits and hardens skill libraries for portability and privacy safety.
   Applies deterministic autofixes for path/user leakage, absolute links, and host-specific
   assumptions while preserving project-specific behavior via optional profiles.
-version: 1.4.0
+version: 1.6.0
 scope: global
 portability_tier: strict_zero_leak
 requires_env: []
@@ -49,13 +49,14 @@ Before running fixes, consult:
    - Antigravity global: `~/.gemini/antigravity/skills` (if present)
    - Agents global: `~/.agents/skills` (if present)
    - Workspace local: `<workspace>/.agent/skills` (if present)
+   - Use The Watcher's `references/ecosystem_contract_v1.yaml` for nested-skill identity, root roles, and backup/runtime classification.
 2. Audit for portability/privacy violations using deterministic regex rules from `references/portability_rules.yaml`.
 3. If mode is `apply`:
    - Create root-scoped backups first.
    - Apply only allowlisted file types.
    - Never mutate `_p0_backups` or `.backups` trees.
 4. Re-scan and enforce strict policy.
-5. Emit JSON + Markdown reports with file-level evidence.
+5. Emit JSON + Markdown reports with file-level evidence when apply mode or explicit artifact output is requested.
 
 ## Command
 
@@ -70,7 +71,9 @@ python3 ${CODEX_HOME:-~/.codex}/skills/skill-portability-guardian/scripts/skill_
 ## Modes
 
 - `--mode audit`: report only (no mutations)
+- `--mode audit`: read-only audit of the real on-disk state; writes no reports unless explicit report paths or `--write-report-artifacts` are provided
 - `--mode apply`: audit + safe autofix (default)
+- `--mode snapshot`: strict read-only health snapshot; writes no reports, no scope-map artifacts, and no skill-file changes
 
 ## Safety Rules
 
@@ -102,6 +105,7 @@ When validators and existing skills disagree on allowed frontmatter fields:
 - recommended remediation path (manual review or profile-aware validator update).
 5. Treat trigger-only frontmatter as compatible when `SKILL.md` keeps only `name` and `description` and the skill also provides `agents/openai.yaml`.
 6. Do not auto-add portability contract fields to trigger-only frontmatter solely to satisfy a stricter validator if sidecar metadata is present.
+7. Treat portability contract fields declared under `metadata` as valid contract fields when assessing completeness or deciding whether autofix is needed.
 
 ## Canonical Root and Mirror Governance
 

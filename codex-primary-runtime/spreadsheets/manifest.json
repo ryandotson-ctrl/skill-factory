@@ -1,0 +1,21 @@
+{
+  "skill_id": "codex-primary-runtime/spreadsheets",
+  "version": "1.0.0",
+  "description": "Internal runtime spreadsheet workflow for creating, editing, analyzing, visualizing, and exporting workbook artifacts.",
+  "inputs": [
+    {
+      "event_type": "codex-primary-runtime:spreadsheets_requested",
+      "schema_ref": "default_event_schema"
+    }
+  ],
+  "outputs": [
+    {
+      "event_type": "codex-primary-runtime:spreadsheets_ready",
+      "schema_ref": "default_event_schema"
+    },
+    {
+      "event_type": "skill_activity:codex-primary-runtime:spreadsheets",
+      "schema_ref": "default_finding_schema"
+    }
+  ]
+}

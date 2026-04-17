@@ -1,0 +1,7 @@
+interface:
+  display_name: "Xcode Build Harness"
+  short_description: "Install isolated Apple CLI build and verification tooling."
+  default_prompt: "Use $xcode-build-harness-installer to install or upgrade an isolated Xcode CLI build harness for this Apple project."
+
+policy:
+  allow_implicit_invocation: true

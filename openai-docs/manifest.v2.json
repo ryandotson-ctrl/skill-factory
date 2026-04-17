@@ -26,7 +26,8 @@
     {
       "id": "status_update",
       "type": "pulse.event",
-      "event_type": "skill_activity:openai-docs"
+      "event_type": "skill_activity:openai-docs",
+      "event_producer_role": "primary_skill"
     }
   ]
 }

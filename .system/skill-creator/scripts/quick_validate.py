@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Quick validation script for skills - minimal version
+Quick validation script for skills.
 """
 
 import re
@@ -10,10 +10,59 @@ from pathlib import Path
 import yaml
 
 MAX_SKILL_NAME_LENGTH = 64
+HYPHEN_CASE_NAME = re.compile(r"^[a-z0-9-]+$")
+DISPLAY_NAME = re.compile(r"^[A-Za-z0-9][A-Za-z0-9 ._:&'()/+-]*$")
+ALLOWED_PROPERTIES = {
+    "name",
+    "description",
+    "license",
+    "allowed-tools",
+    "metadata",
+    "version",
+    "scope",
+    "portability_tier",
+    "requires_env",
+    "project_profiles",
+}
+REQUIRED_CONTRACT_FIELDS = ("scope", "portability_tier", "requires_env", "project_profiles")
+
+
+def _validate_optional_list(name, value):
+    if not isinstance(value, list):
+        return False, f"'{name}' must be a list when present"
+    if not all(isinstance(item, str) for item in value):
+        return False, f"'{name}' must contain only strings"
+    return True, ""
+
+
+def _metadata_block(frontmatter):
+    metadata = frontmatter.get("metadata")
+    return metadata if isinstance(metadata, dict) else {}
+
+
+def _field_present(frontmatter, key):
+    if key in frontmatter:
+        return True
+    metadata = _metadata_block(frontmatter)
+    return key in metadata
+
+
+def _field_value(frontmatter, key):
+    if key in frontmatter:
+        return frontmatter.get(key)
+    metadata = _metadata_block(frontmatter)
+    return metadata.get(key)
+
+
+def _is_trigger_only_sidecar_skill(skill_path, frontmatter):
+    observed_keys = set(frontmatter.keys())
+    if observed_keys != {"name", "description"}:
+        return False
+    return (Path(skill_path) / "agents" / "openai.yaml").exists()
 
 
 def validate_skill(skill_path):
-    """Basic validation of a skill"""
+    """Basic validation of a skill."""
     skill_path = Path(skill_path)
 
     skill_md = skill_path / "SKILL.md"
@@ -37,11 +86,9 @@ def validate_skill(skill_path):
     except yaml.YAMLError as e:
         return False, f"Invalid YAML in frontmatter: {e}"
 
-    allowed_properties = {"name", "description", "license", "allowed-tools", "metadata"}
-
-    unexpected_keys = set(frontmatter.keys()) - allowed_properties
+    unexpected_keys = set(frontmatter.keys()) - ALLOWED_PROPERTIES
     if unexpected_keys:
-        allowed = ", ".join(sorted(allowed_properties))
+        allowed = ", ".join(sorted(ALLOWED_PROPERTIES))
         unexpected = ", ".join(sorted(unexpected_keys))
         return (
             False,
@@ -58,15 +105,15 @@ def validate_skill(skill_path):
         return False, f"Name must be a string, got {type(name).__name__}"
     name = name.strip()
     if name:
-        if not re.match(r"^[a-z0-9-]+$", name):
-            return (
-                False,
-                f"Name '{name}' should be hyphen-case (lowercase letters, digits, and hyphens only)",
-            )
         if name.startswith("-") or name.endswith("-") or "--" in name:
             return (
                 False,
                 f"Name '{name}' cannot start/end with hyphen or contain consecutive hyphens",
+            )
+        if not (HYPHEN_CASE_NAME.match(name) or DISPLAY_NAME.match(name)):
+            return (
+                False,
+                f"Name '{name}' must be a hyphen-case skill id or a compact display name",
             )
         if len(name) > MAX_SKILL_NAME_LENGTH:
             return (
@@ -87,6 +134,32 @@ def validate_skill(skill_path):
                 False,
                 f"Description is too long ({len(description)} characters). Maximum is 1024 characters.",
             )
+
+    metadata = frontmatter.get("metadata")
+    if metadata is not None and not isinstance(metadata, dict):
+        return False, "'metadata' must be a dictionary when present"
+
+    trigger_only_sidecar = _is_trigger_only_sidecar_skill(skill_path, frontmatter)
+    missing_contract_fields = [key for key in REQUIRED_CONTRACT_FIELDS if not _field_present(frontmatter, key)]
+    if missing_contract_fields and not trigger_only_sidecar:
+        return (
+            False,
+            "Missing portability contract field(s): "
+            + ", ".join(missing_contract_fields)
+            + ". Provide them in frontmatter or metadata, or keep trigger-only frontmatter with agents/openai.yaml.",
+        )
+
+    for optional_key in ("version", "scope", "portability_tier"):
+        value = _field_value(frontmatter, optional_key)
+        if value is not None and not isinstance(value, str):
+            return False, f"'{optional_key}' must be a string when present"
+
+    for optional_key in ("requires_env", "project_profiles"):
+        value = _field_value(frontmatter, optional_key)
+        if value is not None:
+            ok, message = _validate_optional_list(optional_key, value)
+            if not ok:
+                return False, message
 
     return True, "Skill is valid!"
 

@@ -1,0 +1,39 @@
+{
+  "schema_version": "2.0.0",
+  "display_name": "Skill Installer",
+  "description": "Install Codex skills from curated sources or GitHub paths into the active skill library with post-install health reporting.",
+  "dispatch": {
+    "mode": "manual",
+    "cooldown": 300
+  },
+  "inputs": [
+    {
+      "id": "skill_request",
+      "type": "pulse.event",
+      "pattern": "skill:skill-installer:requested",
+      "route_mode": "owned",
+      "route_priority": 95
+    },
+    {
+      "id": "skills_installation_requested",
+      "type": "pulse.event",
+      "pattern": "skills:installation_requested",
+      "route_mode": "owned",
+      "route_priority": 90
+    }
+  ],
+  "outputs": [
+    {
+      "id": "installation_ready",
+      "type": "pulse.event",
+      "event_type": "skills:installation_ready",
+      "event_producer_role": "installer_result"
+    },
+    {
+      "id": "status_update",
+      "type": "pulse.event",
+      "event_type": "skill_activity:skill-installer",
+      "event_producer_role": "installer_status"
+    }
+  ]
+}

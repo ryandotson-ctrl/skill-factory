@@ -4,7 +4,7 @@ description: Test Automation and Quality Assurance specialist. Auto-generates un
   tests (pytest) and end-to-end tests (Playwright) to prevent regressions. Use when
   writing new features, refactoring critical paths, establishing a testing harness,
   or proving reference parity and performance safety.
-version: 1.12.0
+version: 1.13.0
 scope: local
 portability_tier: strict_zero_leak
 requires_env: []
@@ -60,6 +60,7 @@ If the change touches any of these surfaces, you must add or update regression c
 - User-visible source-truth states such as `LIVE`, `SIMULATED`, `HEURISTIC`, `CACHED`, `AUTH REQUIRED`, or `DEGRADED`.
 - Render-heavy browser surfaces where entity counts, particle systems, polling cadence, or hidden-layer work can make the product unusable.
 - Real Xcode target membership when PFEMacOS adds or renames Swift source files; `swift test` passing does not prove `project.pbxproj` is wired correctly.
+- Installed Apple build harnesses where `make agent-verify` or a namespaced equivalent is the intended local proof lane.
 - PFEMacOS startup ownership and bootstrap truth: missing manifests, stale backends, startup sync, and "0 installed models" regressions.
 - Finalizer-rescue behavior when task or Stability Mode produces reasoning/status but no visible final answer.
 - Real API-level Qwen smoke behavior using the production `/mlx/chat` contract field `model` and release-grade supported-model turns, not local-only harness aliases.
@@ -167,6 +168,18 @@ When a mobile or desktop app change is being signed off as launch-ready, release
 4. If device launch is denied because the device is locked, unavailable, or otherwise not interactive, record the result as `Blocked` with the exact device-state cause, not as app-launch failure.
 5. If physical-device interaction is unavailable, pair simulator build, install, launch, and visible shell proof with an explicit note that live device interaction remains unverified.
 
+## Fixture Self-Honesty Rule (NEW v1.13)
+When a regression pack uses generated fixtures such as PDFs, OCR scans, screenshots, or synthetic transcripts:
+1. verify the fixture itself preserves the asserted facts under the real extraction path
+2. use realistic rendering choices for synthetic OCR or document fixtures, including font size, spacing, and page layout
+3. if a fixture is clipped, illegible, or structurally weaker than the real user artifact, fix the fixture before blaming the product
+4. keep generated-fixture checks separate from product-under-test checks so failures can be attributed correctly
+
+Minimum expectations:
+- a generated document fixture must contain the asserted tokens in extracted text or verified OCR output
+- a generated OCR fixture must be visually legible at the render size used by the actual OCR path
+- a generated UI proof artifact must clearly show the intended target surface before it is accepted as live-verification evidence
+
 ## Reference Parity and Performance Reality Rule (NEW v1.6)
 When a change claims parity with an external reference or touches a render-heavy UX:
 1. Build a parity matrix from the governing references such as transcripts, PDFs, articles, screenshots, or demo videos.
@@ -181,6 +194,12 @@ When app-facing Swift work adds or renames source files:
 2. Treat `swift test` plus failing `xcodebuild` as a release blocker, not a passing signal.
 3. Add or update a release check that catches missing `project.pbxproj` membership for new Swift files.
 4. If the work changes backend ownership or launch-path logic, pair the build check with a relaunch-oriented manual smoke receipt when feasible.
+
+## Apple Build Harness Proof Rule (NEW v1.14)
+When a repository installs the shared Apple build harness:
+1. Treat `make agent-verify` or the namespaced harness target as a first-class local proof command.
+2. Prefer the harness proof lane over ad hoc build commands when the harness is present and healthy.
+3. If the harness is stale or broken, report that explicitly instead of silently bypassing it.
 
 ## Startup Ownership and Finalizer Rescue Rule (NEW v1.10)
 When PFEMacOS startup, backend ownership, or answer-lane rescue behavior changes:

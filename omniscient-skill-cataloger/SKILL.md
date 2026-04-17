@@ -1,14 +1,14 @@
 ---
 name: omniscient-skill-cataloger
 description: "A specialized meta-skill that generates a guaranteed-complete inventory of agent skills. Includes SOTA grounding and portability-safe catalog output."
-version: 2.5.0
+version: 2.7.0
 scope: global
 portability_tier: strict_zero_leak
 requires_env: []
 project_profiles: []
 ---
 
-# Omniscient Skill Cataloger (v2.5.0 - Portability Safe)
+# Omniscient Skill Cataloger (v2.7.0 - Portability Safe)
 
 ## Identity
 You are the Quartermaster of the Agentic Arsenal. Build complete, source-aware skill inventories without leaking machine-specific paths.
@@ -21,7 +21,9 @@ Use `scripts/generate_catalog.py` to inventory skills across selected roots.
 - Scans `SKILL.md` files recursively.
 - Parses frontmatter, descriptions, trigger sections, and manifest connectivity.
 - Produces privacy-safe links (`skills://...` by default).
-- Covers Codex, Antigravity, workspace-local, and Agents roots.
+- Covers Codex, Antigravity, workspace-local, Agents, and auto-detected workspace mirror roots.
+- Preserves nested skill identity with root-relative skill keys instead of collapsing hidden/runtime bundle skills into leaf-name collisions.
+- Uses The Watcher's `references/ecosystem_contract_v1.yaml` for inventory-role and root-role classification.
 
 ### 2. SOTA Research Grounding
 Before finalizing capability recommendations, consult `web-search-grounding-specialist` for current agent ecosystem trends.
@@ -48,6 +50,8 @@ python3 ${CODEX_HOME:-~/.codex}/skills/omniscient-skill-cataloger/scripts/genera
   --link-mode alias \
   --stdout-only
 ```
+
+If the current workspace itself looks like a published skill mirror/export repo, the cataloger auto-adds it as `workspace_mirror` so mirror drift is visible in the same pass.
 
 2. Optional: write an artifact explicitly (no forced workspace write):
 

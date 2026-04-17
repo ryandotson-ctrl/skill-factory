@@ -1,11 +1,14 @@
 ---
 name: eval-flywheel-orchestrator
-description: Portable eval loop orchestrator for trace-aware scoring, threshold gating, and regression detection with deterministic summaries.
+description: Portable eval loop orchestrator for trace-aware scoring, threshold gating,
+  and regression detection with deterministic summaries.
 metadata:
-  version: 1.5.0
+  version: 1.6.0
   short-description: Trace-aware eval loop and regression gate orchestration
   portability_tier: strict_zero_leak
   scope: global
+  requires_env: []
+  project_profiles: []
 ---
 
 # Eval Flywheel Orchestrator
@@ -110,6 +113,7 @@ python3 scripts/run_eval.py --self-test
   - model-switch or finalizer behavior
 - Required scenario families when those capabilities exist:
   - current-fact grounding
+  - current-events briefing with required facets
   - contradictory search results
   - attachment-first summary
   - attachment follow-up expansion
@@ -122,3 +126,31 @@ python3 scripts/run_eval.py --self-test
   - `ui_truth_pass`
   - `overall_gate_result`
 - Release gates should block when backend-only evals pass but launched-artifact or UI truth replay fails.
+
+## Launched-Artifact Semantic Grounding Canaries (NEW v1.6)
+- For grounded-answer systems, a built or launched artifact canary outranks backend-only confidence.
+- When evaluating current-events, policy, legal, medical, or market-sensitive answers, require launched-artifact checks for:
+  - `facet_coverage_pass`
+  - `title_echo_pass`
+  - `semantic_answer_pass`
+  - `structured_output_pass`
+  - `thin_coverage_honesty_pass`
+- If a prompt demands a structured briefing, the canary should verify that each requested section contains either:
+  1. grounded extracted claims, or
+  2. a neutral thin-coverage disclosure
+- Promotion must be blocked when the launched artifact:
+  - repeats source titles instead of synthesizing claims
+  - omits a required requested facet
+  - emits a structurally correct but semantically empty answer
+
+## Grounded-Briefing Eval Fields (NEW v1.6)
+`eval_dataset.jsonl` and `eval_summary.json` should support:
+- per-row `requested_facets[]`
+- per-row `covered_facets[]`
+- per-row `missing_facets[]`
+- per-row `title_echo_detected`
+- per-row `semantic_density_score`
+- per-row `thin_coverage_honesty`
+- summary `facet_coverage_rate`
+- summary `title_echo_failures[]`
+- summary `launched_artifact_semantic_pass`

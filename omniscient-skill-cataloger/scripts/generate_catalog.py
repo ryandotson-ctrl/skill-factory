@@ -4,6 +4,7 @@ import json
 import os
 import re
 from dataclasses import dataclass
+from functools import lru_cache
 from pathlib import Path
 from typing import Any, Dict, Iterable, List, Optional, Tuple
 
@@ -13,14 +14,70 @@ except Exception:  # pragma: no cover
     yaml = None
 
 
-SKIP_PARTS = {"_p0_backups", ".backups", "__pycache__", ".pytest_cache"}
-ROOT_ORDER = {"codex": 0, "antigravity": 1, "local": 2, "agents": 3}
+SKIP_PARTS = {"_p0_backups", ".backups", ".skill-backups", "__pycache__", ".pytest_cache"}
+ROOT_ORDER = {"codex": 0, "antigravity": 1, "workspace_mirror": 2, "local": 3, "agents": 4}
+ECOSYSTEM_CONTRACT_PATH = (
+    Path(__file__).resolve().parents[2] / "skill_director" / "references" / "ecosystem_contract_v1.yaml"
+)
+FALLBACK_ECOSYSTEM_CONTRACT: Dict[str, Any] = {
+    "inventory_roles": {
+        "standard": {"path_prefixes": []},
+        "system_hidden": {"path_prefixes": [".system/"]},
+        "runtime_bundle": {"path_prefixes": ["codex-primary-runtime/"]},
+        "backup_snapshot": {"path_prefixes": [".skill-backups/", "_p0_backups/", ".backups/"]},
+    },
+    "root_roles": {
+        "codex": "canonical_authoring",
+        "antigravity": "distribution_mirror",
+        "workspace_mirror": "publication_mirror",
+        "local": "workspace_local",
+        "agents": "auxiliary_global",
+    },
+}
 
 
 @dataclass(frozen=True)
 class RootSpec:
     key: str
     path: Path
+
+
+@lru_cache(maxsize=1)
+def load_ecosystem_contract() -> Dict[str, Any]:
+    if yaml is None or not ECOSYSTEM_CONTRACT_PATH.exists():
+        return FALLBACK_ECOSYSTEM_CONTRACT
+    try:
+        loaded = yaml.safe_load(ECOSYSTEM_CONTRACT_PATH.read_text(encoding="utf-8"))
+    except Exception:
+        return FALLBACK_ECOSYSTEM_CONTRACT
+    if not isinstance(loaded, dict):
+        return FALLBACK_ECOSYSTEM_CONTRACT
+    return loaded
+
+
+def classify_inventory_role(relative_skill_path: str) -> str:
+    contract = load_ecosystem_contract()
+    inventory_roles = contract.get("inventory_roles", {})
+    if isinstance(inventory_roles, dict):
+        for role_name, role_config in inventory_roles.items():
+            if not isinstance(role_config, dict):
+                continue
+            prefixes = role_config.get("path_prefixes", [])
+            if not isinstance(prefixes, list):
+                continue
+            for prefix in prefixes:
+                if str(prefix).strip() and relative_skill_path.startswith(str(prefix).strip()):
+                    return str(role_name)
+    return "standard"
+
+
+def classify_root_role(source: str) -> str:
+    root_roles = load_ecosystem_contract().get("root_roles", {})
+    if isinstance(root_roles, dict):
+        mapped = root_roles.get(source)
+        if mapped:
+            return str(mapped)
+    return "unknown"
 
 
 def parse_args() -> argparse.Namespace:
@@ -56,12 +113,39 @@ def parse_args() -> argparse.Namespace:
 
 def default_roots(workspace_root: Path) -> Dict[str, Path]:
     codex_home = Path(os.environ.get("CODEX_HOME", str(Path.home() / ".codex"))).expanduser()
-    return {
+    roots = {
         "local": (workspace_root / ".agent" / "skills").resolve(),
         "antigravity": (Path.home() / ".gemini" / "antigravity" / "skills").resolve(),
         "codex": (codex_home / "skills").resolve(),
         "agents": (Path.home() / ".agents" / "skills").resolve(),
     }
+    if looks_like_workspace_mirror_root(workspace_root):
+        roots["workspace_mirror"] = workspace_root.resolve()
+    return roots
+
+
+def looks_like_workspace_mirror_root(workspace_root: Path) -> bool:
+    if not workspace_root.exists() or not workspace_root.is_dir():
+        return False
+    sentinel_paths = [
+        workspace_root / "skill_director" / "SKILL.md",
+        workspace_root / ".system" / "skill-creator" / "SKILL.md",
+    ]
+    if not any(path.exists() for path in sentinel_paths):
+        return False
+
+    exported_skill_count = 0
+    for child in workspace_root.iterdir():
+        if child.name in {".agent", ".git", "__pycache__"}:
+            continue
+        if not child.is_dir():
+            continue
+        if (child / "SKILL.md").exists():
+            exported_skill_count += 1
+            continue
+        if child.name in {".system", "codex-primary-runtime"}:
+            exported_skill_count += sum(1 for nested in child.iterdir() if (nested / "SKILL.md").exists())
+    return exported_skill_count >= 10
 
 
 def resolve_roots(roots_arg: str, workspace_root: Path) -> List[RootSpec]:
@@ -83,6 +167,8 @@ def resolve_roots(roots_arg: str, workspace_root: Path) -> List[RootSpec]:
     dedup: Dict[Path, RootSpec] = {}
     for spec in out:
         dedup[spec.path] = spec
+    if "workspace_mirror" in defaults and defaults["workspace_mirror"] not in dedup:
+        dedup[defaults["workspace_mirror"]] = RootSpec("workspace_mirror", defaults["workspace_mirror"])
     return list(dedup.values())
 
 
@@ -110,9 +196,11 @@ def parse_manifest(skill_dir: Path) -> Dict[str, Any]:
     return {}
 
 
-def parse_skill_file(file_path: Path, source: str) -> Dict[str, Any]:
+def parse_skill_file(file_path: Path, root: RootSpec) -> Dict[str, Any]:
     content = file_path.read_text(encoding="utf-8", errors="replace")
     frontmatter = parse_frontmatter(content)
+    relative_skill_path = file_path.parent.relative_to(root.path).as_posix()
+    inventory_role = classify_inventory_role(relative_skill_path)
 
     trigger = "See SKILL.md"
     trigger_match = re.search(r"## (?:When to use|Trigger|Activati)", content, re.IGNORECASE)
@@ -122,11 +210,15 @@ def parse_skill_file(file_path: Path, source: str) -> Dict[str, Any]:
         trigger = (snippet[:200] + "...") if len(snippet) > 200 else snippet.replace("\n", " ")
 
     return {
-        "skill_id": file_path.parent.name,
+        "skill_id": relative_skill_path,
+        "leaf_skill_id": file_path.parent.name,
+        "relative_skill_path": relative_skill_path,
+        "inventory_role": inventory_role,
+        "root_role": classify_root_role(root.key),
         "name": frontmatter.get("name", file_path.parent.name),
         "description": frontmatter.get("description", "No description provided."),
         "trigger": trigger,
-        "source": source,
+        "source": root.key,
         "path": file_path.resolve(),
         "manifest": parse_manifest(file_path.parent),
     }
@@ -201,6 +293,10 @@ def generate_mermaid(aggregated: List[Dict[str, Any]]) -> str:
 def build_output(aggregated: List[Dict[str, Any]], link_mode: str, workspace_root: Path) -> str:
     mermaid = generate_mermaid(aggregated)
     rows: List[str] = []
+    role_counts: Dict[str, int] = {}
+    for entry in aggregated:
+        role = str(entry.get("inventory_role", "") or "standard")
+        role_counts[role] = role_counts.get(role, 0) + 1
 
     for s in aggregated:
         link = render_link(s, link_mode, workspace_root)
@@ -210,12 +306,16 @@ def build_output(aggregated: List[Dict[str, Any]], link_mode: str, workspace_roo
 
         section = f"### {link}\n"
         section += f"**Sources**: {sources}\n"
+        section += f"**Inventory Role**: {s.get('inventory_role', 'standard')}\n"
         section += f"**Connectivity**: Inputs={inputs} | Outputs={outputs}\n\n"
         section += f"**Description**:\n{s['description']}\n\n"
         section += f"**Trigger**:\n{s['trigger']}\n\n---\n"
         rows.append(section)
 
     output = f"# Omniscient Skill Catalog\n\nTotal Skills: {len(aggregated)}\n\n"
+    if role_counts:
+        role_line = ", ".join(f"{role}={count}" for role, count in sorted(role_counts.items()))
+        output += f"Inventory Roles: {role_line}\n\n"
     output += "## Brain Graph\n\n"
     output += "```mermaid\n" + mermaid + "\n```\n\n"
     output += "".join(rows)
@@ -232,7 +332,7 @@ def main() -> int:
         if not root.path.exists():
             continue
         for skill_md in iter_skill_files(root):
-            discovered.append(parse_skill_file(skill_md, root.key))
+            discovered.append(parse_skill_file(skill_md, root))
 
     grouped: Dict[str, List[Dict[str, Any]]] = {}
     for entry in discovered:

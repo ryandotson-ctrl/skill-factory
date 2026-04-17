@@ -1,0 +1,29 @@
+{
+  "skill_id": "orchestration-sentinel-v2",
+  "version": "2.2.0",
+  "description": "Primary manifest.v2 pulse router with explicit route ownership and dispatch health telemetry.",
+  "inputs": [
+    {
+      "event_type": "*",
+      "schema_ref": "default_event_schema"
+    }
+  ],
+  "outputs": [
+    {
+      "event_type": "dispatch_requested",
+      "schema_ref": "default_event_schema"
+    },
+    {
+      "event_type": "dispatch_locked",
+      "schema_ref": "default_event_schema"
+    },
+    {
+      "event_type": "dispatch_failed",
+      "schema_ref": "default_event_schema"
+    },
+    {
+      "event_type": "dispatch_health_report_emitted",
+      "schema_ref": "default_event_schema"
+    }
+  ]
+}

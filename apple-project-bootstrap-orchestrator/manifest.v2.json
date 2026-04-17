@@ -1,0 +1,33 @@
+{
+  "schema_version": "2.0.0",
+  "display_name": "Apple Project Bootstrap",
+  "description": "Scaffold or adopt Apple app projects with generator-backed bootstrap, optional harness installation, onboarding, and release-profile setup.",
+  "dispatch": {
+    "mode": "hybrid",
+    "cooldown": 300
+  },
+  "inputs": [
+    {
+      "id": "apple_project_bootstrap_requested",
+      "type": "pulse.event",
+      "pattern": "apple:project_bootstrap_requested"
+    },
+    {
+      "id": "apple_project_adoption_requested",
+      "type": "pulse.event",
+      "pattern": "apple:project_adoption_requested"
+    }
+  ],
+  "outputs": [
+    {
+      "id": "apple_project_bootstrap_receipt",
+      "type": "pulse.event",
+      "event_type": "apple:project_bootstrap_receipt"
+    },
+    {
+      "id": "apple_project_bootstrap_activity",
+      "type": "pulse.event",
+      "event_type": "apple_project_bootstrap_orchestrator_activity"
+    }
+  ]
+}

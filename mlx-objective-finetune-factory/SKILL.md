@@ -1,6 +1,13 @@
 ---
 name: mlx-objective-finetune-factory
-description: Objective-driven local MLX fine-tuning and self-distillation pipeline builder for reusable model training. Use when the user wants to fine-tune a model from a written objective/prompt with strict privacy, sanitization, evaluation gates, and portable integration instructions (no host-specific path leakage).
+description: Objective-driven local MLX fine-tuning and self-distillation pipeline
+  builder for reusable model training. Use when the user wants to fine-tune a model
+  from a written objective/prompt with strict privacy, sanitization, evaluation gates,
+  and portable integration instructions (no host-specific path leakage).
+scope: global
+portability_tier: strict_zero_leak
+requires_env: []
+project_profiles: []
 ---
 
 # MLX Objective Fine-Tune Factory

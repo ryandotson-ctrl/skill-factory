@@ -2,7 +2,7 @@
 name: web-search-grounding-specialist
 description: Diagnoses and hardens web-grounded response behavior in current chat_service
   routing and run timeline flows.
-version: 2.3.0
+version: 2.4.0
 scope: local
 portability_tier: strict_zero_leak
 requires_env: []
@@ -35,9 +35,11 @@ You ensure time-sensitive questions are routed to search and grounded context is
 3. Context integration:
    - Validate search context is injected and reflected in final answer.
    - Validate official/first-party evidence is ranked above generic third-party summaries when query intent matches.
+   - For broad current-events or briefing prompts, validate the answer covers the requested facets instead of collapsing into one generic summary.
 4. Output quality:
    - Verify final response formatting and link quality.
    - Verify no `New Search Query:` or `Self-Check:` style traces in user-facing output.
+   - Verify the answer extracts actor-action-date claims instead of repeating source titles or headline fragments.
 5. Recommend fixes:
    - Routing heuristics, search error handling, context shaping, and formatting rules.
 
@@ -73,6 +75,10 @@ Required failure labels:
 - `grounding_limited`
 - `search_conflict_detected`
 - `provider_unavailable`
+
+Additional grounding quality labels:
+- `facet_coverage_incomplete`
+- `title_echo_detected`
 
 ## Non-Negotiable Constraints
 - Do not declare grounding success without tool/event evidence.
@@ -116,3 +122,42 @@ Emit normalized diagnostics for grounding arbitration:
 - arbitration_result (`grounded|abstain|escalate`)
 
 Diagnostics must be sanitized and portable (no raw private prompts or host paths).
+
+## Briefing-Facet Coverage Contract (NEW v2.4)
+- For broad current-events, policy, or geopolitical briefings, decompose the prompt into explicit evidence facets before judging grounding quality.
+- Typical facet classes include:
+  - chronology
+  - current state
+  - requested actors or regions
+  - negotiations or ceasefire status
+  - market, shipping, or risk implications
+  - confirmed versus uncertain claims
+- Grounding succeeds only when the final answer does one of the following for each requested facet:
+  1. provides an extracted actor-action-date claim with supporting evidence, or
+  2. states neutrally that current coverage for that facet is thin, disputed, or not independently verified
+- Do not allow one well-covered facet to masquerade as full briefing success.
+- If a fallback answer is used, preserve requested facet coverage with thin-coverage clarifiers rather than silently dropping sections.
+
+## Anti-Title-Echo Contract (NEW v2.4)
+- Source cards and headlines are evidence inputs, not acceptable user-facing answer units.
+- Treat these as grounding failures unless the user explicitly asked for raw search results:
+  - answers made primarily of source titles
+  - repeated headline fragments across multiple sections
+  - chronology sections that only restate article names
+- Require extraction into normalized claim tuples whenever possible:
+  - `actor`
+  - `action`
+  - `date`
+  - `source_family`
+  - `confidence`
+- If extraction fails, prefer a constrained limited-evidence answer over title dumping.
+
+## Briefing Diagnostics Addendum (NEW v2.4)
+When the prompt requests a structured or end-to-end briefing, extend diagnostics with:
+- `requested_facets[]`
+- `covered_facets[]`
+- `missing_facets[]`
+- `subquery_count`
+- `unique_query_count`
+- `title_echo_detected`
+- `fallback_clarifier_used`

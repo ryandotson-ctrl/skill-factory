@@ -1,0 +1,4 @@
+interface:
+  display_name: "Principal Code Auditor"
+  short_description: "Regression-first code audit and risk review"
+  default_prompt: "Audit the code for correctness, reliability, security, performance, and maintainability risks, prioritize findings by severity, and keep recommendations evidence-backed and practical."
