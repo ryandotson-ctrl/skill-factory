@@ -1,0 +1,3 @@
+interface:
+  display_name: "Tensor Shape Stabilizer"
+  short_description: "Debugs dimension mismatches and shape errors in"

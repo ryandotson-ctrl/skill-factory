@@ -1,0 +1,3 @@
+interface:
+  display_name: "Ml Compiler Inference Optimizer Router"
+  short_description: "Architecture decision router that analyzes user requests to"

@@ -30,6 +30,9 @@ project_profiles: []
 - Force Codex global skills to match Antigravity global skills (backs up then replaces):
   - `python3 ${CODEX_HOME:-~/.codex}/skills/antigravity-skill-mirror/scripts/mirror_antigravity_skills.py --apply --overwrite-existing`
 
+Read `references/worked-examples.md` for the default dry-run, additive sync, and publication-mirror cases.
+Use `references/report-contracts.md` for the canonical report shapes and `references/event-contracts.md` for Pulse Bus ingress and egress semantics.
+
 ## What This Does
 
 1. Scans skills recursively in:
@@ -45,6 +48,15 @@ project_profiles: []
    - Union diffs (global + local) to catch "Antigravity-only" skills in the active workspace
 3. If `--apply` is provided, copies missing skills from Antigravity global into Codex global.
 
+The canonical dry-run contract is `MirrorReportV1`.
+The canonical apply receipt is `MirrorApplyReceiptV1`.
+When both codex/antigravity and codex/workspace-mirror are clean, report `MirrorAlignmentV1` so downstream skills can treat the mirror state as verified rather than merely unchecked.
+
+Use The Watcher's `references/mirror_governance_v1.md` as the mirror-intent contract:
+- `mirror_core` skills are expected to stay semantically aligned across codex and antigravity
+- `codex_only` skills are reported but not treated as mirror failures
+- `manual_review` skills should never be auto-overwritten without explicit human approval
+
 ## Safety Rules
 
 - Default behavior is dry-run (prints a report and exits).
@@ -53,3 +65,22 @@ project_profiles: []
 - Never overwrites existing Codex skills unless `--overwrite-existing` is provided explicitly.
 - When overwriting, it backs up the existing Codex skill directory under `~/.codex/skill_backups/antigravity-skill-mirror/`.
 - Shared Codex/Antigravity drift is advisory by default and should be treated as manual review, not automatic replacement.
+
+## Pulse Bus Contract
+
+Ingress:
+- `skill:antigravity-skill-mirror:requested`
+- `skills:antigravity_mirror_requested`
+
+Primary outputs:
+- `skills:mirror_report_ready`
+- `skills:workspace_mirror_drift_detected`
+- `skills:mirror_alignment_verified`
+- `skills:mirror_sync_applied`
+- `skill_activity:antigravity-skill-mirror`
+
+Use the event examples in `references/event-contracts.md` so mirror-state consumers can distinguish:
+- audit-only reports
+- publication-mirror drift
+- verified clean alignment
+- applied sync receipts

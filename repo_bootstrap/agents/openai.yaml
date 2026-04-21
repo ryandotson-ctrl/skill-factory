@@ -1,0 +1,3 @@
+interface:
+  display_name: "Repo Bootstrap"
+  short_description: "Bootstraps Project Free Energy environments with current"

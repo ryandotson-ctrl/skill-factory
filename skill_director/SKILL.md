@@ -32,6 +32,8 @@ Honor `references/ecosystem_contract_v1.yaml` as the canonical ecosystem contrac
 - external operator trigger conventions such as owned `*_requested` and `skill:*:requested` routes
 - publication-mirror health so exported skill repos can be audited inside the same intelligence run
 
+Use `references/mirror_governance_v1.md` as the canonical mirror-intent contract when deciding whether a skill should be mirrored, held codex-only, or escalated for manual review.
+
 ### 2. Watcher-Grade Skill Intelligence
 Generate grouped intelligence using the fixed taxonomy in `references/group_taxonomy.md`:
 - `ecosystem-governance`
@@ -124,6 +126,12 @@ Recommend canonical placement:
 - General-purpose logic: Codex global canonical.
 - Antigravity: mirror/distribution root.
 
+Mirror intent classes:
+- `mirror_core`
+- `codex_only`
+- `agents_owned`
+- `manual_review`
+
 ### 5. Capability Delta Awareness
 Report missing/extra skills between roots and branch/workspace contexts.
 
@@ -180,6 +188,8 @@ Default behavior:
 - keep full inventory and raw recommendation arrays in JSON, not in the default chat brief
 - preserve `IndividualSkillIntelligenceV1` in JSON for every skill
 - append per-skill wisdom records so future recommendations inherit prior intelligence
+
+Use `references/event-contracts.md` when shaping Watcher event emissions for downstream consumers.
 
 ### Phase 4.1: Enhanced Context + Wisdom Run
 Use this when you want session + workspace-aware recommendations and persistent wisdom state:

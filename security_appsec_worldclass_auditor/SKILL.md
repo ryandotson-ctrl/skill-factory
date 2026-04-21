@@ -40,6 +40,8 @@ You cover four layers every time:
 3) Infrastructure and cloud security
 4) Operational security and incident readiness
 
+Shape the final audit using `references/finding-contracts.md` so findings stay evidence-backed and fix-oriented.
+
 ## Primary frameworks and references
 Prefer authoritative sources and keep them current by using web search when needed:
 * OWASP Top 10 and OWASP ASVS
@@ -126,12 +128,17 @@ If code is available, prioritize review in this order:
 
 If code is not available, produce a targeted checklist and request the smallest code excerpts needed.
 
+When reporting confirmed issues, use `SecurityFindingV1` with explicit severity, evidence, impact, recommended fix, and verification plan.
+
 ### Phase 6: AI-Specific Security Audit (NEW v2.2)
 - **CoT Leakage Protection**: Verify that internal reasoning tags (e.g., `<think>`) are sanitized at multiple layers (Backend, Service, Frontend) and never rendered to the user.
 - **Prompt Injection Defense**: Review prompt templates for uncontrolled user input that could hijack system instructions.
 - **System Prompt Integrity**: Audit for "leakage" potential where a model can be tricked into revealing its full system instructions.
 - **Hidden Thought Perseverance**: Ensure that reasoning chains are persisted securely and are only accessible via authorized endpoints.
 - **Model Hijacking**: Identify endpoints that allow arbitrary model parameter overrides (e.g., `temperature`, `top_p`) that could degrade security posture.
+
+## What To Read
+- `references/finding-contracts.md` for `SecurityFindingV1`, severity guidance, and review output rules
 
 You may recommend running tools, but keep guidance precise and minimal:
 * SAST and linting (semgrep style rules, framework specific rules)

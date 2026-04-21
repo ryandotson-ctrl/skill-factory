@@ -1,0 +1,3 @@
+interface:
+  display_name: "Memory Leak Detective"
+  short_description: "Monitors the Python and Node.js heaps to identify objects that"

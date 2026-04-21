@@ -7,6 +7,7 @@ import argparse
 import csv
 import json
 import os
+import re
 import shutil
 import sqlite3
 import subprocess
@@ -74,6 +75,21 @@ DEFAULT_EXTERNAL_ROOT = Path("/Volumes/e/ Home/Archive/ssd-guardian-portab
 DEFAULT_REGISTRY_PATH = Path(
     "~/Library/Application Support/ssd-guardian-portable/offload-registry.json"
 ).expanduser()
+PATH_FIELD_NAMES = {
+    "cwd",
+    "workdir",
+    "path",
+    "file",
+    "source_path",
+    "external_root",
+    "registry_path",
+    "rollout_path",
+}
+PATCH_PATH_RE = re.compile(r"^\*\*\* (?:Update|Add|Delete) File: (/.+)$", re.MULTILINE)
+PATCH_MOVE_RE = re.compile(r"^\*\*\* Move to: (/.+)$", re.MULTILINE)
+MARKDOWN_ABS_PATH_RE = re.compile(r"\((/(?:Users|Volumes)/[^)\n]+)\)")
+QUOTED_ABS_PATH_RE = re.compile(r"""['"](/(?:Users|Volumes)/[^'"\n]+)['"]""")
+SIMPLE_ABS_PATH_RE = re.compile(r"(?<![A-Za-z0-9])(/(?:Users|Volumes)/[^\s'\"`()<>]+)")
 
 
 @dataclass(frozen=True)
@@ -204,6 +220,10 @@ class ContextSnapshot:
     hot_session_days: list[str]
     hot_workspace_roots: list[str]
     hot_worktree_paths: list[str]
+    conversation_workspace_roots: list[str]
+    conversation_goal_workspace_roots: list[str]
+    conversation_goal_worktree_paths: list[str]
+    conversation_paths: list[str]
     keep_models: list[str]
     external_volumes: list[dict[str, Any]]
     time_windows: dict[str, int]
@@ -216,6 +236,10 @@ class ContextSnapshot:
             "hot_session_days": self.hot_session_days,
             "hot_workspace_roots": self.hot_workspace_roots,
             "hot_worktree_paths": self.hot_worktree_paths,
+            "conversation_workspace_roots": self.conversation_workspace_roots,
+            "conversation_goal_workspace_roots": self.conversation_goal_workspace_roots,
+            "conversation_goal_worktree_paths": self.conversation_goal_worktree_paths,
+            "conversation_paths": self.conversation_paths,
             "keep_models": self.keep_models,
             "external_volumes": self.external_volumes,
             "time_windows": self.time_windows,
@@ -334,6 +358,35 @@ def relative_parts(path: Path, home: Path) -> list[str]:
         return list(path.resolve().relative_to(home).parts)
     except ValueError:
         return list(path.parts)
+
+
+def normalize_goal_text(text: str) -> str:
+    normalized = re.sub(r"(?<=[a-z0-9])(?=[A-Z])", " ", text)
+    normalized = re.sub(r"(?<=[A-Z])(?=[A-Z][a-z])", " ", normalized)
+    normalized = re.sub(r"(?<=[A-Za-z])(?=[0-9])", " ", normalized)
+    normalized = re.sub(r"(?<=[0-9])(?=[A-Za-z])", " ", normalized)
+    normalized = re.sub(r"[^A-Za-z0-9]+", " ", normalized)
+    normalized = re.sub(r"\s+", " ", normalized).strip().lower()
+    return normalized
+
+
+def alias_is_specific(alias: str) -> bool:
+    tokens = [token for token in alias.split() if token]
+    if len(tokens) >= 2:
+        return sum(1 for token in tokens if len(token) >= 2) >= 2
+    return len(alias) >= 10
+
+
+def alias_candidates_from_name(name: str) -> set[str]:
+    alias = normalize_goal_text(name)
+    if not alias or not alias_is_specific(alias):
+        return set()
+    aliases = {alias}
+    if " workspace" in alias:
+        aliases.add(alias.replace(" workspace", "").strip())
+    if " project" in alias:
+        aliases.add(alias.replace(" project", "").strip())
+    return {item for item in aliases if item and alias_is_specific(item)}
 
 
 def default_roots(home: Path) -> list[Path]:
@@ -510,6 +563,132 @@ def parse_session_day(path: Path, home: Path) -> str:
     return "-".join(parts[2:5])
 
 
+def normalize_absolute_path(raw: str) -> Path | None:
+    candidate = raw.strip().strip("`")
+    while candidate and candidate[-1] in ",.;:)]}":
+        candidate = candidate[:-1]
+    if not candidate.startswith("/"):
+        return None
+    if any(char in candidate for char in "*?[]{}"):
+        return None
+    try:
+        return Path(candidate).expanduser()
+    except (OSError, ValueError):
+        return None
+
+
+def extract_paths_from_text(text: str, known_roots: Sequence[Path]) -> set[Path]:
+    discovered: set[Path] = set()
+    for root in known_roots:
+        root_text = str(root)
+        if root_text and root_text in text:
+            discovered.add(root)
+    for pattern in (PATCH_PATH_RE, PATCH_MOVE_RE, MARKDOWN_ABS_PATH_RE, QUOTED_ABS_PATH_RE, SIMPLE_ABS_PATH_RE):
+        for match in pattern.findall(text):
+            value = match if isinstance(match, str) else match[0]
+            candidate = normalize_absolute_path(value)
+            if candidate is not None:
+                discovered.add(candidate)
+    return discovered
+
+
+def extract_paths_from_jsonish(value: Any, known_roots: Sequence[Path]) -> set[Path]:
+    discovered: set[Path] = set()
+    if isinstance(value, dict):
+        for key, item in value.items():
+            if isinstance(item, str) and key in PATH_FIELD_NAMES:
+                candidate = normalize_absolute_path(item)
+                if candidate is not None:
+                    discovered.add(candidate)
+            discovered.update(extract_paths_from_jsonish(item, known_roots))
+        return discovered
+    if isinstance(value, list):
+        for item in value:
+            discovered.update(extract_paths_from_jsonish(item, known_roots))
+        return discovered
+    if isinstance(value, str):
+        discovered.update(extract_paths_from_text(value, known_roots))
+    return discovered
+
+
+def extract_user_text_fragments(value: Any) -> list[str]:
+    fragments: list[str] = []
+    if isinstance(value, dict):
+        if value.get("type") == "input_text" and isinstance(value.get("text"), str):
+            fragments.append(str(value["text"]))
+        for item in value.values():
+            fragments.extend(extract_user_text_fragments(item))
+        return fragments
+    if isinstance(value, list):
+        for item in value:
+            fragments.extend(extract_user_text_fragments(item))
+    return fragments
+
+
+def rollout_semantic_paths(rollout_path: Path, known_roots: Sequence[Path]) -> set[Path]:
+    if not rollout_path.exists():
+        return set()
+    discovered: set[Path] = set()
+    try:
+        handle = rollout_path.open(errors="ignore")
+    except OSError:
+        return discovered
+    with handle:
+        for line in handle:
+            try:
+                event = json.loads(line)
+            except json.JSONDecodeError:
+                continue
+            event_type = event.get("type")
+            payload = event.get("payload")
+            if event_type == "session_meta":
+                discovered.update(extract_paths_from_jsonish({"cwd": payload.get("cwd"), "rollout_path": str(rollout_path)}, known_roots))
+                continue
+            if event_type == "turn_context":
+                discovered.update(extract_paths_from_jsonish({"cwd": payload.get("cwd")}, known_roots))
+                continue
+            if event_type != "response_item" or not isinstance(payload, dict):
+                continue
+            payload_type = payload.get("type")
+            if payload_type == "function_call":
+                arguments = payload.get("arguments", "")
+                try:
+                    parsed_arguments = json.loads(arguments) if isinstance(arguments, str) else arguments
+                except json.JSONDecodeError:
+                    parsed_arguments = None
+                if parsed_arguments is not None:
+                    discovered.update(extract_paths_from_jsonish(parsed_arguments, known_roots))
+                continue
+            if payload_type == "custom_tool_call":
+                discovered.update(extract_paths_from_text(str(payload.get("input", "")), known_roots))
+                continue
+    return discovered
+
+
+def rollout_user_text(rollout_path: Path) -> list[str]:
+    if not rollout_path.exists():
+        return []
+    fragments: list[str] = []
+    try:
+        handle = rollout_path.open(errors="ignore")
+    except OSError:
+        return fragments
+    with handle:
+        for line in handle:
+            try:
+                event = json.loads(line)
+            except json.JSONDecodeError:
+                continue
+            if event.get("type") != "response_item":
+                continue
+            payload = event.get("payload")
+            if not isinstance(payload, dict):
+                continue
+            if payload.get("type") == "message" and payload.get("role") == "user":
+                fragments.extend(extract_user_text_fragments(payload.get("content", [])))
+    return fragments
+
+
 def has_live_lock_or_pid(path: Path) -> bool:
     probe_paths: list[Path] = []
     if path.is_file():
@@ -604,6 +783,91 @@ def load_thread_edges(state_db: Path) -> dict[str, set[str]]:
             edges.setdefault(str(child_id), set()).add(str(parent_id))
     connection.close()
     return edges
+
+
+def load_thread_semantic_paths(
+    *,
+    thread_ids: Iterable[str],
+    threads: dict[str, ThreadRecord],
+    known_roots: Sequence[Path],
+) -> dict[str, set[Path]]:
+    semantic_paths: dict[str, set[Path]] = {}
+    for thread_id in thread_ids:
+        record = threads.get(thread_id)
+        if record is None:
+            continue
+        discovered: set[Path] = set()
+        if record.cwd is not None:
+            discovered.add(record.cwd)
+        if record.rollout_path is not None:
+            discovered.add(record.rollout_path.parent)
+            discovered.update(rollout_semantic_paths(record.rollout_path, known_roots))
+        if record.title:
+            discovered.update(extract_paths_from_text(record.title, known_roots))
+        semantic_paths[thread_id] = {path.resolve() if path.exists() else path for path in discovered}
+    return semantic_paths
+
+
+def build_goal_alias_maps(
+    workspaces: Sequence[Workspace],
+    worktrees: Sequence[WorktreeRecord],
+) -> tuple[dict[str, set[Path]], dict[str, set[Path]]]:
+    workspace_aliases: dict[str, set[Path]] = {}
+    for workspace in workspaces:
+        for alias in alias_candidates_from_name(workspace.name):
+            workspace_aliases.setdefault(alias, set()).add(workspace.root)
+    worktree_aliases: dict[str, set[Path]] = {}
+    for worktree in worktrees:
+        if worktree.repo_path is None:
+            continue
+        for alias in alias_candidates_from_name(worktree.repo_name or worktree.repo_path.name):
+            worktree_aliases.setdefault(alias, set()).add(worktree.repo_path)
+    return workspace_aliases, worktree_aliases
+
+
+def infer_goal_paths_from_text(
+    texts: Sequence[str],
+    workspace_aliases: dict[str, set[Path]],
+    worktree_aliases: dict[str, set[Path]],
+) -> tuple[set[Path], set[Path]]:
+    workspace_paths: set[Path] = set()
+    worktree_paths: set[Path] = set()
+    aliases = sorted(set(workspace_aliases) | set(worktree_aliases), key=len, reverse=True)
+    for text in texts:
+        normalized = f" {normalize_goal_text(text)} "
+        if not normalized.strip():
+            continue
+        for alias in aliases:
+            if f" {alias} " not in normalized:
+                continue
+            workspace_paths.update(workspace_aliases.get(alias, set()))
+            worktree_paths.update(worktree_aliases.get(alias, set()))
+    return workspace_paths, worktree_paths
+
+
+def load_thread_goal_references(
+    *,
+    thread_ids: Iterable[str],
+    threads: dict[str, ThreadRecord],
+    workspaces: Sequence[Workspace],
+    worktrees: Sequence[WorktreeRecord],
+) -> tuple[dict[str, set[Path]], dict[str, set[Path]]]:
+    workspace_aliases, worktree_aliases = build_goal_alias_maps(workspaces, worktrees)
+    thread_workspace_goals: dict[str, set[Path]] = {}
+    thread_worktree_goals: dict[str, set[Path]] = {}
+    for thread_id in thread_ids:
+        record = threads.get(thread_id)
+        if record is None:
+            continue
+        texts: list[str] = []
+        if record.title:
+            texts.append(record.title)
+        if record.rollout_path is not None:
+            texts.extend(rollout_user_text(record.rollout_path))
+        workspace_paths, worktree_paths = infer_goal_paths_from_text(texts, workspace_aliases, worktree_aliases)
+        thread_workspace_goals[thread_id] = {path.resolve() if path.exists() else path for path in workspace_paths}
+        thread_worktree_goals[thread_id] = {path.resolve() if path.exists() else path for path in worktree_paths}
+    return thread_workspace_goals, thread_worktree_goals
 
 
 def discover_workspaces(home: Path, now: datetime, hot_days: int, warm_days: int) -> list[Workspace]:
@@ -1110,6 +1374,9 @@ class StorageGuardian:
         self.threads = load_threads(self.home / ".codex" / "state_5.sqlite")
         self.thread_edges = load_thread_edges(self.home / ".codex" / "state_5.sqlite")
         self.worktrees = discover_worktrees(self.home, self.now, hot_days, warm_days)
+        self.thread_semantic_paths: dict[str, set[Path]] = {}
+        self.thread_goal_workspace_roots: dict[str, set[Path]] = {}
+        self.thread_goal_worktree_paths: dict[str, set[Path]] = {}
         self.registry = load_registry(self.registry_path, self.external_root or DEFAULT_EXTERNAL_ROOT)
         self.legacy_imports: list[dict[str, Any]] = []
         if import_legacy and self.external_root and self.external_root.exists():
@@ -1139,6 +1406,28 @@ class StorageGuardian:
                 return workspace
         return None
 
+    def _path_matches_semantic_reference(self, path: Path, reference: Path) -> bool:
+        return path == reference or is_relative_to(path, reference) or is_relative_to(reference, path)
+
+    def _has_semantic_reference(self, path: Path, thread_ids: Sequence[str] | None = None) -> bool:
+        ids = thread_ids or self.context.hot_thread_ids
+        for thread_id in ids:
+            for reference in self.thread_semantic_paths.get(thread_id, set()):
+                if self._path_matches_semantic_reference(path, reference):
+                    return True
+        return False
+
+    def _has_goal_reference(self, path: Path, thread_ids: Sequence[str] | None = None) -> bool:
+        ids = thread_ids or self.context.hot_thread_ids
+        for thread_id in ids:
+            for reference in self.thread_goal_workspace_roots.get(thread_id, set()):
+                if self._path_matches_semantic_reference(path, reference):
+                    return True
+            for reference in self.thread_goal_worktree_paths.get(thread_id, set()):
+                if self._path_matches_semantic_reference(path, reference):
+                    return True
+        return False
+
     def _threads_for_path(self, path: Path) -> list[str]:
         thread_ids: list[str] = []
         session_day = parse_session_day(path, self.home) if is_session_day_path(path, self.home) else None
@@ -1150,8 +1439,13 @@ class StorageGuardian:
                 thread_ids.append(thread_id)
                 continue
             if record.cwd is None:
+                if self._has_semantic_reference(path, [thread_id]) or self._has_goal_reference(path, [thread_id]):
+                    thread_ids.append(thread_id)
                 continue
             if record.cwd == path or is_relative_to(record.cwd, path) or is_relative_to(path, record.cwd):
+                thread_ids.append(thread_id)
+                continue
+            if self._has_semantic_reference(path, [thread_id]) or self._has_goal_reference(path, [thread_id]):
                 thread_ids.append(thread_id)
         return sorted(set(thread_ids))
 
@@ -1171,9 +1465,32 @@ class StorageGuardian:
                 continue
             if record.cwd and (record.cwd == self.cwd or is_relative_to(self.cwd, record.cwd) or is_relative_to(record.cwd, self.cwd)):
                 hot_thread_ids.add(record.id)
+        semantic_thread_ids = set(family_ids) | set(hot_thread_ids)
+        known_roots: list[Path] = [self.cwd]
+        known_roots.extend(workspace.root for workspace in self.workspaces)
+        known_roots.extend(worktree.repo_path for worktree in self.worktrees if worktree.repo_path is not None)
+        self.thread_semantic_paths = load_thread_semantic_paths(
+            thread_ids=semantic_thread_ids,
+            threads=self.threads,
+            known_roots=sorted({path.resolve() if path.exists() else path for path in known_roots}, key=lambda item: len(str(item)), reverse=True),
+        )
+        for thread_id, references in list(self.thread_semantic_paths.items()):
+            self.thread_semantic_paths[thread_id] = {
+                path for path in references if path != self.home and str(path) != str(self.home)
+            }
+        self.thread_goal_workspace_roots, self.thread_goal_worktree_paths = load_thread_goal_references(
+            thread_ids=semantic_thread_ids,
+            threads=self.threads,
+            workspaces=self.workspaces,
+            worktrees=self.worktrees,
+        )
         hot_session_days: set[str] = set()
         hot_workspace_roots: set[str] = set()
         hot_worktree_paths: set[str] = set()
+        conversation_workspace_roots: set[str] = set()
+        conversation_goal_workspace_roots: set[str] = set()
+        conversation_goal_worktree_paths: set[str] = set()
+        conversation_paths: set[str] = set()
         for thread_id in hot_thread_ids:
             record = self.threads.get(thread_id)
             if record is None:
@@ -1193,6 +1510,25 @@ class StorageGuardian:
                         or is_relative_to(worktree.repo_path, record.cwd)
                     ):
                         hot_worktree_paths.add(home_relative(worktree.repo_path, self.home))
+        for thread_id in semantic_thread_ids:
+            for semantic_path in self.thread_semantic_paths.get(thread_id, set()):
+                conversation_paths.add(home_relative(semantic_path, self.home))
+                workspace = self._workspace_for_path(semantic_path)
+                if workspace:
+                    display = home_relative(workspace.root, self.home)
+                    conversation_workspace_roots.add(display)
+                    hot_workspace_roots.add(display)
+                for worktree in self.worktrees:
+                    if worktree.repo_path and self._path_matches_semantic_reference(semantic_path, worktree.repo_path):
+                        hot_worktree_paths.add(home_relative(worktree.repo_path, self.home))
+            for workspace_root in self.thread_goal_workspace_roots.get(thread_id, set()):
+                display = home_relative(workspace_root, self.home)
+                conversation_goal_workspace_roots.add(display)
+                hot_workspace_roots.add(display)
+            for worktree_path in self.thread_goal_worktree_paths.get(thread_id, set()):
+                display = home_relative(worktree_path, self.home)
+                conversation_goal_worktree_paths.add(display)
+                hot_worktree_paths.add(display)
         current_workspace = self._workspace_for_path(self.cwd)
         keep_models = sorted(discover_keep_models(current_workspace.root if current_workspace else self.cwd))
         external_volumes: list[dict[str, Any]] = []
@@ -1205,6 +1541,10 @@ class StorageGuardian:
             hot_session_days=sorted(hot_session_days),
             hot_workspace_roots=sorted(hot_workspace_roots),
             hot_worktree_paths=sorted(hot_worktree_paths),
+            conversation_workspace_roots=sorted(conversation_workspace_roots),
+            conversation_goal_workspace_roots=sorted(conversation_goal_workspace_roots),
+            conversation_goal_worktree_paths=sorted(conversation_goal_worktree_paths),
+            conversation_paths=sorted(conversation_paths)[:100],
             keep_models=keep_models,
             external_volumes=external_volumes,
             time_windows={"hot_days": self.hot_days, "warm_days": self.warm_days},
@@ -1270,6 +1610,7 @@ class StorageGuardian:
         thread_ids: list[str],
         matched_keep_model: bool,
         has_live_guard: bool,
+        semantic_ref_match: bool,
     ) -> tuple[str, int]:
         score = 0
         if path == self.cwd or is_relative_to(self.cwd, path):
@@ -1278,6 +1619,8 @@ class StorageGuardian:
             score += 70
         if thread_ids:
             score += 65
+        if semantic_ref_match:
+            score += 60
         if matched_keep_model:
             score += 55
         if has_live_guard:
@@ -1392,6 +1735,7 @@ class StorageGuardian:
         thread_ids = self._threads_for_path(path)
         matched_keep_model = path.name in {model.split("/", 1)[1] for model in self.context.keep_models}
         has_live_guard = has_live_lock_or_pid(path)
+        semantic_ref_match = self._has_semantic_reference(path, thread_ids or self.context.hot_thread_ids)
         last_signal = self._signal_for_path(path, workspace) if path.exists() else self.now
         temp, score = self._temperature_for(
             path=path,
@@ -1400,6 +1744,7 @@ class StorageGuardian:
             thread_ids=thread_ids,
             matched_keep_model=matched_keep_model,
             has_live_guard=has_live_guard,
+            semantic_ref_match=semantic_ref_match,
         )
         action, action_reason = self._action_for(
             path=path,
@@ -1451,6 +1796,8 @@ class StorageGuardian:
                                 thread_ids=thread_ids,
                                 matched_keep_model=False,
                                 has_live_guard=False,
+                                semantic_ref_match=self._has_semantic_reference(day_dir, thread_ids)
+                                or self._has_goal_reference(day_dir, thread_ids),
                             )
                             action = PROTECT if temp == HOT else REVIEW_FIRST
                             self.session_profiles[day_dir.resolve()] = SessionProfile(

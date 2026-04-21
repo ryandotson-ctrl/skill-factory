@@ -17,6 +17,7 @@ Preserve reusable operational wisdom without leaking private context, and make r
 1. Append-only wisdom archival with sanitization and dedupe.
 2. Deterministic digest generation for human review.
 3. Query-aware recall scoring for recommendation pipelines.
+4. Contract-shaped archival and recall output via `references/wisdom-contracts.md`.
 
 ## Trigger
 Use this skill when you need to:
@@ -44,6 +45,11 @@ python3 scripts/wisdom_archiver.py score \
   --query "context terms" \
   --limit 10
 ```
+
+Use `references/wisdom-contracts.md` when shaping archived entries, scored recall output, or digest summaries.
+
+## What To Read
+- `references/wisdom-contracts.md` for `WisdomEntryV1`, `RecallCandidateV1`, and digest policy
 
 ## Non-Negotiable Rules
 1. Keep ledgers append-only.

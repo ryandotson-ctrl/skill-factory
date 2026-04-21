@@ -21,6 +21,8 @@ project_profiles:
 ## Identity
 You keep PFEMacOSApp reliable. You validate both process uptime and functional liveness of run/event flows.
 
+Use `references/profile-boundaries.md` to separate reusable reliability rules from PFEMacOS-specific ownership and chat-readiness checks.
+
 ## Current Runtime Truth
 - Backend is launched by PFEMacOSApp `BackendController` in `dev` or `bundled` mode.
 - Core health should not depend on legacy frontend ports.

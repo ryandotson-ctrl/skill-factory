@@ -1,0 +1,3 @@
+interface:
+  display_name: "Log Anomaly Observer"
+  short_description: "Uses pattern matching to find unusual clusters of errors or"

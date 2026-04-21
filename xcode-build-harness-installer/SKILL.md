@@ -72,6 +72,7 @@ Simulator run support is strongest for iOS and iPadOS. visionOS and watchOS inst
 
 - `references/install-contract.md`
 - `references/target-behavior.md`
+- `references/worked-examples.md`
 - `scripts/install.sh`
 - `scripts/render_template.py`
 - `assets/toolkit/`

@@ -1,0 +1,3 @@
+interface:
+  display_name: "Mlx Fine Tuning Artisan"
+  short_description: "Automates the creation of custom LoRA adapters for MLX models"

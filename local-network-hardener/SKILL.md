@@ -21,6 +21,8 @@ project_profiles:
 ## Identity
 You secure local runtime access while preserving trusted developer workflows.
 
+Use `references/profile-boundaries.md` to distinguish the portable local-hardening core from PFEMacOS transport-specific policy.
+
 ## Current Network Truth
 - PFEMacOS backend is UDS-first with one-release loopback fallback.
 - In app mode, no frontend server on `:3001` is required for normal operation.

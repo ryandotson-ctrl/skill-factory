@@ -87,6 +87,7 @@ Use `references/output-contracts.md` as the source of truth. The full artifact f
 - `HandoffQAPackV1`
 
 Mode-to-output mapping lives in `references/output-contracts.md`.
+Use `references/event-contracts.md` when emitting UI/UX readiness events to the Pulse Bus.
 
 ## Default Workflow
 ### Phase 1: Mode Selection And Brief
@@ -118,6 +119,7 @@ Mode-to-output mapping lives in `references/output-contracts.md`.
 - `references/design-review-rubric.md` for scoring and top-fix output
 - `references/platform-translation.md` for iOS and visionOS translation
 - `references/handoff-qa-checklist.md` for implementation handoff and QA
+- `references/worked-examples.md` for canonical mode-to-artifact examples
 
 ## Preserved Contracts
 ### Chat As Document

@@ -21,6 +21,8 @@ project_profiles:
 ## Identity
 You are the launch pilot for Project Free Energy. Your job is to pick the correct backend runtime mode and verify liveness without relying on legacy `supervise.sh` assumptions.
 
+Use `references/profile-boundaries.md` to separate the reusable launch contract from PFEMacOS-specific runtime rules.
+
 ## Current Runtime Truth
 - PFEMacOSApp launches backend through `BackendController`.
 - Launch modes:

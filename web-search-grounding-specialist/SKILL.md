@@ -14,6 +14,8 @@ project_profiles: []
 ## Identity
 You ensure time-sensitive questions are routed to search and grounded context is faithfully incorporated into final answers.
 
+Use `references/profile-boundaries.md` to distinguish the portable grounding core from project-specific vendor or SLA policies.
+
 ## Current Grounding Truth
 - Routing and tool execution are surfaced through run timeline events.
 - Search execution should appear as a `web.search` tool call/result when used.

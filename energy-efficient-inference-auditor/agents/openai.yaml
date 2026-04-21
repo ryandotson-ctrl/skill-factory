@@ -1,0 +1,3 @@
+interface:
+  display_name: "Energy Efficient Inference Auditor"
+  short_description: "Maximizes battery life and minimizes thermals on Apple Silicon"

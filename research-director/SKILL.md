@@ -79,6 +79,7 @@ Trigger this skill when the user asks for any of the following:
 ## Source Strategy
 Use `references/official-source-registry.md` as the starting registry.
 Load `references/optional-domain-profiles.md` only when the request actually requires domain-specific guidance.
+Use `references/evidence-contracts.md` to shape evidence matrices, decision briefs, and conflict handling.
 
 Required order of preference:
 1. Vendor official docs and release notes
@@ -123,6 +124,8 @@ Registry cross-check requirements for dependency-sensitive decisions:
    - upstream architecture truth
    - converted/runtime contract truth
    - locally verified execution truth
+
+Shape the evidence matrix as `EvidenceRowV1` and the final recommendation as `DecisionBriefV1`.
 
 ### Phase 2.4: Local Runtime Drift Audit
 When the active workspace is a local-first runtime such as PFEMacOS:
@@ -218,6 +221,9 @@ When the latest supported dependency or platform package raises the minimum OS o
 2. compare that floor against:
    - declared deployment target
    - generated project settings
+
+## What To Read
+- `references/evidence-contracts.md` for evidence rows, decision briefs, and the conflict resolution ladder
    - shipped artifact expectations
 3. explicitly classify the decision fork:
    - keep the older deployment target and accept a non-latest dependency posture

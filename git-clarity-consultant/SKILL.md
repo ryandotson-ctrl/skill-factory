@@ -91,6 +91,7 @@ Use this skill when the user asks:
 1. Read workspace goal signals from lightweight project artifacts.
 2. Detect near-term collaboration risks from recent activity.
 3. Prioritize checks based on goal + activity before running deep topology analysis.
+4. Shape the final report using `references/topology-report-contract.md`.
 
 ### Phase 1: Recon
 1. Run `git fetch --all` to ensure all remotes are current.
@@ -107,6 +108,9 @@ Use this skill when the user asks:
 2. Summarize partner activity.
 3. Emit Pulse Bus events if issues detected.
 4. Provide "Near-Term Guidance" with the next 2-4 proactive, low-risk checks.
+
+## What To Read
+- `references/topology-report-contract.md` for the final report structure and severity ladder
 
 
 ## Non-Negotiable Constraints

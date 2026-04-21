@@ -1,0 +1,3 @@
+interface:
+  display_name: "API Shadowing Guardian"
+  short_description: "Detects overlapping or duplicate routes across different"

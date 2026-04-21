@@ -18,6 +18,8 @@ This is the canonical storage skill.
 It must:
 - classify storage from live signals, not calendar-specific rules
 - use current session, thread, workspace, worktree, model, and lock/PID context
+- mine the active thread family's rollout history so any conversation can protect the files, workspaces, and caches it is actively touching
+- infer goal workspaces from the conversation itself, so saying "I'm working on Skill Factory" or "keep Project Free Energy safe" can protect related artifacts even without absolute paths
 - distinguish `hot`, `warm`, and `cold`
 - plan `delete_now`, `offload_manifest`, `review_first`, and `protect`
 - treat `e` as a governed storage tier, not just a blind destination
@@ -78,6 +80,8 @@ Primary signals:
 - current cwd match
 - current live thread and spawned subagent family
 - thread `updated_at` from `.codex/state_5.sqlite`
+- rollout/session JSONL history for the active thread family, including user-requested paths and tool-touched workdirs/files
+- goal-object inference from user messages and thread titles matched against discovered workspace and worktree aliases
 - session day recency under `.codex/sessions`
 - workspace git activity
 - worktree cleanliness and recency

@@ -87,6 +87,8 @@ Output events:
 - `tech:active_surface_map_emitted`
 - `tech_auditor_activity` (legacy compatibility)
 
+Use `references/event-contracts.md` for the event-shape expectations attached to these outputs.
+
 ## Constraints
 1. Report-only: never auto-run mutating update commands.
 2. Do not require `git pull`; audit local state unless explicitly asked to sync.

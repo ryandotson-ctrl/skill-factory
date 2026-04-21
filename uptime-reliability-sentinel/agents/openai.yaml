@@ -1,0 +1,3 @@
+interface:
+  display_name: "Uptime Reliability Sentinel"
+  short_description: "Reliability specialist for PFEMacOSApp + local backend"

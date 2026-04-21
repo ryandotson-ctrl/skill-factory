@@ -18,6 +18,14 @@
       "schema_ref": "default_event_schema"
     },
     {
+      "event_type": "skills:workspace_mirror_drift_detected",
+      "schema_ref": "default_event_schema"
+    },
+    {
+      "event_type": "skills:mirror_alignment_verified",
+      "schema_ref": "default_event_schema"
+    },
+    {
       "event_type": "skills:mirror_sync_applied",
       "schema_ref": "default_event_schema"
     },

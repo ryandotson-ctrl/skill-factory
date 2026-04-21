@@ -26,6 +26,8 @@ The real success condition is that another machine can pull the change and use i
 ## Mission
 Turn local progress into shared, reproducible, environment-agnostic delivery.
 
+Use `references/event-contracts.md` when emitting parity, sync, or publish decisions so downstream consumers can distinguish drift, safe sync, and blocked release states.
+
 This skill is especially important when:
 - syncing PFEMacOS changes to `main`
 - pushing bundled runtime/model changes

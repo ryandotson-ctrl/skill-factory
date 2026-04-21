@@ -1,0 +1,3 @@
+interface:
+  display_name: "Runtime Context Launcher"
+  short_description: "Detects PFEMacOSApp runtime context and launches the backend"

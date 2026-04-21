@@ -161,6 +161,8 @@ Rules:
 - If the user-visible message correctly says proof is missing, consider `truth_guard_blocked_false_success` or `deterministic_executor_gap` first.
 - Only label `action_hallucination` when the answer crossed the line into unproven completion language.
 
+Use `references/event-contracts.md` when shaping audit, remediation, or guard-success emissions.
+
 ## Evidence Sufficiency Contract
 For web-grounded answers:
 1. Current/latest/fact-check/civic claims require at least `3` distinct domains unless one authoritative first-party source directly settles the claim.
@@ -218,6 +220,7 @@ Classification guidance:
    - Is this action, evidence, context, or confidence?
    - Or is it actually `truth_guard_blocked_false_success` / `deterministic_executor_gap`?
 2. **Collect evidence**
+3. Use `references/worked-examples.md` when the classification is ambiguous and you need a canonical example to compare against.
    - run timeline events
    - tool call/result evidence
    - search query and coverage evidence

@@ -6,7 +6,6 @@ from __future__ import annotations
 import argparse
 from dataclasses import dataclass
 import os
-from pathlib import Path
 import shutil
 import subprocess
 import sys
@@ -177,56 +176,6 @@ def _copy_skill(src: str, dest_dir: str) -> None:
     shutil.copytree(src, dest_dir)
 
 
-def _validator_script() -> Path:
-    return Path(__file__).resolve().parents[2] / "skill-creator" / "scripts" / "quick_validate.py"
-
-
-def _post_install_health(dest_dir: str) -> dict[str, object]:
-    skill_dir = Path(dest_dir)
-    manifest_json = skill_dir / "manifest.json"
-    manifest_v2 = skill_dir / "manifest.v2.json"
-    interface_sidecar = skill_dir / "agents" / "openai.yaml"
-
-    validator_path = _validator_script()
-    validation = {
-        "status": "not_run",
-        "message": "Validator unavailable.",
-    }
-    if validator_path.exists():
-        proc = subprocess.run(
-            [sys.executable, str(validator_path), str(skill_dir)],
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            text=True,
-            check=False,
-        )
-        validation = {
-            "status": "passed" if proc.returncode == 0 else "failed",
-            "message": (proc.stdout.strip() or proc.stderr.strip() or "No validator message."),
-        }
-
-    manifest_posture = "missing"
-    if manifest_json.exists() and manifest_v2.exists():
-        manifest_posture = "full"
-    elif manifest_json.exists() or manifest_v2.exists():
-        manifest_posture = "partial"
-
-    pulse_participation = "manual_only"
-    if manifest_posture == "full":
-        pulse_participation = "full"
-    elif manifest_posture == "partial":
-        pulse_participation = "partial"
-
-    return {
-        "manifest_json": manifest_json.exists(),
-        "manifest_v2": manifest_v2.exists(),
-        "interface_sidecar": interface_sidecar.exists(),
-        "manifest_posture": manifest_posture,
-        "pulse_participation": pulse_participation,
-        "validation": validation,
-    }
-
-
 def _build_repo_url(owner: str, repo: str) -> str:
     return f"https://github.com/{owner}/{repo}.git"
 
@@ -348,24 +297,7 @@ def main(argv: list[str]) -> int:
             if os.path.isdir(tmp_dir):
                 shutil.rmtree(tmp_dir, ignore_errors=True)
         for skill_name, dest_dir in installed:
-            health = _post_install_health(dest_dir)
             print(f"Installed {skill_name} to {dest_dir}")
-            print(
-                "  Health:"
-                f" validator={health['validation']['status']},"
-                f" manifests={health['manifest_posture']},"
-                f" interface_sidecar={'yes' if health['interface_sidecar'] else 'no'},"
-                f" pulse_participation={health['pulse_participation']}"
-            )
-            print(f"  Validator: {health['validation']['message']}")
-            if health["manifest_posture"] != "full":
-                print(
-                    "  Advisory: This skill may have partial or manual-only Pulse Bus participation until manifests are added."
-                )
-            if not health["interface_sidecar"]:
-                print(
-                    "  Advisory: This skill does not provide agents/openai.yaml, so UI metadata may be limited."
-                )
         return 0
     except InstallError as exc:
         print(f"Error: {exc}", file=sys.stderr)

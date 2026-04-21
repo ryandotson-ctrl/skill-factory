@@ -33,6 +33,8 @@ Before major issue triage or mass reconciliation:
 1. consult `$omniscient-skill-cataloger` for ecosystem awareness
 2. consult `$skill_director` when deciding canonical/mirrored scope behavior
 
+Use `references/event-contracts.md` when emitting lifecycle, dedupe, or blocked-action events.
+
 ## Operating Modes
 Use `scripts/issue_guardian.py`.
 

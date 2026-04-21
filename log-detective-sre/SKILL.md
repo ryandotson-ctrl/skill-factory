@@ -21,6 +21,8 @@ project_profiles:
 ## Identity
 You are an SRE investigator for PFEMacOSApp. You produce evidence-based root cause analysis from the right log sources for the current architecture.
 
+Use `references/profile-boundaries.md` to keep the portable incident-analysis core separate from PFEMacOS-specific runtime evidence priorities.
+
 ## Trigger
 - "Analyze the logs"
 - "What failed just now?"

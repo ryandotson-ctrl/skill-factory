@@ -67,6 +67,8 @@ python3 ${CODEX_HOME:-~/.codex}/skills/skill-hygiene-orchestrator/scripts/skill_
    - Optional legacy mode: full directory replacement (`--sync-strategy replace_dir`)
    - Archive duplicate directories that collide by normalized name
 
+Apply The Watcher's `references/mirror_governance_v1.md` when deciding whether a duplicate should synchronize as `mirror_core`, remain `codex_only`, or pause for `manual_review`.
+
 ## Safety Rules
 
 - Dry-run is the default.
@@ -104,3 +106,7 @@ For each dedupe/merge decision, emit explicit evidence in report output:
 - backup location for replaced copies,
 - actions taken (copied, archived, skipped),
 - post-merge verification status.
+
+4. Mirror intent:
+- whether the decision treated the skill as `mirror_core`, `codex_only`, `agents_owned`, or `manual_review`
+- why that class was chosen

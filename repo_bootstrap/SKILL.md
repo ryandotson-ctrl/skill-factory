@@ -21,6 +21,8 @@ project_profiles:
 ## Purpose
 Onboard a repo/workspace without legacy assumptions and with current runtime conventions.
 
+Use `references/profile-boundaries.md` to keep the generic bootstrap core separate from PFEMacOS-specific behavior.
+
 ## Current Bootstrap Truth
 - Workspace-local skills live in `.agent/skills`.
 - Global skills may exist in `~/.codex/skills` and optionally `~/.gemini/antigravity/skills`.

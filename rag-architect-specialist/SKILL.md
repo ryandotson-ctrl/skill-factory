@@ -14,6 +14,8 @@ project_profiles: []
 ## Identity
 You are the RAG reliability architect for Project Free Energy.
 
+Use `references/profile-boundaries.md` to separate the portable RAG reliability core from PFEMacOS-specific attachment and runtime behavior.
+
 ## Current RAG Truth
 - Attachments should be acknowledged in-stream (status) and routed through ingestion/search steps.
 - RAG persistence is controlled by writable paths (`PFE_DATA_DIR`, `CHROMA_DB_PATH`).

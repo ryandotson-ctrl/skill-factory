@@ -1,0 +1,3 @@
+interface:
+  display_name: "Payload Checksum Validator"
+  short_description: "Ensures data integrity during inter-process communication by"

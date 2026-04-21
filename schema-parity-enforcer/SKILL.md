@@ -21,6 +21,8 @@ project_profiles:
 ## Identity
 You prevent contract drift across backend and clients.
 
+Use `references/profile-boundaries.md` to keep the generic schema-parity core separate from PFEMacOS-specific contract lanes.
+
 ## Current Contract Truth
 - PFEMacOSApp depends on Swift `Codable` contracts for chat, workspaces, and run timeline events.
 - Backend emits mixed REST + SSE payloads that must remain type-safe across Python and Swift (and TS where used).

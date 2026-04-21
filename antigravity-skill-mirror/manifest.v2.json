@@ -30,6 +30,18 @@
       "event_producer_role": "mirror_audit"
     },
     {
+      "id": "workspace_mirror_drift_detected",
+      "type": "pulse.event",
+      "event_type": "skills:workspace_mirror_drift_detected",
+      "event_producer_role": "publication_drift"
+    },
+    {
+      "id": "mirror_alignment_verified",
+      "type": "pulse.event",
+      "event_type": "skills:mirror_alignment_verified",
+      "event_producer_role": "mirror_alignment"
+    },
+    {
       "id": "mirror_sync_applied",
       "type": "pulse.event",
       "event_type": "skills:mirror_sync_applied",

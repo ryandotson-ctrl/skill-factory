@@ -34,6 +34,7 @@ Select one mode before acting:
 - `adopt_existing`: do not regenerate app sources; only install optional tooling and bootstrap artifacts
 
 Read `references/mode-contracts.md` for flags, receipts, and the platform or UI compatibility matrix.
+Use `references/receipt-contracts.md` for the canonical bootstrap and support-install receipts, and `references/event-contracts.md` for Pulse Bus routing semantics.
 
 ## Supported Platforms And UI
 
@@ -89,6 +90,8 @@ The final response should include:
 - exact next commands
 - any skipped actions and why
 
+Treat that final response as `BootstrapReceiptV1` for `new_project` work and `SupportInstallReceiptV1` for support-only adoption passes.
+
 ## Project Free Energy Profile
 
 Use the optional `pfe` profile when the project is a PFE companion surface.
@@ -105,7 +108,10 @@ Read `references/pfe-profile.md` before using the PFE profile.
 ## Resources
 
 - `references/mode-contracts.md`
+- `references/receipt-contracts.md`
+- `references/event-contracts.md`
 - `references/pfe-profile.md`
+- `references/worked-examples.md`
 - `scripts/init.sh`
 - `scripts/scaffold_app.sh`
 - `scripts/install_task_templates.sh`
@@ -114,3 +120,19 @@ Read `references/pfe-profile.md` before using the PFE profile.
 - `assets/xcodegen/`
 - `assets/simple-tasks/`
 - `assets/onboarding/`
+
+## Pulse Bus Contract
+
+Ingress:
+- `skill:apple-project-bootstrap-orchestrator:requested`
+- `apple:project_bootstrap_requested`
+- `apple:project_adoption_requested`
+- `apple:project_support_install_requested`
+
+Primary outputs:
+- `apple:project_bootstrap_receipt`
+- `apple:project_adoption_receipt`
+- `apple:project_support_install_receipt`
+- `apple_project_bootstrap_orchestrator_activity`
+
+Use the receipt and event contracts so downstream skills can distinguish full scaffolds from non-destructive adoption and support-only installation passes.
