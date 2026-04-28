@@ -1,4 +1,0 @@
-interface:
-  display_name: "Storage Cleanup Orchestrator"
-  short_description: "Guarded disk audit and cleanup runner"
-  default_prompt: "Audit this workspace and related model caches, produce a safe deletion plan, then optionally apply only reviewed tiers and report reclaimed space."

@@ -1,3 +1,0 @@
-interface:
-  display_name: "Multi Modal Pipeline Auditor"
-  short_description: "Orchestrates and stabilizes transitions between Vision, Audio,"

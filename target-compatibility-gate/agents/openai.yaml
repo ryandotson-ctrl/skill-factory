@@ -1,4 +1,0 @@
-interface:
-  display_name: "Target Compatibility Gate"
-  short_description: "Check target compatibility and propose transform actions"
-  default_prompt: "Validate artifact requirements against target capabilities and emit compatibility plus transform plan artifacts."

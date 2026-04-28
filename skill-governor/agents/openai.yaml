@@ -1,7 +1,0 @@
-interface:
-  display_name: "skill-governor"
-  short_description: "Govern additive skill evolution, portability, mirror parity, and regression gates"
-  default_prompt: "Use $skill-governor to evolve skills without losing knowledge, portability, Pulse Bus routing, or mirror integrity."
-
-policy:
-  allow_implicit_invocation: true

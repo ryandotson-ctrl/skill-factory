@@ -1,4 +1,0 @@
-interface:
-  display_name: "Antigravity Skill Mirror"
-  short_description: "Sync antigravity skills into codex safely"
-  default_prompt: "Compare codex and antigravity skill roots, identify mirror drift or missing copies, and propose or apply additive mirror-safe synchronization without losing root-specific intent."

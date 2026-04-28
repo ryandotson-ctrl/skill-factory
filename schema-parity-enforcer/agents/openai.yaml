@@ -1,3 +1,0 @@
-interface:
-  display_name: "Schema Parity Enforcer"
-  short_description: "Enforces schema parity across backend Python models and client"

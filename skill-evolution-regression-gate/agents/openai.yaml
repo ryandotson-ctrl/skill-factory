@@ -1,5 +1,0 @@
-display_name: Skill Evolution Regression Gate
-short_description: Policy gate for skill changes with additive, portability, and manifest checks.
-default_prompt: |
-  Run a deterministic regression gate for skill-library changes in this workspace.
-  Return pass, warning, or blocker with explicit checks and remediation.

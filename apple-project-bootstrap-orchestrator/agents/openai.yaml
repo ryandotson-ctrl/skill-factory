@@ -1,7 +1,0 @@
-interface:
-  display_name: "Apple Project Bootstrap"
-  short_description: "Portable Apple app scaffold and adoption orchestrator."
-  default_prompt: "Use $apple-project-bootstrap-orchestrator to scaffold or adopt an Apple app project with generator-backed bootstrap and optional project tooling."
-
-policy:
-  allow_implicit_invocation: true

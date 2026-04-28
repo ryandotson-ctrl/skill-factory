@@ -1,7 +1,0 @@
-interface:
-  display_name: "Agentic Innovation Experiment Bridge"
-  short_description: "Plan bounded experiments with promotion gates"
-  default_prompt: "Use $agentic-innovation-experiment-bridge to turn this ambitious idea into a bounded experiment with eval and promotion criteria."
-
-policy:
-  allow_implicit_invocation: false

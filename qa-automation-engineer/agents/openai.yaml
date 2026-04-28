@@ -1,4 +1,0 @@
-interface:
-  display_name: "QA Automation Engineer"
-  short_description: "Regression-first testing and automation"
-  default_prompt: "Use QA Automation Engineer to design or add the narrowest high-value test coverage, prefer deterministic local proof lanes, and strengthen regression safety without introducing brittle noise."

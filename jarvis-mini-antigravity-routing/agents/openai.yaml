@@ -1,4 +1,0 @@
-interface:
-  display_name: "Jarvis Mini Antigravity Routing"
-  short_description: "Antigravity routing and Opus 4.6 enforcement."
-  default_prompt: "Use $jarvis-mini-antigravity-routing to enforce Opus 4.6 primary routing with safe fallbacks."

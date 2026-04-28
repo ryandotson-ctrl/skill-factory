@@ -1,7 +1,0 @@
-interface:
-  display_name: "knowledge"
-  short_description: "Preserve and retrieve wisdom, context, ledgers, and knowledge graphs"
-  default_prompt: "Use $knowledge to preserve, retrieve, rank, and package reusable knowledge across sessions and workspaces."
-
-policy:
-  allow_implicit_invocation: true

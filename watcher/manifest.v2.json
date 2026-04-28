@@ -20,6 +20,174 @@
       "pattern": "skills:watcher_requested",
       "route_mode": "owned",
       "route_priority": 90
+    },
+    {
+      "id": "observe_artifacts_status",
+      "type": "pulse.event",
+      "pattern": "skill_activity:artifacts",
+      "route_mode": "observer",
+      "route_priority": 10
+    },
+    {
+      "id": "observe_artifacts_ready",
+      "type": "pulse.event",
+      "pattern": "artifacts:package_ready",
+      "route_mode": "observer",
+      "route_priority": 10
+    },
+    {
+      "id": "observe_automation_status",
+      "type": "pulse.event",
+      "pattern": "skill_activity:automation",
+      "route_mode": "observer",
+      "route_priority": 10
+    },
+    {
+      "id": "observe_automation_ready",
+      "type": "pulse.event",
+      "pattern": "automation:verification_ready",
+      "route_mode": "observer",
+      "route_priority": 10
+    },
+    {
+      "id": "observe_engineering_status",
+      "type": "pulse.event",
+      "pattern": "skill_activity:engineering",
+      "route_mode": "observer",
+      "route_priority": 10
+    },
+    {
+      "id": "observe_engineering_ready",
+      "type": "pulse.event",
+      "pattern": "engineering:delivery_ready",
+      "route_mode": "observer",
+      "route_priority": 10
+    },
+    {
+      "id": "observe_knowledge_data_status",
+      "type": "pulse.event",
+      "pattern": "skill_activity:knowledge-data",
+      "route_mode": "observer",
+      "route_priority": 10
+    },
+    {
+      "id": "observe_knowledge_data_ready",
+      "type": "pulse.event",
+      "pattern": "knowledge:data_ready",
+      "route_mode": "observer",
+      "route_priority": 10
+    },
+    {
+      "id": "observe_missions_status",
+      "type": "pulse.event",
+      "pattern": "skill_activity:missions",
+      "route_mode": "observer",
+      "route_priority": 10
+    },
+    {
+      "id": "observe_missions_ready",
+      "type": "pulse.event",
+      "pattern": "missions:mission_ready",
+      "route_mode": "observer",
+      "route_priority": 10
+    },
+    {
+      "id": "observe_ml_status",
+      "type": "pulse.event",
+      "pattern": "skill_activity:ml",
+      "route_mode": "observer",
+      "route_priority": 10
+    },
+    {
+      "id": "observe_ml_ready",
+      "type": "pulse.event",
+      "pattern": "ml:work_ready",
+      "route_mode": "observer",
+      "route_priority": 10
+    },
+    {
+      "id": "observe_platforms_status",
+      "type": "pulse.event",
+      "pattern": "skill_activity:platforms",
+      "route_mode": "observer",
+      "route_priority": 10
+    },
+    {
+      "id": "observe_platforms_ready",
+      "type": "pulse.event",
+      "pattern": "platforms:profile_ready",
+      "route_mode": "observer",
+      "route_priority": 10
+    },
+    {
+      "id": "observe_reliability_status",
+      "type": "pulse.event",
+      "pattern": "skill_activity:reliability",
+      "route_mode": "observer",
+      "route_priority": 10
+    },
+    {
+      "id": "observe_reliability_ready",
+      "type": "pulse.event",
+      "pattern": "reliability:stabilization_ready",
+      "route_mode": "observer",
+      "route_priority": 10
+    },
+    {
+      "id": "observe_research_status",
+      "type": "pulse.event",
+      "pattern": "skill_activity:research",
+      "route_mode": "observer",
+      "route_priority": 10
+    },
+    {
+      "id": "observe_research_ready",
+      "type": "pulse.event",
+      "pattern": "research:intelligence_ready",
+      "route_mode": "observer",
+      "route_priority": 10
+    },
+    {
+      "id": "observe_security_status",
+      "type": "pulse.event",
+      "pattern": "skill_activity:security",
+      "route_mode": "observer",
+      "route_priority": 10
+    },
+    {
+      "id": "observe_security_ready",
+      "type": "pulse.event",
+      "pattern": "security:review_ready",
+      "route_mode": "observer",
+      "route_priority": 10
+    },
+    {
+      "id": "observe_ux_status",
+      "type": "pulse.event",
+      "pattern": "skill_activity:ux",
+      "route_mode": "observer",
+      "route_priority": 10
+    },
+    {
+      "id": "observe_ux_ready",
+      "type": "pulse.event",
+      "pattern": "ux:spec_ready",
+      "route_mode": "observer",
+      "route_priority": 10
+    },
+    {
+      "id": "observe_watcher_status",
+      "type": "pulse.event",
+      "pattern": "skill_activity:watcher",
+      "route_mode": "observer",
+      "route_priority": 10
+    },
+    {
+      "id": "observe_watcher_ready",
+      "type": "pulse.event",
+      "pattern": "skills:watcher_intelligence_ready",
+      "route_mode": "observer",
+      "route_priority": 10
     }
   ],
   "outputs": [

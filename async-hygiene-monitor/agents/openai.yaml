@@ -1,3 +1,0 @@
-interface:
-  display_name: "Async Hygiene Monitor"
-  short_description: "Scans the codebase for event-loop blocks, improper await"

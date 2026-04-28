@@ -1,4 +1,0 @@
-interface:
-  display_name: "Pi 3B OpenClaw Tuning"
-  short_description: "Stabilize OpenClaw on 1GB Pi 3B"
-  default_prompt: "Use $pi3b-openclaw-tuning-specialist to stabilize OpenClaw on a Pi 3B and produce a memory-budgeted runbook."

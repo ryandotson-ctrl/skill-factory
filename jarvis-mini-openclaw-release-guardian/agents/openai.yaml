@@ -1,4 +1,0 @@
-interface:
-  display_name: "Jarvis Mini OpenClaw Release Guardian"
-  short_description: "Safe release checks, staged updates, and rollback."
-  default_prompt: "Use $jarvis-mini-openclaw-release-guardian to manage OpenClaw updates with rollback safety."

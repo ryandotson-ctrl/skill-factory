@@ -1,7 +1,0 @@
-interface:
-  display_name: "Agentic Engineering Orchestrator"
-  short_description: "Route software work with context sweep, truth-status, no-regression, and closure rigor"
-  default_prompt: "Use $agentic-engineering-orchestrator to inspect the repo reality first, classify risk and risk_flags, compare route options, preserve existing logic, keep observed work separate from planned work, and require validation artifacts before declaring anything understood, fixed, safe, or ready."
-
-policy:
-  allow_implicit_invocation: true

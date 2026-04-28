@@ -1,7 +1,0 @@
-interface:
-  display_name: "skill-builder"
-  short_description: "Create, install, package, and repair skills and plugins"
-  default_prompt: "Use $skill-builder to create or install skills with validation, receipts, and hidden-system preservation."
-
-policy:
-  allow_implicit_invocation: true

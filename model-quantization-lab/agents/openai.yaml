@@ -1,3 +1,0 @@
-interface:
-  display_name: "Model Quantization Lab"
-  short_description: "Locally optimizes model weights using MLX quantization (4-bit,"

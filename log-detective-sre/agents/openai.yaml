@@ -1,3 +1,0 @@
-interface:
-  display_name: "Log Detective Sre"
-  short_description: "Investigates PFEMacOSApp and backend failures using app-first"

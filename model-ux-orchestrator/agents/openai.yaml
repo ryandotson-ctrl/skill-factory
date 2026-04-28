@@ -1,4 +1,0 @@
-interface:
-  display_name: "Model UX Orchestrator"
-  short_description: "Truthful premium assistant UX guidance"
-  default_prompt: "Improve assistant-facing UX so status, uncertainty, and action reporting stay truthful, calm, premium, and actually useful to the user."

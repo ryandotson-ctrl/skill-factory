@@ -1,4 +1,0 @@
-interface:
-  display_name: "Conversation Skill Evolution Director"
-  short_description: "Session-aware skill evolution strategist"
-  default_prompt: "Assess end-to-end session context and outcomes, then decide whether to update existing skills or create a new one using additive, portability-safe recommendations."

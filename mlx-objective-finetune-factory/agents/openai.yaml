@@ -1,3 +1,0 @@
-interface:
-  display_name: "Mlx Objective Finetune Factory"
-  short_description: "Objective-driven local MLX fine-tuning and self-distillation"

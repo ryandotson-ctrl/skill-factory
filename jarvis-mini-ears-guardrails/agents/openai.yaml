@@ -1,4 +1,0 @@
-interface:
-  display_name: "Jarvis Mini Ears Guardrails"
-  short_description: "Sleep and ambient guardrails without runaway tasks."
-  default_prompt: "Use $jarvis-mini-ears-guardrails to keep Ears checks active with strict anti-runaway controls."

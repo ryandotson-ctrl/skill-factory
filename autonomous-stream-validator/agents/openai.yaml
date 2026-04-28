@@ -1,3 +1,0 @@
-interface:
-  display_name: "Autonomous Stream Validator"
-  short_description: "Validates SSE stream integrity and run-ledger consistency for"

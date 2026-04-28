@@ -1,3 +1,0 @@
-interface:
-  display_name: "Circular Import Sentinel"
-  short_description: "Detects and resolves 'ImportError: cannot import name X from"

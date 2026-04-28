@@ -1,3 +1,0 @@
-interface:
-  display_name: "Thread Safety Auditor"
-  short_description: "Scans the backend for race conditions, improper global state"

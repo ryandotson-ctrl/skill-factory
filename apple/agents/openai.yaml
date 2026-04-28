@@ -1,7 +1,0 @@
-interface:
-  display_name: "apple"
-  short_description: "Bootstrap, adopt, verify, and release Apple platform projects"
-  default_prompt: "Use $apple to work on Xcode projects, Apple build harnesses, release profiles, signing readiness, and platform-specific receipts."
-
-policy:
-  allow_implicit_invocation: true

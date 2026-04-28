@@ -1,3 +1,0 @@
-interface:
-  display_name: "Foundry Autonomy Recovery Operator"
-  short_description: "Portable control-plane recovery operator for autonomous"

@@ -1,4 +1,0 @@
-interface:
-  display_name: "Capability Entitlement Negotiator"
-  short_description: "Classify execution modes from credentials and entitlements"
-  default_prompt: "Negotiate provider capability and entitlement state, then emit execution_mode and capability_matrix artifacts."

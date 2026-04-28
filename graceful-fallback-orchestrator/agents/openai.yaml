@@ -1,3 +1,0 @@
-interface:
-  display_name: "Graceful Fallback Orchestrator"
-  short_description: "Manages degraded states (e.g., falling back to CPU if GPU is"

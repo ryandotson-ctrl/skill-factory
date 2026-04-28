@@ -1,4 +1,0 @@
-interface:
-  display_name: "UI UX Ive Level"
-  short_description: "UX spec factory for audits, systems, and handoff"
-  default_prompt: "Use $ui-ux-ive-level to produce a modular UX spec, audit, or platform-ready handoff for this product surface."

@@ -1,4 +1,0 @@
-interface:
-  display_name: "Skill Portability Guardian"
-  short_description: "Portability and privacy auditor for skills"
-  default_prompt: "Audit skill roots for portability and privacy safety, preserve additive behavior, respect root roles and hidden/runtime skill classifications, and report exact leak or compatibility findings without destructive rewrites."

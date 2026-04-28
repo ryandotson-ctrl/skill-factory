@@ -1,3 +1,0 @@
-interface:
-  display_name: "Local Network Hardener"
-  short_description: "Hardens PFEMacOS local backend networking and auth posture for"

@@ -1,3 +1,0 @@
-interface:
-  display_name: "Job Apply Autonomous"
-  short_description: "Fully autonomous job application agent. Reads local resumes"

@@ -1,7 +1,0 @@
-interface:
-  display_name: "pfe-profile"
-  short_description: "Load Project Free Energy-specific runtime, RAG, schema, model, and uptime wisdom"
-  default_prompt: "Use $pfe-profile only when Project Free Energy context is active and profile-gated guidance is needed."
-
-policy:
-  allow_implicit_invocation: false

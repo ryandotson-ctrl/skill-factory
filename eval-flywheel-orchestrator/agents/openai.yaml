@@ -1,4 +1,0 @@
-interface:
-  display_name: "Eval Flywheel Orchestrator"
-  short_description: "Run eval loops with threshold and regression gates"
-  default_prompt: "Run a deterministic eval flywheel and emit dataset, grader spec, and summary artifacts."

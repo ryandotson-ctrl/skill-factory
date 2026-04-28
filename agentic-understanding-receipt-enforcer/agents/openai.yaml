@@ -1,7 +1,0 @@
-interface:
-  display_name: "Agentic Understanding Receipt Enforcer"
-  short_description: "Require short explain-as-you-go receipts"
-  default_prompt: "Use $agentic-understanding-receipt-enforcer to produce a short understanding receipt for this change or bug fix."
-
-policy:
-  allow_implicit_invocation: false

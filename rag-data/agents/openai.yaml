@@ -1,7 +1,0 @@
-interface:
-  display_name: "rag-data"
-  short_description: "Align retrieval, schemas, telemetry, evals, contracts, and data movement"
-  default_prompt: "Use $rag-data to diagnose retrieval, enforce schemas and contracts, validate telemetry, and keep data movement truthful."
-
-policy:
-  allow_implicit_invocation: true

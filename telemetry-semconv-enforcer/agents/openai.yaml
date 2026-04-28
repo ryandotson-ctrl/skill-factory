@@ -1,4 +1,0 @@
-interface:
-  display_name: "Telemetry Semconv Enforcer"
-  short_description: "Validate telemetry semantics and emit conformance report"
-  default_prompt: "Check telemetry semantic conventions and emit normalized profile plus conformance artifacts."

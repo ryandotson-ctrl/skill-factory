@@ -1,4 +1,0 @@
-interface:
-  display_name: "Launch Window Budget Guard"
-  short_description: "Enforce deterministic go or no-go budget launch gates"
-  default_prompt: "Evaluate launch budget and gate checks, then emit launch contract and readiness report artifacts."

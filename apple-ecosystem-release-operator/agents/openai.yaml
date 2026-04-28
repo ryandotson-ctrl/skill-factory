@@ -1,7 +1,0 @@
-interface:
-  display_name: "Apple Release Operator"
-  short_description: "Portable Apple release and TestFlight operator"
-  default_prompt: "Use $apple-ecosystem-release-operator to prepare this Apple app for internal TestFlight and capture a reusable release profile."
-
-policy:
-  allow_implicit_invocation: true

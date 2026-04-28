@@ -1,4 +1,0 @@
-interface:
-  display_name: "AI Agent BI Researcher"
-  short_description: "Cross-project trend and competitive intelligence for agentic products"
-  default_prompt: "Run a project-agnostic BI research sweep for agentic products and produce evidence-graded decision lanes, companion-skill fit, a decision matrix, and a 30/60/90 action backlog."
