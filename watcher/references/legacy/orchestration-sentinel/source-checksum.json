@@ -1,0 +1,38 @@
+{
+  "schema": "LegacySourceChecksumV1",
+  "generated_at": "2026-04-28T02:49:55.822775+00:00",
+  "file_count": 6,
+  "aggregate_sha256": "ef220d74dafc735028aacd400c7519df775c1b5be342ce7ac3c993edf5ba7f5c",
+  "files": [
+    {
+      "path": "SKILL.md",
+      "sha256": "c3f13db284245293b392d07cd2b90c1f390461842666cce7a4cf1d59e1c177d7",
+      "bytes": 1706
+    },
+    {
+      "path": "agents/openai.yaml",
+      "sha256": "84c4ae2593b69d323efd1ef41bd3d383ca4fde838b8bc857a204537414c24709",
+      "bytes": 131
+    },
+    {
+      "path": "index.md",
+      "sha256": "55a76fb57b88659ce7b794d9dc6ae0af580b3772b8143a0fc8ba370cea768980",
+      "bytes": 248
+    },
+    {
+      "path": "manifest.json",
+      "sha256": "b35663266eef430d9c020c3d4bf24ca3a5db0865bfc1000cf88ea2c0fc287a58",
+      "bytes": 372
+    },
+    {
+      "path": "manifest.v2.json",
+      "sha256": "575bb0048dc38a86766b9e80c2533cd5718c6f1ac20f87a951ca4c72ffd4f212",
+      "bytes": 501
+    },
+    {
+      "path": "sentinel.py",
+      "sha256": "9580aeb9e9cec645b754107ed60166013d3f26506a591791914d60d3e365f3a0",
+      "bytes": 3471
+    }
+  ]
+}

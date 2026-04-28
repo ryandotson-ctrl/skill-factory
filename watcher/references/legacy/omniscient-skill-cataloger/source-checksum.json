@@ -1,0 +1,43 @@
+{
+  "schema": "LegacySourceChecksumV1",
+  "generated_at": "2026-04-28T02:49:55.789517+00:00",
+  "file_count": 7,
+  "aggregate_sha256": "f9031b100974e717968495faee0327add7237047e406b5791d4e2bb5208beefa",
+  "files": [
+    {
+      "path": "SKILL.md",
+      "sha256": "cd268428256f624c8c48b37819efc41d8f9bc64582da8fc1249689fc8d58aea1",
+      "bytes": 3466
+    },
+    {
+      "path": "agents/openai.yaml",
+      "sha256": "31af607e4b51dec9ee382d7b9f1518cf2fa6a1454538ebed5d00a8434fb7e48d",
+      "bytes": 322
+    },
+    {
+      "path": "catalog_output.md",
+      "sha256": "9bbd52ba59b328b7038fa465197314424d352e2059823dab38f9b0eada26d821",
+      "bytes": 36134
+    },
+    {
+      "path": "index.md",
+      "sha256": "899c7a6ceb85d75889b6d6fbe32b433cb079cfb181e69aff0e09a95cadda794b",
+      "bytes": 256
+    },
+    {
+      "path": "manifest.json",
+      "sha256": "425008cb00383425a5545535ad127d04392dea711c6391a8adb8df136f8313a0",
+      "bytes": 328
+    },
+    {
+      "path": "manifest.v2.json",
+      "sha256": "500810dc3b812166d12cad297fe7b62fbe9d50d3bb7adc4015aa2330b7c50e0d",
+      "bytes": 622
+    },
+    {
+      "path": "scripts/generate_catalog.py",
+      "sha256": "835b63f91abb48cbee903041e4103a36dd5b13ed89c847527e2cdb8efb7d421a",
+      "bytes": 13049
+    }
+  ]
+}

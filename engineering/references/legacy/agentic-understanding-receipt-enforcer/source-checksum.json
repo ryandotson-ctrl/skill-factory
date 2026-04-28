@@ -1,0 +1,38 @@
+{
+  "schema": "LegacySourceChecksumV1",
+  "generated_at": "2026-04-28T02:49:55.838916+00:00",
+  "file_count": 6,
+  "aggregate_sha256": "ee9d83c1191c2fd52242db400d195fca18dadf25bdfaf01264a240c8e60b46d5",
+  "files": [
+    {
+      "path": "SKILL.md",
+      "sha256": "69b4370608641de397fc9ff2b3ba41eba4054a51233cd3764e59070387ad24fc",
+      "bytes": 1515
+    },
+    {
+      "path": "agents/openai.yaml",
+      "sha256": "fbcd59f35daafe3eb8ecffd9b2140dece72b002374eca4a82c831295b1162cc9",
+      "bytes": 309
+    },
+    {
+      "path": "index.md",
+      "sha256": "8957d4556cba831537e4467ca3a68278a2ffc5654c57c4de63adf96693650874",
+      "bytes": 288
+    },
+    {
+      "path": "manifest.json",
+      "sha256": "4916c510cc8d3ccf516d4c5f1ca3026a9c6be3b469309d7ae5045c3a5420dde0",
+      "bytes": 793
+    },
+    {
+      "path": "manifest.v2.json",
+      "sha256": "7063cdc048938f1d73929d6f968c7d8a86fbdc1dc6eb1667402955c40dbec423",
+      "bytes": 1048
+    },
+    {
+      "path": "references/receipt-templates.md",
+      "sha256": "83f89cb4c856af803be86bb4ddfb497a80e53b3aab82c925d2b5d2ef3cae7437",
+      "bytes": 855
+    }
+  ]
+}

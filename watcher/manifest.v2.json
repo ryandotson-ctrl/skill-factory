@@ -1,7 +1,7 @@
 {
   "schema_version": "2.0.0",
   "display_name": "watcher",
-  "description": "Lean core ecosystem intelligence skill for inventory, drift, wisdom, and posture.",
+  "description": "Maintains the skill ecosystem, Pulse Bus, self-improvement loops, migration safety, and portable skill governance.",
   "dispatch": {
     "mode": "automatic",
     "cooldown": 300
@@ -15,7 +15,7 @@
       "route_priority": 95
     },
     {
-      "id": "watcher_requested",
+      "id": "semantic_request",
       "type": "pulse.event",
       "pattern": "skills:watcher_requested",
       "route_mode": "owned",
@@ -30,15 +30,19 @@
       "event_producer_role": "core_status"
     },
     {
-      "id": "watcher_intelligence_ready",
+      "id": "ready",
       "type": "pulse.event",
       "event_type": "skills:watcher_intelligence_ready",
-      "event_producer_role": "core_intelligence"
+      "event_producer_role": "core_ready"
     }
   ],
   "awareness": [
-    "skill-governor",
-    "knowledge",
-    "research"
+    "engineering",
+    "reliability",
+    "security",
+    "research",
+    "knowledge-data",
+    "platforms",
+    "missions"
   ]
 }

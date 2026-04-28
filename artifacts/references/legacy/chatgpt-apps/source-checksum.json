@@ -1,0 +1,78 @@
+{
+  "schema": "LegacySourceChecksumV1",
+  "generated_at": "2026-04-28T02:49:55.998518+00:00",
+  "file_count": 14,
+  "aggregate_sha256": "7c6c50c7039ad5307c79b23c81637d750cadddadf9111c970b71e9b8794f552a",
+  "files": [
+    {
+      "path": "LICENSE.txt",
+      "sha256": "a7f55b2cb68997f729e6199720d4d3cae47633aba0254a84b2d36ab284be9d45",
+      "bytes": 10774
+    },
+    {
+      "path": "SKILL.md",
+      "sha256": "c3a13a659ce26e9d067b5a97c321e8abec6d8e878afce31b7e841dfcf2635c3a",
+      "bytes": 19626
+    },
+    {
+      "path": "agents/openai.yaml",
+      "sha256": "ebd723c60efd5242c628da61c0f1a91edd3dc106860573ba8f2f96dcdd224fcb",
+      "bytes": 842
+    },
+    {
+      "path": "index.md",
+      "sha256": "4238905058e77d8715d0c069b3e4f5684cbfe4927566974a006884347e09ac5c",
+      "bytes": 232
+    },
+    {
+      "path": "manifest.json",
+      "sha256": "30ee5365651ec5530e676bd32b0f5c25a0e8a65854a59e9eac817927fbf13a72",
+      "bytes": 650
+    },
+    {
+      "path": "manifest.v2.json",
+      "sha256": "4e777c3b68c49a620e1f1e3b5c5ea61adf9b0ab10392593b309e159a5d88df40",
+      "bytes": 888
+    },
+    {
+      "path": "references/app-archetypes.md",
+      "sha256": "ae3bb232c201541303264653518eca8bc59832bc73e511835d66ebd0a3c04f87",
+      "bytes": 3514
+    },
+    {
+      "path": "references/apps-sdk-docs-workflow.md",
+      "sha256": "41f0ec23b35c6a66de59de80c13b9be59002a371c8a36d23f96f20e19c656b49",
+      "bytes": 8143
+    },
+    {
+      "path": "references/interactive-state-sync-patterns.md",
+      "sha256": "5ca632712be3d75f63a405292184a7867cfc0fa3803b53b2063a94318a8c1278",
+      "bytes": 4281
+    },
+    {
+      "path": "references/repo-contract-and-validation.md",
+      "sha256": "28fb7093b67e29d05322e3fd38cb7ad182e92913aa45051d97dbddca8a627cd6",
+      "bytes": 2962
+    },
+    {
+      "path": "references/search-fetch-standard.md",
+      "sha256": "32c706205035007d1b616bf3eeb6c6c9ce69f6c56493bf0ea942a20abe8b39e6",
+      "bytes": 2021
+    },
+    {
+      "path": "references/upstream-example-workflow.md",
+      "sha256": "241f2fc58ff6c3b276325bef70254d8e1a18ec9e7633bd3bd03ef45ff478f727",
+      "bytes": 3443
+    },
+    {
+      "path": "references/window-openai-patterns.md",
+      "sha256": "940c5308c89d9984c9c07c78d9fddf5fdaed97f106e6b631ed8ae6e6128e5bbf",
+      "bytes": 3879
+    },
+    {
+      "path": "scripts/scaffold_node_ext_apps.mjs",
+      "sha256": "fb12086ca7e37ab7d1fb02418b11623f207b8726aabfcbfb3d5634539479807a",
+      "bytes": 16371
+    }
+  ]
+}

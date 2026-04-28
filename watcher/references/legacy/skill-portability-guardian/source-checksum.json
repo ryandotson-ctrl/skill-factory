@@ -1,0 +1,238 @@
+{
+  "schema": "LegacySourceChecksumV1",
+  "generated_at": "2026-04-28T02:49:55.811544+00:00",
+  "file_count": 46,
+  "aggregate_sha256": "0bdb9f1651efd5172dfdfed28d9b7dccdb9a25c36ef17f81324c6f022242c399",
+  "files": [
+    {
+      "path": "SKILL.md",
+      "sha256": "167d8f3148c927604186c5fc81f60963fff71736bea432454396635f8eba34b0",
+      "bytes": 6303
+    },
+    {
+      "path": "agents/openai.yaml",
+      "sha256": "68d62c914c5d9eed25622bfb3ee190af65e84cbd1d20583504e1555278321223",
+      "bytes": 363
+    },
+    {
+      "path": "index.md",
+      "sha256": "d7c816b0f622874e9dbac9afbb9c11700b60cc96611f597073a9b71b506f4a60",
+      "bytes": 256
+    },
+    {
+      "path": "manifest.json",
+      "sha256": "f032bec99d87446bd604572c8026bb983fde142aeb10ef1ee02b6ebd1ea28d26",
+      "bytes": 561
+    },
+    {
+      "path": "manifest.v2.json",
+      "sha256": "e098627d5398083078d0291e6f8a318a711a670cdf785d465b3029e601fd6eb4",
+      "bytes": 711
+    },
+    {
+      "path": "references/portability_policy_v1.md",
+      "sha256": "deea6b839a0d4d23712217580befba4cc8555a0c4dd1a3a30aab85cc857458c5",
+      "bytes": 1141
+    },
+    {
+      "path": "references/portability_rules.yaml",
+      "sha256": "433fbfe6e45d110e800e9a9262a7cb7f75de3953d44946d5278be1d4e4f6121e",
+      "bytes": 3305
+    },
+    {
+      "path": "references/sync_guidance.md",
+      "sha256": "6adeb892806dc077e58aef2fcffa1cdd1884db8c09828f4249eb8610ebf890ba",
+      "bytes": 1447
+    },
+    {
+      "path": "reports/portability-report-20260306-021430.json",
+      "sha256": "27c7a41b8be8a3f836328b839cd32294cdd6a15264efe160f8760cf45b167095",
+      "bytes": 590
+    },
+    {
+      "path": "reports/portability-report-20260306-021430.md",
+      "sha256": "c75d8256cd2f408d8eb4ebb7472b5aeee6346a9689d1318ffddd89b873f6100b",
+      "bytes": 547
+    },
+    {
+      "path": "reports/portability-report-20260306-022351.json",
+      "sha256": "b4f9c36003449a570a255397165fe4774e6dd935bb5382aeabb651c7330594af",
+      "bytes": 4406
+    },
+    {
+      "path": "reports/portability-report-20260306-022351.md",
+      "sha256": "91a6f6fe418dfe03105604a3728fd42e6ea3cf6cb57c19a6b4f3265a64a44986",
+      "bytes": 2741
+    },
+    {
+      "path": "reports/portability-report-20260306-024510.json",
+      "sha256": "111c1d3ad603bfee8ce470ef96880c92fd883d238bdb335bf01b78ddb335062b",
+      "bytes": 8314
+    },
+    {
+      "path": "reports/portability-report-20260306-024510.md",
+      "sha256": "000c83cf85c7731b4c709dad2b1a38c8bec48c8b9a274d2a8d2c0bbf7b05a897",
+      "bytes": 4863
+    },
+    {
+      "path": "reports/portability-report-20260309-023210.json",
+      "sha256": "ba0ee79fa557c3a3057d2517c0f701ae14600d843e01bc92477f61d6a4255ced",
+      "bytes": 10409
+    },
+    {
+      "path": "reports/portability-report-20260309-023210.md",
+      "sha256": "e3c56b24a35d362eb17af01466cef897c81942c81337dfdd2c586778f6290ee5",
+      "bytes": 5908
+    },
+    {
+      "path": "reports/portability-report-20260309-024553.json",
+      "sha256": "f56b0fef18ac81550d66b845aea5010e341d13ac6ab57d09427e9aaae5d61d6a",
+      "bytes": 9781
+    },
+    {
+      "path": "reports/portability-report-20260309-024553.md",
+      "sha256": "bd264e447ebe59fd584d35610547f4e1d4ecb15ff3b6b328fab07c9543af2a07",
+      "bytes": 5699
+    },
+    {
+      "path": "reports/portability-report-20260309-025531.md",
+      "sha256": "8db73228872d34c292f5466c7acd530ebe0d3aab294983d447089b7c0db6ae34",
+      "bytes": 5699
+    },
+    {
+      "path": "reports/portability-report-20260309-031802.md",
+      "sha256": "21976c6fac2405c991f9a509bd7cd61c263cd452a0557df7035a1d965c348613",
+      "bytes": 5699
+    },
+    {
+      "path": "reports/portability-report-20260310-023643.json",
+      "sha256": "fcec8b03dffeded3b563796d1449d7653a00372f8eb4efaf88bf49d6ba24d54c",
+      "bytes": 11175
+    },
+    {
+      "path": "reports/portability-report-20260310-023643.md",
+      "sha256": "b1fe752bd3a7854aa231099141f4e977938e293dc5cbb4b40d1d01e8f817b7ef",
+      "bytes": 6520
+    },
+    {
+      "path": "reports/portability-report-20260417-010859.json",
+      "sha256": "b6c96fc7f46ea61218cb6650a2be6501d46c16c8de856b43b1eebb13fc3e5e65",
+      "bytes": 17623
+    },
+    {
+      "path": "reports/portability-report-20260417-010859.md",
+      "sha256": "315dc7190da06f348f95b2c2d2116e57b272fbf70dd628012476e47dd0febc88",
+      "bytes": 10091
+    },
+    {
+      "path": "reports/portability-report-20260417-021441.json",
+      "sha256": "938e0342e9b3b92f2d4c01127e1d72ad9649634bcf509ee781f92236e261059a",
+      "bytes": 22417
+    },
+    {
+      "path": "reports/portability-report-20260417-021441.md",
+      "sha256": "b1f0d4eef63dc533c1b1e644afe28347042cbbe10c198250d0bcd83b9069dd9b",
+      "bytes": 9946
+    },
+    {
+      "path": "reports/portability-report-20260417-021737.json",
+      "sha256": "8fa448c256131eb4e48112277eadf07baf9444ff0ac8d158955db8153c47f47f",
+      "bytes": 4599
+    },
+    {
+      "path": "reports/portability-report-20260417-021737.md",
+      "sha256": "51ce55598ed98f3a531183e4c9c6d30c12f5807040e98217accda75318d5ce7b",
+      "bytes": 2236
+    },
+    {
+      "path": "reports/scope-map-20260306-003806.json",
+      "sha256": "f97721d9006fe3b63436093b0423bbb7c1f5097e8d6c826dc88ef86575916b42",
+      "bytes": 17006
+    },
+    {
+      "path": "reports/scope-map-20260306-021430.json",
+      "sha256": "40d9b81cfa825a8f92d77fdef43444f49e0c5de1842d60e8340d8501c2c207cd",
+      "bytes": 1465
+    },
+    {
+      "path": "reports/scope-map-20260306-022351.json",
+      "sha256": "3dd7482886c51f120359977566c1bac68f62a9cdcbb18593a84d45f5f1fb8891",
+      "bytes": 1465
+    },
+    {
+      "path": "reports/scope-map-20260306-022656.json",
+      "sha256": "4958069c8eb695fae9ed1b5d79beefaf5f526207ce93ce2dfedbf807b6749b7b",
+      "bytes": 18409
+    },
+    {
+      "path": "reports/scope-map-20260306-024510.json",
+      "sha256": "32244667a31c3a9cc333ab123494e1bab11951e053d7e6db0ba2cd354dd71a7a",
+      "bytes": 18409
+    },
+    {
+      "path": "reports/scope-map-20260306-024548.json",
+      "sha256": "d5c1665a8453d6f3bbf4f4b47f9a73c56d1facf849cc4780c8f6362e85a91c62",
+      "bytes": 18409
+    },
+    {
+      "path": "reports/scope-map-20260306-031616.json",
+      "sha256": "cf1d3903bbc9b8eda54d3efcc8f954be2d19586ce7bc20cbee1a4c141b394251",
+      "bytes": 243
+    },
+    {
+      "path": "reports/scope-map-20260307-163730.json",
+      "sha256": "761a85d819cae8c41d7cdb566e29b7bb9e07f0699ab3262ed9b109ab8ffda75d",
+      "bytes": 18408
+    },
+    {
+      "path": "reports/scope-map-20260309-023210.json",
+      "sha256": "46e9f880665152db13656a794661e672d6b63f7950591d78729256d176f5138d",
+      "bytes": 19098
+    },
+    {
+      "path": "reports/scope-map-20260309-024553.json",
+      "sha256": "0949215fcf54ea3222bf0092fddf8c16e91a56907405d0b88b6b8aaa0a7e3984",
+      "bytes": 19295
+    },
+    {
+      "path": "reports/scope-map-20260309-025531.json",
+      "sha256": "6634ab627d9b500cf9b714e41dab02fd5637381b019f39056c2ae5dd2b5ff5db",
+      "bytes": 19295
+    },
+    {
+      "path": "reports/scope-map-20260309-031802.json",
+      "sha256": "21d8c8618fe4d24d6782e685c608cd350f4beac080659647db711f3c33df6ca3",
+      "bytes": 19295
+    },
+    {
+      "path": "reports/scope-map-20260310-023643.json",
+      "sha256": "70a9c50fc0a3a3ad6482fd501c3fdcb0f7f883f5132b4253c4ff9e2672407492",
+      "bytes": 19520
+    },
+    {
+      "path": "reports/scope-map-20260404-234156.json",
+      "sha256": "5c502af194cfa5021ea7da3c3d7cf50a8f05ad2044d284eb142bac4e45d90c26",
+      "bytes": 20853
+    },
+    {
+      "path": "reports/scope-map-20260417-010859.json",
+      "sha256": "853e350f8d766d1d49874726a3563d4b1060601f3d972274f71b1b733bb63e46",
+      "bytes": 22159
+    },
+    {
+      "path": "reports/scope-map-20260417-021441.json",
+      "sha256": "e1cd0576cfcf062dbfc8d51154b0a52dd3a300cd5e666f42295784031798313c",
+      "bytes": 37468
+    },
+    {
+      "path": "reports/scope-map-20260417-021737.json",
+      "sha256": "ff3457408b245aa8de364f1db6cf8580a58d3354c1be17759a136462b2808fed",
+      "bytes": 12231
+    },
+    {
+      "path": "scripts/skill_portability_guardian.py",
+      "sha256": "b58893623e92810f13d1fc3bc7149ff0293e1fc1faa53a857da69407785c4cfa",
+      "bytes": 30732
+    }
+  ]
+}

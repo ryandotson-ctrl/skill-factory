@@ -1,0 +1,12 @@
+{
+  "skill_id": "mlx-fine-tuning-artisan",
+  "version": "1.0.0",
+  "description": "Auto-generated manifest for mlx-fine-tuning-artisan",
+  "inputs": [],
+  "outputs": [
+    {
+      "event_type": "mlx-fine-tuning-artisan_finding",
+      "schema_ref": "default_finding_schema"
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "skill_id": "web-search-grounding-specialist",
+  "version": "2.4.0",
+  "description": "Grounding specialist for current-fact routing, claim extraction, anti-title-echo checks, and requested-facet coverage.",
+  "inputs": [],
+  "outputs": [
+    {
+      "event_type": "web-search-grounding-specialist_finding",
+      "schema_ref": "default_finding_schema"
+    }
+  ]
+}

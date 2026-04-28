@@ -1,0 +1,21 @@
+{
+  "skill_id": "storage-hygiene-cleanup-orchestrator",
+  "version": "2.0.0",
+  "description": "Dynamic, session-aware storage guardian that classifies hot vs warm vs cold paths, plans safe delete/offload actions, governs external SSD archival on e, and absorbs compatible legacy cold-storage state into one registry.",
+  "inputs": [
+    {
+      "event_type": "skill:storage-hygiene-cleanup-orchestrator:requested",
+      "schema_ref": "default_event_schema"
+    },
+    {
+      "event_type": "storage:cleanup_audit_requested",
+      "schema_ref": "default_event_schema"
+    }
+  ],
+  "outputs": [
+    {
+      "event_type": "skill_activity:storage-hygiene-cleanup-orchestrator",
+      "schema_ref": "default_finding_schema"
+    }
+  ]
+}

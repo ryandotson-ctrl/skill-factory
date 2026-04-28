@@ -1,0 +1,25 @@
+{
+  "skill_id": "gh-address-comments",
+  "version": "1.0.0",
+  "description": "Address actionable GitHub PR review comments on the current branch with gh CLI after explicit user selection.",
+  "inputs": [
+    {
+      "event_type": "skill:gh-address-comments:requested",
+      "schema_ref": "default_event_schema"
+    },
+    {
+      "event_type": "github:review_comments_address_requested",
+      "schema_ref": "default_event_schema"
+    }
+  ],
+  "outputs": [
+    {
+      "event_type": "github:review_comments_address_ready",
+      "schema_ref": "default_event_schema"
+    },
+    {
+      "event_type": "skill_activity:gh-address-comments",
+      "schema_ref": "default_finding_schema"
+    }
+  ]
+}

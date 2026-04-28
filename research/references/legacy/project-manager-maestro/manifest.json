@@ -1,0 +1,12 @@
+{
+  "skill_id": "project-manager-maestro",
+  "version": "1.0.0",
+  "description": "Auto-generated manifest for project-manager-maestro",
+  "inputs": [],
+  "outputs": [
+    {
+      "event_type": "project-manager-maestro_finding",
+      "schema_ref": "default_finding_schema"
+    }
+  ]
+}

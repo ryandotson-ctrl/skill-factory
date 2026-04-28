@@ -1,0 +1,4 @@
+interface:
+  display_name: "Issue Tracker Guardian 2.0"
+  short_description: "Autonomous issue lifecycle with guarded closure gates"
+  default_prompt: "Use $issue-tracker-guardian to detect, deduplicate, track, and close issues with strict evidence and verification gates."

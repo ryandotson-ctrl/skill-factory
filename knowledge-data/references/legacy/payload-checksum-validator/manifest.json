@@ -1,0 +1,12 @@
+{
+  "skill_id": "payload-checksum-validator",
+  "version": "1.0.0",
+  "description": "Auto-generated manifest for payload-checksum-validator",
+  "inputs": [],
+  "outputs": [
+    {
+      "event_type": "payload-checksum-validator_finding",
+      "schema_ref": "default_finding_schema"
+    }
+  ]
+}

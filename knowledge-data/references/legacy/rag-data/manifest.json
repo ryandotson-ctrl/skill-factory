@@ -1,0 +1,25 @@
+{
+  "skill_id": "rag-data",
+  "version": "1.0.0",
+  "description": "Lean core RAG and data-contract skill for retrieval, schemas, telemetry, evals, compatibility, and checksums.",
+  "inputs": [
+    {
+      "event_type": "skill:rag-data:requested",
+      "schema_ref": "default_event_schema"
+    },
+    {
+      "event_type": "data:contract_check_requested",
+      "schema_ref": "default_event_schema"
+    }
+  ],
+  "outputs": [
+    {
+      "event_type": "skill_activity:rag-data",
+      "schema_ref": "default_finding_schema"
+    },
+    {
+      "event_type": "data:contract_report_ready",
+      "schema_ref": "default_finding_schema"
+    }
+  ]
+}

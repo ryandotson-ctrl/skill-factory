@@ -18,8 +18,10 @@
       "id": "engineering_execution_requested",
       "type": "pulse.event",
       "pattern": "engineering:execution_requested",
-      "route_mode": "owned",
-      "route_priority": 90
+      "route_mode": "alias",
+      "route_priority": 70,
+      "target_skill": "engineering",
+      "compatibility_note": "Legacy semantic route now aliases to the 12-core engineering skill; direct legacy skill requests remain available."
     }
   ],
   "outputs": [

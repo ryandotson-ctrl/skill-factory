@@ -1,0 +1,38 @@
+{
+  "schema": "LegacySourceChecksumV1",
+  "generated_at": "2026-04-28T02:49:56.008213+00:00",
+  "file_count": 6,
+  "aggregate_sha256": "c7d22a09ec900161fa9d1c4f04e0b5211e4561d269561ac12c519fd12e66bd31",
+  "files": [
+    {
+      "path": "SKILL.md",
+      "sha256": "ca878275324d499d9668371555ace66b14194eeb4318a1654c23778701268585",
+      "bytes": 621
+    },
+    {
+      "path": "agents/openai.yaml",
+      "sha256": "7735bee811db4942e106e82e9679921e64b729773554036921be688948a1ae2e",
+      "bytes": 316
+    },
+    {
+      "path": "index.md",
+      "sha256": "a5df0907b54d227eddb30c1bd71cafb7bf92b096cd365c39fdc52e8fed49b9af",
+      "bytes": 236
+    },
+    {
+      "path": "manifest.json",
+      "sha256": "52f55069f0c4ef65abec255013f5f5e25602f47d2508fd06cc1cfdceb99509d0",
+      "bytes": 636
+    },
+    {
+      "path": "manifest.v2.json",
+      "sha256": "7fcddbbd4c74c56c04ff087c2748ffa1a8ac4549c552eec8169a7343b1487922",
+      "bytes": 1048
+    },
+    {
+      "path": "references/edge-ops.md",
+      "sha256": "4e6a7dbb8f55d24bdbb9fe8b00e86b67aacd53519293a538319aa8e1c1bc3441",
+      "bytes": 281
+    }
+  ]
+}

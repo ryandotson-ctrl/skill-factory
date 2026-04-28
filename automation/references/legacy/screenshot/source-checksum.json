@@ -1,0 +1,78 @@
+{
+  "schema": "LegacySourceChecksumV1",
+  "generated_at": "2026-04-28T02:49:55.976155+00:00",
+  "file_count": 14,
+  "aggregate_sha256": "43dace110045e05f3e7c65054108ca421f438d978c1d28bc7345412bd6802f5a",
+  "files": [
+    {
+      "path": "LICENSE.txt",
+      "sha256": "4dd13869245e356246a5b770723247bbb80a8f07a181d1d3d873a1734297cdb9",
+      "bytes": 10776
+    },
+    {
+      "path": "SKILL.md",
+      "sha256": "081935a6a163277537d46365f49d6b4a3cb40b4748347e7e88759c5927fa8cf5",
+      "bytes": 7754
+    },
+    {
+      "path": "agents/openai.yaml",
+      "sha256": "f29638eb930e27d44846474620b0d817b4b77fb5d09caf27db269463ae45cfa8",
+      "bytes": 273
+    },
+    {
+      "path": "assets/screenshot-small.svg",
+      "sha256": "b0ff24097dfcd889504fab312a0e20d1d79dde0745268647a8cc2471b4baf794",
+      "bytes": 1019
+    },
+    {
+      "path": "assets/screenshot.png",
+      "sha256": "4ff96a476f2a2ac4ca7b626f9d4b78a7aa8cce0219e0688c5f15355513b61b5b",
+      "bytes": 860
+    },
+    {
+      "path": "index.md",
+      "sha256": "20c22d139613587e56066424e468780702fce883355d45193b9ac78b171dc2cc",
+      "bytes": 230
+    },
+    {
+      "path": "manifest.json",
+      "sha256": "2b99093d7501df965e8e4e55883f1e4fb6899f1e1fb9f0724bc4db72576e91a1",
+      "bytes": 653
+    },
+    {
+      "path": "manifest.v2.json",
+      "sha256": "8105bce9431006e8878bb8d21317fdacc75cf1d8a8c8010bea4f342960d247c2",
+      "bytes": 894
+    },
+    {
+      "path": "scripts/ensure_macos_permissions.sh",
+      "sha256": "9aa750f1e9592519d6c18b966fd65c1d4108c25bd3471ce625dfafd784856d7f",
+      "bytes": 1702
+    },
+    {
+      "path": "scripts/macos_display_info.swift",
+      "sha256": "0969cfef9c9890c82cae5ad75a6cd40fd56d33b28f27347642ef5e837f18b042",
+      "bytes": 482
+    },
+    {
+      "path": "scripts/macos_permissions.swift",
+      "sha256": "cf110651350e50d600268f0a1a892ac8d662505474b4455cdfde2ac5b5f4aca6",
+      "bytes": 929
+    },
+    {
+      "path": "scripts/macos_window_info.swift",
+      "sha256": "c7faff7913d6072284b7ef1e5d26c524ab861ad32afc0c066f24ba95ae3f3597",
+      "bytes": 3595
+    },
+    {
+      "path": "scripts/take_screenshot.ps1",
+      "sha256": "a31a2242e41fd1c5471651afbcced660f98fbc884f11e531218348f700a3f826",
+      "bytes": 4947
+    },
+    {
+      "path": "scripts/take_screenshot.py",
+      "sha256": "56eeabe2dac5d23915b9a0fb57a07431fad2d310c5444f60f71f09299899232b",
+      "bytes": 19659
+    }
+  ]
+}

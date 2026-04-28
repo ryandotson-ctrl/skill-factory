@@ -1,0 +1,33 @@
+{
+  "skill_id": "git-clarity-consultant",
+  "version": "1.1.0",
+  "description": "Consultative skill for repository topology, partner awareness, and health diagnostics.",
+  "inputs": [
+    {
+      "event_type": "system:startup",
+      "dispatch_mode": "automatic"
+    },
+    {
+      "event_type": "git:push_complete",
+      "dispatch_mode": "automatic"
+    }
+  ],
+  "outputs": [
+    {
+      "event_type": "repo:drift_detected",
+      "schema_ref": "default_event_schema"
+    },
+    {
+      "event_type": "repo:partner_activity",
+      "schema_ref": "default_event_schema"
+    },
+    {
+      "event_type": "repo:stale_branches",
+      "schema_ref": "default_event_schema"
+    },
+    {
+      "event_type": "repo:conflict_zone",
+      "schema_ref": "default_event_schema"
+    }
+  ]
+}

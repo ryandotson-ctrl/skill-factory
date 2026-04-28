@@ -1,0 +1,32 @@
+{
+  "schema_version": "2.0.0",
+  "display_name": "repository-harmonization-specialist",
+  "description": "Harmonizes workspaces into coherent monorepo or multi-root structures while preserving runtime isolation, rollback safety, and environment-driven state boundaries.",
+  "dispatch": {
+    "mode": "automatic",
+    "cooldown": 300
+  },
+  "inputs": [
+    {
+      "id": "skill_request",
+      "type": "pulse.event",
+      "pattern": "skill:repository-harmonization-specialist:requested",
+      "route_mode": "owned",
+      "route_priority": 95
+    },
+    {
+      "id": "repository_harmonization_requested",
+      "type": "pulse.event",
+      "pattern": "repository:harmonization_requested",
+      "route_mode": "owned",
+      "route_priority": 90
+    }
+  ],
+  "outputs": [
+    {
+      "id": "status_update",
+      "type": "pulse.event",
+      "event_type": "skill_activity:repository-harmonization-specialist"
+    }
+  ]
+}

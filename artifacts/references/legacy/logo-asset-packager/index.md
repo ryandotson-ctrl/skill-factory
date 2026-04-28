@@ -1,0 +1,5 @@
+# logo-asset-packager
+
+Legacy source for `logo-asset-packager` preserved under the `artifacts` core skill.
+
+Use this folder only when the lean `artifacts` skill needs deeper historical behavior, scripts, assets, manifests, or edge-case guidance.

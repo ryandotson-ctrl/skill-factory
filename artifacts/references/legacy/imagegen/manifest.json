@@ -1,0 +1,25 @@
+{
+  "skill_id": "imagegen",
+  "version": "1.0.0",
+  "description": "Generate or edit images with the OpenAI Image API using the bundled deterministic CLI workflow.",
+  "inputs": [
+    {
+      "event_type": "skill:imagegen:requested",
+      "schema_ref": "default_event_schema"
+    },
+    {
+      "event_type": "image:generate_requested",
+      "schema_ref": "default_event_schema"
+    }
+  ],
+  "outputs": [
+    {
+      "event_type": "image:generated",
+      "schema_ref": "default_event_schema"
+    },
+    {
+      "event_type": "skill_activity:imagegen",
+      "schema_ref": "default_finding_schema"
+    }
+  ]
+}

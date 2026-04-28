@@ -1,7 +1,7 @@
 {
   "schema_version": "2.0.0",
   "display_name": "research",
-  "description": "Lean core research skill for current official sources, web grounding, technology freshness, BI, and SOTA scanning.",
+  "description": "Produces current, source-grounded research, official-doc interpretation, technology freshness checks, SOTA scans, and decision intelligence.",
   "dispatch": {
     "mode": "automatic",
     "cooldown": 300
@@ -15,7 +15,7 @@
       "route_priority": 95
     },
     {
-      "id": "brief_requested",
+      "id": "semantic_request",
       "type": "pulse.event",
       "pattern": "research:brief_requested",
       "route_mode": "owned",
@@ -30,15 +30,17 @@
       "event_producer_role": "core_status"
     },
     {
-      "id": "brief_ready",
+      "id": "ready",
       "type": "pulse.event",
-      "event_type": "research:brief_ready",
-      "event_producer_role": "research_brief"
+      "event_type": "research:intelligence_ready",
+      "event_producer_role": "core_ready"
     }
   ],
   "awareness": [
     "engineering",
-    "knowledge",
-    "ml"
+    "knowledge-data",
+    "ml",
+    "artifacts",
+    "platforms"
   ]
 }

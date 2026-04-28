@@ -1,0 +1,12 @@
+{
+  "skill_id": "mlx-objective-finetune-factory",
+  "version": "1.0.0",
+  "description": "Objective-driven local MLX fine-tuning + self-distillation pipeline skill",
+  "inputs": [],
+  "outputs": [
+    {
+      "event_type": "mlx-objective-finetune-factory_finding",
+      "schema_ref": "default_finding_schema"
+    }
+  ]
+}

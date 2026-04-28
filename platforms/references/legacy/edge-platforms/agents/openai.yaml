@@ -1,0 +1,7 @@
+interface:
+  display_name: "edge-platforms"
+  short_description: "Operate Jarvis, OpenClaw, Pi, sensing, and constrained edge systems"
+  default_prompt: "Use $edge-platforms to operate and harden constrained edge systems with staged updates and strict resource awareness."
+
+policy:
+  allow_implicit_invocation: true

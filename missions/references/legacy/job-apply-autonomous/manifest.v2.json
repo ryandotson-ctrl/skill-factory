@@ -1,0 +1,32 @@
+{
+  "schema_version": "2.0.0",
+  "display_name": "job-apply-autonomous",
+  "description": "Fully autonomous job application agent. Reads local resumes from ~/Desktop/Resumes",
+  "dispatch": {
+    "mode": "automatic",
+    "cooldown": 300
+  },
+  "inputs": [
+    {
+      "id": "skill_request",
+      "type": "pulse.event",
+      "pattern": "skill:job-apply-autonomous:requested",
+      "route_mode": "owned",
+      "route_priority": 95
+    },
+    {
+      "id": "jobs_autonomous_apply_requested",
+      "type": "pulse.event",
+      "pattern": "jobs:autonomous_apply_requested",
+      "route_mode": "owned",
+      "route_priority": 90
+    }
+  ],
+  "outputs": [
+    {
+      "id": "status_update",
+      "type": "pulse.event",
+      "event_type": "skill_activity:job-apply-autonomous"
+    }
+  ]
+}

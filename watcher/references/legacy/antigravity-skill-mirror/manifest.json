@@ -1,0 +1,37 @@
+{
+  "skill_id": "antigravity-skill-mirror",
+  "version": "1.0.0",
+  "description": "Audit and sync Antigravity global skills (~/.gemini/antigravity/skills)",
+  "inputs": [
+    {
+      "event_type": "skill:antigravity-skill-mirror:requested",
+      "schema_ref": "default_event_schema"
+    },
+    {
+      "event_type": "skills:antigravity_mirror_requested",
+      "schema_ref": "default_event_schema"
+    }
+  ],
+  "outputs": [
+    {
+      "event_type": "skills:mirror_report_ready",
+      "schema_ref": "default_event_schema"
+    },
+    {
+      "event_type": "skills:workspace_mirror_drift_detected",
+      "schema_ref": "default_event_schema"
+    },
+    {
+      "event_type": "skills:mirror_alignment_verified",
+      "schema_ref": "default_event_schema"
+    },
+    {
+      "event_type": "skills:mirror_sync_applied",
+      "schema_ref": "default_event_schema"
+    },
+    {
+      "event_type": "skill_activity:antigravity-skill-mirror",
+      "schema_ref": "default_finding_schema"
+    }
+  ]
+}

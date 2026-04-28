@@ -1,0 +1,38 @@
+{
+  "schema": "LegacySourceChecksumV1",
+  "generated_at": "2026-04-28T02:49:55.921637+00:00",
+  "file_count": 6,
+  "aggregate_sha256": "86af0efb4e85f973ebaced5e380a3ab771a2d929a7ff23b8542237fd7f537567",
+  "files": [
+    {
+      "path": "SKILL.md",
+      "sha256": "cf31b0add61f62c431c13a7c5ac2bfd8268ac1b77995aaa5dd3290ea52b869a7",
+      "bytes": 541
+    },
+    {
+      "path": "agents/openai.yaml",
+      "sha256": "fbbcfadcdb57574b9b1ca44c9fa15c1b110be524d7c668b20badb8af59ca26b5",
+      "bytes": 301
+    },
+    {
+      "path": "index.md",
+      "sha256": "95cac07d577bc12500d7ee7b2f46e18b7b07d83c1c946398d656621270165058",
+      "bytes": 236
+    },
+    {
+      "path": "manifest.json",
+      "sha256": "e7d6e97d32d865821cc295eef05f98ecfb7f00147d23d3d59617d41d3674274e",
+      "bytes": 635
+    },
+    {
+      "path": "manifest.v2.json",
+      "sha256": "3c55349d3ff55a82c6c52e8f5cd3fd8554c0314a1daa6a1d20522d5a187732e7",
+      "bytes": 1041
+    },
+    {
+      "path": "references/wisdom-ledgers.md",
+      "sha256": "1787198698db821a508f418ca58fc5e879460522c5f813ad1274d05dccfbd10a",
+      "bytes": 321
+    }
+  ]
+}

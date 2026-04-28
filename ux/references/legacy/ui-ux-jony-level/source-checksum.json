@@ -1,0 +1,83 @@
+{
+  "schema": "LegacySourceChecksumV1",
+  "generated_at": "2026-04-28T02:49:56.002573+00:00",
+  "file_count": 15,
+  "aggregate_sha256": "b1469d1e1571a91c0412bab1d4bf92e4f2e65ddcb0075ef21cf39ed299cd624c",
+  "files": [
+    {
+      "path": "SKILL.md",
+      "sha256": "9b0e5ac023eec2178200e91c6145998e84f8461d94f905d6f4392d80108c1bfd",
+      "bytes": 10478
+    },
+    {
+      "path": "agents/openai.yaml",
+      "sha256": "4a77bdad13bc996d8e7b57bb7450cf212ab0dec32d5f46df302e2b94722e568c",
+      "bytes": 247
+    },
+    {
+      "path": "index.md",
+      "sha256": "b5066864abe154c91164d9dda7856b4516550ba817f7c32245f823e85b339e60",
+      "bytes": 226
+    },
+    {
+      "path": "manifest.json",
+      "sha256": "337dfa3a4a5df68f6f9e1da71e7bedd62bcb3d8773a87e269c436b2e5d626846",
+      "bytes": 1118
+    },
+    {
+      "path": "manifest.v2.json",
+      "sha256": "d6528cf2fc43d9b598a0b1a9368bd78fd77a8e1f2b26487d61354b1ad448529b",
+      "bytes": 1689
+    },
+    {
+      "path": "references/design-brief-template.md",
+      "sha256": "6fb79d2a675e8c5f56a3417517de8b4308219ff518ddbaf72ce18bb6ffd4b4a4",
+      "bytes": 692
+    },
+    {
+      "path": "references/design-review-rubric.md",
+      "sha256": "f0f0d851e872a45547d9d98ecf0beaf2a8ce6de8b87899cae6ba0c743c6573fb",
+      "bytes": 790
+    },
+    {
+      "path": "references/event-contracts.md",
+      "sha256": "e59c94e625cb3ce971222e39dd19e25d56bd4d6e0e33e7da31962eab917a1d13",
+      "bytes": 317
+    },
+    {
+      "path": "references/handoff-qa-checklist.md",
+      "sha256": "fe2afc104983c8db16b8f0916a0459f3fab98584c24d9fec314e97c88291fd78",
+      "bytes": 963
+    },
+    {
+      "path": "references/mode-selector.md",
+      "sha256": "1f24784c494bad43f7ffd65ee4158a49b4e8a367305bf29e49fcac44a37467ff",
+      "bytes": 1773
+    },
+    {
+      "path": "references/output-contracts.md",
+      "sha256": "1b745bf9359ea1f6ea1265381d1a8459cc875f78a41cfadfc2e867cabd0da867",
+      "bytes": 1966
+    },
+    {
+      "path": "references/platform-translation.md",
+      "sha256": "9c984174c5c9eb9d883ad9edb81326b91590ad30de49ac1f65a1059e4f0454b9",
+      "bytes": 771
+    },
+    {
+      "path": "references/state-matrix.md",
+      "sha256": "fd3db6624b4771c7ebb17be6a07c8e9cdb7ea57fc8b0b8f446a085955a6e12a7",
+      "bytes": 743
+    },
+    {
+      "path": "references/style-modes.md",
+      "sha256": "f23b95c5c7e4a486fb97a1c4ddd32546c60abe648e28dbb3cf534d0ae1081690",
+      "bytes": 1398
+    },
+    {
+      "path": "references/worked-examples.md",
+      "sha256": "b6c925d3f5fac5cf8e93222f5ea4b5332bbc13a31cde9b4bee266e916204c0a5",
+      "bytes": 582
+    }
+  ]
+}

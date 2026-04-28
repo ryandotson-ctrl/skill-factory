@@ -1,0 +1,12 @@
+{
+  "skill_id": "model-ux-orchestrator",
+  "version": "3.22.0",
+  "description": "Maintains truthful, premium assistant UX with structured-answer readability, calm grounded-briefing transparency, startup/reconnect truth protection, and no raw exception leakage.",
+  "inputs": [],
+  "outputs": [
+    {
+      "event_type": "model-ux-orchestrator_finding",
+      "schema_ref": "default_finding_schema"
+    }
+  ]
+}

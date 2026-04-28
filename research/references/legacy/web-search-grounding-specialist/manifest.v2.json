@@ -1,0 +1,22 @@
+{
+    "schema_version": "2.0.0",
+    "display_name": "Web Search Grounding Specialist",
+    "dispatch": {
+        "mode": "automatic",
+        "cooldown": 300
+    },
+    "inputs": [
+        {
+            "id": "system_stability_trigger",
+            "type": "pulse.event",
+            "pattern": "stability_gate_check"
+        }
+    ],
+    "outputs": [
+        {
+            "id": "status_update",
+            "type": "pulse.event",
+            "event_type": "web_search_grounding_specialist_activity"
+        }
+    ]
+}

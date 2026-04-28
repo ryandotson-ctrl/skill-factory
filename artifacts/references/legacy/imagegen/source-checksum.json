@@ -1,0 +1,78 @@
+{
+  "schema": "LegacySourceChecksumV1",
+  "generated_at": "2026-04-28T02:49:55.989820+00:00",
+  "file_count": 14,
+  "aggregate_sha256": "6c43585f0baa1184116667c9add7568260fb8e8239bcd13f9475482df294fc0d",
+  "files": [
+    {
+      "path": "LICENSE.txt",
+      "sha256": "4dd13869245e356246a5b770723247bbb80a8f07a181d1d3d873a1734297cdb9",
+      "bytes": 10776
+    },
+    {
+      "path": "SKILL.md",
+      "sha256": "4da06e7a1fbfaa94154dda2699e449a1f6d79e6e4299fcfeb785aad7c87f59dc",
+      "bytes": 9916
+    },
+    {
+      "path": "agents/openai.yaml",
+      "sha256": "051b82cce281829f36caaeacb676af013d45c5429fd824ec0eac5dcee07352fa",
+      "bytes": 291
+    },
+    {
+      "path": "assets/imagegen-small.svg",
+      "sha256": "cff5f34f57ff60b3ee92eaedd17b15e96dd4b9e776df3e78936c9e00d42be294",
+      "bytes": 2889
+    },
+    {
+      "path": "assets/imagegen.png",
+      "sha256": "95952f644064eb9e890f98d8db07216347186526e4c41ad66d3420629eb86e20",
+      "bytes": 1711
+    },
+    {
+      "path": "index.md",
+      "sha256": "db33488fc45040aec3c5b311b2c7f1466e6bdce6a2f7bbe8cb5539d6797f6618",
+      "bytes": 224
+    },
+    {
+      "path": "manifest.json",
+      "sha256": "9a5643c71725288092f85037a542cff5846b3b7da0dfabcac1e45832fc484253",
+      "bytes": 612
+    },
+    {
+      "path": "manifest.v2.json",
+      "sha256": "92f28bd3130f55a854f60e5bcc3f30ed259d4889fd4768daa590fc247f9d2f0d",
+      "bytes": 885
+    },
+    {
+      "path": "references/cli.md",
+      "sha256": "c548d8897fb3df3c0a0d39b42cdd7a08247706696cbedda9f1b36cb7bbf60ab7",
+      "bytes": 5288
+    },
+    {
+      "path": "references/codex-network.md",
+      "sha256": "e0392ea43bdc6fa075ff8f842a999840e05ab025be3c217dc58791000efa5b18",
+      "bytes": 1146
+    },
+    {
+      "path": "references/image-api.md",
+      "sha256": "a31b576864fb7ab43e3191e039a24a19cdd85d2804e44c38a822f2ed1f4f78c3",
+      "bytes": 1629
+    },
+    {
+      "path": "references/prompting.md",
+      "sha256": "80383de47c15b2e0b014b95099cc95663497cb2ab8b0eac88d867fa2b5b208db",
+      "bytes": 5903
+    },
+    {
+      "path": "references/sample-prompts.md",
+      "sha256": "be54f1ced28a7ac1d68670eb2d560d1491d7e0efe38972d9ba3309110f7d45e4",
+      "bytes": 14901
+    },
+    {
+      "path": "scripts/image_gen.py",
+      "sha256": "f30607f1f5ee10d6d62f5fb2e28a128791e280ca7f369f9c98b1809bd2a4962a",
+      "bytes": 29949
+    }
+  ]
+}

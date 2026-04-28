@@ -1,0 +1,7 @@
+interface:
+  display_name: "Agentic Design Contract Architect"
+  short_description: "Turn requests into explicit design contracts"
+  default_prompt: "Use $agentic-design-contract-architect to turn this change into a clear design contract before implementation."
+
+policy:
+  allow_implicit_invocation: false

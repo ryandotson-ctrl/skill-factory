@@ -1,25 +1,10 @@
 {
   "skill_id": "watcher",
+  "display_name": "watcher",
+  "description": "Maintains the skill ecosystem, Pulse Bus, self-improvement loops, migration safety, and portable skill governance.",
   "version": "1.0.0",
-  "description": "Lean core ecosystem intelligence skill for inventory, drift, wisdom, and posture.",
-  "inputs": [
-    {
-      "event_type": "skill:watcher:requested",
-      "schema_ref": "default_event_schema"
-    },
-    {
-      "event_type": "skills:watcher_requested",
-      "schema_ref": "default_event_schema"
-    }
-  ],
-  "outputs": [
-    {
-      "event_type": "skill_activity:watcher",
-      "schema_ref": "default_finding_schema"
-    },
-    {
-      "event_type": "skills:watcher_intelligence_ready",
-      "schema_ref": "default_finding_schema"
-    }
-  ]
+  "scope": "global",
+  "portability_tier": "strict_zero_leak",
+  "requires_env": [],
+  "project_profiles": []
 }

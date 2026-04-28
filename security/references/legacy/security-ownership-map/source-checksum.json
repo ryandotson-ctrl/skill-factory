@@ -1,0 +1,63 @@
+{
+  "schema": "LegacySourceChecksumV1",
+  "generated_at": "2026-04-28T02:49:55.897877+00:00",
+  "file_count": 11,
+  "aggregate_sha256": "13ff359f7c08226c51af78a15e58e9db6bbef9e4286852bd75c0a9653dd0c315",
+  "files": [
+    {
+      "path": "LICENSE.txt",
+      "sha256": "4dd13869245e356246a5b770723247bbb80a8f07a181d1d3d873a1734297cdb9",
+      "bytes": 10776
+    },
+    {
+      "path": "SKILL.md",
+      "sha256": "f06c1a59247569326702c945f397af163ea96cf2ecfdf2dde280605bf89a3ec8",
+      "bytes": 8736
+    },
+    {
+      "path": "agents/openai.yaml",
+      "sha256": "40877a3cdb1753aa187fc85a83bc138a866a1edb74165e009c885cfb6a16e433",
+      "bytes": 253
+    },
+    {
+      "path": "index.md",
+      "sha256": "4ae2f2ea62b2a13f30ec90bd01bfb6c3a59dbee878b2cb26cefdad02d0dcbbc3",
+      "bytes": 250
+    },
+    {
+      "path": "manifest.json",
+      "sha256": "67994e7b4fa39613951323f5640cd394f876887c8eba73cf09602aa751baf95d",
+      "bytes": 681
+    },
+    {
+      "path": "manifest.v2.json",
+      "sha256": "331b059ba409db6e2a240d64cc4b1e1adbe3d72c0595812f68905b85d45a675d",
+      "bytes": 924
+    },
+    {
+      "path": "references/neo4j-import.md",
+      "sha256": "176d0ef2ed3588530ed65ccda7cb30ae322e4cbec5c374dba5d1685e2bb9dd02",
+      "bytes": 2428
+    },
+    {
+      "path": "scripts/build_ownership_map.py",
+      "sha256": "c0454c47c7eb001b6e247cd7e473df1b28a3a148a2dca6b2fe88a74a7602cc9b",
+      "bytes": 34330
+    },
+    {
+      "path": "scripts/community_maintainers.py",
+      "sha256": "95adec5458cc85b41d0ae7965b0a17e4e8eaa6aaab274459324580d9a91cc3cc",
+      "bytes": 18122
+    },
+    {
+      "path": "scripts/query_ownership.py",
+      "sha256": "0f8d1a1ac3ef807a9b66939a8cdfd02564f4cda018489a3664d37f8c3a7b1b93",
+      "bytes": 17991
+    },
+    {
+      "path": "scripts/run_ownership_map.py",
+      "sha256": "362b547d6133659eb5c4fe889b8b930bea790f31e412f3198671baae09eec692",
+      "bytes": 5890
+    }
+  ]
+}

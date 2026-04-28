@@ -1,0 +1,48 @@
+{
+  "schema": "LegacySourceChecksumV1",
+  "generated_at": "2026-04-28T02:49:55.924910+00:00",
+  "file_count": 8,
+  "aggregate_sha256": "dffc788aec72738dc1d29a38633a87c3a7bbc86d690ee6d5697ce054c770fd59",
+  "files": [
+    {
+      "path": "SKILL.md",
+      "sha256": "46357fa41c1f6f74331545bc209e9c93f02e6b56da92cb1d35881b940d1e60cf",
+      "bytes": 2118
+    },
+    {
+      "path": "agents/openai.yaml",
+      "sha256": "7d869e9c9fef68acbad209ff0c370874e554039d95d8b26ada6af7fb8a1c2eef",
+      "bytes": 242
+    },
+    {
+      "path": "index.md",
+      "sha256": "2d90b3d422d5c906de924f1ccbecc44b1afa983cedd067bcdf1b17d8ba6fc674",
+      "bytes": 270
+    },
+    {
+      "path": "manifest.json",
+      "sha256": "ec1588431245928cf05b8f62f9b620eb9d32bb6badeda899fbeedb082221258c",
+      "bytes": 621
+    },
+    {
+      "path": "manifest.v2.json",
+      "sha256": "79c3363e04b7bb202968aae3c15bec510ad066e5e63a12a14ef1b85302f3db25",
+      "bytes": 794
+    },
+    {
+      "path": "references/wisdom-contracts.md",
+      "sha256": "2cd9e06fc9455f0221a47187cae270cb115dd84f935733648073f5625c9fca03",
+      "bytes": 616
+    },
+    {
+      "path": "references/wisdom_contract.md",
+      "sha256": "87b90cc977b7a4a06c9a03629b9d9574c02ecf13715464be0e939cfc85f3da76",
+      "bytes": 791
+    },
+    {
+      "path": "scripts/wisdom_archiver.py",
+      "sha256": "3af9ece69a3078b306952170c3d5dbc3f42a390e5fc4f4d5657a926d686b0028",
+      "bytes": 9800
+    }
+  ]
+}

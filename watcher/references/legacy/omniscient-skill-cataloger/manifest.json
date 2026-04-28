@@ -1,0 +1,12 @@
+{
+  "skill_id": "omniscient-skill-cataloger",
+  "version": "2.4.0",
+  "description": "Source-aware skill inventory and mirror classification for multi-root agent ecosystems.",
+  "inputs": [],
+  "outputs": [
+    {
+      "event_type": "omniscient-skill-cataloger_finding",
+      "schema_ref": "default_finding_schema"
+    }
+  ]
+}

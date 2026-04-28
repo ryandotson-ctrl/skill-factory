@@ -1,0 +1,29 @@
+{
+  "skill_id": "experiment-ledger-packager",
+  "version": "1.1.0",
+  "description": "Portable run-ledger packager for reproducible replay manifests.",
+  "inputs": [
+    {
+      "event_type": "experiment:package_requested",
+      "schema_ref": "default_event_schema"
+    },
+    {
+      "event_type": "eval:summary_emitted",
+      "schema_ref": "default_event_schema"
+    },
+    {
+      "event_type": "run:finished",
+      "schema_ref": "default_event_schema"
+    }
+  ],
+  "outputs": [
+    {
+      "event_type": "experiment:ledger_packaged",
+      "schema_ref": "default_event_schema"
+    },
+    {
+      "event_type": "experiment:replay_manifest_emitted",
+      "schema_ref": "default_event_schema"
+    }
+  ]
+}

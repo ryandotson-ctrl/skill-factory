@@ -1,0 +1,3 @@
+interface:
+  display_name: "Macos End to End Security Audit"
+  short_description: "Apple-level, read-only macOS security + privacy audit"

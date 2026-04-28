@@ -1,0 +1,43 @@
+{
+  "schema": "LegacySourceChecksumV1",
+  "generated_at": "2026-04-28T02:49:55.877904+00:00",
+  "file_count": 7,
+  "aggregate_sha256": "9ae6194300728b35abad1c6e84499f0595258950c8df10b1f4d789d6d515e1b6",
+  "files": [
+    {
+      "path": "SKILL.md",
+      "sha256": "42bf66442cb62aadde6dc68cd1b997773ec56591d76cc167912b2ee8f1257535",
+      "bytes": 2902
+    },
+    {
+      "path": "agents/openai.yaml",
+      "sha256": "4f494586788c7b706c555da3ba1c6888965d666d92b327bf8f2b5743cd68aaeb",
+      "bytes": 251
+    },
+    {
+      "path": "index.md",
+      "sha256": "035f8a13fcd5a96fd14f841875ddeb3d47a00a9f723960d2ff55fadd8b268449",
+      "bytes": 264
+    },
+    {
+      "path": "manifest.json",
+      "sha256": "1c1ac48cefcdb62d083fabd52fb358689553aad3bcb199e58ad5c8fd43fac146",
+      "bytes": 723
+    },
+    {
+      "path": "manifest.v2.json",
+      "sha256": "eb77dc4cf1e2caac5b3ae8c703bbdc815dad41646eb39954913544d29e721d94",
+      "bytes": 891
+    },
+    {
+      "path": "references/contracts-v1.md",
+      "sha256": "3a82cbfa16840013b864f0c76fdebab4fc5c58b02ec2fb97b91855efe0affac8",
+      "bytes": 4235
+    },
+    {
+      "path": "scripts/guard.py",
+      "sha256": "f315e4f2d0dbe7625c7df7c277b2ce7f9f10cd6799c286473975d094ac27219e",
+      "bytes": 16211
+    }
+  ]
+}

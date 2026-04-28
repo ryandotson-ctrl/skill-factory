@@ -1,0 +1,388 @@
+{
+  "schema": "LegacySourceChecksumV1",
+  "generated_at": "2026-04-28T02:49:56.032288+00:00",
+  "file_count": 76,
+  "aggregate_sha256": "fea50002f68be2ba71080c8514e66101b4f78d72ee81ca05535bbb01a5b411e4",
+  "files": [
+    {
+      "path": "SKILL.md",
+      "sha256": "767cfcedc6fd3ffd70d5a844b66a2b3f9b44aebbce7289ffcc6855644ac06164",
+      "bytes": 5164
+    },
+    {
+      "path": "agents/openai.yaml",
+      "sha256": "974fdec9145b2f112d34937e2701f021ae1ca7dbb850f32dfc5f32043a762281",
+      "bytes": 340
+    },
+    {
+      "path": "assets/onboarding/generic-AGENTS.md",
+      "sha256": "0c5ecf2c36c4b62ecbc64d69b88990005a4cf44cccfe91ca59acc480f49b92e3",
+      "bytes": 425
+    },
+    {
+      "path": "assets/onboarding/pfe-AGENTS.md",
+      "sha256": "116543d3bfbec6f73ddc6cc10b9f75a78c85aac93858814c47bdcf98841482e2",
+      "bytes": 639
+    },
+    {
+      "path": "assets/simple-tasks/AGENTS.md",
+      "sha256": "f83ef715578e57d58ba81d2df177750e753844eeb8b067c580013d30176406d6",
+      "bytes": 543
+    },
+    {
+      "path": "assets/simple-tasks/scripts/task.sh",
+      "sha256": "6371a72961a65fc710b00484bc5935328e25fbb224a9719cdcab635153782df6",
+      "bytes": 24456
+    },
+    {
+      "path": "assets/xcodegen/ios-swiftui/Resources/Assets.xcassets/AccentColor.colorset/Contents.json",
+      "sha256": "3a8d84c94e870b514f5b14cc01bbe0c46af58d83274e1520d699bc1ea993d650",
+      "bytes": 329
+    },
+    {
+      "path": "assets/xcodegen/ios-swiftui/Resources/Assets.xcassets/AppIcon.appiconset/Contents.json",
+      "sha256": "f963f7bce415de44138efadaad410285266f1a652e0281bcad9be84f954f1425",
+      "bytes": 1197
+    },
+    {
+      "path": "assets/xcodegen/ios-swiftui/Resources/Assets.xcassets/Contents.json",
+      "sha256": "0fd49ba3c3585c709678e0046a821c3c60685ec7063720d30d3a3448be3a208b",
+      "bytes": 63
+    },
+    {
+      "path": "assets/xcodegen/ios-swiftui/Sources/App.swift",
+      "sha256": "154a2cf8c9a8848de101d4921d1f73f08e977d0d2465b46c025c0eb6b16baa3e",
+      "bytes": 142
+    },
+    {
+      "path": "assets/xcodegen/ios-swiftui/Sources/ContentView.swift",
+      "sha256": "57880bd7346fcda56b72edee14c764ab7846b4e86d7d1517f71d783e1a83f083",
+      "bytes": 2307
+    },
+    {
+      "path": "assets/xcodegen/ios-swiftui/Sources/Info.plist",
+      "sha256": "639a3e8e1f4b57753107893d0c136d75b980e6a35a6b5b08ce14e10f1222f9b0",
+      "bytes": 1091
+    },
+    {
+      "path": "assets/xcodegen/ios-swiftui/Tests/AppTests.swift",
+      "sha256": "20e11ba0318a9336619d8c461c2eeb8a162aac0926ec52c6d9a0b93f6e0a33da",
+      "bytes": 125
+    },
+    {
+      "path": "assets/xcodegen/ios-swiftui/Tests/Info.plist",
+      "sha256": "1a6405b51fe2215b7cd5bcd179c217fd2b2e9aa952fdc21fc943020857780cd8",
+      "bytes": 674
+    },
+    {
+      "path": "assets/xcodegen/ios-swiftui/project.yml",
+      "sha256": "2ca56f57303c61ad80163f4de03dd53484697c82455b2c97c9ae4f38885602c0",
+      "bytes": 1381
+    },
+    {
+      "path": "assets/xcodegen/ios-uikit/Resources/Assets.xcassets/AccentColor.colorset/Contents.json",
+      "sha256": "3a8d84c94e870b514f5b14cc01bbe0c46af58d83274e1520d699bc1ea993d650",
+      "bytes": 329
+    },
+    {
+      "path": "assets/xcodegen/ios-uikit/Resources/Assets.xcassets/AppIcon.appiconset/Contents.json",
+      "sha256": "f963f7bce415de44138efadaad410285266f1a652e0281bcad9be84f954f1425",
+      "bytes": 1197
+    },
+    {
+      "path": "assets/xcodegen/ios-uikit/Resources/Assets.xcassets/Contents.json",
+      "sha256": "0fd49ba3c3585c709678e0046a821c3c60685ec7063720d30d3a3448be3a208b",
+      "bytes": 63
+    },
+    {
+      "path": "assets/xcodegen/ios-uikit/Sources/AppDelegate.swift",
+      "sha256": "bcc9442a83bb520ede5da51da609c9844ded66b02ebb2a9d62a2ef5b5b234bf1",
+      "bytes": 584
+    },
+    {
+      "path": "assets/xcodegen/ios-uikit/Sources/Info.plist",
+      "sha256": "808eebfb6caf133b7eb0a3fd8163c8db214f826b5e56a6eb726bfce34035024e",
+      "bytes": 1420
+    },
+    {
+      "path": "assets/xcodegen/ios-uikit/Sources/SceneDelegate.swift",
+      "sha256": "c39b2fb3d6f32b4cdaa96265663b1e31f5c55e4de57c7e09f336c7164d192048",
+      "bytes": 512
+    },
+    {
+      "path": "assets/xcodegen/ios-uikit/Sources/ViewController.swift",
+      "sha256": "f2f303bdc3d851e773fec221bdf673ba6810e8c29d37735957aa44cbe1b51d5e",
+      "bytes": 3460
+    },
+    {
+      "path": "assets/xcodegen/ios-uikit/Tests/AppTests.swift",
+      "sha256": "20e11ba0318a9336619d8c461c2eeb8a162aac0926ec52c6d9a0b93f6e0a33da",
+      "bytes": 125
+    },
+    {
+      "path": "assets/xcodegen/ios-uikit/Tests/Info.plist",
+      "sha256": "1a6405b51fe2215b7cd5bcd179c217fd2b2e9aa952fdc21fc943020857780cd8",
+      "bytes": 674
+    },
+    {
+      "path": "assets/xcodegen/ios-uikit/project.yml",
+      "sha256": "a400a1264826d046beeba81cc30a2bf4898dd8334084bd7a307d40b98881e096",
+      "bytes": 1360
+    },
+    {
+      "path": "assets/xcodegen/macos-appkit/Resources/Assets.xcassets/AccentColor.colorset/Contents.json",
+      "sha256": "3a8d84c94e870b514f5b14cc01bbe0c46af58d83274e1520d699bc1ea993d650",
+      "bytes": 329
+    },
+    {
+      "path": "assets/xcodegen/macos-appkit/Resources/Assets.xcassets/AppIcon.appiconset/Contents.json",
+      "sha256": "6472fd14fcd357b608590122be18503fade10d3848e4109a112d822fbc21dc68",
+      "bytes": 684
+    },
+    {
+      "path": "assets/xcodegen/macos-appkit/Resources/Assets.xcassets/Contents.json",
+      "sha256": "0fd49ba3c3585c709678e0046a821c3c60685ec7063720d30d3a3448be3a208b",
+      "bytes": 63
+    },
+    {
+      "path": "assets/xcodegen/macos-appkit/Sources/AppDelegate.swift",
+      "sha256": "51739304a8c04c01d1957f4cb6a3336b27fc28a337d1421a2a95335a2fe2c3e8",
+      "bytes": 669
+    },
+    {
+      "path": "assets/xcodegen/macos-appkit/Sources/Info.plist",
+      "sha256": "fbb3b2b417686b03e9c8f9413ac2188f8d688938ea269486eb6054f7d186c04e",
+      "bytes": 884
+    },
+    {
+      "path": "assets/xcodegen/macos-appkit/Tests/AppTests.swift",
+      "sha256": "20e11ba0318a9336619d8c461c2eeb8a162aac0926ec52c6d9a0b93f6e0a33da",
+      "bytes": 125
+    },
+    {
+      "path": "assets/xcodegen/macos-appkit/Tests/Info.plist",
+      "sha256": "1a6405b51fe2215b7cd5bcd179c217fd2b2e9aa952fdc21fc943020857780cd8",
+      "bytes": 674
+    },
+    {
+      "path": "assets/xcodegen/macos-appkit/project.yml",
+      "sha256": "7492e0dbbc07629548c2c50c37832b25094d34e67ac2866db85ca1c5ebb0e258",
+      "bytes": 1366
+    },
+    {
+      "path": "assets/xcodegen/macos-swiftui/Resources/Assets.xcassets/AccentColor.colorset/Contents.json",
+      "sha256": "3a8d84c94e870b514f5b14cc01bbe0c46af58d83274e1520d699bc1ea993d650",
+      "bytes": 329
+    },
+    {
+      "path": "assets/xcodegen/macos-swiftui/Resources/Assets.xcassets/AppIcon.appiconset/Contents.json",
+      "sha256": "6472fd14fcd357b608590122be18503fade10d3848e4109a112d822fbc21dc68",
+      "bytes": 684
+    },
+    {
+      "path": "assets/xcodegen/macos-swiftui/Resources/Assets.xcassets/Contents.json",
+      "sha256": "0fd49ba3c3585c709678e0046a821c3c60685ec7063720d30d3a3448be3a208b",
+      "bytes": 63
+    },
+    {
+      "path": "assets/xcodegen/macos-swiftui/Sources/App.swift",
+      "sha256": "154a2cf8c9a8848de101d4921d1f73f08e977d0d2465b46c025c0eb6b16baa3e",
+      "bytes": 142
+    },
+    {
+      "path": "assets/xcodegen/macos-swiftui/Sources/ContentView.swift",
+      "sha256": "3ce8a40abfd76c31b3fcd12dcc296b15e2d2c6d3a00e1549a2f61c5290b144aa",
+      "bytes": 2353
+    },
+    {
+      "path": "assets/xcodegen/macos-swiftui/Sources/Info.plist",
+      "sha256": "fbb3b2b417686b03e9c8f9413ac2188f8d688938ea269486eb6054f7d186c04e",
+      "bytes": 884
+    },
+    {
+      "path": "assets/xcodegen/macos-swiftui/Tests/AppTests.swift",
+      "sha256": "20e11ba0318a9336619d8c461c2eeb8a162aac0926ec52c6d9a0b93f6e0a33da",
+      "bytes": 125
+    },
+    {
+      "path": "assets/xcodegen/macos-swiftui/Tests/Info.plist",
+      "sha256": "1a6405b51fe2215b7cd5bcd179c217fd2b2e9aa952fdc21fc943020857780cd8",
+      "bytes": 674
+    },
+    {
+      "path": "assets/xcodegen/macos-swiftui/project.yml",
+      "sha256": "7492e0dbbc07629548c2c50c37832b25094d34e67ac2866db85ca1c5ebb0e258",
+      "bytes": 1366
+    },
+    {
+      "path": "assets/xcodegen/visionos-swiftui/Resources/Assets.xcassets/AccentColor.colorset/Contents.json",
+      "sha256": "3a8d84c94e870b514f5b14cc01bbe0c46af58d83274e1520d699bc1ea993d650",
+      "bytes": 329
+    },
+    {
+      "path": "assets/xcodegen/visionos-swiftui/Resources/Assets.xcassets/AppIcon.appiconset/Contents.json",
+      "sha256": "f963f7bce415de44138efadaad410285266f1a652e0281bcad9be84f954f1425",
+      "bytes": 1197
+    },
+    {
+      "path": "assets/xcodegen/visionos-swiftui/Resources/Assets.xcassets/Contents.json",
+      "sha256": "0fd49ba3c3585c709678e0046a821c3c60685ec7063720d30d3a3448be3a208b",
+      "bytes": 63
+    },
+    {
+      "path": "assets/xcodegen/visionos-swiftui/Sources/App.swift",
+      "sha256": "154a2cf8c9a8848de101d4921d1f73f08e977d0d2465b46c025c0eb6b16baa3e",
+      "bytes": 142
+    },
+    {
+      "path": "assets/xcodegen/visionos-swiftui/Sources/ContentView.swift",
+      "sha256": "57880bd7346fcda56b72edee14c764ab7846b4e86d7d1517f71d783e1a83f083",
+      "bytes": 2307
+    },
+    {
+      "path": "assets/xcodegen/visionos-swiftui/Sources/Info.plist",
+      "sha256": "639a3e8e1f4b57753107893d0c136d75b980e6a35a6b5b08ce14e10f1222f9b0",
+      "bytes": 1091
+    },
+    {
+      "path": "assets/xcodegen/visionos-swiftui/Tests/AppTests.swift",
+      "sha256": "20e11ba0318a9336619d8c461c2eeb8a162aac0926ec52c6d9a0b93f6e0a33da",
+      "bytes": 125
+    },
+    {
+      "path": "assets/xcodegen/visionos-swiftui/Tests/Info.plist",
+      "sha256": "1a6405b51fe2215b7cd5bcd179c217fd2b2e9aa952fdc21fc943020857780cd8",
+      "bytes": 674
+    },
+    {
+      "path": "assets/xcodegen/visionos-swiftui/project.yml",
+      "sha256": "6dc6b2018b47064139996cc216cc603dd7c5bd15b47ec33652a55272b3efb7ce",
+      "bytes": 1396
+    },
+    {
+      "path": "assets/xcodegen/watchos-swiftui/Resources/Assets.xcassets/AccentColor.colorset/Contents.json",
+      "sha256": "3a8d84c94e870b514f5b14cc01bbe0c46af58d83274e1520d699bc1ea993d650",
+      "bytes": 329
+    },
+    {
+      "path": "assets/xcodegen/watchos-swiftui/Resources/Assets.xcassets/AppIcon.appiconset/Contents.json",
+      "sha256": "f963f7bce415de44138efadaad410285266f1a652e0281bcad9be84f954f1425",
+      "bytes": 1197
+    },
+    {
+      "path": "assets/xcodegen/watchos-swiftui/Resources/Assets.xcassets/Contents.json",
+      "sha256": "0fd49ba3c3585c709678e0046a821c3c60685ec7063720d30d3a3448be3a208b",
+      "bytes": 63
+    },
+    {
+      "path": "assets/xcodegen/watchos-swiftui/Sources/App.swift",
+      "sha256": "154a2cf8c9a8848de101d4921d1f73f08e977d0d2465b46c025c0eb6b16baa3e",
+      "bytes": 142
+    },
+    {
+      "path": "assets/xcodegen/watchos-swiftui/Sources/ContentView.swift",
+      "sha256": "57880bd7346fcda56b72edee14c764ab7846b4e86d7d1517f71d783e1a83f083",
+      "bytes": 2307
+    },
+    {
+      "path": "assets/xcodegen/watchos-swiftui/Sources/Info.plist",
+      "sha256": "639a3e8e1f4b57753107893d0c136d75b980e6a35a6b5b08ce14e10f1222f9b0",
+      "bytes": 1091
+    },
+    {
+      "path": "assets/xcodegen/watchos-swiftui/Tests/AppTests.swift",
+      "sha256": "20e11ba0318a9336619d8c461c2eeb8a162aac0926ec52c6d9a0b93f6e0a33da",
+      "bytes": 125
+    },
+    {
+      "path": "assets/xcodegen/watchos-swiftui/Tests/Info.plist",
+      "sha256": "1a6405b51fe2215b7cd5bcd179c217fd2b2e9aa952fdc21fc943020857780cd8",
+      "bytes": 674
+    },
+    {
+      "path": "assets/xcodegen/watchos-swiftui/project.yml",
+      "sha256": "1ec6636d02eb4dd2c86ccef58b1b2590bd770d329de6bb3a15ef2fd21d53ff87",
+      "bytes": 1393
+    },
+    {
+      "path": "index.md",
+      "sha256": "f2e9e83b264e3ec2be07e65718316c56e02a39848cfcdf5a485b739d8beee0ad",
+      "bytes": 280
+    },
+    {
+      "path": "manifest.json",
+      "sha256": "2d7bfda04afd4337c822e06baf6acced7bb344c22b7499bfac6e828abb58f45f",
+      "bytes": 1386
+    },
+    {
+      "path": "manifest.v2.json",
+      "sha256": "0b8a14668e34bcd717e1a506385d403012e9caa9ab530274d51991614b137d59",
+      "bytes": 1953
+    },
+    {
+      "path": "references/event-contracts.md",
+      "sha256": "76ef70b89277c068c262527b76cf7d4b83fd43e15927ee8b0a0c928d88959232",
+      "bytes": 1629
+    },
+    {
+      "path": "references/mode-contracts.md",
+      "sha256": "a44b793daad6d1c8f9fc34f9a6ec3d3b861b7370f335ca02f635113c378c5d19",
+      "bytes": 1579
+    },
+    {
+      "path": "references/pfe-profile.md",
+      "sha256": "a711a39bf309044674be1c75abe3fd124662f0cfd51cb081eb78a8e87220a4a1",
+      "bytes": 1013
+    },
+    {
+      "path": "references/receipt-contracts.md",
+      "sha256": "f49e1ed046f2b2fef17a2eb4ce204e4a42d4f37cd63c2008eaded2ce68565d12",
+      "bytes": 1106
+    },
+    {
+      "path": "references/worked-examples.md",
+      "sha256": "3163c56da36e23b4fe4863d0b5c3538bbed802d6c8b12b29c7034c930c9008a4",
+      "bytes": 536
+    },
+    {
+      "path": "scripts/doctor.sh",
+      "sha256": "c4989fc47784384a014b729fd5429981056ca14aad5f06bc71f106d6285bc628",
+      "bytes": 1601
+    },
+    {
+      "path": "scripts/init.sh",
+      "sha256": "726e50eb6d7696d265b0a2a13afea69d71803cb478ee3b7aab62d59c2717a651",
+      "bytes": 6998
+    },
+    {
+      "path": "scripts/install_onboarding_fragment.sh",
+      "sha256": "f1de0c5e3b81090795648687841c48183eb210595f94f0daeddbcc28e73434c6",
+      "bytes": 1668
+    },
+    {
+      "path": "scripts/install_task_templates.sh",
+      "sha256": "59b0d220d55b3d8a4c1ca23920900f67237eae9e26ad190bd29e6aa9716f2c43",
+      "bytes": 1919
+    },
+    {
+      "path": "scripts/move_to_trash.sh",
+      "sha256": "90dbe93b536227f176e94c5a828b979f8d90c0aaa58df650f207b770df7632d9",
+      "bytes": 550
+    },
+    {
+      "path": "scripts/render_template.py",
+      "sha256": "dc2343c59ecc7d0aef726a5c9a9bab02e62ba0039ca84e8807ca86c6eff14c94",
+      "bytes": 1961
+    },
+    {
+      "path": "scripts/scaffold_app.sh",
+      "sha256": "8dd7e45b2761ebe0623191fe7318f98f18064d62d094c16c06a63bd54fe1dd49",
+      "bytes": 10975
+    },
+    {
+      "path": "scripts/write_release_profile.py",
+      "sha256": "d861e03ad58f43e9352b22c65e1643ebe310d198096ec37b44ed83de850a3b0c",
+      "bytes": 3032
+    }
+  ]
+}

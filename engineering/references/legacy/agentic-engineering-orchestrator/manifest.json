@@ -1,0 +1,21 @@
+{
+  "skill_id": "agentic-engineering-orchestrator",
+  "version": "2.0.0",
+  "description": "Portable router for disciplined AI-assisted coding. Use when Codex must inspect repo reality before classifying risk, add explicit risk flags, compare route options, preserve existing abstractions, distinguish observed work from inferred or planned work, and require validation artifacts before claiming software is understood, fixed, safe, or ready.",
+  "inputs": [
+    {
+      "event_type": "skill:agentic-engineering-orchestrator:requested",
+      "schema_ref": "default_event_schema"
+    },
+    {
+      "event_type": "engineering:execution_requested",
+      "schema_ref": "default_event_schema"
+    }
+  ],
+  "outputs": [
+    {
+      "event_type": "skill_activity:agentic-engineering-orchestrator",
+      "schema_ref": "default_finding_schema"
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+interface:
+  display_name: "Agentic Production Readiness Gate"
+  short_description: "Gate risky changes on release evidence"
+  default_prompt: "Use $agentic-production-readiness-gate to decide whether this risky change is ready to merge, deploy, or close."
+
+policy:
+  allow_implicit_invocation: false

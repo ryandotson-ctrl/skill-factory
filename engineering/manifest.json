@@ -1,25 +1,10 @@
 {
   "skill_id": "engineering",
+  "display_name": "engineering",
+  "description": "Routes software work through reality inspection, risk classification, implementation, QA, code audit, git hygiene, CI, and release closure.",
   "version": "1.0.0",
-  "description": "Lean core engineering skill for truth-led routing, no-regression implementation, QA, audit, and closure.",
-  "inputs": [
-    {
-      "event_type": "skill:engineering:requested",
-      "schema_ref": "default_event_schema"
-    },
-    {
-      "event_type": "engineering:execution_requested",
-      "schema_ref": "default_event_schema"
-    }
-  ],
-  "outputs": [
-    {
-      "event_type": "skill_activity:engineering",
-      "schema_ref": "default_finding_schema"
-    },
-    {
-      "event_type": "engineering:route_decision_ready",
-      "schema_ref": "default_finding_schema"
-    }
-  ]
+  "scope": "global",
+  "portability_tier": "strict_zero_leak",
+  "requires_env": [],
+  "project_profiles": []
 }

@@ -1,0 +1,53 @@
+{
+  "skill_id": "harmonious-sync-orchestrator",
+  "version": "2.1.0",
+  "description": "Release-parity, bundle-truth, sibling-platform isolation, and partner-ready sync orchestrator for shared repositories.",
+  "inputs": [
+    {
+      "event_type": "git.push.requested",
+      "schema_ref": "default_event_schema"
+    },
+    {
+      "event_type": "partner.sync.requested",
+      "schema_ref": "default_event_schema"
+    },
+    {
+      "event_type": "release.preflight.completed",
+      "schema_ref": "default_event_schema"
+    },
+    {
+      "event_type": "bundle.integrity.failed",
+      "schema_ref": "default_event_schema"
+    },
+    {
+      "event_type": "skill.mirror.changed",
+      "schema_ref": "default_event_schema"
+    },
+    {
+      "event_type": "portability.violation.detected",
+      "schema_ref": "default_event_schema"
+    }
+  ],
+  "outputs": [
+    {
+      "event_type": "sync.audit.completed",
+      "schema_ref": "default_finding_schema"
+    },
+    {
+      "event_type": "sync.blocked",
+      "schema_ref": "default_finding_schema"
+    },
+    {
+      "event_type": "sync.partner_ready",
+      "schema_ref": "default_finding_schema"
+    },
+    {
+      "event_type": "sync.bundle_gap_detected",
+      "schema_ref": "default_finding_schema"
+    },
+    {
+      "event_type": "sync.local_only_artifacts_detected",
+      "schema_ref": "default_finding_schema"
+    }
+  ]
+}

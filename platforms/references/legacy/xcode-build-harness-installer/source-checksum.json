@@ -1,0 +1,113 @@
+{
+  "schema": "LegacySourceChecksumV1",
+  "generated_at": "2026-04-28T02:49:56.037994+00:00",
+  "file_count": 21,
+  "aggregate_sha256": "345cd0b35aac0bd55d5fb75c50eaed833063b155a172a1574c5b41d4df268e38",
+  "files": [
+    {
+      "path": "SKILL.md",
+      "sha256": "0cbb6ef0fda88e50e587dfe8e9170004ec5ab57b8c1fbb42af3104fc81919a4b",
+      "bytes": 2598
+    },
+    {
+      "path": "agents/openai.yaml",
+      "sha256": "289c74c3eab6ad5c1111e7051d50ec8d27e82ea7eedbf809e6e6beba2303968c",
+      "bytes": 311
+    },
+    {
+      "path": "assets/toolkit/Makefile",
+      "sha256": "c2e2a7871d737d2c1837c52523a5eca89c5ffca553ead4ce0fe862cee9869b70",
+      "bytes": 6363
+    },
+    {
+      "path": "assets/toolkit/scripts/atomic_commit.sh",
+      "sha256": "fc8aa6b0ab949e60686c38ca639c78e7d0fd7643944fa9c4cb9b9e53ec5f8980",
+      "bytes": 821
+    },
+    {
+      "path": "assets/toolkit/scripts/clean.sh",
+      "sha256": "67eab4e713446ffe4b2a0843c64c75aa35830078061657c625b073d683a19165",
+      "bytes": 1157
+    },
+    {
+      "path": "assets/toolkit/scripts/diagnose.sh",
+      "sha256": "10175519d5ed3d5221ff6b10574aa6e232d131ebb81d89dbd2b58352bdcf5c56",
+      "bytes": 861
+    },
+    {
+      "path": "assets/toolkit/scripts/move_to_trash.sh",
+      "sha256": "90dbe93b536227f176e94c5a828b979f8d90c0aaa58df650f207b770df7632d9",
+      "bytes": 550
+    },
+    {
+      "path": "assets/toolkit/scripts/resolve_agent_name.sh",
+      "sha256": "d4f0d55c933a9c6215e7334cd78b0182579ca0ca485b84a6a360529f4261507c",
+      "bytes": 1244
+    },
+    {
+      "path": "assets/toolkit/scripts/resolve_sim_destination.sh",
+      "sha256": "02ac0845b2cfcc705da5b546a3afcbb0a16c92402aa8af8ece06a00c4d387d89",
+      "bytes": 5221
+    },
+    {
+      "path": "assets/toolkit/scripts/run_app_ios_sim.sh",
+      "sha256": "da1bd536cbb1c457b794b4da95358a8068db60b1e6ec9a9595fcd8c60cde747d",
+      "bytes": 1679
+    },
+    {
+      "path": "assets/toolkit/scripts/run_app_macos.sh",
+      "sha256": "14d25a670c4dcd624f2874c7c40549400964a7023cef1267440be8bc08c95dd8",
+      "bytes": 1415
+    },
+    {
+      "path": "assets/toolkit/scripts/xcbuild.sh",
+      "sha256": "d7f0030a7dc1b9ebe833ed518087830a74739ee6502c62a7fa26640e457ef33c",
+      "bytes": 3696
+    },
+    {
+      "path": "index.md",
+      "sha256": "fbbbe9f5aca8a48dfa27e2474813723a7d2e55dfbc49c706fd2ce7d7a56611ab",
+      "bytes": 266
+    },
+    {
+      "path": "manifest.json",
+      "sha256": "0aded17458eb116d3eefdebdcc275203af6474ee54554a71fca38021a35de05f",
+      "bytes": 370
+    },
+    {
+      "path": "manifest.v2.json",
+      "sha256": "93ea83058bcce5612fa60cf477ddfcd665e20170b24de9e9f87237334ca4e38e",
+      "bytes": 764
+    },
+    {
+      "path": "references/install-contract.md",
+      "sha256": "e16ee6bb06122e32e2195b92ea9a3c205125ebfcb460e25859d93d799cefe181",
+      "bytes": 700
+    },
+    {
+      "path": "references/target-behavior.md",
+      "sha256": "35bfff4d81a7b4dc861aa7b4b042c503ab5c5c3e3994abfa0035b4360c2596ea",
+      "bytes": 827
+    },
+    {
+      "path": "references/worked-examples.md",
+      "sha256": "614790a2846009ca0685261a55ef1c553fbd4303657039c86754eea8a2f16416",
+      "bytes": 609
+    },
+    {
+      "path": "scripts/install.sh",
+      "sha256": "b44923cd1e4116cb97df3727c934b7deed8be1037f5b02a3c30ba5cd05e245bf",
+      "bytes": 3906
+    },
+    {
+      "path": "scripts/move_to_trash.sh",
+      "sha256": "90dbe93b536227f176e94c5a828b979f8d90c0aaa58df650f207b770df7632d9",
+      "bytes": 550
+    },
+    {
+      "path": "scripts/render_template.py",
+      "sha256": "dc2343c59ecc7d0aef726a5c9a9bab02e62ba0039ca84e8807ca86c6eff14c94",
+      "bytes": 1961
+    }
+  ]
+}

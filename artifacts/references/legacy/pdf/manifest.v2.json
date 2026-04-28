@@ -1,0 +1,32 @@
+{
+  "schema_version": "2.0.0",
+  "display_name": "pdf",
+  "description": "Use when tasks involve reading, creating, or reviewing PDF files where rendering and layout matter; prefer visual checks by rendering pages (Poppler) and use Python tools such as `reportlab`, `pdfplumber`, and `pypdf` for generation and extraction.",
+  "dispatch": {
+    "mode": "automatic",
+    "cooldown": 300
+  },
+  "inputs": [
+    {
+      "id": "skill_request",
+      "type": "pulse.event",
+      "pattern": "skill:pdf:requested",
+      "route_mode": "owned",
+      "route_priority": 95
+    },
+    {
+      "id": "artifact_pdf_requested",
+      "type": "pulse.event",
+      "pattern": "artifact:pdf_requested",
+      "route_mode": "owned",
+      "route_priority": 90
+    }
+  ],
+  "outputs": [
+    {
+      "id": "status_update",
+      "type": "pulse.event",
+      "event_type": "skill_activity:pdf"
+    }
+  ]
+}

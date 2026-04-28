@@ -1,0 +1,58 @@
+{
+  "schema": "LegacySourceChecksumV1",
+  "generated_at": "2026-04-28T02:49:55.860004+00:00",
+  "file_count": 10,
+  "aggregate_sha256": "f02a43523ef70e796c2d685e33a61b7fdb7d0a451cb66e2765e3e86ab3472135",
+  "files": [
+    {
+      "path": "SKILL.md",
+      "sha256": "d4c551b98ceb7e20c53fb1ec7df908faafd093abfe3ffb71745334db073011ab",
+      "bytes": 5887
+    },
+    {
+      "path": "agents/openai.yaml",
+      "sha256": "d7867c5b8271ec5a7043ba20762e5640000a1bc6cf7841dbfb194418ea0d9db9",
+      "bytes": 274
+    },
+    {
+      "path": "index.md",
+      "sha256": "1be25decc2fe7920e83f3c858e971b894fc73f14cd93eaf6dba29578714be2d7",
+      "bytes": 256
+    },
+    {
+      "path": "manifest.json",
+      "sha256": "5ccbce2c8292663a0b1f6e358d4420cc5150d55f766b12a38ce435878506fa54",
+      "bytes": 1112
+    },
+    {
+      "path": "manifest.v2.json",
+      "sha256": "41a6cc430d70bec90b4c11e20fd586eeb9c97534a2ffa1469f018158685f3993",
+      "bytes": 2121
+    },
+    {
+      "path": "references/event-contracts.md",
+      "sha256": "92ec21a523e598b802664e7ec8c66d333c4153ed93d0c11b25427011499f5bbc",
+      "bytes": 292
+    },
+    {
+      "path": "references/issue_taxonomy.yaml",
+      "sha256": "027f4836a97c7d5527efcd6b306afb6803d957fe12d32d9913baa38cefc26759",
+      "bytes": 1864
+    },
+    {
+      "path": "references/lifecycle_policy.yaml",
+      "sha256": "4ec7c980244d127e0747a3f8715d9127b66d69e28a5b6ca713b3df33114c3c46",
+      "bytes": 1396
+    },
+    {
+      "path": "references/templates.md",
+      "sha256": "de1360577db6846f70b20fb9b02bb63388a9e7671d4c640ce6b6e9ff87d9498b",
+      "bytes": 1352
+    },
+    {
+      "path": "scripts/issue_guardian.py",
+      "sha256": "11558a63a5aa2f02ba1240ac50b1c98942a5a2704625b638d5ff7c411f4d9075",
+      "bytes": 56419
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "schema_version": "2.0.0",
+  "display_name": "platforms",
+  "description": "Operates platform-specific project profiles for Apple, Xcode, Jarvis, OpenClaw, Pi, Wi-Fi sensing, PFEMacOS, and constrained runtimes.",
+  "dispatch": {
+    "mode": "automatic",
+    "cooldown": 300
+  },
+  "inputs": [
+    {
+      "id": "skill_request",
+      "type": "pulse.event",
+      "pattern": "skill:platforms:requested",
+      "route_mode": "owned",
+      "route_priority": 95
+    },
+    {
+      "id": "semantic_request",
+      "type": "pulse.event",
+      "pattern": "platforms:profile_requested",
+      "route_mode": "owned",
+      "route_priority": 90
+    }
+  ],
+  "outputs": [
+    {
+      "id": "status_update",
+      "type": "pulse.event",
+      "event_type": "skill_activity:platforms",
+      "event_producer_role": "core_status"
+    },
+    {
+      "id": "ready",
+      "type": "pulse.event",
+      "event_type": "platforms:profile_ready",
+      "event_producer_role": "core_ready"
+    }
+  ],
+  "awareness": [
+    "engineering",
+    "reliability",
+    "security",
+    "ml",
+    "knowledge-data",
+    "automation"
+  ]
+}

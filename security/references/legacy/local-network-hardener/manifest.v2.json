@@ -1,0 +1,37 @@
+{
+    "schema_version": "2.0.0",
+    "display_name": "Local Network Hardener",
+    "dispatch": {
+        "mode": "automatic",
+        "cooldown": 300
+    },
+    "inputs": [
+        {
+            "id": "system_stability_trigger",
+            "type": "pulse.event",
+            "pattern": "stability_gate_check"
+        },
+        {
+            "id": "transport_change_trigger",
+            "type": "pulse.event",
+            "pattern": "backend_transport_changed"
+        },
+        {
+            "id": "ipc_auth_failure_trigger",
+            "type": "pulse.event",
+            "pattern": "ipc_auth_failure_detected"
+        }
+    ],
+    "outputs": [
+        {
+            "id": "status_update",
+            "type": "pulse.event",
+            "event_type": "local_network_hardener_activity"
+        },
+        {
+            "id": "harden_report",
+            "type": "pulse.event",
+            "event_type": "local_network_hardening_reported"
+        }
+    ]
+}

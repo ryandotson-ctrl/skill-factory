@@ -1,0 +1,30 @@
+{
+  "schema_version": "2.0.0",
+  "display_name": "Excel",
+  "description": "Internal runtime spreadsheet workflow for workbook authoring, analysis, rendering, and export.",
+  "dispatch": {
+    "mode": "manual",
+    "cooldown": 300
+  },
+  "inputs": [
+    {
+      "id": "spreadsheets_requested",
+      "type": "pulse.event",
+      "pattern": "codex-primary-runtime:spreadsheets_requested",
+      "route_mode": "owned",
+      "route_priority": 92
+    }
+  ],
+  "outputs": [
+    {
+      "id": "spreadsheets_ready",
+      "type": "pulse.event",
+      "event_type": "codex-primary-runtime:spreadsheets_ready"
+    },
+    {
+      "id": "status_update",
+      "type": "pulse.event",
+      "event_type": "skill_activity:codex-primary-runtime:spreadsheets"
+    }
+  ]
+}

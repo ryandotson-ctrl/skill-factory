@@ -1,0 +1,7 @@
+interface:
+  display_name: "git-release"
+  short_description: "Keep git, releases, CI, issues, and repo collaboration clean"
+  default_prompt: "Use $git-release to manage repository state, release readiness, GitHub comments, CI, and rollback evidence."
+
+policy:
+  allow_implicit_invocation: true

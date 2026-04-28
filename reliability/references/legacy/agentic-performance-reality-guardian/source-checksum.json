@@ -1,0 +1,38 @@
+{
+  "schema": "LegacySourceChecksumV1",
+  "generated_at": "2026-04-28T02:49:55.864399+00:00",
+  "file_count": 6,
+  "aggregate_sha256": "d3ad5fc2d6130d3e75594c3489c265b157a6811e9e5635aea057469b050b1003",
+  "files": [
+    {
+      "path": "SKILL.md",
+      "sha256": "b4ee3180bc8da42256a5ae47396a08ce91eb13124ee83695c7454521fcc06556",
+      "bytes": 1978
+    },
+    {
+      "path": "agents/openai.yaml",
+      "sha256": "655cf9ea078a0eb41a6558efcba7316d939757ceb4b3ef02f805b7121c6ee729",
+      "bytes": 315
+    },
+    {
+      "path": "index.md",
+      "sha256": "550d828183a51ce9d48f27c62f562b5711452ed77f51603c7437cd707404e5a1",
+      "bytes": 284
+    },
+    {
+      "path": "manifest.json",
+      "sha256": "3ee90ba4901ca4dd35c455fe3476eb4d08ac4abf7c982a30768000a9957248fa",
+      "bytes": 775
+    },
+    {
+      "path": "manifest.v2.json",
+      "sha256": "b008c2529c316b5bfa53d70a5b205152e1e10d1bcbe1a55ae4b397759f495e56",
+      "bytes": 1022
+    },
+    {
+      "path": "references/performance-anti-patterns.md",
+      "sha256": "c495fbb758042cb3cd9ddb05835931f51ca5f2e8844a7b0fc726121233842bac",
+      "bytes": 1266
+    }
+  ]
+}

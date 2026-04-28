@@ -1,7 +1,7 @@
 interface:
   display_name: "ml"
-  short_description: "Build, tune, evaluate, and stabilize local and cloud model systems"
-  default_prompt: "Use $ml for MLX, model optimization, quantization, model logistics, tensor debugging, and measurement-first model work."
+  short_description: "Builds, tunes, evaluates, optimizes, quantizes, and stabilizes local and cloud model systems."
+  default_prompt: "Use $ml for Make model systems measurable, stable, efficient, and honest about hardware and runtime constraints."
 
 policy:
   allow_implicit_invocation: true

@@ -1,0 +1,32 @@
+{
+  "schema_version": "2.0.0",
+  "display_name": "agentic-production-readiness-gate",
+  "description": "Portable production-readiness gate for agentic engineering. Use when medium-risk or high-risk changes need evidence for coverage, telemetry, rollback, failure semantics, and operational readiness before merge, deploy, or incident closure.",
+  "dispatch": {
+    "mode": "automatic",
+    "cooldown": 300
+  },
+  "inputs": [
+    {
+      "id": "skill_request",
+      "type": "pulse.event",
+      "pattern": "skill:agentic-production-readiness-gate:requested",
+      "route_mode": "owned",
+      "route_priority": 95
+    },
+    {
+      "id": "production_readiness_requested",
+      "type": "pulse.event",
+      "pattern": "production:readiness_requested",
+      "route_mode": "owned",
+      "route_priority": 90
+    }
+  ],
+  "outputs": [
+    {
+      "id": "status_update",
+      "type": "pulse.event",
+      "event_type": "skill_activity:agentic-production-readiness-gate"
+    }
+  ]
+}

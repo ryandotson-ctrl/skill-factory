@@ -1,0 +1,30 @@
+{
+  "schema_version": "2.0.0",
+  "display_name": "PowerPoint",
+  "description": "Internal runtime PowerPoint workflow for ambitious editable PPTX authoring and verification.",
+  "dispatch": {
+    "mode": "manual",
+    "cooldown": 300
+  },
+  "inputs": [
+    {
+      "id": "slides_requested",
+      "type": "pulse.event",
+      "pattern": "codex-primary-runtime:slides_requested",
+      "route_mode": "owned",
+      "route_priority": 92
+    }
+  ],
+  "outputs": [
+    {
+      "id": "slides_ready",
+      "type": "pulse.event",
+      "event_type": "codex-primary-runtime:slides_ready"
+    },
+    {
+      "id": "status_update",
+      "type": "pulse.event",
+      "event_type": "skill_activity:codex-primary-runtime:slides"
+    }
+  ]
+}

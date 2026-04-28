@@ -1,0 +1,36 @@
+{
+  "schema_version": "2.0.0",
+  "display_name": "Wisdom Retention Archivist",
+  "dispatch": {
+    "mode": "hybrid",
+    "cooldown": 120
+  },
+  "inputs": [
+    {
+      "id": "skill_recommendation_event",
+      "type": "pulse.event",
+      "pattern": "skill_recommendation_emitted",
+      "route_mode": "broadcast",
+      "route_priority": 20
+    },
+    {
+      "id": "postmortem_event",
+      "type": "pulse.event",
+      "pattern": "postmortem_generated",
+      "route_mode": "broadcast",
+      "route_priority": 20
+    }
+  ],
+  "outputs": [
+    {
+      "id": "wisdom_entry_archived",
+      "type": "pulse.event",
+      "event_type": "wisdom_entry_archived"
+    },
+    {
+      "id": "wisdom_digest_updated",
+      "type": "pulse.event",
+      "event_type": "wisdom_digest_updated"
+    }
+  ]
+}

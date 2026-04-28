@@ -1,0 +1,3 @@
+interface:
+  display_name: "Web Search Grounding Specialist"
+  short_description: "Diagnoses and hardens web-grounded response behavior in"

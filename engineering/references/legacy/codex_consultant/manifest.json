@@ -1,0 +1,12 @@
+{
+  "skill_id": "codex_consultant",
+  "version": "1.0.0",
+  "description": "Auto-generated manifest for codex_consultant",
+  "inputs": [],
+  "outputs": [
+    {
+      "event_type": "codex_consultant_finding",
+      "schema_ref": "default_finding_schema"
+    }
+  ]
+}

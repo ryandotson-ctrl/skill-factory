@@ -1,0 +1,4 @@
+interface:
+  display_name: "Harmonious Sync Orchestrator"
+  short_description: "Safe repo and artifact sync governance"
+  default_prompt: "Coordinate shared-repo sync decisions, preserve release-parity and bundle truth, and propose the safest additive path for pushing or mirroring changes."

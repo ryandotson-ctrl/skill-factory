@@ -1,7 +1,7 @@
 interface:
   display_name: "watcher"
-  short_description: "Inventory skills, drift, wisdom, Pulse Bus health, and ecosystem posture"
-  default_prompt: "Use $watcher to produce concise ecosystem intelligence while preserving per-skill memory and Pulse Bus awareness."
+  short_description: "Maintains the skill ecosystem, Pulse Bus, self-improvement loops, migration safety, and portable skill governance."
+  default_prompt: "Use $watcher for Keep the entire skill ecosystem coherent, lean, safe, discoverable, and continuously improving."
 
 policy:
   allow_implicit_invocation: true

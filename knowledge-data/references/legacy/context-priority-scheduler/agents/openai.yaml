@@ -1,0 +1,3 @@
+interface:
+  display_name: "Context Priority Scheduler"
+  short_description: "Manages large context windows by dynamically prioritizing and"

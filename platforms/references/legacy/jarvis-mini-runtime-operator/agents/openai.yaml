@@ -1,0 +1,4 @@
+interface:
+  display_name: "Jarvis Mini Runtime Operator"
+  short_description: "Pi runtime uptime and Telegram health operations."
+  default_prompt: "Use $jarvis-mini-runtime-operator to verify and recover Jarvis Mini uptime on the Pi."

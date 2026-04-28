@@ -1,0 +1,38 @@
+{
+  "schema": "LegacySourceChecksumV1",
+  "generated_at": "2026-04-28T02:49:55.917363+00:00",
+  "file_count": 6,
+  "aggregate_sha256": "245e0e463fa8ea574f3714aa78f31032a3ae0bbf53081983931100fb5e3ee37b",
+  "files": [
+    {
+      "path": "SKILL.md",
+      "sha256": "1a5a2efef70943f703beaf48b177e9abb68a247e2f5f839484f76cc9684118e3",
+      "bytes": 3220
+    },
+    {
+      "path": "agents/openai.yaml",
+      "sha256": "396b3f0fc70245a8a0fbe28992a4770915a3d12b843fad84cf966e8cab342eb7",
+      "bytes": 139
+    },
+    {
+      "path": "index.md",
+      "sha256": "faac776f8e5036d1c468689df2d5e2aeef58b982bbba9f88fcb9922765bb056d",
+      "bytes": 252
+    },
+    {
+      "path": "manifest.json",
+      "sha256": "4dc45309c3122cfa3999c07b01f8d04fb7c1b8de8bdf5af38eaed86fc5357783",
+      "bytes": 285
+    },
+    {
+      "path": "manifest.v2.json",
+      "sha256": "a7177886d622c0fa0f6a23876b9154a0f546ff3bd55d8a6f1bd8532b1e2b2cbf",
+      "bytes": 503
+    },
+    {
+      "path": "references/planning-contracts.md",
+      "sha256": "62daa9e337f5b95a76de830ad4bd905858995511042ffab86a4110f6d5af0dd1",
+      "bytes": 501
+    }
+  ]
+}

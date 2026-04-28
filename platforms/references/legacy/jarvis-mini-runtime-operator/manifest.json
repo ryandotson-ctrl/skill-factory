@@ -1,0 +1,21 @@
+{
+  "skill_id": "jarvis-mini-runtime-operator",
+  "version": "1.0.0",
+  "description": "Operate Jarvis Mini runtime on the Raspberry Pi OpenClaw stack. Use when",
+  "inputs": [
+    {
+      "event_type": "skill:jarvis-mini-runtime-operator:requested",
+      "schema_ref": "default_event_schema"
+    },
+    {
+      "event_type": "jarvis:runtime_operation_requested",
+      "schema_ref": "default_event_schema"
+    }
+  ],
+  "outputs": [
+    {
+      "event_type": "skill_activity:jarvis-mini-runtime-operator",
+      "schema_ref": "default_finding_schema"
+    }
+  ]
+}

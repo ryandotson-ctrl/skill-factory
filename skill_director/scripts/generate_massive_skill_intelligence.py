@@ -25,6 +25,7 @@ except Exception:  # pragma: no cover - dependency may be absent in minimal envs
 
 CACHE_SKIP = {"__pycache__", ".pytest_cache"}
 BACKUP_SKIP = {"_p0_backups", ".backups", ".skill-backups"}
+ARCHIVE_SKIP_SEQUENCES = (("references", "legacy"),)
 SOURCE_PRIORITY = {"codex": 0, "antigravity": 1, "workspace_mirror": 2, "local": 3, "agents": 4}
 DIRECTOR_PRIORITY = {"codex": 0, "antigravity": 1, "workspace_mirror": 2, "local": 3, "agents": 4}
 SEMVER_PATTERN = re.compile(r"^\s*(\d+)\.(\d+)\.(\d+)")
@@ -232,8 +233,8 @@ FALLBACK_ECOSYSTEM_CONTRACT: Dict[str, Any] = {
         ],
         "operator_conventions": [
             {"kind": "skill_request_namespace", "prefix": "skill:", "suffix": ":requested"},
-            {"kind": "owned_route_suffix", "suffix": ":requested", "route_modes": ["owned"]},
-            {"kind": "owned_route_suffix", "suffix": "_requested", "route_modes": ["owned"]},
+            {"kind": "owned_route_suffix", "suffix": ":requested", "route_modes": ["owned", "alias"]},
+            {"kind": "owned_route_suffix", "suffix": "_requested", "route_modes": ["owned", "alias"]},
         ],
     },
     "shared_event_registry": {
@@ -853,6 +854,18 @@ def skip_parts(include_backups: bool) -> set[str]:
     return skip
 
 
+def is_archived_skill_reference_path(path: Path) -> bool:
+    parts = tuple(path.parts)
+    for sequence in ARCHIVE_SKIP_SEQUENCES:
+        width = len(sequence)
+        if width == 0:
+            continue
+        for index in range(0, max(0, len(parts) - width + 1)):
+            if parts[index : index + width] == sequence:
+                return True
+    return False
+
+
 def is_backup_path(path: Path) -> bool:
     return any(part in BACKUP_SKIP for part in path.parts)
 
@@ -1088,6 +1101,8 @@ def iter_skill_files(root: RootSpec, include_backups: bool) -> Iterable[Path]:
     skip = skip_parts(include_backups)
     for path in root.path.rglob("SKILL.md"):
         if any(part in skip for part in path.parts):
+            continue
+        if is_archived_skill_reference_path(path):
             continue
         yield path
 

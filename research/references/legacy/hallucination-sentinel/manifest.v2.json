@@ -1,0 +1,125 @@
+{
+  "schema_version": "2.0.0",
+  "display_name": "Hallucination Sentinel",
+  "dispatch": {
+    "mode": "automatic",
+    "cooldown": 300
+  },
+  "tags": [
+    "truthfulness",
+    "web-grounding",
+    "tool-confirmation",
+    "regression-firewall"
+  ],
+  "inputs": [
+    {
+      "id": "run_completed",
+      "type": "pulse.event",
+      "pattern": "run.completed"
+    },
+    {
+      "id": "run_failed",
+      "type": "pulse.event",
+      "pattern": "run.failed"
+    },
+    {
+      "id": "run_error",
+      "type": "pulse.event",
+      "pattern": "run.error"
+    },
+    {
+      "id": "tool_result",
+      "type": "pulse.event",
+      "pattern": "run.tool.result"
+    },
+    {
+      "id": "search_query",
+      "type": "pulse.event",
+      "pattern": "run.search.query"
+    },
+    {
+      "id": "grounding_gap",
+      "type": "pulse.event",
+      "pattern": "grounding_gap_detected"
+    },
+    {
+      "id": "truth_guard_triggered",
+      "type": "pulse.event",
+      "pattern": "truthfulness_guard_triggered"
+    },
+    {
+      "id": "filesystem_action_gap",
+      "type": "pulse.event",
+      "pattern": "filesystem_action_gap_detected"
+    },
+    {
+      "id": "web_evidence_thin",
+      "type": "pulse.event",
+      "pattern": "web_evidence_thin_detected"
+    }
+  ],
+  "outputs": [
+    {
+      "id": "audit_completed",
+      "type": "pulse.event",
+      "event_type": "hallucination.audit.completed",
+      "payload_fields": [
+        "hallucination_class",
+        "severity",
+        "root_cause",
+        "owner_skills",
+        "regression_required",
+        "evidence_sufficiency",
+        "truth_guard_status"
+      ]
+    },
+    {
+      "id": "audit_blocking",
+      "type": "pulse.event",
+      "event_type": "hallucination.audit.blocking",
+      "payload_fields": [
+        "hallucination_class",
+        "severity",
+        "root_cause"
+      ]
+    },
+    {
+      "id": "remediation_recommended",
+      "type": "pulse.event",
+      "event_type": "hallucination.remediation.recommended",
+      "payload_fields": [
+        "hallucination_class",
+        "owner_skills",
+        "recommended_code_changes"
+      ]
+    },
+    {
+      "id": "regression_required",
+      "type": "pulse.event",
+      "event_type": "hallucination.regression.required",
+      "payload_fields": [
+        "hallucination_class",
+        "recommended_tests"
+      ]
+    },
+    {
+      "id": "truth_guard_confirmed",
+      "type": "pulse.event",
+      "event_type": "hallucination.truth_guard.confirmed",
+      "payload_fields": [
+        "truth_guard_status",
+        "root_cause"
+      ]
+    },
+    {
+      "id": "executor_gap_confirmed",
+      "type": "pulse.event",
+      "event_type": "hallucination.executor_gap.confirmed",
+      "payload_fields": [
+        "hallucination_class",
+        "root_cause",
+        "recommended_code_changes"
+      ]
+    }
+  ]
+}

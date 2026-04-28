@@ -1,0 +1,820 @@
+{
+  "schema": "LegacySourceMapV2",
+  "generated_at": "2026-04-28T02:50:30.805055+00:00",
+  "target_core_count": 12,
+  "target_core_skills": [
+    "artifacts",
+    "automation",
+    "engineering",
+    "knowledge-data",
+    "missions",
+    "ml",
+    "platforms",
+    "reliability",
+    "research",
+    "security",
+    "ux",
+    "watcher"
+  ],
+  "migration_mode": "additive_verbatim_preservation",
+  "policy": "Twelve active core skills are installed as the preferred routing surface. Legacy source folders remain in place and are also copied verbatim under core references before any future compatibility stubbing.",
+  "stub_phase_status": "prepared_not_applied",
+  "core_skills": {
+    "watcher": [
+      "skill_director",
+      "omniscient-skill-cataloger",
+      "cross-workspace-goal-intelligence",
+      "skill-governor",
+      "skill-builder",
+      "skill-portability-guardian",
+      "skill-hygiene-orchestrator",
+      "antigravity-skill-mirror",
+      "conversation-skill-evolution-director",
+      "proactive-skill-evolution-planner",
+      "skill-evolution-regression-gate",
+      "orchestration-sentinel",
+      "orchestration-sentinel-v2",
+      "agentic-tool-blacksmith",
+      ".system/skill-creator",
+      ".system/skill-installer",
+      ".system/plugin-creator",
+      "find-skills"
+    ],
+    "engineering": [
+      "agentic-engineering-orchestrator",
+      "agentic-design-contract-architect",
+      "agentic-understanding-receipt-enforcer",
+      "agentic-production-readiness-gate",
+      "agentic-innovation-experiment-bridge",
+      "qa-automation-engineer",
+      "principal_code_auditor_worldclass",
+      "codex_consultant",
+      "git-clarity-consultant",
+      "git-sentinel-release-manager",
+      "harmonious-sync-orchestrator",
+      "repo_bootstrap",
+      "repository-harmonization-specialist",
+      "gh-address-comments",
+      "gh-fix-ci",
+      "issue-tracker-guardian",
+      "git-release"
+    ],
+    "reliability": [
+      "agentic-incident-triage-commander",
+      "agentic-performance-reality-guardian",
+      "async-hygiene-monitor",
+      "thread-safety-auditor",
+      "uptime-reliability-sentinel",
+      "log-detective-sre",
+      "log-anomaly-observer",
+      "lifecycle-orphan-process-guardian",
+      "graceful-fallback-orchestrator",
+      "memory-leak-detective",
+      "autonomous-stream-validator",
+      "launch-window-budget-guard",
+      "capability-entitlement-negotiator",
+      "circular-import-sentinel",
+      "api-shadowing-guardian",
+      "storage-hygiene-cleanup-orchestrator",
+      "reliability"
+    ],
+    "security": [
+      "security_appsec_worldclass_auditor",
+      "security-best-practices",
+      "security-threat-model",
+      "private-pii-scrub-master",
+      "security-ownership-map",
+      "local-network-hardener",
+      "macos_end_to_end_security_audit"
+    ],
+    "research": [
+      "research-director",
+      "openai-docs",
+      ".system/openai-docs",
+      "web-search-grounding-specialist",
+      "tech_auditor",
+      "ai-agent-bi-researcher",
+      "skunkworks-innovation-strategist",
+      "project-manager-maestro",
+      "hallucination-sentinel"
+    ],
+    "knowledge-data": [
+      "knowledge",
+      "rag-data",
+      "wisdom-retention-archivist",
+      "personal-knowledge-graph-architect",
+      "context-priority-scheduler",
+      "experiment-ledger-packager",
+      "rag-architect-specialist",
+      "schema-parity-enforcer",
+      "contract-parity-release-gate",
+      "telemetry-semconv-enforcer",
+      "eval-flywheel-orchestrator",
+      "target-compatibility-gate",
+      "multi-modal-pipeline-auditor",
+      "payload-checksum-validator"
+    ],
+    "ml": [
+      "ml-compiler-inference-optimizer",
+      "ml-compiler-inference-optimizer-router",
+      "mlx-fine-tuning-artisan",
+      "mlx-objective-finetune-factory",
+      "mlx-stability-orchestrator",
+      "model-logistics-specialist",
+      "model-quantization-lab",
+      "energy-efficient-inference-auditor",
+      "tensor-shape-stabilizer",
+      "mlx-quantum-autodiff-bridge",
+      "quantum-proof-assurance-gate",
+      "oss_model_radar_mlx"
+    ],
+    "automation": [
+      "automation",
+      "playwright",
+      "playwright-interactive",
+      "atlas",
+      "screenshot",
+      "chronicle"
+    ],
+    "artifacts": [
+      "artifacts",
+      "pdf",
+      "codex-primary-runtime/slides",
+      "codex-primary-runtime/spreadsheets",
+      "imagegen",
+      ".system/imagegen",
+      "logo-asset-packager",
+      "chatgpt-apps"
+    ],
+    "ux": [
+      "ux",
+      "ui-ux-jony-level",
+      "model-ux-orchestrator"
+    ],
+    "platforms": [
+      "apple",
+      "edge-platforms",
+      "pfe-profile",
+      "apple-project-bootstrap-orchestrator",
+      "xcode-build-harness-installer",
+      "apple-ecosystem-release-operator",
+      "jarvis-mini-antigravity-routing",
+      "jarvis-mini-ears-guardrails",
+      "jarvis-mini-openclaw-release-guardian",
+      "jarvis-mini-runtime-operator",
+      "jarvis-mini-token-discipline",
+      "pi3b-openclaw-tuning-specialist",
+      "wifi-rssi-presence-sensing-architect",
+      "foundry-autonomy-recovery-operator",
+      "runtime-context-launcher"
+    ],
+    "missions": [
+      "special-missions",
+      "job-apply-autonomous"
+    ]
+  },
+  "legacy_status": [
+    {
+      "legacy_skill_id": "skill_director",
+      "target_core": "watcher",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "omniscient-skill-cataloger",
+      "target_core": "watcher",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "cross-workspace-goal-intelligence",
+      "target_core": "watcher",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "skill-governor",
+      "target_core": "watcher",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "skill-builder",
+      "target_core": "watcher",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "skill-portability-guardian",
+      "target_core": "watcher",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "skill-hygiene-orchestrator",
+      "target_core": "watcher",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "antigravity-skill-mirror",
+      "target_core": "watcher",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "conversation-skill-evolution-director",
+      "target_core": "watcher",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "proactive-skill-evolution-planner",
+      "target_core": "watcher",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "skill-evolution-regression-gate",
+      "target_core": "watcher",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "orchestration-sentinel",
+      "target_core": "watcher",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "orchestration-sentinel-v2",
+      "target_core": "watcher",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "agentic-tool-blacksmith",
+      "target_core": "watcher",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": ".system/skill-creator",
+      "target_core": "watcher",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": ".system/skill-installer",
+      "target_core": "watcher",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": ".system/plugin-creator",
+      "target_core": "watcher",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "find-skills",
+      "target_core": "watcher",
+      "source_status": "copied_from_agents"
+    },
+    {
+      "legacy_skill_id": "agentic-engineering-orchestrator",
+      "target_core": "engineering",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "agentic-design-contract-architect",
+      "target_core": "engineering",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "agentic-understanding-receipt-enforcer",
+      "target_core": "engineering",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "agentic-production-readiness-gate",
+      "target_core": "engineering",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "agentic-innovation-experiment-bridge",
+      "target_core": "engineering",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "qa-automation-engineer",
+      "target_core": "engineering",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "principal_code_auditor_worldclass",
+      "target_core": "engineering",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "codex_consultant",
+      "target_core": "engineering",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "git-clarity-consultant",
+      "target_core": "engineering",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "git-sentinel-release-manager",
+      "target_core": "engineering",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "harmonious-sync-orchestrator",
+      "target_core": "engineering",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "repo_bootstrap",
+      "target_core": "engineering",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "repository-harmonization-specialist",
+      "target_core": "engineering",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "gh-address-comments",
+      "target_core": "engineering",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "gh-fix-ci",
+      "target_core": "engineering",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "issue-tracker-guardian",
+      "target_core": "engineering",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "git-release",
+      "target_core": "engineering",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "agentic-incident-triage-commander",
+      "target_core": "reliability",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "agentic-performance-reality-guardian",
+      "target_core": "reliability",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "async-hygiene-monitor",
+      "target_core": "reliability",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "thread-safety-auditor",
+      "target_core": "reliability",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "uptime-reliability-sentinel",
+      "target_core": "reliability",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "log-detective-sre",
+      "target_core": "reliability",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "log-anomaly-observer",
+      "target_core": "reliability",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "lifecycle-orphan-process-guardian",
+      "target_core": "reliability",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "graceful-fallback-orchestrator",
+      "target_core": "reliability",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "memory-leak-detective",
+      "target_core": "reliability",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "autonomous-stream-validator",
+      "target_core": "reliability",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "launch-window-budget-guard",
+      "target_core": "reliability",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "capability-entitlement-negotiator",
+      "target_core": "reliability",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "circular-import-sentinel",
+      "target_core": "reliability",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "api-shadowing-guardian",
+      "target_core": "reliability",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "storage-hygiene-cleanup-orchestrator",
+      "target_core": "reliability",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "reliability",
+      "target_core": "reliability",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "security_appsec_worldclass_auditor",
+      "target_core": "security",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "security-best-practices",
+      "target_core": "security",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "security-threat-model",
+      "target_core": "security",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "private-pii-scrub-master",
+      "target_core": "security",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "security-ownership-map",
+      "target_core": "security",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "local-network-hardener",
+      "target_core": "security",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "macos_end_to_end_security_audit",
+      "target_core": "security",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "research-director",
+      "target_core": "research",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "openai-docs",
+      "target_core": "research",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": ".system/openai-docs",
+      "target_core": "research",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "web-search-grounding-specialist",
+      "target_core": "research",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "tech_auditor",
+      "target_core": "research",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "ai-agent-bi-researcher",
+      "target_core": "research",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "skunkworks-innovation-strategist",
+      "target_core": "research",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "project-manager-maestro",
+      "target_core": "research",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "hallucination-sentinel",
+      "target_core": "research",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "knowledge",
+      "target_core": "knowledge-data",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "rag-data",
+      "target_core": "knowledge-data",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "wisdom-retention-archivist",
+      "target_core": "knowledge-data",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "personal-knowledge-graph-architect",
+      "target_core": "knowledge-data",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "context-priority-scheduler",
+      "target_core": "knowledge-data",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "experiment-ledger-packager",
+      "target_core": "knowledge-data",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "rag-architect-specialist",
+      "target_core": "knowledge-data",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "schema-parity-enforcer",
+      "target_core": "knowledge-data",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "contract-parity-release-gate",
+      "target_core": "knowledge-data",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "telemetry-semconv-enforcer",
+      "target_core": "knowledge-data",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "eval-flywheel-orchestrator",
+      "target_core": "knowledge-data",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "target-compatibility-gate",
+      "target_core": "knowledge-data",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "multi-modal-pipeline-auditor",
+      "target_core": "knowledge-data",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "payload-checksum-validator",
+      "target_core": "knowledge-data",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "ml-compiler-inference-optimizer",
+      "target_core": "ml",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "ml-compiler-inference-optimizer-router",
+      "target_core": "ml",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "mlx-fine-tuning-artisan",
+      "target_core": "ml",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "mlx-objective-finetune-factory",
+      "target_core": "ml",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "mlx-stability-orchestrator",
+      "target_core": "ml",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "model-logistics-specialist",
+      "target_core": "ml",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "model-quantization-lab",
+      "target_core": "ml",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "energy-efficient-inference-auditor",
+      "target_core": "ml",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "tensor-shape-stabilizer",
+      "target_core": "ml",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "mlx-quantum-autodiff-bridge",
+      "target_core": "ml",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "quantum-proof-assurance-gate",
+      "target_core": "ml",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "oss_model_radar_mlx",
+      "target_core": "ml",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "automation",
+      "target_core": "automation",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "playwright",
+      "target_core": "automation",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "playwright-interactive",
+      "target_core": "automation",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "atlas",
+      "target_core": "automation",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "screenshot",
+      "target_core": "automation",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "chronicle",
+      "target_core": "automation",
+      "source_status": "copied_from_codex"
+    },
+    {
+      "legacy_skill_id": "artifacts",
+      "target_core": "artifacts",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "pdf",
+      "target_core": "artifacts",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "codex-primary-runtime/slides",
+      "target_core": "artifacts",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "codex-primary-runtime/spreadsheets",
+      "target_core": "artifacts",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "imagegen",
+      "target_core": "artifacts",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": ".system/imagegen",
+      "target_core": "artifacts",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "logo-asset-packager",
+      "target_core": "artifacts",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "chatgpt-apps",
+      "target_core": "artifacts",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "ux",
+      "target_core": "ux",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "ui-ux-jony-level",
+      "target_core": "ux",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "model-ux-orchestrator",
+      "target_core": "ux",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "apple",
+      "target_core": "platforms",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "edge-platforms",
+      "target_core": "platforms",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "pfe-profile",
+      "target_core": "platforms",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "apple-project-bootstrap-orchestrator",
+      "target_core": "platforms",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "xcode-build-harness-installer",
+      "target_core": "platforms",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "apple-ecosystem-release-operator",
+      "target_core": "platforms",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "jarvis-mini-antigravity-routing",
+      "target_core": "platforms",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "jarvis-mini-ears-guardrails",
+      "target_core": "platforms",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "jarvis-mini-openclaw-release-guardian",
+      "target_core": "platforms",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "jarvis-mini-runtime-operator",
+      "target_core": "platforms",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "jarvis-mini-token-discipline",
+      "target_core": "platforms",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "pi3b-openclaw-tuning-specialist",
+      "target_core": "platforms",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "wifi-rssi-presence-sensing-architect",
+      "target_core": "platforms",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "foundry-autonomy-recovery-operator",
+      "target_core": "platforms",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "runtime-context-launcher",
+      "target_core": "platforms",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "special-missions",
+      "target_core": "missions",
+      "source_status": "copied"
+    },
+    {
+      "legacy_skill_id": "job-apply-autonomous",
+      "target_core": "missions",
+      "source_status": "copied"
+    }
+  ],
+  "unmapped_standard_workspace_skills": [],
+  "known_external_reference_only": []
+}

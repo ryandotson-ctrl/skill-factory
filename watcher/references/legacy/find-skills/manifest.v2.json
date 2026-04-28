@@ -1,0 +1,32 @@
+{
+  "schema_version": "2.0.0",
+  "display_name": "find-skills",
+  "description": "Helps users discover and install agent skills when they ask questions like \"how do I do X\", \"find a skill for X\", \"is there a skill that can...\", or express interest in extending capabilities. This skill should be used when the user is looking for functionality that might exist as an installable skill.",
+  "dispatch": {
+    "mode": "automatic",
+    "cooldown": 300
+  },
+  "inputs": [
+    {
+      "id": "skill_request",
+      "type": "pulse.event",
+      "pattern": "skill:find-skills:requested",
+      "route_mode": "owned",
+      "route_priority": 95
+    },
+    {
+      "id": "skills_discovery_requested",
+      "type": "pulse.event",
+      "pattern": "skills:discovery_requested",
+      "route_mode": "owned",
+      "route_priority": 90
+    }
+  ],
+  "outputs": [
+    {
+      "id": "status_update",
+      "type": "pulse.event",
+      "event_type": "skill_activity:find-skills"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+    "schema_version": "2.0.0",
+    "display_name": "Ml Compiler Inference Optimizer",
+    "dispatch": {
+        "mode": "automatic",
+        "cooldown": 300
+    },
+    "inputs": [
+        {
+            "id": "system_stability_trigger",
+            "type": "pulse.event",
+            "pattern": "stability_gate_check"
+        }
+    ],
+    "outputs": [
+        {
+            "id": "status_update",
+            "type": "pulse.event",
+            "event_type": "ml_compiler_inference_optimizer_activity"
+        }
+    ]
+}

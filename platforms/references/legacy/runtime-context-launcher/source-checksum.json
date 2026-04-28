@@ -1,0 +1,43 @@
+{
+  "schema": "LegacySourceChecksumV1",
+  "generated_at": "2026-04-28T02:49:56.054140+00:00",
+  "file_count": 7,
+  "aggregate_sha256": "e3c1083072791618372043834e961e3970ae7f88b5626a6b460bca7c70a5d41b",
+  "files": [
+    {
+      "path": "SKILL.md",
+      "sha256": "0520ca5b0fd290c0ac08e8c9e4c2f1ac3552c53838ab885fc7dcdf91d0fc83ae",
+      "bytes": 8503
+    },
+    {
+      "path": "agents/openai.yaml",
+      "sha256": "464292731fd026e2b96891dcc6c11ad559f48cdcd7c37e6e362050787c3c918f",
+      "bytes": 138
+    },
+    {
+      "path": "index.md",
+      "sha256": "57a44eb52f375615cb8b46497aaa572178e0cc6704741fd6f5b16f2d77a8be0e",
+      "bytes": 256
+    },
+    {
+      "path": "manifest.json",
+      "sha256": "76c7597396ae15a793a23d1297ba08b4f18e712f878c3742d465b158379ffdb8",
+      "bytes": 608
+    },
+    {
+      "path": "manifest.v2.json",
+      "sha256": "0debcb87cb16b2e66b2a7ab7e8b580db32ff42b5aa8890c1b4c2f1c042ca2df4",
+      "bytes": 852
+    },
+    {
+      "path": "references/profile-boundaries.md",
+      "sha256": "0335a504ec9373f9532764742b863c05f0f813f49505880191da14add1538ceb",
+      "bytes": 363
+    },
+    {
+      "path": "scripts/smart_launch.py",
+      "sha256": "e42605abaa55f3edc0d0f05a49b978a721cd97562fda00f8039a9e28afee7db8",
+      "bytes": 7438
+    }
+  ]
+}

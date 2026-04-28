@@ -1,0 +1,7 @@
+interface:
+  display_name: "platforms"
+  short_description: "Operates platform-specific project profiles for Apple, Xcode, Jarvis, OpenClaw, Pi, Wi-Fi sensing, PFEMacOS, and constrained runtimes."
+  default_prompt: "Use $platforms for Keep platform-specific work powerful but profile-gated, non-destructive, and evidence-heavy."
+
+policy:
+  allow_implicit_invocation: true

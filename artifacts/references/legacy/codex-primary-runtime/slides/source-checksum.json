@@ -1,0 +1,58 @@
+{
+  "schema": "LegacySourceChecksumV1",
+  "generated_at": "2026-04-28T02:49:55.984439+00:00",
+  "file_count": 10,
+  "aggregate_sha256": "877bea6e9db9e7288344f442b5c8251efc05db281f422dc3a10288b9bba34043",
+  "files": [
+    {
+      "path": "SKILL.md",
+      "sha256": "8a3ec76b4af3516808e7c39c1e721f514bdf64e94ac171f53ac49b45393ecad2",
+      "bytes": 30820
+    },
+    {
+      "path": "agents/openai.yaml",
+      "sha256": "757ba7512c3514d8d0f223b2128c2a5d31c11a0cea6a9abc3e579fee56535f70",
+      "bytes": 294
+    },
+    {
+      "path": "assets/file-presentation.png",
+      "sha256": "8f992a52671b33bb486f7d2f245e3f405917e81344d2350496a17d8c04ad75dc",
+      "bytes": 2172
+    },
+    {
+      "path": "index.md",
+      "sha256": "8838d02e332d660601557ab8607e0f8491b8415c5c63a51138c6ee5e5979ce58",
+      "bytes": 264
+    },
+    {
+      "path": "manifest.json",
+      "sha256": "b95e8c7bb3350c43701359f61b60d8d65c15e7497d1233f136351cc2e06ca9fb",
+      "bytes": 612
+    },
+    {
+      "path": "manifest.v2.json",
+      "sha256": "11b8cb1a29529678722c02667e5f108938e404d1a7b13347db36549f2eb48e75",
+      "bytes": 730
+    },
+    {
+      "path": "scripts/init_pro_deck_builder_js.js",
+      "sha256": "d16ac5ffa28820f9a0b6a054b41be6caaa86d043de4ec160ee79d2a8898906b0",
+      "bytes": 8967
+    },
+    {
+      "path": "scripts/prepare_reference_prompts.js",
+      "sha256": "c8a5dc6721b0bbb59d04fd70cb4e56feedccb45a41c49569455c280c5f497e05",
+      "bytes": 10738
+    },
+    {
+      "path": "scripts/pro_deck_quality_check.js",
+      "sha256": "47d6b1d0ed1a3bcf821bbf816e41aaeec388d1cc947bd6640b02f7d1dfa26e39",
+      "bytes": 25503
+    },
+    {
+      "path": "templates/build_pro_deck_template.js",
+      "sha256": "c5ebcdd51e9f445d96f8453bf629158ac30fd7e4235e323e1fb3b7b0ec86a9ff",
+      "bytes": 20675
+    }
+  ]
+}

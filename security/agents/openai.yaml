@@ -1,7 +1,7 @@
 interface:
   display_name: "security"
-  short_description: "Audit AppSec, privacy, threat models, ownership, macOS, and network posture"
-  default_prompt: "Use $security to protect systems and data with evidence-led defensive security analysis."
+  short_description: "Protects applications, data, identities, ownership boundaries, local systems, and networks from security and privacy failures."
+  default_prompt: "Use $security for Find and reduce security risk without inventing threats, leaking private data, or enabling misuse."
 
 policy:
   allow_implicit_invocation: true

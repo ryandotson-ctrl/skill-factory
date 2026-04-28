@@ -1,0 +1,4 @@
+interface:
+  display_name: "Research Director"
+  short_description: "Primary-source research director"
+  default_prompt: "Run a rigorous primary-source research sweep for the user's decision, verify recency and version truth, separate facts from inferences and assumptions, and produce a decision-ready experiment or migration plan tied to the active project's north star and constraints."

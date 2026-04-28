@@ -1,0 +1,53 @@
+{
+  "schema": "LegacySourceChecksumV1",
+  "generated_at": "2026-04-28T02:49:55.912489+00:00",
+  "file_count": 9,
+  "aggregate_sha256": "1c94f49e291635329d16c959cee2518fb479be713b1b0a5de5d83bfd51be2d82",
+  "files": [
+    {
+      "path": "SKILL.md",
+      "sha256": "649f93eac8c0e4771ea903025018a7f5abef26c7503ecbf8f7e9749f6dd784a4",
+      "bytes": 4812
+    },
+    {
+      "path": "agents/openai.yaml",
+      "sha256": "7d7218579afb8c586020ccc2908f5dfb7d63cadc922d78a1d334dafdd1dfc0a6",
+      "bytes": 404
+    },
+    {
+      "path": "index.md",
+      "sha256": "8cf12498560654cd6470471c08774d09fd577caa1afca6a7deb4c89abb192a4a",
+      "bytes": 230
+    },
+    {
+      "path": "manifest.json",
+      "sha256": "094e5aa5b8b0c9a84e17c48929dfd64cf223ea5f3b8e3014dbf5245577f1a74e",
+      "bytes": 1002
+    },
+    {
+      "path": "manifest.v2.json",
+      "sha256": "3a3215964e5b068857b36c51aac7babab08399ef1f32373a28e66ca709160cc2",
+      "bytes": 1113
+    },
+    {
+      "path": "references/event-contracts.md",
+      "sha256": "f1508c95fe226863d3c5c4193301189840d4551b5b14270b6eff8d3cd098c43e",
+      "bytes": 303
+    },
+    {
+      "path": "references/report-template.md",
+      "sha256": "69929389102eef26ceb1b1123f0bae3343a3fec6862fa09c37956d139977cbc1",
+      "bytes": 1160
+    },
+    {
+      "path": "references/source-priority.md",
+      "sha256": "d6f22ad47d15c554ffa0d6976d0e62f053dd9d47a226023fe532e1ec581d311b",
+      "bytes": 832
+    },
+    {
+      "path": "scripts/build_inventory.py",
+      "sha256": "6640f1c2b620b8053cab448ef08162b1cb732110f8f2c8063c79d788287189e3",
+      "bytes": 29688
+    }
+  ]
+}

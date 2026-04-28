@@ -1,0 +1,3 @@
+interface:
+  display_name: "Hallucination Sentinel"
+  short_description: "Top-level anti-hallucination auditor and remediation planner."

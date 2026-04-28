@@ -1,0 +1,38 @@
+{
+  "schema": "LegacySourceChecksumV1",
+  "generated_at": "2026-04-28T02:49:55.848500+00:00",
+  "file_count": 6,
+  "aggregate_sha256": "4ac8448a3fc9e97cdf8597e371c736d31458c4605b1dcefc3f104f1667000d75",
+  "files": [
+    {
+      "path": "SKILL.md",
+      "sha256": "af062cbb2f41b77b2296c4a78a407b5dc7ee8c8e54b6e9407fd3c719dcea35fd",
+      "bytes": 5279
+    },
+    {
+      "path": "agents/openai.yaml",
+      "sha256": "6b521a404b0bf899fc18ac2084ba714990fcfba1a16ee5e20f718e0e0f934af2",
+      "bytes": 140
+    },
+    {
+      "path": "index.md",
+      "sha256": "77476e44cad4cec058b27d137e94188ae3d00d0d16cf16d60e22a7ad623c23ac",
+      "bytes": 268
+    },
+    {
+      "path": "manifest.json",
+      "sha256": "6565d6fde4fd0bd3dc07e2c3ec163857261521d331905a9b5b03d6ade6dae8a2",
+      "bytes": 391
+    },
+    {
+      "path": "manifest.v2.json",
+      "sha256": "c36ac9b69ea6b96c2df6c758e84fe459b12d872577e568ef83fbd908feae252d",
+      "bytes": 788
+    },
+    {
+      "path": "references/release-hygiene-contracts.md",
+      "sha256": "baf0e53758311dcba59ac23ac39d0b6bf8e8d66e5d73172398761c393cca2635",
+      "bytes": 586
+    }
+  ]
+}

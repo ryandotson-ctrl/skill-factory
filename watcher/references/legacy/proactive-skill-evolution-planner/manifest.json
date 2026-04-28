@@ -1,0 +1,33 @@
+{
+  "skill_id": "proactive-skill-evolution-planner",
+  "version": "1.4.0",
+  "description": "Proactive planner for additive, non-destructive, portability-safe skill evolution with deterministic signal-aware scoring and repeat-evidence gating for net-new skills.",
+  "inputs": [
+    {
+      "event_type": "skill_director_activity",
+      "schema_ref": "default_event_schema"
+    },
+    {
+      "event_type": "postmortem_generated",
+      "schema_ref": "default_event_schema"
+    },
+    {
+      "event_type": "skill_evolution_requested",
+      "schema_ref": "default_event_schema"
+    }
+  ],
+  "outputs": [
+    {
+      "event_type": "skill_evolution_plan_emitted",
+      "schema_ref": "default_event_schema"
+    },
+    {
+      "event_type": "skill_recommendation_emitted",
+      "schema_ref": "default_event_schema"
+    },
+    {
+      "event_type": "skill_evolution_scorecard_emitted",
+      "schema_ref": "default_event_schema"
+    }
+  ]
+}

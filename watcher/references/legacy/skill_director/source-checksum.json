@@ -1,0 +1,78 @@
+{
+  "schema": "LegacySourceChecksumV1",
+  "generated_at": "2026-04-28T02:49:55.787201+00:00",
+  "file_count": 14,
+  "aggregate_sha256": "f304b0c2408b7e839511c532fd13153394ed5ecbbdc605b710be1e907d86c4b8",
+  "files": [
+    {
+      "path": "SKILL.md",
+      "sha256": "16333ed9bf004ca5eccded9abb09b685391985f3b36a522036b1a7bf12ac3980",
+      "bytes": 16616
+    },
+    {
+      "path": "agents/openai.yaml",
+      "sha256": "b90f82769e01cb7989953720d9e3e2c102374e1b94d14ef6ba26de531c526256",
+      "bytes": 327
+    },
+    {
+      "path": "index.md",
+      "sha256": "86f802009a579f48b74975068cf3bf2a19a77bf963995e87650b7e3df5b20059",
+      "bytes": 232
+    },
+    {
+      "path": "manifest.json",
+      "sha256": "5c6e5457ef361bab67faacdbf9fbd64157f3676f5f97b2c37cdc024e1df5c70a",
+      "bytes": 985
+    },
+    {
+      "path": "manifest.v2.json",
+      "sha256": "a1948b75c9213c36ca0bd10271c787dec3e12342bbd8f86ac19efc5631491605",
+      "bytes": 2208
+    },
+    {
+      "path": "references/ecosystem_contract_v1.yaml",
+      "sha256": "a82c22aaa002a7be360ddc0c151d5fc5f455cbc062410e45822c35dd3fff0e26",
+      "bytes": 5060
+    },
+    {
+      "path": "references/event-contracts.md",
+      "sha256": "f8111e8cd73f57c9cb5f0f1ca68ef1099085ad07cbae46cac4db6d494c9bcbf5",
+      "bytes": 350
+    },
+    {
+      "path": "references/group_taxonomy.md",
+      "sha256": "d2d85a9581e5b2f520fb2ddba1c57838d9d034cd13224c6e64317e8be624e85c",
+      "bytes": 1982
+    },
+    {
+      "path": "references/mirror_governance_v1.md",
+      "sha256": "1431698da516bbed6dea6532fe2dee21073187ed00f05ac468cea1ce57ca2deb",
+      "bytes": 1047
+    },
+    {
+      "path": "references/session_context.schema.json",
+      "sha256": "cd6d8ffb522fb2ab12cb672871bf7c45863f99d6aa1c81ac7c21beac24a6ca69",
+      "bytes": 1394
+    },
+    {
+      "path": "references/wisdom_entry.schema.json",
+      "sha256": "9bb0fe45aba472ef0d6fe5833b90d73f1b56931433c1fed7575860f5ea1eaae1",
+      "bytes": 1418
+    },
+    {
+      "path": "scripts/generate_massive_skill_intelligence.py",
+      "sha256": "9a1fb7bbf6171b00f6c0ca3ba6e6603fb4db69321b5a90c4276140e92f47df53",
+      "bytes": 221356
+    },
+    {
+      "path": "wisdom/global_wisdom.jsonl",
+      "sha256": "f7de09aa8e2f55778f64b7773c08e731f1a3ceefd7b3e380ab961e0dce98599c",
+      "bytes": 102332
+    },
+    {
+      "path": "wisdom/skill_wisdom.jsonl",
+      "sha256": "eab77031eaaa6ae38d1dc4b405f9fdec6a9ec4bbb56d2b6165739936f2942cee",
+      "bytes": 6012026
+    }
+  ]
+}

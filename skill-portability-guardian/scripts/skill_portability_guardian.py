@@ -406,8 +406,23 @@ def is_allowed_file(path: Path, allow_exts: set[str], allow_names: set[str]) -> 
     return False
 
 
+ARCHIVE_SKIP_SEQUENCES = (("references", "legacy"),)
+
+
+def is_archived_reference_path(path: Path) -> bool:
+    parts = tuple(path.parts)
+    for sequence in ARCHIVE_SKIP_SEQUENCES:
+        width = len(sequence)
+        if width == 0:
+            continue
+        for index in range(0, max(0, len(parts) - width + 1)):
+            if parts[index : index + width] == sequence:
+                return True
+    return False
+
+
 def should_skip_path(path: Path, skip_parts: set[str]) -> bool:
-    return any(part in skip_parts for part in path.parts)
+    return any(part in skip_parts for part in path.parts) or is_archived_reference_path(path)
 
 
 def iter_target_files(

@@ -1,0 +1,68 @@
+{
+  "schema": "LegacySourceChecksumV1",
+  "generated_at": "2026-04-28T02:49:56.058879+00:00",
+  "file_count": 12,
+  "aggregate_sha256": "5bcd3e2563f1f4505f41cc9bfea4f0067d5e4e3e237e49d5686c26fa45729128",
+  "files": [
+    {
+      "path": "SKILL.md",
+      "sha256": "fa6a8d582e581b8478970deb867f547eb33b3a4e801eaaf3d8055079222bc93c",
+      "bytes": 8289
+    },
+    {
+      "path": "agents/openai.yaml",
+      "sha256": "51417c4658d5ee1dcbed39fcc2b5bfb7b14a90dd6427e36f59aedb001ad27114",
+      "bytes": 133
+    },
+    {
+      "path": "index.md",
+      "sha256": "c4c5ed34df47a7903e834acec2acafd160bf634980cbae0b7555bbd323125929",
+      "bytes": 246
+    },
+    {
+      "path": "manifest.json",
+      "sha256": "ae183a80e33d12e0dc4c2167a549137f4267c8bf23d99093f84cd50f87b32bd2",
+      "bytes": 547
+    },
+    {
+      "path": "manifest.v2.json",
+      "sha256": "ea104d4a83d6a6fd3f31b389429a779250e9039ac245352fd088b0ed8ac49eb2",
+      "bytes": 790
+    },
+    {
+      "path": "scripts/ag_jobapply_bootstrap.py",
+      "sha256": "4a96de7d191741af793e044d360a162bcd5fe4af4807f9c3f9e03114649e6d04",
+      "bytes": 830
+    },
+    {
+      "path": "scripts/ag_jobapply_docx_extract.py",
+      "sha256": "9c5a7f3e3910a4879627780b381c4031ecffaac2d8576b073046cd5baeab1d6c",
+      "bytes": 642
+    },
+    {
+      "path": "scripts/ag_jobapply_make_resume.py",
+      "sha256": "dcfdeda668e6c43c91bec60b1ff6f5227383306b42ca80e6922a25fbdd2e7c89",
+      "bytes": 4352
+    },
+    {
+      "path": "scripts/ag_jobapply_sanitize.py",
+      "sha256": "2b570748d95cf4fca44752088c7c8c390ba8a4bb397c346312520dd2c4effa3f",
+      "bytes": 655
+    },
+    {
+      "path": "scripts/ag_jobapply_tracker.py",
+      "sha256": "01037823180fbdb4300c119abe4773316e43d70d5331425a360239ca7ee28217",
+      "bytes": 1967
+    },
+    {
+      "path": "scripts/generate_resumes.py",
+      "sha256": "7600df660f81dbcce356eb22f7c171e7425b8eefac6cc45c86746e91eb83b7c0",
+      "bytes": 4294
+    },
+    {
+      "path": "scripts/initialize_tracker.py",
+      "sha256": "f01df80ebd4fcf2ea6878b1548f48c6d79786319aa3edd8bbb0a6700916bdf02",
+      "bytes": 3353
+    }
+  ]
+}

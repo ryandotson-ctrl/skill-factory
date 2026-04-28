@@ -1,0 +1,5 @@
+# runtime-context-launcher
+
+Legacy source for `runtime-context-launcher` preserved under the `platforms` core skill.
+
+Use this folder only when the lean `platforms` skill needs deeper historical behavior, scripts, assets, manifests, or edge-case guidance.

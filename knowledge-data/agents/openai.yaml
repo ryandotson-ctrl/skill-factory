@@ -1,0 +1,7 @@
+interface:
+  display_name: "knowledge-data"
+  short_description: "Preserves reusable wisdom and governs RAG, schemas, telemetry, evals, checksums, context priority, and data contracts."
+  default_prompt: "Use $knowledge-data for Keep reusable memory, retrieval, schemas, and data movement truthful, testable, and portable."
+
+policy:
+  allow_implicit_invocation: true

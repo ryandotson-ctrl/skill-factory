@@ -1,0 +1,57 @@
+{
+  "schema_version": "2.0.0",
+  "display_name": "antigravity-skill-mirror",
+  "description": "Audit and sync Antigravity global skills (~/.gemini/antigravity/skills)",
+  "dispatch": {
+    "mode": "automatic",
+    "cooldown": 300
+  },
+  "inputs": [
+    {
+      "id": "skill_request",
+      "type": "pulse.event",
+      "pattern": "skill:antigravity-skill-mirror:requested",
+      "route_mode": "owned",
+      "route_priority": 95
+    },
+    {
+      "id": "skills_antigravity_mirror_requested",
+      "type": "pulse.event",
+      "pattern": "skills:antigravity_mirror_requested",
+      "route_mode": "owned",
+      "route_priority": 90
+    }
+  ],
+  "outputs": [
+    {
+      "id": "mirror_report_ready",
+      "type": "pulse.event",
+      "event_type": "skills:mirror_report_ready",
+      "event_producer_role": "mirror_audit"
+    },
+    {
+      "id": "workspace_mirror_drift_detected",
+      "type": "pulse.event",
+      "event_type": "skills:workspace_mirror_drift_detected",
+      "event_producer_role": "publication_drift"
+    },
+    {
+      "id": "mirror_alignment_verified",
+      "type": "pulse.event",
+      "event_type": "skills:mirror_alignment_verified",
+      "event_producer_role": "mirror_alignment"
+    },
+    {
+      "id": "mirror_sync_applied",
+      "type": "pulse.event",
+      "event_type": "skills:mirror_sync_applied",
+      "event_producer_role": "mirror_apply"
+    },
+    {
+      "id": "status_update",
+      "type": "pulse.event",
+      "event_type": "skill_activity:antigravity-skill-mirror",
+      "event_producer_role": "mirror_status"
+    }
+  ]
+}

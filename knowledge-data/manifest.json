@@ -1,0 +1,10 @@
+{
+  "skill_id": "knowledge-data",
+  "display_name": "knowledge-data",
+  "description": "Preserves reusable wisdom and governs RAG, schemas, telemetry, evals, checksums, context priority, and data contracts.",
+  "version": "1.0.0",
+  "scope": "global",
+  "portability_tier": "strict_zero_leak",
+  "requires_env": [],
+  "project_profiles": []
+}

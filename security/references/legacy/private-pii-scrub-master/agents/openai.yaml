@@ -1,0 +1,3 @@
+interface:
+  display_name: "Private Pii Scrub Master"
+  short_description: "Zero-leakage data processing; redacts PII before indexing or"

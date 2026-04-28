@@ -1,0 +1,47 @@
+{
+  "schema_version": "2.0.0",
+  "display_name": "knowledge-data",
+  "description": "Preserves reusable wisdom and governs RAG, schemas, telemetry, evals, checksums, context priority, and data contracts.",
+  "dispatch": {
+    "mode": "automatic",
+    "cooldown": 300
+  },
+  "inputs": [
+    {
+      "id": "skill_request",
+      "type": "pulse.event",
+      "pattern": "skill:knowledge-data:requested",
+      "route_mode": "owned",
+      "route_priority": 95
+    },
+    {
+      "id": "semantic_request",
+      "type": "pulse.event",
+      "pattern": "knowledge:data_requested",
+      "route_mode": "owned",
+      "route_priority": 90
+    }
+  ],
+  "outputs": [
+    {
+      "id": "status_update",
+      "type": "pulse.event",
+      "event_type": "skill_activity:knowledge-data",
+      "event_producer_role": "core_status"
+    },
+    {
+      "id": "ready",
+      "type": "pulse.event",
+      "event_type": "knowledge:data_ready",
+      "event_producer_role": "core_ready"
+    }
+  ],
+  "awareness": [
+    "watcher",
+    "research",
+    "engineering",
+    "reliability",
+    "ml",
+    "platforms"
+  ]
+}

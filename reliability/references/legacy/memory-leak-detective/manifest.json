@@ -1,0 +1,17 @@
+{
+  "skill_id": "memory-leak-detective",
+  "version": "1.0.0",
+  "description": "Auto-generated manifest for memory-leak-detective",
+  "inputs": [
+    {
+      "event_type": "system_log_error",
+      "dispatch_mode": "automatic"
+    }
+  ],
+  "outputs": [
+    {
+      "event_type": "memory-leak-detective_finding",
+      "schema_ref": "default_finding_schema"
+    }
+  ]
+}

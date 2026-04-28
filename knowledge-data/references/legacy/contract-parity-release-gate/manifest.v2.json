@@ -1,0 +1,34 @@
+{
+  "schema_version": "2.0.0",
+  "display_name": "Contract Parity Release Gate",
+  "dispatch": {
+    "mode": "hybrid",
+    "cooldown": 300
+  },
+  "inputs": [
+    {
+      "id": "contract_parity_report_emitted",
+      "type": "pulse.event",
+      "pattern": "contract_parity_report_emitted",
+      "route_mode": "owned",
+      "route_priority": 90
+    },
+    {
+      "id": "release_gate_check_requested",
+      "type": "pulse.event",
+      "pattern": "release_gate_check_requested"
+    }
+  ],
+  "outputs": [
+    {
+      "id": "contract_parity_gate_result_emitted",
+      "type": "pulse.event",
+      "event_type": "contract_parity_gate_result_emitted"
+    },
+    {
+      "id": "release_gate_blocked",
+      "type": "pulse.event",
+      "event_type": "release_gate_blocked"
+    }
+  ]
+}

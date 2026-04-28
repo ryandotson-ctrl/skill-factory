@@ -1,7 +1,7 @@
 interface:
   display_name: "engineering"
-  short_description: "Route software work through truth, risk, QA, audit, and closure"
-  default_prompt: "Use $engineering to inspect reality first, choose the lowest-regression route, implement narrowly, and validate before claiming success."
+  short_description: "Routes software work through reality inspection, risk classification, implementation, QA, code audit, git hygiene, CI, and release closure."
+  default_prompt: "Use $engineering for Turn software requests into narrow, evidence-backed changes that preserve existing behavior and ship safely."
 
 policy:
   allow_implicit_invocation: true

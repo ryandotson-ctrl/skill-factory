@@ -1,0 +1,17 @@
+{
+  "skill_id": "circular-import-sentinel",
+  "version": "1.0.0",
+  "description": "Auto-generated manifest for circular-import-sentinel",
+  "inputs": [
+    {
+      "event_type": "system_log_error",
+      "dispatch_mode": "automatic"
+    }
+  ],
+  "outputs": [
+    {
+      "event_type": "circular-import-sentinel_finding",
+      "schema_ref": "default_finding_schema"
+    }
+  ]
+}

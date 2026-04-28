@@ -1,0 +1,58 @@
+{
+  "schema": "LegacySourceChecksumV1",
+  "generated_at": "2026-04-28T02:49:55.901499+00:00",
+  "file_count": 10,
+  "aggregate_sha256": "48e26161b0a18aa671278a422d21e9469bc8cb1a077b6bf32da9f3b6c1d46985",
+  "files": [
+    {
+      "path": "SKILL.md",
+      "sha256": "4b8820fef84f361265147b78b5233bded340126e040785ee1a2a7435205d46e7",
+      "bytes": 7200
+    },
+    {
+      "path": "agents/openai.yaml",
+      "sha256": "be49139d60632f1f6283a093dcae7ee5f195e8caa57704a478c9f9694647a4e8",
+      "bytes": 138
+    },
+    {
+      "path": "index.md",
+      "sha256": "8e16ce3b139931c4229851b90a5617cbea8406c910b548806bf6984c56506bdd",
+      "bytes": 268
+    },
+    {
+      "path": "manifest.json",
+      "sha256": "28e5036c5c10dc7a8e9ff88968b54157d5b4faf314607060ef65271f9c1156a5",
+      "bytes": 573
+    },
+    {
+      "path": "manifest.v2.json",
+      "sha256": "4b543019ae43d507e86426be7c01b7d08d48715e6af00d362ab3e9d4978478e5",
+      "bytes": 815
+    },
+    {
+      "path": "scripts/audit_and_report.py",
+      "sha256": "deadf42b0215f5f487cc50d80f1d8198b7e45fac6bff3f9e40f2da595fff0a0d",
+      "bytes": 120375
+    },
+    {
+      "path": "tests/test_cli.py",
+      "sha256": "3a9c07743ce7ee07f17e5f5cd2ed9d865cb4b6043b0369fc8268bb8758f0fe89",
+      "bytes": 2030
+    },
+    {
+      "path": "tests/test_parsers.py",
+      "sha256": "203df5fb3d687459efbeb22a32665294a791580015e20075b996afa22a3b716b",
+      "bytes": 3651
+    },
+    {
+      "path": "tests/test_pdf_smoke.py",
+      "sha256": "cb4adb671ac74554629eb930e1590cde72bd61ed5eae4a78ac855002da6dc6fd",
+      "bytes": 1019
+    },
+    {
+      "path": "tests/test_timeouts.py",
+      "sha256": "84a86cf81f0ede7af4583db4268f0e9cf0b9519c4b4b09a75ae4d420187274e7",
+      "bytes": 2533
+    }
+  ]
+}

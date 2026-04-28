@@ -1,0 +1,7 @@
+interface:
+  display_name: "missions"
+  short_description: "Runs bounded, permission-aware autonomous mission packs that require explicit constraints, trackers, evidence, and stop conditions."
+  default_prompt: "Use $missions for Execute high-agency workflows only inside strict boundaries with clear evidence and user-approved limits."
+
+policy:
+  allow_implicit_invocation: true

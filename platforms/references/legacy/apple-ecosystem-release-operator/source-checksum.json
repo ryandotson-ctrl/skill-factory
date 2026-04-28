@@ -1,0 +1,53 @@
+{
+  "schema": "LegacySourceChecksumV1",
+  "generated_at": "2026-04-28T02:49:56.040441+00:00",
+  "file_count": 9,
+  "aggregate_sha256": "f6339937632d55b81ffc1aab618bf9bd7afa88bb9faffa964dd4f1d29b6c7229",
+  "files": [
+    {
+      "path": "SKILL.md",
+      "sha256": "2b3aed4e25dca0d745285f28b8b4fe61017476d68cbbda4ceb527fcdda70a810",
+      "bytes": 17356
+    },
+    {
+      "path": "agents/openai.yaml",
+      "sha256": "88d15a4b947360381ebb4b61268d25b7cd6f0e232f3ada0fca5a192aa39931c8",
+      "bytes": 313
+    },
+    {
+      "path": "index.md",
+      "sha256": "86c9f2d53b58ddd73df5075e0dec126faa22570e112645386fa213a8fcf4fca8",
+      "bytes": 272
+    },
+    {
+      "path": "manifest.json",
+      "sha256": "2c01e34bedd5aa5a582f997e8684bbb6bac7b772838e5b2e35459ed05f9b49f5",
+      "bytes": 434
+    },
+    {
+      "path": "manifest.v2.json",
+      "sha256": "ca59bdc3bfe01842e157e961cc0bdfbd236775ff92715ebf05d5e4edc8b1a5a3",
+      "bytes": 579
+    },
+    {
+      "path": "references/platform-notes.md",
+      "sha256": "4f307a03a3d6ea5a61eff6a27065f36977f92e7b4fdd7ae7f00ace5a9dc88dc6",
+      "bytes": 1215
+    },
+    {
+      "path": "references/portal-state-machine.md",
+      "sha256": "1dd48b0617276b7df33555def0b98f192f6f927c45296272422cbdc6379c0f5f",
+      "bytes": 1534
+    },
+    {
+      "path": "references/profile-schema.md",
+      "sha256": "1f93ded79be191a20021e5ecedb5c81a139a876dcc98c0b979c2989ba2f5fe2c",
+      "bytes": 1780
+    },
+    {
+      "path": "scripts/apple_release_operator.py",
+      "sha256": "e5522faf890a45ef8a6b1b04c844f358d5b646e9f140dd70fb2b1dd57eb99c68",
+      "bytes": 20003
+    }
+  ]
+}

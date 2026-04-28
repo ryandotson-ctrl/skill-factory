@@ -1,0 +1,10 @@
+{
+  "skill_id": "platforms",
+  "display_name": "platforms",
+  "description": "Operates platform-specific project profiles for Apple, Xcode, Jarvis, OpenClaw, Pi, Wi-Fi sensing, PFEMacOS, and constrained runtimes.",
+  "version": "1.0.0",
+  "scope": "global",
+  "portability_tier": "strict_zero_leak",
+  "requires_env": [],
+  "project_profiles": []
+}

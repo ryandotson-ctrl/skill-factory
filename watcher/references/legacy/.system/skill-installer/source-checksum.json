@@ -1,0 +1,53 @@
+{
+  "schema": "LegacySourceChecksumV1",
+  "generated_at": "2026-04-28T02:49:55.831989+00:00",
+  "file_count": 9,
+  "aggregate_sha256": "1f7dcdd5a7b4a46eed6d4689133139255a11bb4ac53d2ababf892ab92d45b073",
+  "files": [
+    {
+      "path": "LICENSE.txt",
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+      "bytes": 11358
+    },
+    {
+      "path": "SKILL.md",
+      "sha256": "09df0ea7921f63d51befae9fc8f71daece5ef49d7b96e35fff8b18d15d6afda7",
+      "bytes": 3366
+    },
+    {
+      "path": "agents/openai.yaml",
+      "sha256": "5ce223d8b1070b82c42298538f1b8d376f788eb9e7a42a987e8c094070d73f0e",
+      "bytes": 221
+    },
+    {
+      "path": "assets/skill-installer-small.svg",
+      "sha256": "3928703ff00dc1a681e7a22401843b7edcbd4b2051651ce4c43b75f7e140504e",
+      "bytes": 923
+    },
+    {
+      "path": "assets/skill-installer.png",
+      "sha256": "d0a230b1a79b71b858b7c215a0fbb0768d6459c14ea4ef80c61592629bf0e605",
+      "bytes": 1086
+    },
+    {
+      "path": "index.md",
+      "sha256": "dd17cb96c34f4ce7825b471b36dda43783e669dff42635db81adb950ab10b302",
+      "bytes": 250
+    },
+    {
+      "path": "scripts/github_utils.py",
+      "sha256": "61c1bbe2ae217433b4b6f9f09f21aca4df52c12598068343ade719f706e4859b",
+      "bytes": 659
+    },
+    {
+      "path": "scripts/install-skill-from-github.py",
+      "sha256": "0fbbd36e8ea294442c0bd48d6f610a2e8656216bfef5c322f1dcf448ef2f09f1",
+      "bytes": 10096
+    },
+    {
+      "path": "scripts/list-skills.py",
+      "sha256": "e4e1f78ca3d045827f2a05cfd99fae57cc7c1a1bfeba8704029108834debff35",
+      "bytes": 2967
+    }
+  ]
+}

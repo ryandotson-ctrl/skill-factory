@@ -1,0 +1,48 @@
+{
+  "schema": "LegacySourceChecksumV1",
+  "generated_at": "2026-04-28T02:49:55.986398+00:00",
+  "file_count": 8,
+  "aggregate_sha256": "bc623728f8fda308bd2805cfa35e7b1c9d23cc86d1b8b747c7c39a9d231e8e8e",
+  "files": [
+    {
+      "path": "SKILL.md",
+      "sha256": "d342da5091604d3726bdc7dc27052a0c8b5726c744f408f9c188f8782428d193",
+      "bytes": 35051
+    },
+    {
+      "path": "agents/openai.yaml",
+      "sha256": "56bffe9ece736e3a89443ca67dc235ea278bb3e6a1175e67601525db02c5939d",
+      "bytes": 336
+    },
+    {
+      "path": "assets/file-spreadsheet.png",
+      "sha256": "b14b66e433bf6a4385d69893aa55ed48b66f91682946153e7e9117e832c89f87",
+      "bytes": 1306
+    },
+    {
+      "path": "index.md",
+      "sha256": "70b7d9ecf30188663a52f3dc953fc2913b826804bed4e8c2c44f810235893876",
+      "bytes": 276
+    },
+    {
+      "path": "manifest.json",
+      "sha256": "295df46dec3aea80add89f00e9a0ce9ded2243416ef3f601c62bb0fbd07c2757",
+      "bytes": 628
+    },
+    {
+      "path": "manifest.v2.json",
+      "sha256": "9c237ec0fc85f2bdeb0b8dfde9e18d984ee2e71a5717dc570fd1b7b4db806357",
+      "bytes": 757
+    },
+    {
+      "path": "style_guidelines.md",
+      "sha256": "885ddeb316ce5bea45e131969909695180eb7f2f19b644fe617ce0c41350b029",
+      "bytes": 9291
+    },
+    {
+      "path": "templates/financial_models.md",
+      "sha256": "1fff5c930d1359e525c147060ad6d775e03402a06929be2f850aaf535d62f248",
+      "bytes": 2528
+    }
+  ]
+}

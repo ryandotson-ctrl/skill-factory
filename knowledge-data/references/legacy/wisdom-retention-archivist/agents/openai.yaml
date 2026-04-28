@@ -1,0 +1,4 @@
+interface:
+  display_name: "Wisdom Retention Archivist"
+  short_description: "Archive and score reusable wisdom."
+  default_prompt: "Archive sanitized lessons, refresh digest files, and score recall candidates for recommendation generation."

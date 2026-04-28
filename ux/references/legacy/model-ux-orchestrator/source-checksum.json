@@ -1,0 +1,33 @@
+{
+  "schema": "LegacySourceChecksumV1",
+  "generated_at": "2026-04-28T02:49:56.003778+00:00",
+  "file_count": 5,
+  "aggregate_sha256": "e03a89c7c54d8b799ca225284b3c97fed24c9abcee94a717c1d5c05fafc88b6f",
+  "files": [
+    {
+      "path": "SKILL.md",
+      "sha256": "1d1ab87ac190ac8ec5dcf2d3700edadeed9dd5530ced8ec026ccfe937b62c5b5",
+      "bytes": 25119
+    },
+    {
+      "path": "agents/openai.yaml",
+      "sha256": "90e829662823db054e1e90827fdfdb08dfb11b76460590ea8ba6729cd16d8c12",
+      "bytes": 269
+    },
+    {
+      "path": "index.md",
+      "sha256": "c57e8a178b39a2aef706815fba5cc7fd31ad9a7f7a28edc7b4b385646bbcd83c",
+      "bytes": 236
+    },
+    {
+      "path": "manifest.json",
+      "sha256": "ac3d0adf1ea4f014de6a4c1e1ec6491538e45d64e40ad10e1225a21240d43fc3",
+      "bytes": 411
+    },
+    {
+      "path": "manifest.v2.json",
+      "sha256": "3dbb52ac40bf69583845c6ffb58ff7e75322196045f30ccaa1554e00e0f044c8",
+      "bytes": 499
+    }
+  ]
+}

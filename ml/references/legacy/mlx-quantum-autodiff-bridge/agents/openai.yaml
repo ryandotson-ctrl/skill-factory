@@ -1,0 +1,3 @@
+display_name: MLX Quantum Autodiff Bridge
+short_description: Validate and scaffold MLX custom VJP quantum bridge layers
+default_prompt: Validate this MLX quantum bridge implementation and report contract violations.

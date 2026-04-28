@@ -1,0 +1,58 @@
+{
+  "schema": "LegacySourceChecksumV1",
+  "generated_at": "2026-04-28T02:49:55.919798+00:00",
+  "file_count": 10,
+  "aggregate_sha256": "3f18f85be231036d703ef1dd26c06e1954283e1ab3b00ac4bc3bdd2b1e67e9e7",
+  "files": [
+    {
+      "path": "SKILL.md",
+      "sha256": "0119c96d26fd0f5e4bd2410d4567dbd1328f0ac58ef97ee0ab30df5850cb92eb",
+      "bytes": 14994
+    },
+    {
+      "path": "agents/openai.yaml",
+      "sha256": "daf8a7f2046288af476c04d72a83965de572225f404a12f8293268bd7b13998d",
+      "bytes": 137
+    },
+    {
+      "path": "index.md",
+      "sha256": "6097412116fac3fcedde852996a5a050f7a716202514df8161f4989958604b1a",
+      "bytes": 250
+    },
+    {
+      "path": "manifest.json",
+      "sha256": "2d98d1c87d24d519d91a0009babfe3ab79fa8b0c156ec134de140e57bd28b2d7",
+      "bytes": 1820
+    },
+    {
+      "path": "manifest.v2.json",
+      "sha256": "2f88883ecc1c094cc917b4b15acdd830735c52ad8978079a6cd42fb38df517d6",
+      "bytes": 2843
+    },
+    {
+      "path": "references/event-contracts.md",
+      "sha256": "7eda5aec07bc640b7048edb7960c87d4e7fe130398a0267078e6b17f061db436",
+      "bytes": 451
+    },
+    {
+      "path": "references/hallucination_audit.schema.json",
+      "sha256": "a3cac5eac6aa3a00de45d72d9b470124fb1bc972a38cfce82903c8891689c8b9",
+      "bytes": 3637
+    },
+    {
+      "path": "references/hallucination_taxonomy.md",
+      "sha256": "3a9bea6b34f7650acc02bba6d19cad7b4e3b6e98746595a5d269995125a6a883",
+      "bytes": 3565
+    },
+    {
+      "path": "references/worked-examples.md",
+      "sha256": "10a5700d6f88a3af55440a4548d3a152950959d86776e2911b34ff041dc36002",
+      "bytes": 707
+    },
+    {
+      "path": "scripts/hallucination_audit.py",
+      "sha256": "6f21dfbf591755d6d2f3aab63c665d23bb89597e734e9660ba0c6201a6c32b75",
+      "bytes": 21660
+    }
+  ]
+}

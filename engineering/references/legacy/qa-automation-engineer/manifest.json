@@ -1,0 +1,12 @@
+{
+  "skill_id": "qa-automation-engineer",
+  "version": "1.12.0",
+  "description": "Builds deterministic regression coverage for startup ownership truth, launched-app chat readiness, reconnect recovery, finalizer rescue, real `/mlx/chat` release smokes, release-grade artifact proof, and Xcode launch gates.",
+  "inputs": [],
+  "outputs": [
+    {
+      "event_type": "qa-automation-engineer_finding",
+      "schema_ref": "default_finding_schema"
+    }
+  ]
+}

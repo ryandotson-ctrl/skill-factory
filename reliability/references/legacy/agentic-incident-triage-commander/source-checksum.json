@@ -1,0 +1,38 @@
+{
+  "schema": "LegacySourceChecksumV1",
+  "generated_at": "2026-04-28T02:49:55.862885+00:00",
+  "file_count": 6,
+  "aggregate_sha256": "66e10b4bb30207f42a293ac4883d91214eff2de8bb5136df0833773126a9b22a",
+  "files": [
+    {
+      "path": "SKILL.md",
+      "sha256": "e2ef23ca09d9ec85712e5a09e9a88be554917af38660b79949b731f82ccc4270",
+      "bytes": 1860
+    },
+    {
+      "path": "agents/openai.yaml",
+      "sha256": "44ca91abdffc29d8b8227a1cd669f3ede16ef0a74448eba19fe71a6928a4474c",
+      "bytes": 321
+    },
+    {
+      "path": "index.md",
+      "sha256": "9bf1ba155b25ea5273acd943924db57f25cbeefc4d77de8de40e3e59be606a23",
+      "bytes": 278
+    },
+    {
+      "path": "manifest.json",
+      "sha256": "d3bb89f2f01b13a31b2cfb039ef4a5377d14a2b458ce7b73087333378f4573cb",
+      "bytes": 782
+    },
+    {
+      "path": "manifest.v2.json",
+      "sha256": "c4de5ad585c62a9440adb801479e81a317ac20458f77235ad55de54017d08a9b",
+      "bytes": 1019
+    },
+    {
+      "path": "references/incident-playbook.md",
+      "sha256": "8b195b062f1fa231c0dfff567a61b4db2df244c124b260e63ac850f5e7746f7e",
+      "bytes": 1073
+    }
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "schema": "LegacySourceChecksumV1",
+  "generated_at": "2026-04-28T02:49:55.914962+00:00",
+  "file_count": 12,
+  "aggregate_sha256": "26e82ba4b09a90cf0c714a90ba5b718ae3247c2a6093291983db65ed7e023223",
+  "files": [
+    {
+      "path": "SKILL.md",
+      "sha256": "7f6632189803bd0806bac835a68fbb2cd32ab9e7bd70b9f3809527d0d86b9bbb",
+      "bytes": 7042
+    },
+    {
+      "path": "agents/openai.yaml",
+      "sha256": "cb726e4f6feccbd9ca1805df00826798091424c600bcfda7dedd542781137a9f",
+      "bytes": 342
+    },
+    {
+      "path": "index.md",
+      "sha256": "3f2c372761f72b89c1041c7db12504d618240b2dc4d96591534e9e39b57d4709",
+      "bytes": 250
+    },
+    {
+      "path": "manifest.json",
+      "sha256": "96f885b7660a9fd67924a8935e24875b9f58dc7621d32a5c59f6671d4f3a034d",
+      "bytes": 901
+    },
+    {
+      "path": "manifest.v2.json",
+      "sha256": "f943add51f422bdeeb28b1e0a097d75b8ecd69576c7bc85ac0dbfe6f08d9cfba",
+      "bytes": 1066
+    },
+    {
+      "path": "references/event-contracts.md",
+      "sha256": "ec556dca5459872af1297675aa350a3aef41c655514b1ff95524ef8987eb4049",
+      "bytes": 869
+    },
+    {
+      "path": "references/profile-antigravity.md",
+      "sha256": "c42b60ea9dcbdb149eee1d675b5ed7a0fb9677c9d1ae0a4df8c2b0ab7e8814a0",
+      "bytes": 789
+    },
+    {
+      "path": "references/profile-project-free-energy.md",
+      "sha256": "fc6a65b22355bef72d4e4aa562c1fb78549809b355d09fb1c2b337d09218c26f",
+      "bytes": 953
+    },
+    {
+      "path": "references/report-template.md",
+      "sha256": "daa3cb99d02a49ef7afef06a38755c1c8583ce339b8caa9d0ca25e7a2338d584",
+      "bytes": 1324
+    },
+    {
+      "path": "references/source-quality-rubric.md",
+      "sha256": "89e5326ae1c7d4883ed9e7491676a983698dab3638149b5282311f1827a4403b",
+      "bytes": 1239
+    },
+    {
+      "path": "scripts/render_report.py",
+      "sha256": "cb793bb36aa2aa28d27bdad67e48b3a25e9d0db0f2b1ad426754396928d3e46a",
+      "bytes": 8866
+    },
+    {
+      "path": "scripts/score_trends.py",
+      "sha256": "b5bc37b1f1a18bbe74bb18885571d4d1dc477628a5ab158a7ca8394361a8be7c",
+      "bytes": 3678
+    }
+  ]
+}

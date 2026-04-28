@@ -1,0 +1,58 @@
+{
+  "schema": "LegacySourceChecksumV1",
+  "generated_at": "2026-04-28T02:49:55.980560+00:00",
+  "file_count": 10,
+  "aggregate_sha256": "f853a8893950a81d9ac05fd9c1faee9348075f69fcb03a4335b5d435f85a096a",
+  "files": [
+    {
+      "path": "LICENSE.txt",
+      "sha256": "4dd13869245e356246a5b770723247bbb80a8f07a181d1d3d873a1734297cdb9",
+      "bytes": 10776
+    },
+    {
+      "path": "SKILL.md",
+      "sha256": "58978ed32228257a8ef9977613cb2a295af860cf78768cedc09b3f25924d917d",
+      "bytes": 4711
+    },
+    {
+      "path": "agents/openai.yaml",
+      "sha256": "f8b223e25343559f57e1839ccd849fd1494a9729da33da04bb5074b7f80f4887",
+      "bytes": 219
+    },
+    {
+      "path": "assets/pdf.png",
+      "sha256": "17da356d195d4e3fa24f9becbee6b8d9e60e13005762b5ab0809c520c76da6ee",
+      "bytes": 1312
+    },
+    {
+      "path": "index.md",
+      "sha256": "f76248d73dba99a05206eee05455b84e72a738db677ef460106a7489b1854079",
+      "bytes": 214
+    },
+    {
+      "path": "manifest.json",
+      "sha256": "4184481111afb1b0d5dc968da77a0348e6eb72ddc2f33919cf495123e501a691",
+      "bytes": 653
+    },
+    {
+      "path": "manifest.v2.json",
+      "sha256": "5a2a418ca0d8d95bdc879dafc9035a72fd1f6e32425bb7606bafd996cc944848",
+      "bytes": 887
+    },
+    {
+      "path": "references/pdf_spec_template.json",
+      "sha256": "8e98e9abcc21406ca99ab4aa13269a15ed5a24a3634bf86b206c008c31c34bb4",
+      "bytes": 859
+    },
+    {
+      "path": "references/rendering_notes.md",
+      "sha256": "3a2a0c2f82eb9ceb9674d75ea1fe022bf0377bc04eebb8a3f97b458608174edc",
+      "bytes": 717
+    },
+    {
+      "path": "scripts/render_portable_pdf.py",
+      "sha256": "74f60f586e2f83c2aa585def6ed6619f9e9c7f12b79411f970e70f519be6b231",
+      "bytes": 9985
+    }
+  ]
+}

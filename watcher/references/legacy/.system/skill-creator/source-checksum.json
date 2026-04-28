@@ -1,0 +1,58 @@
+{
+  "schema": "LegacySourceChecksumV1",
+  "generated_at": "2026-04-28T02:49:55.829302+00:00",
+  "file_count": 10,
+  "aggregate_sha256": "91beb254f07a90354ea6f8b402e33398775838e282a05b552016116ca4c2e141",
+  "files": [
+    {
+      "path": "SKILL.md",
+      "sha256": "da44c88f6b3845a8fa8c60792ec9a722110a55a9793c279757b48fefb11f819c",
+      "bytes": 22047
+    },
+    {
+      "path": "agents/openai.yaml",
+      "sha256": "d07d21b93fcf3d4dc8d9a3399c05fc226a49a333a96d3e1c68b451b8dd9eade6",
+      "bytes": 183
+    },
+    {
+      "path": "assets/skill-creator-small.svg",
+      "sha256": "6591bf8ea9bb9435890dbdea299e0d2bd05f3aa893a335d26e4c535e93c8e7fb",
+      "bytes": 1319
+    },
+    {
+      "path": "assets/skill-creator.png",
+      "sha256": "a4024b0306ddb05847e1012879d37aaf1e658205199da596f5145ed7a88d9162",
+      "bytes": 1563
+    },
+    {
+      "path": "index.md",
+      "sha256": "cb6694be2d0e3452108d08e0608053b2cbe28046bc47e44e3c944fd98259a2c2",
+      "bytes": 246
+    },
+    {
+      "path": "license.txt",
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+      "bytes": 11358
+    },
+    {
+      "path": "references/openai_yaml.md",
+      "sha256": "ffac39318e408108141d40f820968e59f70434a891694f9bf1d25be8237b150c",
+      "bytes": 2356
+    },
+    {
+      "path": "scripts/generate_openai_yaml.py",
+      "sha256": "ddaf9abdfb3e762ed3c82571e9c607ce964188f49f2146281beb2cb8a553a93d",
+      "bytes": 6619
+    },
+    {
+      "path": "scripts/init_skill.py",
+      "sha256": "f40cb8fafc34e2d5dbbb8b6b04297af128b70844b67bc9445ef69790e0cdb49e",
+      "bytes": 14602
+    },
+    {
+      "path": "scripts/quick_validate.py",
+      "sha256": "6cc9dc3199c935916cf6f73fcbbbb0e3bb1b58c8f5109fefa499978908164f51",
+      "bytes": 3293
+    }
+  ]
+}

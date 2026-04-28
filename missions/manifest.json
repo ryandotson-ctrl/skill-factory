@@ -1,0 +1,10 @@
+{
+  "skill_id": "missions",
+  "display_name": "missions",
+  "description": "Runs bounded, permission-aware autonomous mission packs that require explicit constraints, trackers, evidence, and stop conditions.",
+  "version": "1.0.0",
+  "scope": "global",
+  "portability_tier": "strict_zero_leak",
+  "requires_env": [],
+  "project_profiles": []
+}

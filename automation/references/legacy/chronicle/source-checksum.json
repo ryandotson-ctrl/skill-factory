@@ -1,0 +1,18 @@
+{
+  "schema": "LegacySourceChecksumV1",
+  "generated_at": "2026-04-28T02:50:30.802215+00:00",
+  "file_count": 2,
+  "aggregate_sha256": "124232fc56f87279dcb06d20e05d84db70055dfb09c30cb97da62af4d9914832",
+  "files": [
+    {
+      "path": "SKILL.md",
+      "sha256": "4ca26915eddd74e7c9b6b2ec9dce2a2970eb978efa5007981750b4ff70a10730",
+      "bytes": 5862
+    },
+    {
+      "path": "index.md",
+      "sha256": "5eec4067d2d98ca5e0ca1bda0b68d82c16a42064951de4ab5fb926d4aec0c181",
+      "bytes": 255
+    }
+  ]
+}

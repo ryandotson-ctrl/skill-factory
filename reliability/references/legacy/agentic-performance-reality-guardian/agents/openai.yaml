@@ -1,0 +1,7 @@
+interface:
+  display_name: "Agentic Performance Reality Guardian"
+  short_description: "Catch scale and performance traps early"
+  default_prompt: "Use $agentic-performance-reality-guardian to pressure-test this change for load shape, amplification, and missing guards."
+
+policy:
+  allow_implicit_invocation: false

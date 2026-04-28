@@ -1,0 +1,25 @@
+{
+  "skill_id": "edge-platforms",
+  "version": "1.0.0",
+  "description": "Lean core edge platform skill for Jarvis, OpenClaw, Pi, sensing, and constrained autonomy.",
+  "inputs": [
+    {
+      "event_type": "skill:edge-platforms:requested",
+      "schema_ref": "default_event_schema"
+    },
+    {
+      "event_type": "edge:platform_requested",
+      "schema_ref": "default_event_schema"
+    }
+  ],
+  "outputs": [
+    {
+      "event_type": "skill_activity:edge-platforms",
+      "schema_ref": "default_finding_schema"
+    },
+    {
+      "event_type": "edge:operation_plan_ready",
+      "schema_ref": "default_finding_schema"
+    }
+  ]
+}

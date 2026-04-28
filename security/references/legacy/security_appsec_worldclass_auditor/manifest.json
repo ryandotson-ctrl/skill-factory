@@ -1,0 +1,12 @@
+{
+  "skill_id": "security_appsec_worldclass_auditor",
+  "version": "1.0.0",
+  "description": "Auto-generated manifest for security_appsec_worldclass_auditor",
+  "inputs": [],
+  "outputs": [
+    {
+      "event_type": "security_appsec_worldclass_auditor_finding",
+      "schema_ref": "default_finding_schema"
+    }
+  ]
+}

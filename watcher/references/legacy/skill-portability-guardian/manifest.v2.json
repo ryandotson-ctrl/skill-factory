@@ -1,0 +1,28 @@
+{
+  "schema_version": "2.0.0",
+  "display_name": "Skill Portability Guardian",
+  "description": "Portability and privacy auditor for skill libraries with codex-canonical mirror governance.",
+  "dispatch": {
+    "mode": "manual",
+    "cooldown": 300
+  },
+  "inputs": [
+    {
+      "id": "portability_audit_trigger",
+      "type": "pulse.event",
+      "pattern": "skills_portability_audit_requested"
+    }
+  ],
+  "outputs": [
+    {
+      "id": "portability_audit_completed",
+      "type": "pulse.event",
+      "event_type": "skill_portability_guardian_completed"
+    },
+    {
+      "id": "portability_audit_failed",
+      "type": "pulse.event",
+      "event_type": "skill_portability_guardian_failed"
+    }
+  ]
+}

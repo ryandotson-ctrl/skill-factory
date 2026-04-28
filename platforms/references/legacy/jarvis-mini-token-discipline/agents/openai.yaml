@@ -1,0 +1,4 @@
+interface:
+  display_name: "Jarvis Mini Token Discipline"
+  short_description: "Token gates, budgets, and low-burn scheduling."
+  default_prompt: "Use $jarvis-mini-token-discipline to enforce headroom gates and keep autonomy low-burn."

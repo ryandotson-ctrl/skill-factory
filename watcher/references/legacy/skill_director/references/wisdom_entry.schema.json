@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://skill-director.local/schemas/wisdom-entry.schema.json",
+  "title": "The Watcher Wisdom Entry",
+  "type": "object",
+  "required": [
+    "entry_id",
+    "timestamp_utc",
+    "session_summary",
+    "confidence"
+  ],
+  "additionalProperties": true,
+  "properties": {
+    "entry_id": { "type": "string" },
+    "timestamp_utc": { "type": "string" },
+    "workspace_root": { "type": "string" },
+    "session_summary": { "type": "string" },
+    "solved_problem_signals": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "challenges": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "mitigations": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "decisions": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "recommendations_accepted_or_pending": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "updates": { "type": "integer" },
+        "new_skills": { "type": "integer" }
+      }
+    },
+    "pulse_bus_findings": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "trace_refs": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "confidence": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "report_version": { "type": "string" }
+  }
+}

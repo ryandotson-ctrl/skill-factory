@@ -1,25 +1,10 @@
 {
   "skill_id": "ml",
+  "display_name": "ml",
+  "description": "Builds, tunes, evaluates, optimizes, quantizes, and stabilizes local and cloud model systems.",
   "version": "1.0.0",
-  "description": "Lean core ML skill for MLX, model optimization, quantization, logistics, tensor debugging, and evaluation support.",
-  "inputs": [
-    {
-      "event_type": "skill:ml:requested",
-      "schema_ref": "default_event_schema"
-    },
-    {
-      "event_type": "ml:work_requested",
-      "schema_ref": "default_event_schema"
-    }
-  ],
-  "outputs": [
-    {
-      "event_type": "skill_activity:ml",
-      "schema_ref": "default_finding_schema"
-    },
-    {
-      "event_type": "ml:plan_ready",
-      "schema_ref": "default_finding_schema"
-    }
-  ]
+  "scope": "global",
+  "portability_tier": "strict_zero_leak",
+  "requires_env": [],
+  "project_profiles": []
 }

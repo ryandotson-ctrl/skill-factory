@@ -1,0 +1,44 @@
+{
+  "schema_version": "2.0.0",
+  "display_name": "Eval Flywheel Orchestrator",
+  "dispatch": {
+    "mode": "hybrid",
+    "cooldown": 600
+  },
+  "inputs": [
+    {
+      "id": "eval_run_requested",
+      "type": "pulse.event",
+      "pattern": "eval:run_requested",
+      "route_mode": "owned",
+      "route_priority": 70
+    },
+    {
+      "id": "qa_test_failed",
+      "type": "pulse.event",
+      "pattern": "qa:test_failed"
+    },
+    {
+      "id": "postmortem_generated",
+      "type": "pulse.event",
+      "pattern": "postmortem_generated"
+    }
+  ],
+  "outputs": [
+    {
+      "id": "eval_summary_emitted",
+      "type": "pulse.event",
+      "event_type": "eval:summary_emitted"
+    },
+    {
+      "id": "eval_regression_detected",
+      "type": "pulse.event",
+      "event_type": "eval:regression_detected"
+    },
+    {
+      "id": "eval_gate_result_emitted",
+      "type": "pulse.event",
+      "event_type": "eval:gate_result_emitted"
+    }
+  ]
+}

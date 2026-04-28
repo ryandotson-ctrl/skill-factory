@@ -1,0 +1,7 @@
+interface:
+  display_name: "special-missions"
+  short_description: "Run bounded, permission-aware autonomous mission packs"
+  default_prompt: "Use $special-missions for high-autonomy workflows only when boundaries, trackers, evidence, and stop conditions are explicit."
+
+policy:
+  allow_implicit_invocation: false

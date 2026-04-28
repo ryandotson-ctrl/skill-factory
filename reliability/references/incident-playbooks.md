@@ -1,5 +1,3 @@
-# Reliability Playbooks
+# Incident Playbooks
 
-This core skill absorbs incident triage, performance reality, async hygiene, thread safety, uptime, logs, lifecycle cleanup, fallback orchestration, memory leaks, stream validation, checksums, and launch-budget gates.
-
-Preserve containment-first incident handling, budget-first performance repair, async/thread-safety checks, and runtime evidence receipts.
+This compatibility-era core remains useful for reliability routing. Payload checksum ownership moved to `knowledge-data` to avoid data-contract drift. Runtime incidents, async/thread hazards, logs, lifecycle, fallback, memory, streams, and launch-budget wisdom are preserved under `reliability/references/legacy/`.

@@ -1,0 +1,25 @@
+{
+  "skill_id": "wifi-rssi-presence-sensing-architect",
+  "version": "1.0.0",
+  "description": "Architect portable low-resource RSSI-based presence and coarse motion systems with honest capability boundaries.",
+  "inputs": [
+    {
+      "event_type": "skill:wifi-rssi-presence-sensing-architect:requested",
+      "schema_ref": "default_event_schema"
+    },
+    {
+      "event_type": "wifi:rssi_presence_architecture_requested",
+      "schema_ref": "default_event_schema"
+    }
+  ],
+  "outputs": [
+    {
+      "event_type": "wifi:rssi_presence_architecture_ready",
+      "schema_ref": "default_event_schema"
+    },
+    {
+      "event_type": "skill_activity:wifi-rssi-presence-sensing-architect",
+      "schema_ref": "default_finding_schema"
+    }
+  ]
+}

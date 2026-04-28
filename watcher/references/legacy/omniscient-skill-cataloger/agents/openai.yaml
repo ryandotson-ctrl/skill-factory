@@ -1,0 +1,4 @@
+interface:
+  display_name: "Omniscient Skill Cataloger"
+  short_description: "Complete source-aware skill inventory"
+  default_prompt: "Inventory all visible skills across codex, antigravity, local, and agents roots, preserve nested skill identity, and return a complete source-aware catalog without leaking local paths."

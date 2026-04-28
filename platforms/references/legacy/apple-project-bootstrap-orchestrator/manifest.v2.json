@@ -1,0 +1,65 @@
+{
+  "schema_version": "2.0.0",
+  "display_name": "Apple Project Bootstrap",
+  "description": "Scaffold or adopt Apple app projects with generator-backed bootstrap, optional harness installation, onboarding, and release-profile setup.",
+  "dispatch": {
+    "mode": "hybrid",
+    "cooldown": 300
+  },
+  "inputs": [
+    {
+      "id": "skill_request",
+      "type": "pulse.event",
+      "pattern": "skill:apple-project-bootstrap-orchestrator:requested",
+      "route_mode": "owned",
+      "route_priority": 95
+    },
+    {
+      "id": "apple_project_bootstrap_requested",
+      "type": "pulse.event",
+      "pattern": "apple:project_bootstrap_requested",
+      "route_mode": "owned",
+      "route_priority": 92
+    },
+    {
+      "id": "apple_project_adoption_requested",
+      "type": "pulse.event",
+      "pattern": "apple:project_adoption_requested",
+      "route_mode": "owned",
+      "route_priority": 91
+    },
+    {
+      "id": "apple_project_support_install_requested",
+      "type": "pulse.event",
+      "pattern": "apple:project_support_install_requested",
+      "route_mode": "owned",
+      "route_priority": 88
+    }
+  ],
+  "outputs": [
+    {
+      "id": "apple_project_bootstrap_receipt",
+      "type": "pulse.event",
+      "event_type": "apple:project_bootstrap_receipt",
+      "event_producer_role": "bootstrap_receipt"
+    },
+    {
+      "id": "apple_project_adoption_receipt",
+      "type": "pulse.event",
+      "event_type": "apple:project_adoption_receipt",
+      "event_producer_role": "adoption_receipt"
+    },
+    {
+      "id": "apple_project_support_install_receipt",
+      "type": "pulse.event",
+      "event_type": "apple:project_support_install_receipt",
+      "event_producer_role": "support_install_receipt"
+    },
+    {
+      "id": "apple_project_bootstrap_activity",
+      "type": "pulse.event",
+      "event_type": "apple_project_bootstrap_orchestrator_activity",
+      "event_producer_role": "bootstrap_activity"
+    }
+  ]
+}

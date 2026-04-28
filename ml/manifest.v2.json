@@ -1,7 +1,7 @@
 {
   "schema_version": "2.0.0",
   "display_name": "ml",
-  "description": "Lean core ML skill for MLX, model optimization, quantization, logistics, tensor debugging, and evaluation support.",
+  "description": "Builds, tunes, evaluates, optimizes, quantizes, and stabilizes local and cloud model systems.",
   "dispatch": {
     "mode": "automatic",
     "cooldown": 300
@@ -15,7 +15,7 @@
       "route_priority": 95
     },
     {
-      "id": "ml_work_requested",
+      "id": "semantic_request",
       "type": "pulse.event",
       "pattern": "ml:work_requested",
       "route_mode": "owned",
@@ -30,15 +30,17 @@
       "event_producer_role": "core_status"
     },
     {
-      "id": "plan_ready",
+      "id": "ready",
       "type": "pulse.event",
-      "event_type": "ml:plan_ready",
-      "event_producer_role": "ml_plan"
+      "event_type": "ml:work_ready",
+      "event_producer_role": "core_ready"
     }
   ],
   "awareness": [
-    "rag-data",
+    "knowledge-data",
     "research",
-    "reliability"
+    "reliability",
+    "platforms",
+    "engineering"
   ]
 }

@@ -1,0 +1,43 @@
+{
+  "schema": "LegacySourceChecksumV1",
+  "generated_at": "2026-04-28T02:49:55.836045+00:00",
+  "file_count": 7,
+  "aggregate_sha256": "b4b97f1b334ef8648e9d59c7c5cdc39a5c638bf4a77f14112cb6fc050e8c2713",
+  "files": [
+    {
+      "path": "SKILL.md",
+      "sha256": "b6f7539a8cbc715ce5ae8547eccbacdce3f1977505263d62291177fe8cb8ea6e",
+      "bytes": 13170
+    },
+    {
+      "path": "agents/openai.yaml",
+      "sha256": "f3a2f2bfc1abb8eaa2b3d28700d8108a9a27dec7c4462707c7fedcfe0d7ac211",
+      "bytes": 527
+    },
+    {
+      "path": "index.md",
+      "sha256": "9e137227a153256bf729e7abc183071af59333210c553176cc36f681a1bbcecd",
+      "bytes": 276
+    },
+    {
+      "path": "manifest.json",
+      "sha256": "472ccca9c708076816a0c2841b04d238a5875f09ff0323a4bfe333261781949d",
+      "bytes": 851
+    },
+    {
+      "path": "manifest.v2.json",
+      "sha256": "003107e2b7d0b569957e2037149f87f84c9ce141db78fc697077894e45c1b5ed",
+      "bytes": 1094
+    },
+    {
+      "path": "references/routing-matrix.md",
+      "sha256": "3342fca4b60f864e3f8f16c6dbb2b7a2f695e81e20efc7af36dd95b8692bfa67",
+      "bytes": 8213
+    },
+    {
+      "path": "references/worked-examples.md",
+      "sha256": "8cc648504c512a074d3189cb95fbec91051ba0c6be6ec455d334de6245ed1cf5",
+      "bytes": 11914
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "skill_id": "target-compatibility-gate",
+  "version": "1.0.0",
+  "description": "Portable compatibility gate that verifies artifact-to-target fit and transform planning.",
+  "inputs": [
+    {
+      "event_type": "compatibility:check_requested",
+      "schema_ref": "default_event_schema"
+    },
+    {
+      "event_type": "artifact:ready_for_target_check",
+      "schema_ref": "default_event_schema"
+    }
+  ],
+  "outputs": [
+    {
+      "event_type": "compatibility:gate_passed",
+      "schema_ref": "default_event_schema"
+    },
+    {
+      "event_type": "compatibility:gate_blocked",
+      "schema_ref": "default_event_schema"
+    },
+    {
+      "event_type": "compatibility:transform_plan_emitted",
+      "schema_ref": "default_event_schema"
+    }
+  ]
+}

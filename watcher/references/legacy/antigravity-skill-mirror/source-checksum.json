@@ -1,0 +1,53 @@
+{
+  "schema": "LegacySourceChecksumV1",
+  "generated_at": "2026-04-28T02:49:55.815398+00:00",
+  "file_count": 9,
+  "aggregate_sha256": "5767ded1bf2ceb097cda4ddbb458b3bb978b978e772d730fe053f5a781bc1040",
+  "files": [
+    {
+      "path": "SKILL.md",
+      "sha256": "5660cee45ea52ef3c11833d07fb1ddad6090c78825cbb3fe9cf6b5ac29f1d894",
+      "bytes": 4303
+    },
+    {
+      "path": "agents/openai.yaml",
+      "sha256": "8cd8cb0c770adf283550447f674ebed180ee5d5de11c81f40c33ca61495e39df",
+      "bytes": 318
+    },
+    {
+      "path": "index.md",
+      "sha256": "4b3f5c8412a94a8891ce6fdd7f58c315ea96fcd061c6ede321c43b1f1e93c1ce",
+      "bytes": 252
+    },
+    {
+      "path": "manifest.json",
+      "sha256": "5bcc435f51385c6131257447c0839648f92989cd59e12eccceb1fd7db8636af7",
+      "bytes": 994
+    },
+    {
+      "path": "manifest.v2.json",
+      "sha256": "ace6e65244a67e98a95b7397091aa99452d84936ff9a85169f4d104af1033386",
+      "bytes": 1574
+    },
+    {
+      "path": "references/event-contracts.md",
+      "sha256": "4fffd705665129947834c094a4402c4281f827686928015d74297c791a2f4593",
+      "bytes": 1622
+    },
+    {
+      "path": "references/report-contracts.md",
+      "sha256": "b6ec105d2662a971fb2f7baa5b01478cdc96152d21b83a5b5c32642d8ea2a7b4",
+      "bytes": 1477
+    },
+    {
+      "path": "references/worked-examples.md",
+      "sha256": "b59b3a321bad5e29d8eab947ee035b92e58b7d3d0f2f85ff413b85a45a5ca9e2",
+      "bytes": 723
+    },
+    {
+      "path": "scripts/mirror_antigravity_skills.py",
+      "sha256": "c83c3a75170029943918eb778308a37691374f329c789c2c173987f750282126",
+      "bytes": 12638
+    }
+  ]
+}

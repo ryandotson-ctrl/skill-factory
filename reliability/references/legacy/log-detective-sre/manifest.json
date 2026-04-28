@@ -1,0 +1,17 @@
+{
+  "skill_id": "log-detective-sre",
+  "version": "2.2.0",
+  "description": "Investigates PFEMacOSApp failures with app-first logs, transport ownership analysis, and named stale-backend incident signatures.",
+  "inputs": [
+    {
+      "event_type": "system_log_error",
+      "dispatch_mode": "automatic"
+    }
+  ],
+  "outputs": [
+    {
+      "event_type": "log-detective-sre_finding",
+      "schema_ref": "default_finding_schema"
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "schema": "LegacySourceChecksumV1",
+  "generated_at": "2026-04-28T02:49:55.854494+00:00",
+  "file_count": 9,
+  "aggregate_sha256": "6efceb692798286a9e8f33d2ebf30e469b19c54e47245dce16c0f059e83a8575",
+  "files": [
+    {
+      "path": "LICENSE.txt",
+      "sha256": "58d1e17ffe5109a7ae296caafcadfdbe6a7d176f0bc4ab01e12a689b0499d8bd",
+      "bytes": 11357
+    },
+    {
+      "path": "SKILL.md",
+      "sha256": "180114b44077d371571753d42febdcce46009b69b89ae79cd91a33989e0395b9",
+      "bytes": 1377
+    },
+    {
+      "path": "agents/openai.yaml",
+      "sha256": "12cf845a78254dde85e60eefb45a60e6ce2129d321f3e1d691d4ebca9a140861",
+      "bytes": 303
+    },
+    {
+      "path": "assets/github-small.svg",
+      "sha256": "ee05e92d373d4d84f4612af3c1090ef67698d421bbe30896a4ed5a00cb86a069",
+      "bytes": 853
+    },
+    {
+      "path": "assets/github.png",
+      "sha256": "d55a9baa41798d8b5108e3058df3a5bda09914ea9fd73b49929cc38a8832424f",
+      "bytes": 1838
+    },
+    {
+      "path": "index.md",
+      "sha256": "4e68b6fecb271afec014915e5092475948cd125d2d643ed597f7edde0470fec5",
+      "bytes": 250
+    },
+    {
+      "path": "manifest.json",
+      "sha256": "67c4999cc56b98a6ceccf155aca2724a055bfd1d0c9d960999d7c5474a5f2faf",
+      "bytes": 696
+    },
+    {
+      "path": "manifest.v2.json",
+      "sha256": "ac18084ac4003c3f0644935277bc89978ee60b479232045b92039f8cd9ee9943",
+      "bytes": 936
+    },
+    {
+      "path": "scripts/fetch_comments.py",
+      "sha256": "d7bc64f6b26f7482f9ca9dd7c923a5b8b20e1ef13491ae2d9052cd208a7c1ad1",
+      "bytes": 6537
+    }
+  ]
+}

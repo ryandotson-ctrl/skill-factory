@@ -1,0 +1,32 @@
+{
+  "schema_version": "2.0.0",
+  "display_name": "atlas",
+  "description": "macOS-only AppleScript control for the ChatGPT Atlas desktop app. Use",
+  "dispatch": {
+    "mode": "automatic",
+    "cooldown": 300
+  },
+  "inputs": [
+    {
+      "id": "skill_request",
+      "type": "pulse.event",
+      "pattern": "skill:atlas:requested",
+      "route_mode": "owned",
+      "route_priority": 95
+    },
+    {
+      "id": "atlas_control_requested",
+      "type": "pulse.event",
+      "pattern": "atlas:control_requested",
+      "route_mode": "owned",
+      "route_priority": 90
+    }
+  ],
+  "outputs": [
+    {
+      "id": "status_update",
+      "type": "pulse.event",
+      "event_type": "skill_activity:atlas"
+    }
+  ]
+}

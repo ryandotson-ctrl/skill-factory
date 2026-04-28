@@ -1,7 +1,7 @@
 {
   "schema_version": "2.0.0",
   "display_name": "engineering",
-  "description": "Lean core engineering skill for truth-led routing, no-regression implementation, QA, audit, and closure.",
+  "description": "Routes software work through reality inspection, risk classification, implementation, QA, code audit, git hygiene, CI, and release closure.",
   "dispatch": {
     "mode": "automatic",
     "cooldown": 300
@@ -15,11 +15,11 @@
       "route_priority": 95
     },
     {
-      "id": "engineering_execution_requested",
+      "id": "semantic_request",
       "type": "pulse.event",
       "pattern": "engineering:execution_requested",
       "route_mode": "owned",
-      "route_priority": 92
+      "route_priority": 90
     }
   ],
   "outputs": [
@@ -30,15 +30,18 @@
       "event_producer_role": "core_status"
     },
     {
-      "id": "route_decision_ready",
+      "id": "ready",
       "type": "pulse.event",
-      "event_type": "engineering:route_decision_ready",
-      "event_producer_role": "route_decision"
+      "event_type": "engineering:delivery_ready",
+      "event_producer_role": "core_ready"
     }
   ],
   "awareness": [
     "reliability",
     "security",
-    "git-release"
+    "knowledge-data",
+    "automation",
+    "ux",
+    "platforms"
   ]
 }

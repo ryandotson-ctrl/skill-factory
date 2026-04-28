@@ -1,0 +1,45 @@
+{
+    "schema_version": "2.0.0",
+    "display_name": "Orchestration Sentinel v2",
+    "description": "Primary manifest.v2 pulse router with explicit route ownership and dispatch health telemetry.",
+    "dispatch": {
+        "mode": "automatic",
+        "cooldown": 0
+    },
+    "inputs": [
+        {
+            "id": "ecosystem_event",
+            "type": "pulse.event",
+            "pattern": "*",
+            "route_mode": "observer",
+            "route_priority": 100,
+            "exclude_patterns": [
+                "dispatch_*",
+                "skill_*_activity",
+                "dispatch_health_report_emitted"
+            ]
+        }
+    ],
+    "outputs": [
+        {
+            "id": "dispatch_signal",
+            "type": "pulse.event",
+            "event_type": "dispatch_requested"
+        },
+    {
+      "id": "dispatch_lock_signal",
+      "type": "pulse.event",
+      "event_type": "dispatch_locked"
+    },
+    {
+      "id": "dispatch_failed_signal",
+      "type": "pulse.event",
+      "event_type": "dispatch_failed"
+    },
+    {
+      "id": "dispatch_health_signal",
+      "type": "pulse.event",
+      "event_type": "dispatch_health_report_emitted"
+    }
+    ]
+}

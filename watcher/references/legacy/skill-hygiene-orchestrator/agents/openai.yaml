@@ -1,0 +1,4 @@
+interface:
+  display_name: "Skill Hygiene Orchestrator"
+  short_description: "Deduplicate and clean cross-root skill sprawl"
+  default_prompt: "Audit duplicate or stale skill copies across roots, preserve the newest valid intent, and recommend additive cleanup or sync actions without destructive overwrites."

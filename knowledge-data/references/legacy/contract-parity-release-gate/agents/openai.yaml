@@ -1,0 +1,4 @@
+interface:
+  display_name: "Contract Parity Release Gate"
+  short_description: "Single go/no-go gate across contract parity domains"
+  default_prompt: "Evaluate contract parity evidence across required domains and emit a deterministic pass/warning/blocker release gate result with remediation order."

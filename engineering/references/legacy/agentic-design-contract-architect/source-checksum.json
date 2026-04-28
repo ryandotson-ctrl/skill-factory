@@ -1,0 +1,38 @@
+{
+  "schema": "LegacySourceChecksumV1",
+  "generated_at": "2026-04-28T02:49:55.837407+00:00",
+  "file_count": 6,
+  "aggregate_sha256": "9c4ff2c2273182ed7a732fbfdfbed64aead41e88989d9724608b28f64e7f5486",
+  "files": [
+    {
+      "path": "SKILL.md",
+      "sha256": "304922e30a0ae7327aac00e56dcedf569200bb1be94f69c2913873028c8e8e65",
+      "bytes": 1927
+    },
+    {
+      "path": "agents/openai.yaml",
+      "sha256": "04b228c412c1bcb9809badd3979805dc2e7ca117f22761af8a4bd84d94d262a5",
+      "bytes": 306
+    },
+    {
+      "path": "index.md",
+      "sha256": "f3f87b4ea5d7c0db5780e9ddfac596b294e6f79a403de51f6708b5aaa6af9168",
+      "bytes": 278
+    },
+    {
+      "path": "manifest.json",
+      "sha256": "d56b3436cac11e8cfa4aba9fa7d129d434c371efbee9f222283fbbd9d5f17331",
+      "bytes": 790
+    },
+    {
+      "path": "manifest.v2.json",
+      "sha256": "e6b270d0e8f4ec587b94af34f0b0d4cef1dc9f2bb777e9aaef97e54ef6eaca07",
+      "bytes": 1039
+    },
+    {
+      "path": "references/design-contract-template.md",
+      "sha256": "facc98a498fa1eeec4dcaa5b6a1a88649f25200a5a8d9911dbb2cf6677a66020",
+      "bytes": 808
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "schema_version": "2.0.0",
+  "display_name": "Skill Evolution Regression Gate",
+  "dispatch": {
+    "mode": "hybrid",
+    "cooldown": 300
+  },
+  "inputs": [
+    {
+      "id": "skill_evolution_plan",
+      "type": "pulse.event",
+      "pattern": "skill_evolution_plan_emitted"
+    }
+  ],
+  "outputs": [
+    {
+      "id": "skill_evolution_regression_gate_result",
+      "type": "pulse.event",
+      "event_type": "skill_evolution_regression_gate_result_emitted"
+    },
+    {
+      "id": "skill_evolution_regression_blocked",
+      "type": "pulse.event",
+      "event_type": "skill_evolution_regression_blocked"
+    }
+  ]
+}

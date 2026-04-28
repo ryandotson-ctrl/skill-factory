@@ -1,0 +1,25 @@
+{
+  "skill_id": "wisdom-retention-archivist",
+  "version": "1.0.0",
+  "description": "Append-only sanitized wisdom archival and recall scoring for cross-workspace recommendation systems.",
+  "inputs": [
+    {
+      "event_type": "skill_recommendation_emitted",
+      "dispatch_mode": "automatic"
+    },
+    {
+      "event_type": "postmortem_generated",
+      "dispatch_mode": "automatic"
+    }
+  ],
+  "outputs": [
+    {
+      "event_type": "wisdom_entry_archived",
+      "schema_ref": "default_event_schema"
+    },
+    {
+      "event_type": "wisdom_digest_updated",
+      "schema_ref": "default_event_schema"
+    }
+  ]
+}

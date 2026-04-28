@@ -1,0 +1,4 @@
+interface:
+  display_name: "Experiment Ledger Packager"
+  short_description: "Package immutable run ledgers and replay manifests"
+  default_prompt: "Normalize events into immutable run records and emit a replayable manifest with stable hashes."

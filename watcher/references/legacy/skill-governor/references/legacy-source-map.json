@@ -1,0 +1,173 @@
+{
+  "schema": "LegacySourceMapV1",
+  "migration_mode": "additive_overlay",
+  "policy": "Old skills remain intact until compatibility stubs are generated and verified. New core skills provide the lean routing surface while legacy skills preserve detailed wisdom.",
+  "core_skills": {
+    "watcher": [
+      "skill_director",
+      "omniscient-skill-cataloger",
+      "cross-workspace-goal-intelligence"
+    ],
+    "skill-governor": [
+      "conversation-skill-evolution-director",
+      "proactive-skill-evolution-planner",
+      "skill-evolution-regression-gate",
+      "skill-hygiene-orchestrator",
+      "skill-portability-guardian",
+      "antigravity-skill-mirror",
+      "orchestration-sentinel",
+      "orchestration-sentinel-v2"
+    ],
+    "skill-builder": [
+      ".system/skill-creator",
+      ".system/skill-installer",
+      ".system/plugin-creator",
+      "agentic-tool-blacksmith",
+      "find-skills"
+    ],
+    "engineering": [
+      "agentic-engineering-orchestrator",
+      "agentic-design-contract-architect",
+      "agentic-understanding-receipt-enforcer",
+      "agentic-production-readiness-gate",
+      "agentic-innovation-experiment-bridge",
+      "qa-automation-engineer",
+      "principal_code_auditor_worldclass",
+      "codex_consultant"
+    ],
+    "reliability": [
+      "agentic-incident-triage-commander",
+      "agentic-performance-reality-guardian",
+      "async-hygiene-monitor",
+      "thread-safety-auditor",
+      "uptime-reliability-sentinel",
+      "log-detective-sre",
+      "log-anomaly-observer",
+      "lifecycle-orphan-process-guardian",
+      "graceful-fallback-orchestrator",
+      "memory-leak-detective",
+      "autonomous-stream-validator",
+      "payload-checksum-validator",
+      "launch-window-budget-guard",
+      "capability-entitlement-negotiator",
+      "circular-import-sentinel",
+      "api-shadowing-guardian",
+      "storage-hygiene-cleanup-orchestrator"
+    ],
+    "security": [
+      "security_appsec_worldclass_auditor",
+      "security-best-practices",
+      "security-threat-model",
+      "private-pii-scrub-master",
+      "security-ownership-map",
+      "local-network-hardener",
+      "macos_end_to_end_security_audit"
+    ],
+    "git-release": [
+      "git-clarity-consultant",
+      "git-sentinel-release-manager",
+      "harmonious-sync-orchestrator",
+      "repo_bootstrap",
+      "repository-harmonization-specialist",
+      "gh-address-comments",
+      "gh-fix-ci",
+      "issue-tracker-guardian",
+      "apple-ecosystem-release-operator"
+    ],
+    "research": [
+      "research-director",
+      "openai-docs",
+      ".system/openai-docs",
+      "web-search-grounding-specialist",
+      "tech_auditor",
+      "ai-agent-bi-researcher",
+      "skunkworks-innovation-strategist",
+      "project-manager-maestro",
+      "hallucination-sentinel",
+      "oss_model_radar_mlx"
+    ],
+    "knowledge": [
+      "wisdom-retention-archivist",
+      "personal-knowledge-graph-architect",
+      "context-priority-scheduler",
+      "experiment-ledger-packager"
+    ],
+    "ml": [
+      "ml-compiler-inference-optimizer",
+      "ml-compiler-inference-optimizer-router",
+      "mlx-fine-tuning-artisan",
+      "mlx-objective-finetune-factory",
+      "mlx-stability-orchestrator",
+      "model-logistics-specialist",
+      "model-quantization-lab",
+      "energy-efficient-inference-auditor",
+      "tensor-shape-stabilizer",
+      "mlx-quantum-autodiff-bridge",
+      "quantum-proof-assurance-gate"
+    ],
+    "rag-data": [
+      "rag-architect-specialist",
+      "schema-parity-enforcer",
+      "contract-parity-release-gate",
+      "telemetry-semconv-enforcer",
+      "eval-flywheel-orchestrator",
+      "target-compatibility-gate",
+      "multi-modal-pipeline-auditor"
+    ],
+    "ux": [
+      "ui-ux-jony-level",
+      "model-ux-orchestrator"
+    ],
+    "automation": [
+      "playwright",
+      "playwright-interactive",
+      "atlas",
+      "screenshot",
+      "chronicle"
+    ],
+    "artifacts": [
+      "pdf",
+      "codex-primary-runtime/slides",
+      "codex-primary-runtime/spreadsheets",
+      "imagegen",
+      ".system/imagegen",
+      "logo-asset-packager",
+      "chatgpt-apps"
+    ],
+    "apple": [
+      "apple-project-bootstrap-orchestrator",
+      "xcode-build-harness-installer",
+      "apple-ecosystem-release-operator"
+    ],
+    "edge-platforms": [
+      "jarvis-mini-antigravity-routing",
+      "jarvis-mini-ears-guardrails",
+      "jarvis-mini-openclaw-release-guardian",
+      "jarvis-mini-runtime-operator",
+      "jarvis-mini-token-discipline",
+      "pi3b-openclaw-tuning-specialist",
+      "wifi-rssi-presence-sensing-architect",
+      "foundry-autonomy-recovery-operator"
+    ],
+    "pfe-profile": [
+      "runtime-context-launcher",
+      "rag-architect-specialist",
+      "schema-parity-enforcer",
+      "model-logistics-specialist",
+      "web-search-grounding-specialist",
+      "uptime-reliability-sentinel",
+      "local-network-hardener",
+      "model-ux-orchestrator"
+    ],
+    "special-missions": [
+      "job-apply-autonomous"
+    ],
+    "artifacts_or_skill-builder_review": [
+      ".system/plugin-creator"
+    ],
+    "reliability_or_ml_review": [
+      "mlx-quantum-autodiff-bridge"
+    ]
+  },
+  "unmapped": []
+}

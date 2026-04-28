@@ -1,0 +1,156 @@
+inventory_roles:
+  standard:
+    description: "Normal user-facing skill directory discovered directly under a skill root."
+    path_prefixes: []
+  system_hidden:
+    description: "Hidden system-managed skills under .system/ that remain first-class inventory entries."
+    path_prefixes:
+      - ".system/"
+  runtime_bundle:
+    description: "Bundled runtime helper skills that live under codex-primary-runtime/."
+    path_prefixes:
+      - "codex-primary-runtime/"
+  backup_snapshot:
+    description: "Backup or historical skill snapshots that are excluded from active inventory unless explicitly requested."
+    path_prefixes:
+      - ".skill-backups/"
+      - "_p0_backups/"
+      - ".backups/"
+
+root_roles:
+  codex: "canonical_authoring"
+  antigravity: "distribution_mirror"
+  workspace_mirror: "publication_mirror"
+  local: "workspace_local"
+  agents: "auxiliary_global"
+
+external_event_registry:
+  runtime_patterns:
+    - "backend_ipc_error_detected"
+    - "backend_transport_changed"
+    - "filesystem_action_gap_detected"
+    - "grounding_gap_detected"
+    - "ipc_auth_failure_detected"
+    - "run.completed"
+    - "run.error"
+    - "run.failed"
+    - "run.search.query"
+    - "run.tool.result"
+    - "run:finished"
+    - "runtime:incident_detected"
+    - "truthfulness_guard_triggered"
+    - "web_evidence_thin_detected"
+  operator_patterns:
+    - "apple:build_harness_install_requested"
+    - "apple:project_adoption_requested"
+    - "apple:project_bootstrap_requested"
+    - "apple:release_requested"
+    - "artifact:ready_for_target_check"
+    - "bundle.integrity.failed"
+    - "capability:negotiation_requested"
+    - "code_change"
+    - "compatibility:check_requested"
+    - "contract_parity_report_emitted"
+    - "eval:run_requested"
+    - "experiment:package_requested"
+    - "git.push.requested"
+    - "git:push_complete"
+    - "git_hygiene_check_requested"
+    - "issue:ingest_requested"
+    - "issue:reconcile_requested"
+    - "issue:scan_requested"
+    - "launch:preflight_requested"
+    - "launch:window_check_requested"
+    - "log:anomaly_detected"
+    - "mlx_objective_training_request"
+    - "partner.sync.requested"
+    - "portability.violation.detected"
+    - "postmortem_generated"
+    - "qa:test_failed"
+    - "release.preflight.completed"
+    - "release_bundle_preflight_requested"
+    - "release_gate_check_requested"
+    - "research:competitive_intel_requested"
+    - "research:scan_requested"
+    - "roadmap:review_requested"
+    - "run:high_cost_launch_requested"
+    - "skill.mirror.changed"
+    - "skill_director_context_ingest_requested"
+    - "skill_evolution_requested"
+    - "skills_portability_audit_requested"
+    - "smart_launch_success"
+    - "stability_gate_check"
+    - "system.log_error"
+    - "system:startup"
+    - "tech:freshness_audit_requested"
+    - "tech:inventory_requested"
+    - "ux:audit_requested"
+    - "ux:brief_requested"
+    - "ux:handoff_requested"
+    - "ux:system_requested"
+    - "workspace:dependency_freshness_requested"
+  operator_conventions:
+    - kind: "skill_request_namespace"
+      prefix: "skill:"
+      suffix: ":requested"
+    - kind: "owned_route_suffix"
+      suffix: ":requested"
+      route_modes:
+        - "owned"
+    - kind: "owned_route_suffix"
+      suffix: "_requested"
+      route_modes:
+        - "owned"
+
+shared_event_registry:
+  output_events:
+    - event_type: "skill_evolution_assessment_emitted"
+      ownership_mode: "intentional_shared"
+      allowed_producers:
+        - "conversation-skill-evolution-director"
+        - "skill_director"
+      allowed_roles:
+        - "specialist_primary"
+        - "watcher_embedded_evolution_aggregate"
+    - event_type: "skill_evolution_actions_emitted"
+      ownership_mode: "intentional_shared"
+      allowed_producers:
+        - "conversation-skill-evolution-director"
+        - "skill_director"
+      allowed_roles:
+        - "specialist_primary"
+        - "watcher_embedded_evolution_aggregate"
+    - event_type: "skill_evolution_plan_emitted"
+      ownership_mode: "intentional_shared"
+      allowed_producers:
+        - "conversation-skill-evolution-director"
+        - "proactive-skill-evolution-planner"
+      allowed_roles:
+        - "specialist_primary"
+        - "planner_primary"
+    - event_type: "skill_recommendation_emitted"
+      ownership_mode: "intentional_shared"
+      allowed_producers:
+        - "cross-workspace-goal-intelligence"
+        - "proactive-skill-evolution-planner"
+        - "skill_director"
+      allowed_roles:
+        - "watcher_aggregate"
+        - "workspace_signal_source"
+        - "planner_signal"
+    - event_type: "skill_activity:imagegen"
+      ownership_mode: "intentional_shared"
+      allowed_producers:
+        - ".system/imagegen"
+        - "imagegen"
+      allowed_roles:
+        - "primary_skill"
+        - "system_fallback"
+    - event_type: "skill_activity:openai-docs"
+      ownership_mode: "intentional_shared"
+      allowed_producers:
+        - ".system/openai-docs"
+        - "openai-docs"
+      allowed_roles:
+        - "primary_skill"
+        - "system_fallback"

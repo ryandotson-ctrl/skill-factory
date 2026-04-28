@@ -1,0 +1,25 @@
+{
+  "skill_id": "chatgpt-apps",
+  "version": "1.0.0",
+  "description": "Build and scaffold ChatGPT Apps SDK applications with a docs-first workflow and current OpenAI Apps SDK guidance.",
+  "inputs": [
+    {
+      "event_type": "skill:chatgpt-apps:requested",
+      "schema_ref": "default_event_schema"
+    },
+    {
+      "event_type": "openai:chatgpt_apps_requested",
+      "schema_ref": "default_event_schema"
+    }
+  ],
+  "outputs": [
+    {
+      "event_type": "chatgpt_apps_ready",
+      "schema_ref": "default_event_schema"
+    },
+    {
+      "event_type": "skill_activity:chatgpt-apps",
+      "schema_ref": "default_finding_schema"
+    }
+  ]
+}

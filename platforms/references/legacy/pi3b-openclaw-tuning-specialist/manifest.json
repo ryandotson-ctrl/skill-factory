@@ -1,0 +1,21 @@
+{
+  "skill_id": "pi3b-openclaw-tuning-specialist",
+  "version": "1.0.0",
+  "description": "Stabilize and tune OpenClaw on Raspberry Pi 3 Model B (1 GB) under severe",
+  "inputs": [
+    {
+      "event_type": "skill:pi3b-openclaw-tuning-specialist:requested",
+      "schema_ref": "default_event_schema"
+    },
+    {
+      "event_type": "pi3b:openclaw_tuning_requested",
+      "schema_ref": "default_event_schema"
+    }
+  ],
+  "outputs": [
+    {
+      "event_type": "skill_activity:pi3b-openclaw-tuning-specialist",
+      "schema_ref": "default_finding_schema"
+    }
+  ]
+}

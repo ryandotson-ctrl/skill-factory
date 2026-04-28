@@ -1,0 +1,37 @@
+{
+    "schema_version": "2.0.0",
+    "display_name": "Security_Appsec_Worldclass_Auditor",
+    "dispatch": {
+        "mode": "automatic",
+        "cooldown": 300
+    },
+    "inputs": [
+        {
+            "id": "system_stability_trigger",
+            "type": "pulse.event",
+            "pattern": "stability_gate_check"
+        },
+        {
+            "id": "code_change_trigger",
+            "type": "pulse.event",
+            "pattern": "code_change"
+        },
+        {
+            "id": "pilot_launch_trigger",
+            "type": "pulse.event",
+            "pattern": "smart_launch_success"
+        }
+    ],
+    "outputs": [
+        {
+            "id": "security_alert",
+            "type": "pulse.event",
+            "event_type": "security_vulnerability_detected"
+        },
+        {
+            "id": "status_update",
+            "type": "pulse.event",
+            "event_type": "security_appsec_worldclass_auditor_activity"
+        }
+    ]
+}

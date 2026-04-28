@@ -1,0 +1,21 @@
+{
+  "skill_id": "telemetry-semconv-enforcer",
+  "version": "1.1.0",
+  "description": "Portable telemetry semantic convention enforcer that validates required attributes and reports precise conformance violations.",
+  "inputs": [
+    {
+      "event_type": "skill:telemetry-semconv-enforcer:requested",
+      "schema_ref": "default_event_schema"
+    },
+    {
+      "event_type": "telemetry:semconv_enforcement_requested",
+      "schema_ref": "default_event_schema"
+    }
+  ],
+  "outputs": [
+    {
+      "event_type": "skill_activity:telemetry-semconv-enforcer",
+      "schema_ref": "default_finding_schema"
+    }
+  ]
+}

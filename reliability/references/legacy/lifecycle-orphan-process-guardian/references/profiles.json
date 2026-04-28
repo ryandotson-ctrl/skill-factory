@@ -1,0 +1,66 @@
+{
+  "profiles": {
+    "pfe_macos_swiftui": {
+      "description": "Optional adapter profile for PFEMacOS lifecycle checks. Paths are workspace-root relative.",
+      "launch_cmd": "open -a PFEMacOSApp",
+      "shutdown_cmd": "osascript -e 'tell application \"PFEMacOSApp\" to quit'",
+      "process_match": [
+        "uvicorn\\s+backend\\.main:app",
+        "backend\\.main:app",
+        "apps/project-free-energy"
+      ],
+      "static_targets": [
+        "apps/pfe-macos/Sources/PFEMacOSApp/PFEMacOSApp.swift",
+        "apps/pfe-macos/Sources/PFEMacOSApp/AppState.swift",
+        "apps/pfe-macos/Sources/PFEMacOSApp/BackendController.swift"
+      ],
+      "required_patterns": [
+        {
+          "id": "app_terminate_notification",
+          "description": "App termination notification hook exists.",
+          "pattern": "NSApplication\\.willTerminateNotification",
+          "targets": [
+            "apps/pfe-macos/Sources/PFEMacOSApp/PFEMacOSApp.swift"
+          ],
+          "count_at_least": 1
+        },
+        {
+          "id": "state_shutdown_entrypoint",
+          "description": "AppState shutdown function exists.",
+          "pattern": "func\\s+shutdown\\s*\\(",
+          "targets": [
+            "apps/pfe-macos/Sources/PFEMacOSApp/AppState.swift"
+          ],
+          "count_at_least": 1
+        },
+        {
+          "id": "shutdown_calls_backend_stop",
+          "description": "Shutdown path calls backend.stop().",
+          "pattern": "backend\\.stop\\s*\\(",
+          "targets": [
+            "apps/pfe-macos/Sources/PFEMacOSApp/AppState.swift"
+          ],
+          "count_at_least": 1
+        },
+        {
+          "id": "stop_kills_children",
+          "description": "Backend stop includes child process teardown.",
+          "pattern": "terminateChildren\\s*\\(",
+          "targets": [
+            "apps/pfe-macos/Sources/PFEMacOSApp/BackendController.swift"
+          ],
+          "count_at_least": 1
+        },
+        {
+          "id": "force_kill_fallback",
+          "description": "Backend stop includes force kill fallback.",
+          "pattern": "SIGKILL",
+          "targets": [
+            "apps/pfe-macos/Sources/PFEMacOSApp/BackendController.swift"
+          ],
+          "count_at_least": 1
+        }
+      ]
+    }
+  }
+}

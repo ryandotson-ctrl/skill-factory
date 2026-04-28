@@ -1,30 +1,24 @@
 # Core Skill Topology
 
-The radical consolidation layer adds 18 lean core skills while preserving all legacy skill directories as detailed reference sources.
+The radical consolidation target is 12 active core skills with legacy skills preserved as source archives and future compatibility aliases.
 
 Core skills:
-- `watcher`
-- `skill-governor`
-- `skill-builder`
-- `engineering`
-- `reliability`
-- `security`
-- `git-release`
-- `research`
-- `knowledge`
-- `ml`
-- `rag-data`
-- `ux`
-- `automation`
-- `artifacts`
-- `apple`
-- `edge-platforms`
-- `pfe-profile`
-- `special-missions`
+- watcher
+- engineering
+- reliability
+- security
+- research
+- knowledge-data
+- ml
+- automation
+- artifacts
+- ux
+- platforms
+- missions
 
-Use `skill-governor/references/legacy-source-map.json` for the authoritative legacy-to-core mapping.
-
-Watcher behavior:
-- Keep legacy `IndividualSkillIntelligenceV1` cards until old skills are intentionally converted to compatibility stubs.
-- Treat new core skills as the preferred lean routing surface.
-- Treat old skills as wisdom-bearing source nodes, not deletion candidates.
+Migration posture:
+- The 12 core skills are the preferred lean routing surface.
+- Existing legacy skill folders remain in place until the compatibility-stub phase is explicitly applied.
+- Verbatim legacy copies live under `<core>/references/legacy/<legacy-id>/` with checksums.
+- The Watcher remains responsible for per-skill intelligence, Pulse Bus topology, portability, and migration receipts.
+- `skill_director` remains the stable Watcher implementation root until all call sites migrate safely to `watcher`.

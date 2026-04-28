@@ -1,0 +1,12 @@
+{
+  "skill_id": "agentic-tool-blacksmith",
+  "version": "1.0.0",
+  "description": "Auto-generated manifest for agentic-tool-blacksmith",
+  "inputs": [],
+  "outputs": [
+    {
+      "event_type": "agentic-tool-blacksmith_finding",
+      "schema_ref": "default_finding_schema"
+    }
+  ]
+}

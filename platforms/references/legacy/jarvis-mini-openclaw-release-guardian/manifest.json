@@ -1,0 +1,21 @@
+{
+  "skill_id": "jarvis-mini-openclaw-release-guardian",
+  "version": "1.0.0",
+  "description": "Track and safely manage OpenClaw version lifecycle on Pi. Use when checking",
+  "inputs": [
+    {
+      "event_type": "skill:jarvis-mini-openclaw-release-guardian:requested",
+      "schema_ref": "default_event_schema"
+    },
+    {
+      "event_type": "jarvis:openclaw_release_requested",
+      "schema_ref": "default_event_schema"
+    }
+  ],
+  "outputs": [
+    {
+      "event_type": "skill_activity:jarvis-mini-openclaw-release-guardian",
+      "schema_ref": "default_finding_schema"
+    }
+  ]
+}

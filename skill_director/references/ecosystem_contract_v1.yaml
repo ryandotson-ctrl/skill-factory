@@ -97,10 +97,12 @@ external_event_registry:
       suffix: ":requested"
       route_modes:
         - "owned"
+        - "alias"
     - kind: "owned_route_suffix"
       suffix: "_requested"
       route_modes:
         - "owned"
+        - "alias"
 
 shared_event_registry:
   output_events:

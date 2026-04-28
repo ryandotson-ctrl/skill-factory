@@ -1,0 +1,44 @@
+{
+  "schema_version": "2.0.0",
+  "display_name": "skill-governor",
+  "description": "Lean core governance skill for additive skill evolution, portability, mirror parity, and regression gates.",
+  "dispatch": {
+    "mode": "automatic",
+    "cooldown": 300
+  },
+  "inputs": [
+    {
+      "id": "skill_request",
+      "type": "pulse.event",
+      "pattern": "skill:skill-governor:requested",
+      "route_mode": "owned",
+      "route_priority": 95
+    },
+    {
+      "id": "governance_requested",
+      "type": "pulse.event",
+      "pattern": "skills:governance_requested",
+      "route_mode": "owned",
+      "route_priority": 90
+    }
+  ],
+  "outputs": [
+    {
+      "id": "status_update",
+      "type": "pulse.event",
+      "event_type": "skill_activity:skill-governor",
+      "event_producer_role": "core_status"
+    },
+    {
+      "id": "governance_plan_ready",
+      "type": "pulse.event",
+      "event_type": "skills:governance_plan_ready",
+      "event_producer_role": "governance_plan"
+    }
+  ],
+  "awareness": [
+    "watcher",
+    "skill-builder",
+    "git-release"
+  ]
+}

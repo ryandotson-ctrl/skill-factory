@@ -1,0 +1,63 @@
+{
+  "schema": "LegacySourceChecksumV1",
+  "generated_at": "2026-04-28T02:49:55.973007+00:00",
+  "file_count": 11,
+  "aggregate_sha256": "40f28952d6045abe7f2c397c699eccce1430fce9cdab5904abf58d701fb9f58c",
+  "files": [
+    {
+      "path": "LICENSE.txt",
+      "sha256": "4dd13869245e356246a5b770723247bbb80a8f07a181d1d3d873a1734297cdb9",
+      "bytes": 10776
+    },
+    {
+      "path": "SKILL.md",
+      "sha256": "70beac1f84a6ecee514e1ab838dfef3503c2583f98c52893b0bffa7ef8268b94",
+      "bytes": 2895
+    },
+    {
+      "path": "agents/openai.yaml",
+      "sha256": "becc88260d3bfa076d75973237264243f81cacc00d468c3d7f975f18bf391c92",
+      "bytes": 342
+    },
+    {
+      "path": "assets/atlas-small.svg",
+      "sha256": "5c6e0a451e8695c07620e96dd00a00e7ccedd755c48656537215f19b1ec8f7d2",
+      "bytes": 1092
+    },
+    {
+      "path": "assets/atlas.png",
+      "sha256": "1ac71e4ab8504d91c5992eca3b014c11f49ba1002f74a60eb0a16a16002f5c87",
+      "bytes": 11162
+    },
+    {
+      "path": "index.md",
+      "sha256": "a9fa7dd86e2217cf10232f16b93e9c7126161601a94edf30822af8c2e3b72c0e",
+      "bytes": 220
+    },
+    {
+      "path": "manifest.json",
+      "sha256": "7e9d1e22c8b8ce92a37db56cdd9fbf967badfda101672cf419294f3a19825181",
+      "bytes": 481
+    },
+    {
+      "path": "manifest.v2.json",
+      "sha256": "a7c5c5cb1bacfd4d834ede749fa8d6703865448af3304dbe935ca9f42535e557",
+      "bytes": 716
+    },
+    {
+      "path": "references/atlas-data.md",
+      "sha256": "f619210416a0cbd8cd3b5d5e76176c7d3aee7f528552aa3c240068d2a5e236f0",
+      "bytes": 746
+    },
+    {
+      "path": "scripts/atlas_cli.py",
+      "sha256": "6468524f7425ae68544cd68b3c58678c9655504b12fd48c4680996ca44389e73",
+      "bytes": 14116
+    },
+    {
+      "path": "scripts/atlas_common.py",
+      "sha256": "da2cc5cb251e9a19a376289b10f81256907449f3ff62908436d04165b1f65329",
+      "bytes": 5166
+    }
+  ]
+}

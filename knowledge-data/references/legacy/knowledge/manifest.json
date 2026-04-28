@@ -1,0 +1,25 @@
+{
+  "skill_id": "knowledge",
+  "version": "1.0.0",
+  "description": "Lean core knowledge skill for wisdom ledgers, knowledge graphs, context scheduling, and reusable recall.",
+  "inputs": [
+    {
+      "event_type": "skill:knowledge:requested",
+      "schema_ref": "default_event_schema"
+    },
+    {
+      "event_type": "knowledge:recall_requested",
+      "schema_ref": "default_event_schema"
+    }
+  ],
+  "outputs": [
+    {
+      "event_type": "skill_activity:knowledge",
+      "schema_ref": "default_finding_schema"
+    },
+    {
+      "event_type": "knowledge:recall_ready",
+      "schema_ref": "default_finding_schema"
+    }
+  ]
+}

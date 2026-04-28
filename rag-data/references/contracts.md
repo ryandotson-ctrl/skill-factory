@@ -1,5 +1,3 @@
-# RAG And Data References
+# Contracts
 
-This core skill absorbs `rag-architect-specialist`, `schema-parity-enforcer`, `contract-parity-release-gate`, `telemetry-semconv-enforcer`, `eval-flywheel-orchestrator`, `target-compatibility-gate`, and `payload-checksum-validator`.
-
-Preserve attachment-first RAG wisdom, schema parity checks, contract gates, telemetry conventions, eval thresholds, compatibility transforms, and checksum integrity.
+This compatibility-era core is superseded by `knowledge-data`. Payload checksum, RAG, schema parity, telemetry, eval, target compatibility, and contract parity guidance is preserved under `knowledge-data/references/legacy/`.
