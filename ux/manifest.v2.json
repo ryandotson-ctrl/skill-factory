@@ -1,0 +1,44 @@
+{
+  "schema_version": "2.0.0",
+  "display_name": "ux",
+  "description": "Lean core UX skill for product design, audits, visual systems, accessibility, handoff, and model UX.",
+  "dispatch": {
+    "mode": "automatic",
+    "cooldown": 300
+  },
+  "inputs": [
+    {
+      "id": "skill_request",
+      "type": "pulse.event",
+      "pattern": "skill:ux:requested",
+      "route_mode": "owned",
+      "route_priority": 95
+    },
+    {
+      "id": "brief_requested",
+      "type": "pulse.event",
+      "pattern": "ux:brief_requested",
+      "route_mode": "owned",
+      "route_priority": 90
+    }
+  ],
+  "outputs": [
+    {
+      "id": "status_update",
+      "type": "pulse.event",
+      "event_type": "skill_activity:ux",
+      "event_producer_role": "core_status"
+    },
+    {
+      "id": "design_ready",
+      "type": "pulse.event",
+      "event_type": "ux:design_ready",
+      "event_producer_role": "design_ready"
+    }
+  ],
+  "awareness": [
+    "engineering",
+    "artifacts",
+    "automation"
+  ]
+}

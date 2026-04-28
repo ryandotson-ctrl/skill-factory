@@ -1,0 +1,44 @@
+{
+  "schema_version": "2.0.0",
+  "display_name": "engineering",
+  "description": "Lean core engineering skill for truth-led routing, no-regression implementation, QA, audit, and closure.",
+  "dispatch": {
+    "mode": "automatic",
+    "cooldown": 300
+  },
+  "inputs": [
+    {
+      "id": "skill_request",
+      "type": "pulse.event",
+      "pattern": "skill:engineering:requested",
+      "route_mode": "owned",
+      "route_priority": 95
+    },
+    {
+      "id": "engineering_execution_requested",
+      "type": "pulse.event",
+      "pattern": "engineering:execution_requested",
+      "route_mode": "owned",
+      "route_priority": 92
+    }
+  ],
+  "outputs": [
+    {
+      "id": "status_update",
+      "type": "pulse.event",
+      "event_type": "skill_activity:engineering",
+      "event_producer_role": "core_status"
+    },
+    {
+      "id": "route_decision_ready",
+      "type": "pulse.event",
+      "event_type": "engineering:route_decision_ready",
+      "event_producer_role": "route_decision"
+    }
+  ],
+  "awareness": [
+    "reliability",
+    "security",
+    "git-release"
+  ]
+}

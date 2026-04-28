@@ -1,0 +1,25 @@
+{
+  "skill_id": "engineering",
+  "version": "1.0.0",
+  "description": "Lean core engineering skill for truth-led routing, no-regression implementation, QA, audit, and closure.",
+  "inputs": [
+    {
+      "event_type": "skill:engineering:requested",
+      "schema_ref": "default_event_schema"
+    },
+    {
+      "event_type": "engineering:execution_requested",
+      "schema_ref": "default_event_schema"
+    }
+  ],
+  "outputs": [
+    {
+      "event_type": "skill_activity:engineering",
+      "schema_ref": "default_finding_schema"
+    },
+    {
+      "event_type": "engineering:route_decision_ready",
+      "schema_ref": "default_finding_schema"
+    }
+  ]
+}

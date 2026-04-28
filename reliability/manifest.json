@@ -1,0 +1,25 @@
+{
+  "skill_id": "reliability",
+  "version": "1.0.0",
+  "description": "Lean core reliability skill for incidents, performance, runtime, logs, async, lifecycle, and resource budgets.",
+  "inputs": [
+    {
+      "event_type": "skill:reliability:requested",
+      "schema_ref": "default_event_schema"
+    },
+    {
+      "event_type": "runtime:incident_detected",
+      "schema_ref": "default_event_schema"
+    }
+  ],
+  "outputs": [
+    {
+      "event_type": "skill_activity:reliability",
+      "schema_ref": "default_finding_schema"
+    },
+    {
+      "event_type": "reliability:stabilization_plan_ready",
+      "schema_ref": "default_finding_schema"
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "skill_id": "research",
+  "version": "1.0.0",
+  "description": "Lean core research skill for current official sources, web grounding, technology freshness, BI, and SOTA scanning.",
+  "inputs": [
+    {
+      "event_type": "skill:research:requested",
+      "schema_ref": "default_event_schema"
+    },
+    {
+      "event_type": "research:brief_requested",
+      "schema_ref": "default_event_schema"
+    }
+  ],
+  "outputs": [
+    {
+      "event_type": "skill_activity:research",
+      "schema_ref": "default_finding_schema"
+    },
+    {
+      "event_type": "research:brief_ready",
+      "schema_ref": "default_finding_schema"
+    }
+  ]
+}

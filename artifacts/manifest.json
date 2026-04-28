@@ -1,0 +1,25 @@
+{
+  "skill_id": "artifacts",
+  "version": "1.0.0",
+  "description": "Lean core artifact skill for PDFs, slides, spreadsheets, images, assets, and ChatGPT Apps.",
+  "inputs": [
+    {
+      "event_type": "skill:artifacts:requested",
+      "schema_ref": "default_event_schema"
+    },
+    {
+      "event_type": "artifacts:create_requested",
+      "schema_ref": "default_event_schema"
+    }
+  ],
+  "outputs": [
+    {
+      "event_type": "skill_activity:artifacts",
+      "schema_ref": "default_finding_schema"
+    },
+    {
+      "event_type": "artifacts:artifact_ready",
+      "schema_ref": "default_finding_schema"
+    }
+  ]
+}

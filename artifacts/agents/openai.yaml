@@ -1,0 +1,7 @@
+interface:
+  display_name: "artifacts"
+  short_description: "Create and inspect PDFs, slides, spreadsheets, images, assets, and ChatGPT Apps"
+  default_prompt: "Use $artifacts to create, inspect, convert, and package production-quality documents, images, assets, and app artifacts."
+
+policy:
+  allow_implicit_invocation: true

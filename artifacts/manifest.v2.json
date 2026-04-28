@@ -1,0 +1,44 @@
+{
+  "schema_version": "2.0.0",
+  "display_name": "artifacts",
+  "description": "Lean core artifact skill for PDFs, slides, spreadsheets, images, assets, and ChatGPT Apps.",
+  "dispatch": {
+    "mode": "automatic",
+    "cooldown": 300
+  },
+  "inputs": [
+    {
+      "id": "skill_request",
+      "type": "pulse.event",
+      "pattern": "skill:artifacts:requested",
+      "route_mode": "owned",
+      "route_priority": 95
+    },
+    {
+      "id": "create_requested",
+      "type": "pulse.event",
+      "pattern": "artifacts:create_requested",
+      "route_mode": "owned",
+      "route_priority": 90
+    }
+  ],
+  "outputs": [
+    {
+      "id": "status_update",
+      "type": "pulse.event",
+      "event_type": "skill_activity:artifacts",
+      "event_producer_role": "core_status"
+    },
+    {
+      "id": "artifact_ready",
+      "type": "pulse.event",
+      "event_type": "artifacts:artifact_ready",
+      "event_producer_role": "artifact_output"
+    }
+  ],
+  "awareness": [
+    "ux",
+    "automation",
+    "research"
+  ]
+}

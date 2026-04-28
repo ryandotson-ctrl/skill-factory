@@ -1,0 +1,44 @@
+{
+  "schema_version": "2.0.0",
+  "display_name": "security",
+  "description": "Lean core security skill for AppSec, threat modeling, PII, ownership, macOS, and network hardening.",
+  "dispatch": {
+    "mode": "automatic",
+    "cooldown": 300
+  },
+  "inputs": [
+    {
+      "id": "skill_request",
+      "type": "pulse.event",
+      "pattern": "skill:security:requested",
+      "route_mode": "owned",
+      "route_priority": 95
+    },
+    {
+      "id": "security_audit_requested",
+      "type": "pulse.event",
+      "pattern": "security:audit_requested",
+      "route_mode": "owned",
+      "route_priority": 92
+    }
+  ],
+  "outputs": [
+    {
+      "id": "status_update",
+      "type": "pulse.event",
+      "event_type": "skill_activity:security",
+      "event_producer_role": "core_status"
+    },
+    {
+      "id": "findings_ready",
+      "type": "pulse.event",
+      "event_type": "security:findings_ready",
+      "event_producer_role": "security_findings"
+    }
+  ],
+  "awareness": [
+    "engineering",
+    "reliability",
+    "git-release"
+  ]
+}

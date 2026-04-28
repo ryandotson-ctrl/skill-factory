@@ -1,0 +1,7 @@
+interface:
+  display_name: "ux"
+  short_description: "Design and audit executable UX, IA, visual systems, accessibility, and handoff"
+  default_prompt: "Use $ux to produce product design, UX audits, interaction specs, accessibility guidance, and implementation-aware handoff."
+
+policy:
+  allow_implicit_invocation: true

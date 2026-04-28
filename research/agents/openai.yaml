@@ -1,0 +1,7 @@
+interface:
+  display_name: "research"
+  short_description: "Produce current primary-source research and decision intelligence"
+  default_prompt: "Use $research to retrieve current primary sources, verify grounding, and produce decision-ready intelligence."
+
+policy:
+  allow_implicit_invocation: true

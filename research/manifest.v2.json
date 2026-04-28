@@ -1,0 +1,44 @@
+{
+  "schema_version": "2.0.0",
+  "display_name": "research",
+  "description": "Lean core research skill for current official sources, web grounding, technology freshness, BI, and SOTA scanning.",
+  "dispatch": {
+    "mode": "automatic",
+    "cooldown": 300
+  },
+  "inputs": [
+    {
+      "id": "skill_request",
+      "type": "pulse.event",
+      "pattern": "skill:research:requested",
+      "route_mode": "owned",
+      "route_priority": 95
+    },
+    {
+      "id": "brief_requested",
+      "type": "pulse.event",
+      "pattern": "research:brief_requested",
+      "route_mode": "owned",
+      "route_priority": 90
+    }
+  ],
+  "outputs": [
+    {
+      "id": "status_update",
+      "type": "pulse.event",
+      "event_type": "skill_activity:research",
+      "event_producer_role": "core_status"
+    },
+    {
+      "id": "brief_ready",
+      "type": "pulse.event",
+      "event_type": "research:brief_ready",
+      "event_producer_role": "research_brief"
+    }
+  ],
+  "awareness": [
+    "engineering",
+    "knowledge",
+    "ml"
+  ]
+}

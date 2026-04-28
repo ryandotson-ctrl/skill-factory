@@ -37,6 +37,7 @@ external_event_registry:
     - "run.search.query"
     - "run.tool.result"
     - "run:finished"
+    - "runtime:incident_detected"
     - "truthfulness_guard_triggered"
     - "web_evidence_thin_detected"
   operator_patterns:

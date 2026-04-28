@@ -1,0 +1,25 @@
+{
+  "skill_id": "ux",
+  "version": "1.0.0",
+  "description": "Lean core UX skill for product design, audits, visual systems, accessibility, handoff, and model UX.",
+  "inputs": [
+    {
+      "event_type": "skill:ux:requested",
+      "schema_ref": "default_event_schema"
+    },
+    {
+      "event_type": "ux:brief_requested",
+      "schema_ref": "default_event_schema"
+    }
+  ],
+  "outputs": [
+    {
+      "event_type": "skill_activity:ux",
+      "schema_ref": "default_finding_schema"
+    },
+    {
+      "event_type": "ux:design_ready",
+      "schema_ref": "default_finding_schema"
+    }
+  ]
+}

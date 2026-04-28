@@ -1,0 +1,25 @@
+{
+  "skill_id": "automation",
+  "version": "1.0.0",
+  "description": "Lean core automation skill for browser, desktop, screenshot, Atlas, Chronicle, and visible verification workflows.",
+  "inputs": [
+    {
+      "event_type": "skill:automation:requested",
+      "schema_ref": "default_event_schema"
+    },
+    {
+      "event_type": "automation:browser_requested",
+      "schema_ref": "default_event_schema"
+    }
+  ],
+  "outputs": [
+    {
+      "event_type": "skill_activity:automation",
+      "schema_ref": "default_finding_schema"
+    },
+    {
+      "event_type": "automation:verification_ready",
+      "schema_ref": "default_finding_schema"
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+interface:
+  display_name: "reliability"
+  short_description: "Diagnose and stabilize incidents, runtime failures, and performance regressions"
+  default_prompt: "Use $reliability to restore service, contain performance or runtime failures, and harden the path with evidence."
+
+policy:
+  allow_implicit_invocation: true

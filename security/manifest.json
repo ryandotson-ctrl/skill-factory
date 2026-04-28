@@ -1,0 +1,25 @@
+{
+  "skill_id": "security",
+  "version": "1.0.0",
+  "description": "Lean core security skill for AppSec, threat modeling, PII, ownership, macOS, and network hardening.",
+  "inputs": [
+    {
+      "event_type": "skill:security:requested",
+      "schema_ref": "default_event_schema"
+    },
+    {
+      "event_type": "security:audit_requested",
+      "schema_ref": "default_event_schema"
+    }
+  ],
+  "outputs": [
+    {
+      "event_type": "skill_activity:security",
+      "schema_ref": "default_finding_schema"
+    },
+    {
+      "event_type": "security:findings_ready",
+      "schema_ref": "default_finding_schema"
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "schema_version": "2.0.0",
+  "display_name": "watcher",
+  "description": "Lean core ecosystem intelligence skill for inventory, drift, wisdom, and posture.",
+  "dispatch": {
+    "mode": "automatic",
+    "cooldown": 300
+  },
+  "inputs": [
+    {
+      "id": "skill_request",
+      "type": "pulse.event",
+      "pattern": "skill:watcher:requested",
+      "route_mode": "owned",
+      "route_priority": 95
+    },
+    {
+      "id": "watcher_requested",
+      "type": "pulse.event",
+      "pattern": "skills:watcher_requested",
+      "route_mode": "owned",
+      "route_priority": 90
+    }
+  ],
+  "outputs": [
+    {
+      "id": "status_update",
+      "type": "pulse.event",
+      "event_type": "skill_activity:watcher",
+      "event_producer_role": "core_status"
+    },
+    {
+      "id": "watcher_intelligence_ready",
+      "type": "pulse.event",
+      "event_type": "skills:watcher_intelligence_ready",
+      "event_producer_role": "core_intelligence"
+    }
+  ],
+  "awareness": [
+    "skill-governor",
+    "knowledge",
+    "research"
+  ]
+}

@@ -1,0 +1,7 @@
+interface:
+  display_name: "automation"
+  short_description: "Automate browsers, desktop context, screenshots, and visible verification"
+  default_prompt: "Use $automation when direct browser, desktop, screenshot, Atlas, Chronicle, or visible UI verification is needed."
+
+policy:
+  allow_implicit_invocation: true

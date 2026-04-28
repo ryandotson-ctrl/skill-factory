@@ -1,0 +1,44 @@
+{
+  "schema_version": "2.0.0",
+  "display_name": "reliability",
+  "description": "Lean core reliability skill for incidents, performance, runtime, logs, async, lifecycle, and resource budgets.",
+  "dispatch": {
+    "mode": "automatic",
+    "cooldown": 300
+  },
+  "inputs": [
+    {
+      "id": "skill_request",
+      "type": "pulse.event",
+      "pattern": "skill:reliability:requested",
+      "route_mode": "owned",
+      "route_priority": 95
+    },
+    {
+      "id": "runtime_incident_detected",
+      "type": "pulse.event",
+      "pattern": "runtime:incident_detected",
+      "route_mode": "owned",
+      "route_priority": 94
+    }
+  ],
+  "outputs": [
+    {
+      "id": "status_update",
+      "type": "pulse.event",
+      "event_type": "skill_activity:reliability",
+      "event_producer_role": "core_status"
+    },
+    {
+      "id": "stabilization_plan_ready",
+      "type": "pulse.event",
+      "event_type": "reliability:stabilization_plan_ready",
+      "event_producer_role": "stabilization_plan"
+    }
+  ],
+  "awareness": [
+    "engineering",
+    "security",
+    "rag-data"
+  ]
+}

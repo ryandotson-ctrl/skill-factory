@@ -1,0 +1,25 @@
+{
+  "skill_id": "apple",
+  "version": "1.0.0",
+  "description": "Lean core Apple platform skill for project adoption, Xcode harnessing, verification, and release.",
+  "inputs": [
+    {
+      "event_type": "skill:apple:requested",
+      "schema_ref": "default_event_schema"
+    },
+    {
+      "event_type": "apple:project_requested",
+      "schema_ref": "default_event_schema"
+    }
+  ],
+  "outputs": [
+    {
+      "event_type": "skill_activity:apple",
+      "schema_ref": "default_finding_schema"
+    },
+    {
+      "event_type": "apple:receipt_ready",
+      "schema_ref": "default_finding_schema"
+    }
+  ]
+}

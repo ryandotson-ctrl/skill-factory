@@ -1,0 +1,44 @@
+{
+  "schema_version": "2.0.0",
+  "display_name": "automation",
+  "description": "Lean core automation skill for browser, desktop, screenshot, Atlas, Chronicle, and visible verification workflows.",
+  "dispatch": {
+    "mode": "automatic",
+    "cooldown": 300
+  },
+  "inputs": [
+    {
+      "id": "skill_request",
+      "type": "pulse.event",
+      "pattern": "skill:automation:requested",
+      "route_mode": "owned",
+      "route_priority": 95
+    },
+    {
+      "id": "browser_requested",
+      "type": "pulse.event",
+      "pattern": "automation:browser_requested",
+      "route_mode": "owned",
+      "route_priority": 90
+    }
+  ],
+  "outputs": [
+    {
+      "id": "status_update",
+      "type": "pulse.event",
+      "event_type": "skill_activity:automation",
+      "event_producer_role": "core_status"
+    },
+    {
+      "id": "verification_ready",
+      "type": "pulse.event",
+      "event_type": "automation:verification_ready",
+      "event_producer_role": "visual_verification"
+    }
+  ],
+  "awareness": [
+    "engineering",
+    "ux",
+    "artifacts"
+  ]
+}

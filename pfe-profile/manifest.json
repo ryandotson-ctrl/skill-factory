@@ -1,0 +1,25 @@
+{
+  "skill_id": "pfe-profile",
+  "version": "1.0.0",
+  "description": "Lean profile skill for Project Free Energy-specific runtime, RAG, schema, model, web, and uptime wisdom.",
+  "inputs": [
+    {
+      "event_type": "skill:pfe-profile:requested",
+      "schema_ref": "default_event_schema"
+    },
+    {
+      "event_type": "profile:pfe_requested",
+      "schema_ref": "default_event_schema"
+    }
+  ],
+  "outputs": [
+    {
+      "event_type": "skill_activity:pfe-profile",
+      "schema_ref": "default_finding_schema"
+    },
+    {
+      "event_type": "profile:pfe_context_ready",
+      "schema_ref": "default_finding_schema"
+    }
+  ]
+}

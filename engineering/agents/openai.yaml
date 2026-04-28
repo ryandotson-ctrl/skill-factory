@@ -1,0 +1,7 @@
+interface:
+  display_name: "engineering"
+  short_description: "Route software work through truth, risk, QA, audit, and closure"
+  default_prompt: "Use $engineering to inspect reality first, choose the lowest-regression route, implement narrowly, and validate before claiming success."
+
+policy:
+  allow_implicit_invocation: true
